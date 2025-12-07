@@ -24,9 +24,9 @@ const tierSchema = z.object({
 const priceSchema = z
   .object({
     id: z.string().min(1),
-    type: z.nativeEnum(PriceType),
-    model: z.nativeEnum(PriceModel),
-    interval: z.nativeEnum(PriceInterval).optional(),
+    type: z.enum(PriceType),
+    model: z.enum(PriceModel),
+    interval: z.enum(PriceInterval).optional(),
     currency: z.string().min(3).max(3),
     cost: z.number().min(0),
     meter: z
@@ -40,44 +40,41 @@ const priceSchema = z
   .refine(
     (data) => data.type !== PriceType.OneTime || data.interval === undefined,
     {
-      message: 'One-time prices must not have an interval',
-      path: ['type', 'interval']
+      path: ['type', 'interval'],
+        error: 'One-time prices must not have an interval'
     }
   )
   .refine(
     (data) => data.type !== PriceType.Recurring || data.interval !== undefined,
     {
-      message: 'Recurring prices must have an interval',
-      path: ['type', 'interval']
+      path: ['type', 'interval'],
+        error: 'Recurring prices must have an interval'
     }
   )
   .refine(
     (data) => data.type !== PriceType.OneTime || data.model === PriceModel.Flat,
     {
-      message: 'One-time prices must have a flat price model',
-      path: ['type', 'model']
+      path: ['type', 'model'],
+        error: 'One-time prices must have a flat price model'
     }
   )
   .refine(
     (data) => data.model !== PriceModel.Metered || data.meter !== undefined,
     {
-      message: 'Metered price models must have a meter',
-      path: ['model', 'meter']
+      path: ['model', 'meter'],
+        error: 'Metered price models must have a meter'
     }
   )
   .refine((data) => data.model !== PriceModel.Metered || data.cost === 0, {
-    message:
-      'Metered prices must have a cost of 0. Please add a different price for a flat fee (Stripe)',
-    path: ['model', 'cost']
-  });
+    path: ['model', 'cost'],
+      error: 'Metered prices must have a cost of 0. Please add a different price for a flat fee (Stripe)'
+});
 
 const planSchema = z.object({
   id: z.string().min(1),
-  displayIntervals: z.array(z.nativeEnum(PriceInterval)),
+  displayIntervals: z.array(z.enum(PriceInterval)),
   trialDays: z.number().positive().optional(),
-  prices: z
-    .array(priceSchema)
-    .nonempty({ message: 'Plan must have at least one price' })
+  prices: z.tuple([priceSchema], priceSchema)
     .refine(
       (prices) => {
         const models = prices.map((price) => price.model);
@@ -88,9 +85,9 @@ const planSchema = z.object({
         return perSeat <= 1 && flat <= 1;
       },
       {
-        message: 'Plans can only have one per-seat and one flat price',
-        path: ['prices']
-      }
+        path: ['prices'],
+          error: 'Plans can only have one per-seat and one flat price'
+    }
     )
 });
 
@@ -105,9 +102,7 @@ const productSchema = z.object({
   isFree: z.boolean().optional(),
   isEnterprise: z.boolean().optional(),
   features: z.array(z.string()),
-  plans: z
-    .array(planSchema)
-    .nonempty({ message: 'Product must have at least one plan' })
+  plans: z.tuple([planSchema], planSchema)
     .refine(
       (plans) => {
         const counts = new Map<string, number>();
@@ -122,18 +117,15 @@ const productSchema = z.object({
         return true;
       },
       {
-        message:
-          "Each displayInterval (e.g. 'Month', 'Year') can appear in at most one plan.",
-        path: ['plans']
-      }
+        path: ['plans'],
+          error: "Each displayInterval (e.g. 'Month', 'Year') can appear in at most one plan."
+    }
     )
 });
 
 const billingConfigSchema = z
   .object({
-    products: z
-      .array(productSchema)
-      .nonempty({ message: 'At least one product must be defined.' })
+    products: z.tuple([productSchema], productSchema)
   })
   .refine(
     (data) => {
@@ -143,8 +135,8 @@ const billingConfigSchema = z
       return ids.length === new Set(ids).size;
     },
     {
-      message: 'Price IDs must be unique',
-      path: ['products']
+      path: ['products'],
+        error: 'Price IDs must be unique'
     }
   );
 

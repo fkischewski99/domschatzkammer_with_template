@@ -148,7 +148,7 @@ async function tryCopyGoogleImage(
           prisma.userImage.create({
             data: {
               userId: user.id!,
-              data: image.bytes,
+              data: new Uint8Array(image.bytes),
               contentType: image.contentType,
               hash: image.hash
             },
@@ -196,7 +196,7 @@ async function tryCopyMicrosoftGraphImage(
             prisma.userImage.create({
               data: {
                 userId: user.id!,
-                data: bytes,
+                data: new Uint8Array(bytes),
                 contentType: contentType,
                 hash: hash
               },

@@ -59,7 +59,7 @@ export async function GET(
     });
   }
 
-  return new NextResponse(organizationLogo.data, {
+  return new NextResponse(Buffer.from(organizationLogo.data), {
     status: 200,
     headers: {
       'Cache-Control': 'public, max-age=86400, immutable',

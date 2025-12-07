@@ -3,10 +3,10 @@ import { z } from 'zod';
 import { FileUploadAction } from '~/lib/file-upload';
 
 export const updateOrganizationLogoSchema = z.object({
-  action: z.nativeEnum(FileUploadAction),
+  action: z.enum(FileUploadAction),
   logo: z
     .string({
-      invalid_type_error: 'Logo must be a string.'
+        error: (issue) => issue.input === undefined ? undefined : 'Logo must be a string.'
     })
     .optional()
     .or(z.literal(''))

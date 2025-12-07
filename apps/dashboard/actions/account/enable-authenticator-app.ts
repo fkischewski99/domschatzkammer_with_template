@@ -1,7 +1,7 @@
 'use server';
+import { updateTag } from 'next/cache';
 
 import crypto from 'crypto';
-import { revalidateTag } from 'next/cache';
 import { returnValidationErrors } from 'next-safe-action';
 import { authenticator } from 'otplib';
 
@@ -55,7 +55,7 @@ export const enableAuthenticatorApp = authActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(
         UserCacheKey.MultiFactorAuthentication,
         ctx.session.user.id

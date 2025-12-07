@@ -8,10 +8,7 @@ export const DescriptionList = ({
 }: DescriptionListProps): React.JSX.Element => {
   return (
     <dl
-      className={cn(
-        'text-base sm:text-sm [@apply/text-pretty]:[--font-feature-settings:normal] group/dl',
-        className
-      )}
+      className={cn('text-base sm:text-sm group/dl', className)}
       {...props}
     />
   );

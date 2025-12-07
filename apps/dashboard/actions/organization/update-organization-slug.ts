@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { prisma } from '@workspace/database/client';
@@ -24,7 +24,7 @@ export const updateOrganizationSlug = authOrganizationActionClient
       });
 
       for (const membership of ctx.organization.memberships) {
-        revalidateTag(
+        updateTag(
           Caching.createUserTag(UserCacheKey.Organizations, membership.userId)
         );
       }

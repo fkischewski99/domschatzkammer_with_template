@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { prisma } from '@workspace/database/client';
 
@@ -47,7 +47,7 @@ export const addFavorite = authOrganizationActionClient
       updateFavoritesOrder(ctx.session.user.id)
     ]);
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Favorites,
         ctx.organization.id,
@@ -55,7 +55,7 @@ export const addFavorite = authOrganizationActionClient
       )
     );
 
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(
         UserCacheKey.ContactIsInFavorites,
         ctx.session.user.id,

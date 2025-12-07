@@ -1,73 +1,63 @@
 import 'server-only';
 
-import { unstable_cache as cache } from 'next/cache';
+import { cacheLife, cacheTag } from 'next/cache';
 
 import { getAuthOrganizationContext } from '@workspace/auth/context';
 import { NotFoundError } from '@workspace/common/errors';
 import { prisma } from '@workspace/database/client';
 
-import {
-  Caching,
-  defaultRevalidateTimeInSeconds,
-  OrganizationCacheKey
-} from '~/data/caching';
+import { Caching, OrganizationCacheKey } from '~/data/caching';
 import type { WorkHoursDto } from '~/types/dtos/work-hours-dto';
 
-export async function getBusinessHours(): Promise<WorkHoursDto[]> {
-  const ctx = await getAuthOrganizationContext();
+async function getBusinessHoursData(
+  organizationId: string
+): Promise<WorkHoursDto[]> {
+  'use cache';
+  cacheLife('default');
+  cacheTag(
+    Caching.createOrganizationTag(
+      OrganizationCacheKey.BusinessHours,
+      organizationId
+    )
+  );
 
-  return cache(
-    async () => {
-      const organization = await prisma.organization.findFirst({
-        where: { id: ctx.organization.id },
+  const organization = await prisma.organization.findFirst({
+    where: { id: organizationId },
+    select: {
+      name: true,
+      address: true,
+      phone: true,
+      email: true,
+      businessHours: {
         select: {
-          name: true,
-          address: true,
-          phone: true,
-          email: true,
-          businessHours: {
+          dayOfWeek: true,
+          timeSlots: {
             select: {
-              dayOfWeek: true,
-              timeSlots: {
-                select: {
-                  id: true,
-                  start: true,
-                  end: true
-                }
-              }
+              id: true,
+              start: true,
+              end: true
             }
           }
         }
-      });
-      if (!organization) {
-        throw new NotFoundError('Organization not found');
       }
-
-      const response: WorkHoursDto[] = organization.businessHours.map(
-        (workHours) => ({
-          dayOfWeek: workHours.dayOfWeek,
-          timeSlots: workHours.timeSlots.map((timeSlot) => ({
-            id: timeSlot.id,
-            start: timeSlot.start.toISOString(),
-            end: timeSlot.end.toISOString()
-          }))
-        })
-      );
-
-      return response;
-    },
-    Caching.createOrganizationKeyParts(
-      OrganizationCacheKey.BusinessHours,
-      ctx.organization.id
-    ),
-    {
-      revalidate: defaultRevalidateTimeInSeconds,
-      tags: [
-        Caching.createOrganizationTag(
-          OrganizationCacheKey.BusinessHours,
-          ctx.organization.id
-        )
-      ]
     }
-  )();
+  });
+
+  if (!organization) {
+    throw new NotFoundError('Organization not found');
+  }
+
+  return organization.businessHours.map((workHours) => ({
+    dayOfWeek: workHours.dayOfWeek,
+    timeSlots: workHours.timeSlots.map((timeSlot) => ({
+      id: timeSlot.id,
+      start: timeSlot.start.toISOString(),
+      end: timeSlot.end.toISOString()
+    }))
+  }));
+}
+
+export async function getBusinessHours(): Promise<WorkHoursDto[]> {
+  const ctx = await getAuthOrganizationContext();
+  return getBusinessHoursData(ctx.organization.id);
 }

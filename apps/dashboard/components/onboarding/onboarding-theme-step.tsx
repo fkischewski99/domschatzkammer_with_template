@@ -33,7 +33,9 @@ export function OnboardingThemeStep({
   const methods = useFormContext<CompleteOnboardingSchema>();
   const selectedTheme = methods.watch('themeStep.theme');
   React.useEffect(() => {
-    setTheme(selectedTheme);
+    if (selectedTheme) {
+      setTheme(selectedTheme);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTheme]);
   return (

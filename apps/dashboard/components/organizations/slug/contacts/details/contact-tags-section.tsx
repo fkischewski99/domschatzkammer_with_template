@@ -63,7 +63,7 @@ export function ContactTagsSection({
                       {...field}
                       allowDuplicates={false}
                       placeholder="Type your tag and press enter"
-                      tags={field.value}
+                      tags={field.value ?? []}
                       onTagsChange={(values) => {
                         field.onChange(values);
                         onSubmit(methods.getValues());

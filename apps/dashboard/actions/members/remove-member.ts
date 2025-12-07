@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { isOrganizationAdmin } from '@workspace/auth/permissions';
@@ -60,15 +60,15 @@ export const removeMember = authOrganizationActionClient
       })
     ]);
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Members,
         ctx.organization.id
       )
     );
 
-    revalidateTag(Caching.createUserTag(UserCacheKey.Profile, parsedInput.id));
-    revalidateTag(
+    updateTag(Caching.createUserTag(UserCacheKey.Profile, parsedInput.id));
+    updateTag(
       Caching.createUserTag(UserCacheKey.Organizations, parsedInput.id)
     );
 

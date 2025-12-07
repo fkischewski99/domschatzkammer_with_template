@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { type Prisma } from '@workspace/database';
 import { prisma } from '@workspace/database/client';
@@ -41,7 +41,7 @@ export const reorderFavorites = authOrganizationActionClient
         updateFavoritesOrder(ctx.session.user.id)
       ]);
 
-      revalidateTag(
+      updateTag(
         Caching.createOrganizationTag(
           OrganizationCacheKey.Favorites,
           ctx.organization.id,

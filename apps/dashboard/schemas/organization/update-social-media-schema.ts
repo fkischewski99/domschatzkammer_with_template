@@ -1,13 +1,8 @@
 import { z } from 'zod';
 
 const createSocialMediaField = (name: string) => {
-  return z
-    .string({
-      required_error: `${name} URL is required.`,
-      invalid_type_error: `${name} URL must be a string.`
-    })
-    .trim()
-    .url(`Enter a valid ${name} URL.`)
+  return z.url(`Enter a valid ${name} URL.`)
+      .trim()
     .max(2000, `Maximum 2000 characters allowed.`)
     .optional()
     .or(z.literal(''));

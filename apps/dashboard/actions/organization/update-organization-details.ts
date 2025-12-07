@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { BillingProvider } from '@workspace/billing/provider';
 import { prisma } from '@workspace/database/client';
@@ -43,12 +43,12 @@ export const updateOrganizationDetails = authOrganizationActionClient
     }
 
     for (const membership of ctx.organization.memberships) {
-      revalidateTag(
+      updateTag(
         Caching.createUserTag(UserCacheKey.Organizations, membership.userId)
       );
     }
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.OrganizationDetails,
         ctx.organization.id

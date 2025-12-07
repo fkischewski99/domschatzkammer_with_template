@@ -3,24 +3,18 @@ import { literal, z } from 'zod';
 import { WebhookTrigger } from '@workspace/database';
 
 export const createWebhookSchema = z.object({
-  url: z
-    .string({
-      required_error: 'Webhook URL is required.',
-      invalid_type_error: 'Webhook URL must be a string.'
-    })
-    .trim()
-    .url('Enter a valid URL with schema.')
+  url: z.url('Enter a valid URL with schema.')
+        .trim()
     .min(1, 'Webhook URL is required.')
     .max(2000, 'Maximum 2000 characters allowed.'),
   triggers: z.array(
-    z.nativeEnum(WebhookTrigger, {
-      required_error: 'Trigger is required',
-      invalid_type_error: 'Trigger must be a string'
+    z.enum(WebhookTrigger, {
+        error: (issue) => issue.input === undefined ? 'Trigger is required' : 'Trigger must be a string'
     })
   ),
   secret: z
     .string({
-      invalid_type_error: 'Secret must be a string.'
+        error: (issue) => issue.input === undefined ? undefined : 'Secret must be a string.'
     })
     .trim()
     .max(1024, 'Maximum 1024 characters allowed.')

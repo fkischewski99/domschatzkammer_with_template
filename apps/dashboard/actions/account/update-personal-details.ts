@@ -1,7 +1,7 @@
 'use server';
+import { updateTag } from 'next/cache';
 
 import { createHash } from 'crypto';
-import { revalidateTag } from 'next/cache';
 
 import { decodeBase64Image, resizeImage } from '@workspace/common/image';
 import type { Maybe } from '@workspace/common/maybe';
@@ -38,7 +38,7 @@ export const updatePersonalDetails = authActionClient
         prisma.userImage.create({
           data: {
             userId: ctx.session.user.id,
-            data,
+            data: new Uint8Array(data),
             contentType: mimeType,
             hash
           },
@@ -76,12 +76,12 @@ export const updatePersonalDetails = authActionClient
 
     await prisma.$transaction(transactions);
 
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(UserCacheKey.PersonalDetails, ctx.session.user.id)
     );
 
     for (const membership of ctx.session.user.memberships) {
-      revalidateTag(
+      updateTag(
         Caching.createOrganizationTag(
           OrganizationCacheKey.Members,
           membership.organizationId

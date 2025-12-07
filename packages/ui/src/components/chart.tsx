@@ -120,16 +120,32 @@ export type ChartTooltipProps = React.ComponentProps<
 const ChartTooltip = RechartsPrimitive.Tooltip;
 
 export type ChartTooltipContentElement = React.ComponentRef<'div'>;
-export type ChartTooltipContentProps = React.ComponentProps<
-  typeof RechartsPrimitive.Tooltip
-> &
-  React.ComponentProps<'div'> & {
-    hideLabel?: boolean;
-    hideIndicator?: boolean;
-    indicator?: 'line' | 'dot' | 'dashed';
-    nameKey?: string;
-    labelKey?: string;
-  };
+export type ChartTooltipContentProps = React.ComponentProps<'div'> & {
+  active?: boolean;
+  payload?: Array<{
+    name?: string;
+    dataKey?: string;
+    value?: number;
+    color?: string;
+    payload?: Record<string, unknown>;
+  }>;
+  label?: string;
+  labelFormatter?: (label: unknown, payload: unknown[]) => React.ReactNode;
+  labelClassName?: string;
+  formatter?: (
+    value: unknown,
+    name: string,
+    item: unknown,
+    index: number,
+    payload: unknown
+  ) => React.ReactNode;
+  color?: string;
+  hideLabel?: boolean;
+  hideIndicator?: boolean;
+  indicator?: 'line' | 'dot' | 'dashed';
+  nameKey?: string;
+  labelKey?: string;
+};
 function ChartTooltipContent({
   active,
   payload,
@@ -201,7 +217,7 @@ function ChartTooltipContent({
         {payload.map((item, index) => {
           const key = `${nameKey || item.name || item.dataKey || 'value'}`;
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
-          const indicatorColor = color || item.payload.fill || item.color;
+          const indicatorColor = color || (item.payload as Record<string, unknown>)?.fill || item.color;
 
           return (
             <div
@@ -276,11 +292,16 @@ export type ChartLegendProps = React.ComponentProps<
 const ChartLegend = RechartsPrimitive.Legend;
 
 export type ChartLegendContentElement = React.ComponentRef<'div'>;
-export type ChartLegendContentProps = React.ComponentProps<'div'> &
-  Pick<RechartsPrimitive.LegendProps, 'payload' | 'verticalAlign'> & {
-    hideIcon?: boolean;
-    nameKey?: string;
-  };
+export type ChartLegendContentProps = React.ComponentProps<'div'> & {
+  payload?: Array<{
+    value?: string;
+    dataKey?: string;
+    color?: string;
+  }>;
+  verticalAlign?: 'top' | 'bottom' | 'middle';
+  hideIcon?: boolean;
+  nameKey?: string;
+};
 
 function ChartLegendContent({
   className,

@@ -122,7 +122,7 @@ export function LeadGenerationCard({
                   className="w-[150px]"
                   nameKey="contacts"
                   labelFormatter={(value) =>
-                    new Date(value).toLocaleDateString('en-US', {
+                    new Date(value as string | number | Date).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
                       year: 'numeric'

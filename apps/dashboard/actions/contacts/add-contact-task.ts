@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { NotFoundError } from '@workspace/common/errors';
 import { prisma } from '@workspace/database/client';
@@ -36,7 +36,7 @@ export const addContactTask = authOrganizationActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.ContactTasks,
         ctx.organization.id,

@@ -213,7 +213,7 @@ export function OnboardingOrganizationStep({
         disabled={!canNext}
         isLastStep={isLastStep}
         onClick={async () => {
-          const result = await checkIfSlugIsAvailable({ slug });
+          const result = await checkIfSlugIsAvailable({ slug: slug ?? '' });
           if (!result?.data?.isAvailable) {
             methods.setError('organizationStep.slug', {
               type: 'validate',

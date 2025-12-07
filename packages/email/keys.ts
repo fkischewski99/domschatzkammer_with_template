@@ -5,7 +5,7 @@ export const keys = () =>
   createEnv({
     server: {
       EMAIL_FROM: z.string(), // You can use 'Acme <noreply@mailer.acme.com>'
-      EMAIL_FEEDBACK_INBOX: z.string().email().optional(),
+      EMAIL_FEEDBACK_INBOX: z.email().optional(),
       EMAIL_NODEMAILER_URL: z.string().optional(),
       EMAIL_POSTMARK_SERVER_TOKEN: z.string().optional(),
       EMAIL_RESEND_API_KEY: z.string().optional(),

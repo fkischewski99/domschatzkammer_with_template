@@ -1,7 +1,7 @@
 'use server';
+import { updateTag } from 'next/cache';
 
 import { createHash } from 'crypto';
-import { revalidateTag } from 'next/cache';
 
 import { NotFoundError } from '@workspace/common/errors';
 import { decodeBase64Image, resizeImage } from '@workspace/common/image';
@@ -43,7 +43,7 @@ export const updateContactImage = authOrganizationActionClient
         prisma.contactImage.create({
           data: {
             contactId: parsedInput.id,
-            data,
+            data: new Uint8Array(data),
             contentType: mimeType,
             hash
           }
@@ -66,13 +66,13 @@ export const updateContactImage = authOrganizationActionClient
       ctx.session.user.id
     );
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Contacts,
         ctx.organization.id
       )
     );
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Contact,
         ctx.organization.id,
@@ -81,7 +81,7 @@ export const updateContactImage = authOrganizationActionClient
     );
 
     for (const membership of ctx.organization.memberships) {
-      revalidateTag(
+      updateTag(
         Caching.createOrganizationTag(
           OrganizationCacheKey.Favorites,
           ctx.organization.id,

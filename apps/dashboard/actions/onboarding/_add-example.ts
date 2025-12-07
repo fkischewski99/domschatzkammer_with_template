@@ -54,7 +54,7 @@ export async function addExampleData(
           prisma.contactImage.create({
             data: {
               contactId,
-              data: buffer,
+              data: new Uint8Array(buffer),
               contentType: mimeType,
               hash: hash
             },

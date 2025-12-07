@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 import { startOfDay } from 'date-fns';
 
 import { NotFoundError } from '@workspace/common/errors';
@@ -37,7 +37,7 @@ export const updateApiKey = authOrganizationActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.ApiKeys,
         ctx.organization.id

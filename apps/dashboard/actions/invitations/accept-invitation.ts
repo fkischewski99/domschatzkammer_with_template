@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { adjustSeats } from '@workspace/billing/seats';
@@ -70,19 +70,19 @@ export const acceptInvitation = authActionClient
       console.error(e);
     }
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Members,
         invitation.organizationId
       )
     );
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Invitations,
         invitation.organizationId
       )
     );
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(UserCacheKey.Organizations, ctx.session.user.id)
     );
 

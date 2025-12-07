@@ -79,7 +79,7 @@ export function BentoAnalyticsCard({
               <Area
                 type="monotone"
                 dataKey="value"
-                label="Leads"
+                name="Leads"
                 stroke="var(--primary)"
                 fill="url(#gradient)"
                 strokeWidth={2}
@@ -89,10 +89,10 @@ export function BentoAnalyticsCard({
                 content={
                   <ChartTooltipContent
                     className="w-[150px]"
-                    labelFormatter={(_, payload) => payload[0].payload.name}
+                    labelFormatter={(_, payload) => (payload[0] as { payload: { name: string } }).payload.name}
                     formatter={(value) => (
                       <>
-                        <strong>{value}</strong> Leads
+                        <strong>{String(value)}</strong> Leads
                       </>
                     )}
                   />

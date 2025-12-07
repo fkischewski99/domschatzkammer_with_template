@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { isOrganizationAdmin } from '@workspace/auth/permissions';
 import { ForbiddenError, NotFoundError } from '@workspace/common/errors';
@@ -46,7 +46,7 @@ export const updateInvitation = authOrganizationActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Invitations,
         ctx.organization.id

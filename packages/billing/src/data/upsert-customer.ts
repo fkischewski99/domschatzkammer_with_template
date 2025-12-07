@@ -14,7 +14,9 @@ export async function upsertCustomer(customer: UpsertCustomer): Promise<void> {
       }
     });
     if (!organization) {
-      throw new Error('Billing customer not found');
+      throw new Error(
+        `Billing customer not found for customerId: ${customer.customerId}`
+      );
     }
     customer.organizationId = organization.id;
   }

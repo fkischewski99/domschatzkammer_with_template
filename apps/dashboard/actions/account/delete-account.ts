@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { adjustSeats } from '@workspace/billing/seats';
 import { prisma } from '@workspace/database/client';
@@ -43,7 +43,7 @@ export const deleteAccount = authActionClient
     ]);
 
     for (const membership of ctx.session.user.memberships) {
-      revalidateTag(
+      updateTag(
         Caching.createOrganizationTag(
           OrganizationCacheKey.Members,
           membership.organizationId

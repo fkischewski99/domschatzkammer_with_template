@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import {
   isOrganizationAdmin,
@@ -54,25 +54,25 @@ export const transferOwnership = authOrganizationActionClient
       })
     ]);
 
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(UserCacheKey.Profile, ctx.session.user.id)
     );
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(UserCacheKey.Profile, parsedInput.targetId)
     );
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(UserCacheKey.Organizations, ctx.session.user.id)
     );
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(UserCacheKey.Organizations, parsedInput.targetId)
     );
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Members,
         ctx.organization.id
       )
     );
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(UserCacheKey.PersonalDetails, parsedInput.targetId)
     );
   });

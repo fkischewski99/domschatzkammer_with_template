@@ -105,7 +105,5 @@ export class Caching {
       ...additionalTagParts
     );
   }
-}
 
-export const defaultRevalidateTimeInSeconds =
-  process.env.NODE_ENV === 'production' ? 3600 : 120;
+}

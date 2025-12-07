@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { APP_NAME } from '@workspace/common/app';
 import { NotFoundError } from '@workspace/common/errors';
@@ -53,7 +53,7 @@ export const revokeInvitation = authOrganizationActionClient
       }
     }
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Invitations,
         ctx.organization.id

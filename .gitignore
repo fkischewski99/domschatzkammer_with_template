@@ -37,5 +37,8 @@ yarn-error.log*
 # Content Collections
 .content-collections
 
+# Prisma generated client
+packages/database/src/generated
+
 # Ide
 .idea/

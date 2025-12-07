@@ -1,6 +1,6 @@
 # Introduction
 
-Next 15 starter kit based on Next.js, Auth.js and Prisma designed to accelerate the development of web-based (SaaS) applications.
+Next 16 starter kit based on Next.js, Auth.js and Prisma designed to accelerate the development of web-based (SaaS) applications.
 
 # Quickstart
 

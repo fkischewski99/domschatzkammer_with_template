@@ -1,43 +1,59 @@
 import { AuthErrorCode } from '@workspace/auth/errors';
 import { Provider } from '@workspace/auth/providers.types';
-import {
-  ContactRecord,
-  ContactStage,
-  FeedbackCategory,
-  Role,
-  WebhookTrigger
-} from '@workspace/database';
+
+// Define enum values as string literals to avoid importing @prisma/client in client components
+// These values must match the Prisma schema enum mappings
+
+type ContactStage =
+  | 'LEAD'
+  | 'QUALIFIED'
+  | 'OPPORTUNITY'
+  | 'PROPOSAL'
+  | 'IN_NEGOTIATION'
+  | 'LOST'
+  | 'WON';
+
+type ContactRecord = 'PERSON' | 'COMPANY';
+
+type Role = 'MEMBER' | 'ADMIN';
+
+type FeedbackCategory = 'SUGGESTION' | 'PROBLEM' | 'QUESTION';
+
+type WebhookTrigger =
+  | 'CONTACT_CREATED'
+  | 'CONTACT_UPDATED'
+  | 'CONTACT_DELETED';
 
 export const contactStageLabel: Record<ContactStage, string> = {
-  [ContactStage.LEAD]: 'Lead',
-  [ContactStage.QUALIFIED]: 'Qualified',
-  [ContactStage.OPPORTUNITY]: 'Opportunity',
-  [ContactStage.PROPOSAL]: 'Proposal',
-  [ContactStage.IN_NEGOTIATION]: 'In negotiation',
-  [ContactStage.LOST]: 'Lost',
-  [ContactStage.WON]: 'Won'
+  LEAD: 'Lead',
+  QUALIFIED: 'Qualified',
+  OPPORTUNITY: 'Opportunity',
+  PROPOSAL: 'Proposal',
+  IN_NEGOTIATION: 'In negotiation',
+  LOST: 'Lost',
+  WON: 'Won'
 };
 
 export const contactRecordLabel: Record<ContactRecord, string> = {
-  [ContactRecord.PERSON]: 'Person',
-  [ContactRecord.COMPANY]: 'Company'
+  PERSON: 'Person',
+  COMPANY: 'Company'
 };
 
 export const roleLabels: Record<Role, string> = {
-  [Role.MEMBER]: 'Member',
-  [Role.ADMIN]: 'Admin'
+  MEMBER: 'Member',
+  ADMIN: 'Admin'
 };
 
 export const feedbackCategoryLabels: Record<FeedbackCategory, string> = {
-  [FeedbackCategory.SUGGESTION]: 'Suggestion',
-  [FeedbackCategory.PROBLEM]: 'Problem',
-  [FeedbackCategory.QUESTION]: 'Question'
+  SUGGESTION: 'Suggestion',
+  PROBLEM: 'Problem',
+  QUESTION: 'Question'
 };
 
 export const webhookTriggerLabels: Record<WebhookTrigger, string> = {
-  [WebhookTrigger.CONTACT_CREATED]: 'Contact created',
-  [WebhookTrigger.CONTACT_UPDATED]: 'Contact updated',
-  [WebhookTrigger.CONTACT_DELETED]: 'Contact deleted'
+  CONTACT_CREATED: 'Contact created',
+  CONTACT_UPDATED: 'Contact updated',
+  CONTACT_DELETED: 'Contact deleted'
 };
 
 export const identityProviderLabels: Record<Provider, string> = {

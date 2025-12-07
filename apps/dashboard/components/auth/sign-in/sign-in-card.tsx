@@ -201,7 +201,7 @@ export function SignInCard({
                       href={`${routes.dashboard.auth.verifyEmail.Index}?email=${encodeURIComponent(unverifiedEmail)}`}
                       className={cn(
                         buttonVariants({ variant: 'link' }),
-                        'ml-0.5 h-fit gap-0.5 px-0.5 py-0 text-foreground underline'
+                        'ml-0.5! h-fit gap-0.5 px-0.5! py-0 text-foreground underline'
                       )}
                     >
                       Verify email

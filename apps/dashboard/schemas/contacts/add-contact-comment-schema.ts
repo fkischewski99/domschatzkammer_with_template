@@ -1,19 +1,13 @@
 import { z } from 'zod';
 
 export const addContactCommentSchema = z.object({
-  contactId: z
-    .string({
-      required_error: 'Contact id is required.',
-      invalid_type_error: 'Contact id must be a string.'
-    })
-    .trim()
-    .uuid('Contact id is invalid.')
+  contactId: z.uuid('Contact id is invalid.')
+        .trim()
     .min(1, 'Contact id is required.')
     .max(36, 'Maximum 36 characters allowed.'),
   text: z
     .string({
-      required_error: 'Text is required.',
-      invalid_type_error: 'Text must be a string.'
+        error: (issue) => issue.input === undefined ? 'Text is required.' : 'Text must be a string.'
     })
     .trim()
     .min(1, 'Text is required.')

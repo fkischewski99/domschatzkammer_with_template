@@ -252,8 +252,7 @@ export const billingAddressCountries = [
 export const updateBillingAddressSchema = z.object({
   line1: z
     .string({
-      required_error: 'Address line 1 is required.',
-      invalid_type_error: 'Address line 1 must be a string.'
+        error: (issue) => issue.input === undefined ? 'Address line 1 is required.' : 'Address line 1 must be a string.'
     })
     .trim()
     .max(512, 'Maximum 512 characters allowed for address line 1.')
@@ -261,8 +260,7 @@ export const updateBillingAddressSchema = z.object({
     .or(z.literal('')),
   line2: z
     .string({
-      required_error: 'Address line 2 is required.',
-      invalid_type_error: 'Address line 2 must be a string.'
+        error: (issue) => issue.input === undefined ? 'Address line 2 is required.' : 'Address line 2 must be a string.'
     })
     .trim()
     .max(512, 'Maximum 512 characters allowed for address line 2.')
@@ -270,8 +268,7 @@ export const updateBillingAddressSchema = z.object({
     .or(z.literal('')),
   country: z
     .string({
-      required_error: 'Country is required.',
-      invalid_type_error: 'Country must be a string.'
+        error: (issue) => issue.input === undefined ? 'Country is required.' : 'Country must be a string.'
     })
     .trim()
     .toUpperCase()
@@ -284,8 +281,7 @@ export const updateBillingAddressSchema = z.object({
     .or(z.literal('')),
   postalCode: z
     .string({
-      required_error: 'Postal code is required.',
-      invalid_type_error: 'Postal code must be a string.'
+        error: (issue) => issue.input === undefined ? 'Postal code is required.' : 'Postal code must be a string.'
     })
     .trim()
     .max(12, 'Maximum 12 characters allowed for postal code.')
@@ -293,8 +289,7 @@ export const updateBillingAddressSchema = z.object({
     .or(z.literal('')),
   city: z
     .string({
-      required_error: 'City is required.',
-      invalid_type_error: 'City must be a string.'
+        error: (issue) => issue.input === undefined ? 'City is required.' : 'City must be a string.'
     })
     .trim()
     .max(512, 'Maximum 512 characters allowed for city.')
@@ -302,8 +297,7 @@ export const updateBillingAddressSchema = z.object({
     .or(z.literal('')),
   state: z
     .string({
-      required_error: 'State is required.',
-      invalid_type_error: 'State must be a string.'
+        error: (issue) => issue.input === undefined ? 'State is required.' : 'State must be a string.'
     })
     .trim()
     .max(512, 'Maximum 512 characters allowed for state.')

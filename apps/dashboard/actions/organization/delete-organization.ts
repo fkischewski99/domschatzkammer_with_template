@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { isOrganizationOwner } from '@workspace/auth/permissions';
 import { BillingProvider } from '@workspace/billing/provider';
@@ -34,10 +34,10 @@ export const deleteOrganization = authOrganizationActionClient
     ]);
 
     for (const membership of ctx.organization.memberships) {
-      revalidateTag(
+      updateTag(
         Caching.createUserTag(UserCacheKey.Organizations, membership.userId)
       );
-      revalidateTag(
+      updateTag(
         Caching.createUserTag(UserCacheKey.Profile, membership.userId)
       );
     }

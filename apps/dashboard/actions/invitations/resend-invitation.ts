@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { sendInvitationRequest } from '@workspace/auth/invitations';
 import { NotFoundError, PreConditionError } from '@workspace/common/errors';
@@ -46,7 +46,7 @@ export const resendInvitation = authOrganizationActionClient
       organizationId: ctx.organization.id
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Invitations,
         ctx.organization.id

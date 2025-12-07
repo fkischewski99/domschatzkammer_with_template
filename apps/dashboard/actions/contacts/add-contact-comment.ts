@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { prisma } from '@workspace/database/client';
 
@@ -23,7 +23,7 @@ export const addContactComment = authOrganizationActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.ContactTimelineEvents,
         ctx.organization.id,

@@ -19,21 +19,14 @@ export const updateBusinessHoursSchema = z.object({
   businessHours: z
     .array(
       z.object({
-        dayOfWeek: z.nativeEnum(DayOfWeek),
+        dayOfWeek: z.enum(DayOfWeek),
         timeSlots: z.array(
           z.object({
-            id: z
-              .string({
-                required_error: 'Id is required.',
-                invalid_type_error: 'Id must be a string.'
-              })
-              .trim()
-              .uuid('Id is invalid.')
+            id: z.uuid('Id is invalid.')
+                            .trim()
               .min(1, 'Id is required.')
               .max(36, 'Maximum 36 characters allowed.'),
-            start: z
-              .string()
-              .datetime()
+            start: z.iso.datetime()
               .transform((iso) => {
                 const date = parse(
                   iso,
@@ -47,9 +40,7 @@ export const updateBusinessHoursSchema = z.object({
                 );
                 return format(newDate, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
               }),
-            end: z
-              .string()
-              .datetime()
+            end: z.iso.datetime()
               .transform((iso) => {
                 const date = parse(
                   iso,

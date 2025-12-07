@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { NotFoundError } from '@workspace/common/errors';
 import { prisma } from '@workspace/database/client';
@@ -38,7 +38,7 @@ export const updateWebhook = authOrganizationActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Webhooks,
         ctx.organization.id

@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import NextError from 'next/error';
 
 import { useCaptureError } from '@workspace/monitoring/hooks/use-capture-error';
 
@@ -11,15 +10,42 @@ export type GlobalErrorProps = {
 };
 
 export default function GlobalError({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  error: { digest, ...error }
+  error,
+  reset
 }: GlobalErrorProps): React.JSX.Element {
   useCaptureError(error);
+
+  React.useEffect(() => {
+    // Log the error to an error reporting service
+    console.error(error);
+  }, [error]);
+
   return (
     <html>
       <body>
-        {/* This is the default Next.js error component but it doesn't allow omitting the statusCode property yet. */}
-        <NextError statusCode={undefined as never} />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '100vh',
+            fontFamily: 'system-ui, sans-serif'
+          }}
+        >
+          <h2>Something went wrong!</h2>
+          <button
+            type="button"
+            onClick={() => reset()}
+            style={{
+              marginTop: '1rem',
+              padding: '0.5rem 1rem',
+              cursor: 'pointer'
+            }}
+          >
+            Try again
+          </button>
+        </div>
       </body>
     </html>
   );

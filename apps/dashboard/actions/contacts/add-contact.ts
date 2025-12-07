@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { createContactAndCaptureEvent } from '~/actions/contacts/_contact-event-capture';
 import { authOrganizationActionClient } from '~/actions/safe-action';
@@ -26,7 +26,7 @@ export const addContact = authOrganizationActionClient
       ctx.session.user.id
     );
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Contacts,
         ctx.organization.id
@@ -34,7 +34,7 @@ export const addContact = authOrganizationActionClient
     );
 
     for (const membership of ctx.organization.memberships) {
-      revalidateTag(
+      updateTag(
         Caching.createOrganizationTag(
           OrganizationCacheKey.Favorites,
           ctx.organization.id,

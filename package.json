@@ -22,17 +22,17 @@
     "postinstall": "manypkg fix"
   },
   "devDependencies": {
-    "@manypkg/cli": "0.24.0",
-    "@turbo/gen": "2.5.4",
+    "@manypkg/cli": "0.25.1",
+    "@turbo/gen": "2.6.1",
     "cross-env": "7.0.3",
-    "turbo": "2.5.4",
-    "typescript": "5.8.3"
+    "turbo": "2.6.1",
+    "typescript": "5.9.3"
   },
   "pnpm": {
     "overrides": {
-      "react": "19.0.0",
-      "react-dom": "19.0.0",
-      "react-is": "19.0.0",
+      "react": "19.1.0",
+      "react-dom": "19.1.0",
+      "react-is": "19.1.0",
       "require-in-the-middle": "7.5.2",
       "archiver": "7.0.1",
       "unzipper": "0.12.3",

@@ -8,6 +8,8 @@ const INTERNAL_PACKAGES = [
 ];
 
 const nextConfig: NextConfig = {
+  transpilePackages: INTERNAL_PACKAGES,
+  serverExternalPackages: ['@prisma/client', '@prisma/adapter-pg', 'pg'],
   experimental: {
     optimizePackageImports: INTERNAL_PACKAGES
   },

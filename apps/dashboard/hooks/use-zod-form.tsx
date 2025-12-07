@@ -6,16 +6,18 @@ import {
 } from 'react-hook-form';
 import type { z } from 'zod';
 
-export function useZodForm<TSchema extends z.ZodTypeAny>(
-  props: Omit<UseFormProps<TSchema['_input']>, 'resolver'> & {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function useZodForm<TSchema extends z.ZodType<any, any>>(
+  props: Omit<UseFormProps<z.input<TSchema>>, 'resolver'> & {
     schema: TSchema;
   }
-): UseFormReturn<TSchema['_input'], unknown, TSchema['_input']> {
-  return useForm<TSchema['_input']>({
+): UseFormReturn<z.input<TSchema>, unknown, z.output<TSchema>> {
+  return useForm({
     ...props,
-    resolver: zodResolver(props.schema, undefined, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(props.schema as any, undefined, {
       // This makes it so we can use `.transform()`s on the schema without same transform getting applied again when it reaches the server
       raw: true
     })
-  });
+  }) as UseFormReturn<z.input<TSchema>, unknown, z.output<TSchema>>;
 }

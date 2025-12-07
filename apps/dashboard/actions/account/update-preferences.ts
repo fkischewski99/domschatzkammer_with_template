@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { prisma } from '@workspace/database/client';
 
@@ -22,7 +22,7 @@ export const updatePreferences = authActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(UserCacheKey.Preferences, ctx.session.user.id)
     );
   });

@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { prisma } from '@workspace/database/client';
 
@@ -24,7 +24,7 @@ export const updateTransactionalEmails = authActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(
         UserCacheKey.TransactionalEmails,
         ctx.session.user.id

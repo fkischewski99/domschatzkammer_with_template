@@ -1,12 +1,8 @@
 import { z } from 'zod';
 
 export const getContactTasksSchema = z.object({
-  contactId: z
-    .string({
-      invalid_type_error: 'Contact id must be a string.'
-    })
-    .trim()
-    .uuid('Contact id is invalid.')
+  contactId: z.uuid('Contact id is invalid.')
+        .trim()
     .max(36, 'Maximum 36 characters allowed.')
 });
 

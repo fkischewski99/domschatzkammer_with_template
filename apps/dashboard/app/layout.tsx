@@ -63,12 +63,14 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <body className={`${inter.className} size-full`}>
-        <Providers>
-          {children}
-          <React.Suspense>
-            <Toaster />
-          </React.Suspense>
-        </Providers>
+        <React.Suspense>
+          <Providers>
+            {children}
+            <React.Suspense>
+              <Toaster />
+            </React.Suspense>
+          </Providers>
+        </React.Suspense>
       </body>
     </html>
   );

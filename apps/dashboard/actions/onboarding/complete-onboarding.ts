@@ -1,7 +1,7 @@
 'use server';
+import { updateTag } from 'next/cache';
 
 import { createHash } from 'crypto';
-import { revalidateTag } from 'next/cache';
 import { v4 } from 'uuid';
 
 import {
@@ -82,9 +82,9 @@ export const completeOnboarding = authActionClient
       await prisma.$transaction(transactions);
     }
 
-    revalidateTag(Caching.createUserTag(UserCacheKey.PersonalDetails, userId));
-    revalidateTag(Caching.createUserTag(UserCacheKey.Preferences, userId));
-    revalidateTag(Caching.createUserTag(UserCacheKey.Organizations, userId));
+    updateTag(Caching.createUserTag(UserCacheKey.PersonalDetails, userId));
+    updateTag(Caching.createUserTag(UserCacheKey.Preferences, userId));
+    updateTag(Caching.createUserTag(UserCacheKey.Organizations, userId));
 
     // Ideally we would execute these in a background job
     if (
@@ -124,13 +124,13 @@ export const completeOnboarding = authActionClient
         console.error(e);
       }
 
-      revalidateTag(
+      updateTag(
         Caching.createOrganizationTag(
           OrganizationCacheKey.Members,
           membership.organization.id
         )
       );
-      revalidateTag(
+      updateTag(
         Caching.createOrganizationTag(
           OrganizationCacheKey.Invitations,
           membership.organization.id
@@ -179,7 +179,7 @@ async function handleProfileStep(
     transactions.push(
       prisma.userImage.deleteMany({ where: { userId } }),
       prisma.userImage.create({
-        data: { userId, data, contentType: mimeType, hash }
+        data: { userId, data: new Uint8Array(data), contentType: mimeType, hash }
       })
     );
 
@@ -224,7 +224,7 @@ async function handleOrganizationStep(
       prisma.organizationLogo.create({
         data: {
           organizationId,
-          data,
+          data: new Uint8Array(data),
           contentType: mimeType,
           hash
         },

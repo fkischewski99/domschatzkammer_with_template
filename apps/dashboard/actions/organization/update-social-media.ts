@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { prisma } from '@workspace/database/client';
 
@@ -27,7 +27,7 @@ export const updateSocialMedia = authOrganizationActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.SocialMedia,
         ctx.organization.id

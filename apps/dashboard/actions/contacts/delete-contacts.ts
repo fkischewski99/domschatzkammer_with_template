@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { prisma } from '@workspace/database/client';
 
@@ -34,7 +34,7 @@ export const deleteContacts = authOrganizationActionClient
       });
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Contacts,
         organizationId
@@ -42,13 +42,13 @@ export const deleteContacts = authOrganizationActionClient
     );
 
     for (const id of parsedInput.ids) {
-      revalidateTag(
+      updateTag(
         Caching.createOrganizationTag(OrganizationCacheKey.Contact, id)
       );
     }
 
     for (const membership of ctx.organization.memberships) {
-      revalidateTag(
+      updateTag(
         Caching.createOrganizationTag(
           OrganizationCacheKey.Favorites,
           organizationId,

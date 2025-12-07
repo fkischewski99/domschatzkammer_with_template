@@ -124,12 +124,12 @@ export const EditWebhookModal = NiceModal.create<EditWebhookModalProps>(
                 >
                   <FormControl>
                     <Checkbox
-                      checked={field.value.includes(value)}
+                      checked={(field.value ?? []).includes(value)}
                       onCheckedChange={(e) =>
                         field.onChange(
                           e
-                            ? [...field.value, value]
-                            : field.value.filter((v) => v !== value)
+                            ? [...(field.value ?? []), value]
+                            : (field.value ?? []).filter((v) => v !== value)
                         )
                       }
                       disabled={methods.formState.isSubmitting}

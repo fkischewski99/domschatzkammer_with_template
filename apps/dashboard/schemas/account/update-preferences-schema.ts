@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const updatePreferencesSchema = z.object({
   locale: z
     .string({
-      invalid_type_error: 'Locale must be a string.'
+        error: (issue) => issue.input === undefined ? undefined : 'Locale must be a string.'
     })
     .trim()
     .max(8, 'Maximum 8 characters allowed.')

@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { NotFoundError } from '@workspace/common/errors';
 import { prisma } from '@workspace/database/client';
@@ -30,7 +30,7 @@ export const revokeApiKey = authOrganizationActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.ApiKeys,
         ctx.organization.id

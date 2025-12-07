@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import {
   checkIfCanInvite,
@@ -43,7 +43,7 @@ export const sendInvitation = authOrganizationActionClient
       ctx.organization.id
     );
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Invitations,
         ctx.organization.id

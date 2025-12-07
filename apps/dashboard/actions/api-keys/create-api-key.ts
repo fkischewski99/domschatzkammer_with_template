@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 import { startOfDay } from 'date-fns';
 
 import { generateApiKey } from '@workspace/api-keys/generate-api-key';
@@ -30,7 +30,7 @@ export const createApiKey = authOrganizationActionClient
       }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.ApiKeys,
         ctx.organization.id

@@ -59,7 +59,7 @@ export async function GET(
     });
   }
 
-  return new NextResponse(userImage.data, {
+  return new NextResponse(Buffer.from(userImage.data), {
     status: 200,
     headers: {
       'Cache-Control': 'public, max-age=86400, immutable',

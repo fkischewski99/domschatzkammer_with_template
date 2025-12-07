@@ -43,13 +43,13 @@ export function OnboardingPendingInvitationsStep({
       {metadata.invitations?.length ? (
         <div className="flex flex-col items-stretch justify-start gap-3 p-1">
           {metadata.invitations.map((invitation) => {
-            const isSelected = selectedInvitationIds.includes(invitation.id);
+            const isSelected = selectedInvitationIds?.includes(invitation.id) ?? false;
             const handleInvitationToggle = () => {
               setValue(
                 'pendingInvitationsStep.invitationIds',
                 isSelected
-                  ? selectedInvitationIds.filter((id) => id !== invitation.id)
-                  : [...selectedInvitationIds, invitation.id],
+                  ? (selectedInvitationIds ?? []).filter((id) => id !== invitation.id)
+                  : [...(selectedInvitationIds ?? []), invitation.id],
                 { shouldValidate: true }
               );
             };

@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { PreConditionError } from '@workspace/common/errors';
 import { prisma } from '@workspace/database/client';
@@ -22,7 +22,7 @@ export const disableAuthenticatorApp = authActionClient
       where: { userId: ctx.session.user.id }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(
         UserCacheKey.MultiFactorAuthentication,
         ctx.session.user.id

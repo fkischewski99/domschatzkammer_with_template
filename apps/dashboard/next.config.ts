@@ -21,7 +21,24 @@ const INTERNAL_PACKAGES = [
 const nextConfig: NextConfig = {
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: INTERNAL_PACKAGES,
-  serverExternalPackages: [],
+  serverExternalPackages: ['@prisma/client', '@prisma/adapter-pg', 'pg'],
+  /** Enable 'use cache' directive for data caching */
+  cacheComponents: true,
+  /** Custom cache life profiles */
+  cacheLife: {
+    // Default profile for most data - 1 hour stale, revalidate every 15 min
+    default: {
+      stale: 3600,
+      revalidate: 900,
+      expire: 86400
+    },
+    // Short-lived data that changes frequently
+    short: {
+      stale: 60,
+      revalidate: 30,
+      expire: 300
+    }
+  },
   experimental: {
     optimizePackageImports: [
       'recharts',

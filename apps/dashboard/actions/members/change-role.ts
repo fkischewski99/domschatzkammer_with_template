@@ -1,6 +1,6 @@
 'use server';
+import { updateTag } from 'next/cache';
 
-import { revalidateTag } from 'next/cache';
 
 import { ForbiddenError, NotFoundError } from '@workspace/common/errors';
 import { prisma } from '@workspace/database/client';
@@ -32,13 +32,13 @@ export const changeRole = authOrganizationActionClient
       data: { role: parsedInput.role }
     });
 
-    revalidateTag(
+    updateTag(
       Caching.createOrganizationTag(
         OrganizationCacheKey.Members,
         ctx.organization.id
       )
     );
-    revalidateTag(
+    updateTag(
       Caching.createUserTag(UserCacheKey.PersonalDetails, parsedInput.id)
     );
   });
