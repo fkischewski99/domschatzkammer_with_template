@@ -296,7 +296,7 @@ function MeteredTierItem({
                 {t('above')} {(previousTierFrom as number) - 1} {unit}
               </span>
             )}
-            {tiersLength === 1 && <span> {t('forEvery')} {unit}</span>}
+            {tiersLength === 1 && <span> {t('forEach')} {unit}</span>}
           </>
         ) : (
           <>

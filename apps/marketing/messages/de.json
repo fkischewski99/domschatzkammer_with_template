@@ -107,6 +107,12 @@
     "viewAll": "Alle anzeigen",
     "notImplementedYet": "Ich bin noch nicht implementiert."
   },
+  "legal": {
+    "badge": "Rechtliches",
+    "contactTitle": "Kontaktinformationen",
+    "contactText": "Bei Fragen oder Anliegen kontaktieren Sie uns unter:",
+    "disclaimer": "Diese Richtlinie bietet einen allgemeinen Rahmen. Sie sollte von einem Rechtsberater überprüft und an Ihre Rechtsordnung und Ihren Anwendungsfall angepasst werden."
+  },
   "docs": {
     "gettingStarted": "Erste Schritte",
     "guides": "Anleitungen",
@@ -613,10 +619,8 @@
     "description": "Von einer kühnen Vision, CRM zu revolutionieren, zur am schnellsten wachsenden Plattform der Geschichte. Wir bauen das intelligente CRM, das für Sie arbeitet, nicht umgekehrt."
   },
   "cookiePolicy": {
-    "badge": "Rechtliches",
     "title": "Cookie-Richtlinie",
     "description": "Erfahren Sie, wie wir Cookies und ähnliche Technologien verwenden, um Ihre Erfahrung auf unserer Plattform zu verbessern.",
-    "warning": "Diese Richtlinie bietet einen allgemeinen Rahmen. Sie sollte von einem Rechtsberater überprüft und an Ihre Rechtsordnung und Ihren Anwendungsfall angepasst werden.",
     "cards": {
       "whatAreCookies": {
         "title": "Was sind Cookies?",
@@ -648,15 +652,11 @@
         "title": "Änderungen an unserer Cookie-Richtlinie",
         "content": "Wir können diese Cookie-Richtlinie von Zeit zu Zeit aktualisieren. Alle Änderungen werden auf dieser Seite veröffentlicht."
       }
-    },
-    "contactTitle": "Kontaktinformationen",
-    "contactText": "Bei Fragen oder Anliegen kontaktieren Sie uns unter:"
+    }
   },
   "privacyPolicy": {
-    "badge": "Rechtliches",
     "title": "Datenschutzerklärung",
     "description": "Erfahren Sie, wie wir Ihre Daten sammeln, verwenden und schützen. Bitte lesen Sie sorgfältig, um unsere Praktiken zu verstehen.",
-    "warning": "Diese Richtlinie bietet einen allgemeinen Rahmen. Sie sollte von einem Rechtsberater überprüft und an Ihre Rechtsordnung und Ihren Anwendungsfall angepasst werden.",
     "cards": {
       "introduction": {
         "title": "Einführung",
@@ -692,15 +692,11 @@
         "title": "Änderungen an dieser Richtlinie",
         "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Änderungen werden hier veröffentlicht, und die fortgesetzte Nutzung der Plattform gilt als Zustimmung."
       }
-    },
-    "contactTitle": "Kontaktinformationen",
-    "contactText": "Bei Fragen oder Anliegen kontaktieren Sie uns unter:"
+    }
   },
   "termsOfUse": {
-    "badge": "Rechtliches",
     "title": "Nutzungsbedingungen",
     "description": "Durch den Zugriff auf unsere Plattform stimmen Sie den unten aufgeführten Bedingungen zu. Bitte lesen Sie sie sorgfältig, um sicherzustellen, dass Sie Ihre Rechte und Pflichten verstehen.",
-    "warning": "Diese Bedingungen bieten einen allgemeinen Rahmen. Sie sollten von einem Rechtsberater überprüft und an Ihre Rechtsordnung und Ihren Anwendungsfall angepasst werden.",
     "cards": {
       "introduction": {
         "title": "Einführung",
@@ -740,9 +736,7 @@
         "title": "Änderungen der Bedingungen",
         "content": "Wir behalten uns das Recht vor, diese Bedingungen zu aktualisieren. Änderungen werden hier veröffentlicht, und die fortgesetzte Nutzung gilt als Zustimmung."
       }
-    },
-    "contactTitle": "Kontaktinformationen",
-    "contactText": "Bei Fragen oder Anliegen kontaktieren Sie uns unter:"
+    }
   },
   "pricingCard": {
     "recommended": "Empfohlen",
@@ -755,7 +749,6 @@
     "currentPlan": "Aktueller Plan",
     "startTrial": "Testversion starten",
     "above": "über",
-    "forEvery": "für jeden",
     "forEach": "für jeden",
     "forTheNext": "für die nächsten"
   }

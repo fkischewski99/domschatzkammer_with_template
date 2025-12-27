@@ -32,6 +32,7 @@ const ACCORDION_KEYS = ['cookiesWeUse', 'thirdPartyCookies', 'howToManage', 'cha
 
 export function CookiePolicy(): React.JSX.Element {
   const t = useTranslations('cookiePolicy');
+  const tLegal = useTranslations('legal');
 
   const DATA_CARDS = CARD_KEYS.map((key) => ({
     title: t(`cards.${key}.title`),
@@ -48,13 +49,13 @@ export function CookiePolicy(): React.JSX.Element {
     <GridSection>
       <div className="container space-y-16 py-20">
         <SiteHeading
-          badge={t('badge')}
+          badge={tLegal('badge')}
           title={t('title')}
           description={t('description')}
         />
         <Alert variant="warning">
           <AlertDescription className="ml-3 text-base inline">
-            {t('warning')}
+            {tLegal('disclaimer')}
           </AlertDescription>
         </Alert>
 
@@ -100,10 +101,10 @@ export function CookiePolicy(): React.JSX.Element {
 
         <div>
           <CardTitle className="text-lg text-primary">
-            {t('contactTitle')}
+            {tLegal('contactTitle')}
           </CardTitle>
           <p className="text-sm leading-relaxed">
-            {t('contactText')}
+            {tLegal('contactText')}
             <br />
             <a
               href="mailto:support@yourdomain.com"
