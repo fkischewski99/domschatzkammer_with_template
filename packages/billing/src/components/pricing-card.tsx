@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { CheckIcon, ChevronRightIcon } from 'lucide-react';
 
 import { routes } from '@workspace/routes';
@@ -39,6 +40,7 @@ export function PricingCard({
   className,
   ...other
 }: PricingCardProps): React.JSX.Element {
+  const t = useTranslations('pricingCard');
   const primaryPrice = getPrimaryPrice(plan);
   const meteredPrice = plan.prices.find(
     (price) => price.model === PriceModel.Metered || !!price.meter
@@ -54,7 +56,7 @@ export function PricingCard({
     >
       {product.recommended && (
         <div className="absolute -top-2.5 left-0 flex w-full justify-center">
-          <Badge>Recommended</Badge>
+          <Badge>{t('recommended')}</Badge>
         </div>
       )}
       <div className="flex flex-col gap-y-5">
@@ -62,12 +64,14 @@ export function PricingCard({
           name={product.name}
           description={product.description}
           trialDays={plan.trialDays}
+          t={t}
         />
         {primaryPrice && (
           <PriceInfo
             isEnterprise={product.isEnterprise}
             primaryPrice={primaryPrice}
             selectedInterval={selectedInterval}
+            t={t}
           />
         )}
         <CheckoutButton
@@ -76,6 +80,7 @@ export function PricingCard({
           isCurrent={isCurrent}
           pending={pending}
           onUpgrade={onUpgrade}
+          t={t}
         />
         <div className="h-px w-full border border-dashed" />
         <ul className="space-y-2">
@@ -93,6 +98,7 @@ export function PricingCard({
               allTiers={meteredPrice.meter!.tiers}
               currency={meteredPrice.currency}
               unit={meteredPrice.meter!.unit || ''}
+              t={t}
             />
           ))}
         </ul>
@@ -105,9 +111,10 @@ type ProductDetailsProps = {
   name: string;
   description: string;
   trialDays?: number | null;
+  t: (key: string) => string;
 };
 
-function ProductDetails({ name, description, trialDays }: ProductDetailsProps) {
+function ProductDetails({ name, description, trialDays, t }: ProductDetailsProps) {
   return (
     <>
       <div className="flex flex-col gap-y-1">
@@ -117,7 +124,7 @@ function ProductDetails({ name, description, trialDays }: ProductDetailsProps) {
           </b>
           {trialDays && (
             <div className="text-xs">
-              {trialDays} {trialDays === 1 ? 'day' : 'days'} free trial
+              {trialDays} {trialDays === 1 ? t('day') : t('days')} {t('freeTrial')}
             </div>
           )}
         </div>
@@ -131,31 +138,33 @@ type PriceInfoProps = {
   isEnterprise?: boolean;
   primaryPrice: Price;
   selectedInterval: PriceInterval;
+  t: (key: string) => string;
 };
 
 function PriceInfo({
   isEnterprise,
   primaryPrice,
-  selectedInterval
+  selectedInterval,
+  t
 }: PriceInfoProps) {
   return (
     <div className="mt-2 flex flex-col">
       <div className="animate-in slide-in-from-left-4 fade-in flex items-end gap-1 duration-500">
         <span className="font-heading flex items-center text-3xl font-medium tracking-tighter">
           {isEnterprise
-            ? 'Custom'
+            ? t('custom')
             : formatPrice(primaryPrice, selectedInterval)}
         </span>
         {!isEnterprise && (
           <>
             {primaryPrice.type === PriceType.Recurring && (
               <span className="text-muted-foreground text-sm leading-loose">
-                / month
+                {t('perMonth')}
               </span>
             )}
             {primaryPrice.model === PriceModel.PerSeat && (
               <span className="text-muted-foreground text-sm leading-loose">
-                / seat
+                {t('perSeat')}
               </span>
             )}
           </>
@@ -171,6 +180,7 @@ type CheckoutButtonProps = {
   isCurrent: boolean;
   pending?: boolean;
   onUpgrade?: (productId: string, planId: string) => void;
+  t: (key: string) => string;
 };
 
 function CheckoutButton({
@@ -178,14 +188,15 @@ function CheckoutButton({
   plan,
   isCurrent,
   pending,
-  onUpgrade
+  onUpgrade,
+  t
 }: CheckoutButtonProps) {
   const commonClasses =
     'group h-10 w-full rounded-xl text-sm font-medium shadow-none transition-colors duration-200';
   const buttonLabel = isCurrent
-    ? 'Current Plan'
+    ? t('currentPlan')
     : plan.trialDays && onUpgrade
-      ? 'Start Trial'
+      ? t('startTrial')
       : product.label;
 
   if (onUpgrade) {
@@ -218,7 +229,7 @@ function CheckoutButton({
         commonClasses
       )}
     >
-      {isCurrent ? 'Current Plan' : product.label}
+      {isCurrent ? t('currentPlan') : product.label}
       {!isCurrent && (
         <ChevronRightIcon className="ml-1 size-4 transition-transform group-hover:translate-x-0.5" />
       )}
@@ -247,6 +258,7 @@ type MeteredTierItemProps = {
   allTiers: Tier[];
   currency: string;
   unit: string;
+  t: (key: string) => string;
 };
 
 function MeteredTierItem({
@@ -254,7 +266,8 @@ function MeteredTierItem({
   index,
   allTiers,
   currency,
-  unit
+  unit,
+  t
 }: MeteredTierItemProps) {
   const tiersLength = allTiers.length;
   const previousTier = allTiers[index - 1];
@@ -280,23 +293,23 @@ function MeteredTierItem({
             {tiersLength > 1 && (
               <span>
                 {' '}
-                above {(previousTierFrom as number) - 1} {unit}
+                {t('above')} {(previousTierFrom as number) - 1} {unit}
               </span>
             )}
-            {tiersLength === 1 && <span> for every {unit}</span>}
+            {tiersLength === 1 && <span> {t('forEvery')} {unit}</span>}
           </>
         ) : (
           <>
             {isIncluded ? (
               <span>
-                {upTo} {unit} / month
+                {upTo} {unit} {t('perMonth')}
               </span>
             ) : (
               <>
                 <span>{formatCurrency(tier.cost, currency.toLowerCase())}</span>
                 <span>
                   {' '}
-                  for each {unit} for the next {upTo} {unit}
+                  {t('forEach')} {unit} {t('forTheNext')} {upTo} {unit}
                 </span>
               </>
             )}

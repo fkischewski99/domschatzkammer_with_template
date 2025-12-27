@@ -1,4 +1,7 @@
+'use client';
+
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { BriefcaseBusinessIcon, Users2Icon, ZapIcon } from 'lucide-react';
 
 import { APP_NAME } from '@workspace/common/app';
@@ -6,36 +9,31 @@ import { APP_NAME } from '@workspace/common/app';
 import { GridSection } from '~/components/fragments/grid-section';
 import { SiteHeading } from '~/components/fragments/site-heading';
 
-const DATA = [
-  {
-    icon: <ZapIcon className="size-5 shrink-0" />,
-    title: 'Innovation at its core',
-    description:
-      'We are committed to pushing boundaries and fostering a culture of creativity.'
-  },
-  {
-    icon: <Users2Icon className="size-5 shrink-0" />,
-    title: 'Inclusive environment',
-    description:
-      'Our diverse and collaborative team welcomes individuals from all backgrounds.'
-  },
-  {
-    icon: <BriefcaseBusinessIcon className="size-5 shrink-0" />,
-    title: 'Opportunities for growth',
-    description:
-      'We support continuous learning and career development through mentorship and resources.'
-  }
-];
+const BENEFIT_KEYS = ['innovation', 'inclusive', 'growth'] as const;
+
+const BENEFIT_ICONS: Record<typeof BENEFIT_KEYS[number], React.JSX.Element> = {
+  innovation: <ZapIcon className="size-5 shrink-0" />,
+  inclusive: <Users2Icon className="size-5 shrink-0" />,
+  growth: <BriefcaseBusinessIcon className="size-5 shrink-0" />
+};
 
 export function CareersBenefits(): React.JSX.Element {
+  const t = useTranslations('careersBenefits');
+
+  const DATA = BENEFIT_KEYS.map((key) => ({
+    icon: BENEFIT_ICONS[key],
+    title: t(`benefits.${key}.title`),
+    description: t(`benefits.${key}.description`)
+  }));
+
   return (
     <GridSection>
       <div className="space-y-20 pt-20">
         <div className="container">
           <SiteHeading
-            badge="Careers"
-            title="Join our team"
-            description={`Work remotely from wherever you want and help us build the future of ${APP_NAME}`}
+            badge={t('badge')}
+            title={t('title')}
+            description={t('description', { appName: APP_NAME })}
           />
         </div>
         <div className="grid divide-y border-t border-dashed md:grid-cols-3 md:divide-x md:divide-y-0">

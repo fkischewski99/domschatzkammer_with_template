@@ -1,4 +1,7 @@
+'use client';
+
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { AlertCircleIcon, BookIcon, ScaleIcon } from 'lucide-react';
 
 import {
@@ -18,74 +21,40 @@ import {
 import { GridSection } from '~/components/fragments/grid-section';
 import { SiteHeading } from '~/components/fragments/site-heading';
 
-const DATA_CARDS = [
-  {
-    title: 'Introduction',
-    icon: <BookIcon className="size-4 shrink-0" />,
-    content:
-      'These terms outline the rules for using our platform. By continuing to use the platform, you agree to comply with them.'
-  },
-  {
-    title: 'Eligibility',
-    icon: <ScaleIcon className="size-4 shrink-0" />,
-    content:
-      'Users must be at least 18 years old and provide accurate details to maintain their accounts.'
-  },
-  {
-    title: 'Prohibited Uses',
-    icon: <AlertCircleIcon className="size-4 shrink-0" />,
-    content:
-      'Users must avoid posting harmful content, distributing malware, or attempting unauthorized platform access.'
-  }
-];
+const CARD_ICONS = {
+  introduction: <BookIcon className="size-4 shrink-0" />,
+  eligibility: <ScaleIcon className="size-4 shrink-0" />,
+  prohibitedUses: <AlertCircleIcon className="size-4 shrink-0" />
+} as const;
 
-const DATA_ACCORDION = [
-  {
-    title: 'Intellectual Property Rights',
-    content:
-      'All platform content, including trademarks and materials, is owned by us. Unauthorized use is prohibited.'
-  },
-  {
-    title: 'User-Generated Content',
-    content:
-      'You retain ownership of content you post but grant us a license to use it. Inappropriate content may be removed at our discretion.'
-  },
-  {
-    title: 'Limitation of Liability',
-    content:
-      "Our platform is provided 'as is' without warranties. We are not liable for indirect damages, and users assume associated risks."
-  },
-  {
-    title: 'Termination of Access',
-    content:
-      'We may suspend or terminate access for violations of these terms, fraudulent activity, or other valid reasons.'
-  },
-  {
-    title: 'Governing Law and Disputes',
-    content:
-      'These terms are governed by the laws of [jurisdiction]. Disputes will be resolved through arbitration or designated courts.'
-  },
-  {
-    title: 'Modifications to Terms',
-    content:
-      'We reserve the right to update these terms. Changes will be posted here, and continued use constitutes acceptance.'
-  }
-];
+const CARD_KEYS = ['introduction', 'eligibility', 'prohibitedUses'] as const;
+const ACCORDION_KEYS = ['intellectualProperty', 'userContent', 'liability', 'termination', 'governingLaw', 'modifications'] as const;
 
 export function TermsOfUse(): React.JSX.Element {
+  const t = useTranslations('termsOfUse');
+
+  const DATA_CARDS = CARD_KEYS.map((key) => ({
+    title: t(`cards.${key}.title`),
+    icon: CARD_ICONS[key],
+    content: t(`cards.${key}.content`)
+  }));
+
+  const DATA_ACCORDION = ACCORDION_KEYS.map((key) => ({
+    title: t(`accordion.${key}.title`),
+    content: t(`accordion.${key}.content`)
+  }));
+
   return (
     <GridSection>
       <div className="container space-y-16 py-20">
         <SiteHeading
-          badge="Legal"
-          title="Terms of Use"
-          description="By accessing our platform, you agree to the terms outlined below. Please read them carefully to ensure you understand your rights and responsibilities."
+          badge={t('badge')}
+          title={t('title')}
+          description={t('description')}
         />
         <Alert variant="warning">
           <AlertDescription className="ml-3 text-base inline">
-            These terms provide a general framework. They should be reviewed and
-            customized by a legal professional to suit your jurisdiction and use
-            case.
+            {t('warning')}
           </AlertDescription>
         </Alert>
 
@@ -131,10 +100,10 @@ export function TermsOfUse(): React.JSX.Element {
 
         <div>
           <CardTitle className="text-lg text-primary">
-            Contact Information
+            {t('contactTitle')}
           </CardTitle>
           <p className="text-sm leading-relaxed">
-            For questions or concerns, contact us at:
+            {t('contactText')}
             <br />
             <a
               href="mailto:support@yourdomain.com"

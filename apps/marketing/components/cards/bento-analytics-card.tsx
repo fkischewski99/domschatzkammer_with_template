@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
 import { Area, AreaChart } from 'recharts';
 
@@ -17,21 +18,23 @@ import {
 } from '@workspace/ui/components/chart';
 import { cn } from '@workspace/ui/lib/utils';
 
-const DATA = [
-  { name: 'January', value: 400 },
-  { name: 'February', value: 300 },
-  { name: 'March', value: 600 },
-  { name: 'April', value: 400 },
-  { name: 'May', value: 500 },
-  { name: 'June', value: 350 }
-];
-
 const MotionCard = motion.create(Card);
 
 export function BentoAnalyticsCard({
   className,
   ...other
 }: React.ComponentPropsWithoutRef<typeof MotionCard>): React.JSX.Element {
+  const t = useTranslations('bentoCards.analytics');
+
+  const DATA = [
+    { name: t('months.january'), value: 400 },
+    { name: t('months.february'), value: 300 },
+    { name: t('months.march'), value: 600 },
+    { name: t('months.april'), value: 400 },
+    { name: t('months.may'), value: 500 },
+    { name: t('months.june'), value: 350 }
+  ];
+
   return (
     <MotionCard
       className={cn(
@@ -41,11 +44,11 @@ export function BentoAnalyticsCard({
       {...other}
     >
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Analytics</CardTitle>
+        <CardTitle className="text-xl font-semibold">{t('title')}</CardTitle>
       </CardHeader>
       <CardContent className="overflow-hidden p-0 pb-6">
         <p className="mb-6 line-clamp-2 px-6 text-sm text-muted-foreground">
-          Get instant insights into your business performance.
+          {t('description')}
         </p>
         <div className="w-full max-w-md">
           <ChartContainer
@@ -79,7 +82,7 @@ export function BentoAnalyticsCard({
               <Area
                 type="monotone"
                 dataKey="value"
-                name="Leads"
+                name={t('leads')}
                 stroke="var(--primary)"
                 fill="url(#gradient)"
                 strokeWidth={2}
@@ -92,7 +95,7 @@ export function BentoAnalyticsCard({
                     labelFormatter={(_, payload) => (payload[0] as { payload: { name: string } }).payload.name}
                     formatter={(value) => (
                       <>
-                        <strong>{String(value)}</strong> Leads
+                        <strong>{String(value)}</strong> {t('leads')}
                       </>
                     )}
                   />

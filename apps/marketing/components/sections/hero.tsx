@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '~/src/i18n/navigation';
 import {
   BoxIcon,
   ChevronRightIcon,
@@ -29,6 +30,7 @@ import { cn } from '@workspace/ui/lib/utils';
 import { GridSection } from '~/components/fragments/grid-section';
 
 function HeroPill(): React.JSX.Element {
+  const t = useTranslations('hero.badge');
   return (
     <motion.div
       initial={{ filter: 'blur(10px)', opacity: 0, y: -20 }}
@@ -42,13 +44,13 @@ function HeroPill(): React.JSX.Element {
           className="group h-8 rounded-full px-3 text-xs font-medium shadow-xs duration-200 hover:bg-accent/50 sm:text-sm"
         >
           <div className="w-fit py-0.5 text-center text-xs text-blue-500 sm:text-sm">
-            New!
+            {t('new')}
           </div>
           <Separator
             orientation="vertical"
             className="mx-2"
           />
-          Put an announcement here 🎉
+          {t('announcement')}
           <ChevronRightIcon className="ml-1.5 size-3 shrink-0 text-foreground transition-transform group-hover:translate-x-0.5" />
         </Badge>
       </Link>
@@ -57,6 +59,7 @@ function HeroPill(): React.JSX.Element {
 }
 
 function HeroTitle(): React.JSX.Element {
+  const t = useTranslations('hero');
   return (
     <motion.div
       initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
@@ -64,14 +67,15 @@ function HeroTitle(): React.JSX.Element {
       transition={{ delay: 0.2, duration: 0.4 }}
     >
       <h1 className="mt-6 text-center text-[48px] font-bold leading-[54px] tracking-[-1.2px] [font-kerning:none] sm:text-[56px] md:text-[64px] lg:text-[76px] lg:leading-[74px] lg:tracking-[-2px]">
-        Your revolutionary
-        <br /> Next.js SaaS
+        {t('title')}
+        <br /> {t('titleLine2')}
       </h1>
     </motion.div>
   );
 }
 
 function HeroDescription(): React.JSX.Element {
+  const t = useTranslations('hero');
   return (
     <motion.p
       initial={{ opacity: 0, y: 20 }}
@@ -79,13 +83,13 @@ function HeroDescription(): React.JSX.Element {
       transition={{ delay: 0.4, duration: 0.4 }}
       className="mx-auto mt-3 max-w-[560px] text-balance text-center text-lg leading-[26px] text-muted-foreground sm:text-xl lg:mt-6"
     >
-      This is a demo application built with Achromatic. It will save you time
-      and effort building your next SaaS.
+      {t('description')}
     </motion.p>
   );
 }
 
 function HeroButtons(): React.JSX.Element {
+  const t = useTranslations('hero');
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -102,7 +106,7 @@ function HeroButtons(): React.JSX.Element {
           'h-10 rounded-xl sm:h-9'
         )}
       >
-        Start for free
+        {t('getStarted')}
       </Link>
       <Link
         href={routes.marketing.Contact}
@@ -113,7 +117,7 @@ function HeroButtons(): React.JSX.Element {
           'h-10 rounded-xl sm:h-9'
         )}
       >
-        Talk to sales
+        {t('learnMore')}
       </Link>
     </motion.div>
   );
@@ -204,6 +208,7 @@ function SupportiveDashedGridLines(): React.JSX.Element {
 }
 
 function HeroIllustration(): React.JSX.Element {
+  const t = useTranslations('navigation.features');
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -219,35 +224,35 @@ function HeroIllustration(): React.JSX.Element {
               className="mx-1 px-2.5 sm:mx-2 sm:px-3"
             >
               <BoxIcon className="mr-2 size-4 shrink-0" />
-              Feature 1
+              {t('feature1.title')}
             </UnderlinedTabsTrigger>
             <UnderlinedTabsTrigger
               value="feature2"
               className="mx-1 px-2.5 sm:mx-2 sm:px-3"
             >
               <PlayIcon className="mr-2 size-4 shrink-0" />
-              Feature 2
+              {t('feature2.title')}
             </UnderlinedTabsTrigger>
             <UnderlinedTabsTrigger
               value="feature3"
               className="mx-1 px-2.5 sm:mx-2 sm:px-3"
             >
               <CircuitBoardIcon className="mr-2 size-4 shrink-0" />
-              Feature 3
+              {t('feature3.title')}
             </UnderlinedTabsTrigger>
             <UnderlinedTabsTrigger
               value="feature4"
               className="mx-1 px-2.5 sm:mx-2 sm:px-3"
             >
               <LayoutIcon className="mr-2 size-4 shrink-0" />
-              Feature 4
+              {t('feature4.title')}
             </UnderlinedTabsTrigger>
             <UnderlinedTabsTrigger
               value="feature5"
               className="mx-1 px-2.5 sm:mx-2 sm:px-3"
             >
               <FileBarChartIcon className="mr-2 size-4 shrink-0" />
-              Feature 5
+              {t('feature5.title')}
             </UnderlinedTabsTrigger>
           </UnderlinedTabsList>
           <ScrollBar

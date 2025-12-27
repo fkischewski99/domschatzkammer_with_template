@@ -1,34 +1,26 @@
+'use client';
+
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import { GridSection } from '~/components/fragments/grid-section';
 
-const DATA = [
-  {
-    date: '2023',
-    title: 'The journey begins',
-    description:
-      'Started building an AI-powered CRM to transform sales workflows and boost productivity.'
-  },
-  {
-    date: '2024',
-    title: 'First milestones',
-    description:
-      'Launched our platform, earning early customers and recognition for real-time insights and deal predictions.'
-  },
-  {
-    date: '2025',
-    title: 'Scaling and innovation',
-    description:
-      'Expanded features with advanced AI analytics, onboarding more customers, and preparing for rapid growth.'
-  }
-];
+const MILESTONE_YEARS = ['2023', '2024', '2025'] as const;
 
 export function StoryTimeline(): React.JSX.Element {
+  const t = useTranslations('storyTimeline');
+
+  const DATA = MILESTONE_YEARS.map((year) => ({
+    date: year,
+    title: t(`milestones.${year}.title`),
+    description: t(`milestones.${year}.description`)
+  }));
+
   return (
     <GridSection>
       <div className="container max-w-6xl py-20">
         <h2 className="mb-16 text-sm font-medium uppercase tracking-wider text-muted-foreground">
-          The road so far
+          {t('heading')}
         </h2>
         <div className="relative">
           <div className="absolute left-4 top-0 h-full w-0.5 bg-border" />

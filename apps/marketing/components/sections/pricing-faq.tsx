@@ -1,5 +1,8 @@
+'use client';
+
 import * as React from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '~/src/i18n/navigation';
 
 import { APP_NAME } from '@workspace/common/app';
 import { routes } from '@workspace/routes';
@@ -12,121 +15,105 @@ import {
 
 import { GridSection } from '~/components/fragments/grid-section';
 
-const DATA = [
-  {
-    question: `What pricing plans does ${APP_NAME} offer?`,
-    answer: (
-      <div>
-        We offer three plans:
-        <br />
-        <ul className="mt-2 list-disc pl-5">
-          <li>
-            <strong>Free:</strong> A starter plan for individuals or small teams
-          </li>
-          <li>
-            <strong>Pro:</strong> Advanced features for growing businesses
-          </li>
-          <li>
-            <strong>Enterprise:</strong> Custom solutions for large
-            organizations
-          </li>
-        </ul>
-        <p className="mt-2">Each plan is designed to scale with your needs.</p>
-      </div>
-    )
-  },
-  {
-    question: "What's included in the Free plan?",
-    answer: (
-      <div>
-        The Free plan is perfect for getting started and includes:
-        <ul className="mt-2 list-disc pl-5">
-          <li>AI Contact Scoring for 100 contacts/month</li>
-          <li>Smart Email Analysis for 1,000 emails/month</li>
-          <li>Access for up to 2 team members</li>
-        </ul>
-      </div>
-    )
-  },
-  {
-    question: 'What features are in the Pro plan?',
-    answer: (
-      <div>
-        The Pro plan is ideal for growing teams and includes:
-        <ul className="mt-2 list-disc pl-5">
-          <li>Unlimited AI Contact Scoring and Email Analysis</li>
-          <li>Advanced Lead Predictions</li>
-          <li>Real-time Sentiment Analysis</li>
-          <li>Up to 120 team members</li>
-        </ul>
-      </div>
-    )
-  },
-  {
-    question: 'What does the Enterprise plan offer?',
-    answer: (
-      <div>
-        The Enterprise plan is fully customizable and includes:
-        <ul className="mt-2 list-disc pl-5">
-          <li>AI Contact Scoring and Email Analysis with custom limits</li>
-          <li>Custom AI models for Lead Predictions</li>
-          <li>Advanced storage solutions</li>
-          <li>24/7 Enterprise Support</li>
-          <li>Unlimited team members</li>
-        </ul>
-        <p className="mt-2">Contact us to discuss your organization's needs.</p>
-      </div>
-    )
-  },
-  {
-    question: 'What happens if I upgrade or downgrade my plan?',
-    answer: (
-      <p>
-        If you upgrade, you'll be charged a prorated amount for the remaining
-        time in your billing cycle. If you downgrade, the changes will take
-        effect at the end of your current billing cycle.
-      </p>
-    )
-  },
-  {
-    question: 'Is there a setup fee?',
-    answer: (
-      <p>
-        No, there are no setup fees. You can start using {APP_NAME} immediately
-        after signing up.
-      </p>
-    )
-  },
-  {
-    question: 'What happens if I exceed my plan limits?',
-    answer: (
-      <p>
-        If you exceed your plan limits, you'll receive an alert and can either
-        upgrade to a higher plan or adjust your usage to stay within your
-        current plan.
-      </p>
-    )
-  }
-];
-
 export function PricingFAQ(): React.JSX.Element {
+  const t = useTranslations('pricing.faq');
+
+  const faqData = [
+    {
+      question: t('questions.plans.question', { appName: APP_NAME }),
+      answer: (
+        <div>
+          {t('questions.plans.answer.intro')}
+          <br />
+          <ul className="mt-2 list-disc pl-5">
+            <li>
+              <strong>{t('questions.plans.answer.free')}</strong> {t('questions.plans.answer.freeDesc')}
+            </li>
+            <li>
+              <strong>{t('questions.plans.answer.pro')}</strong> {t('questions.plans.answer.proDesc')}
+            </li>
+            <li>
+              <strong>{t('questions.plans.answer.enterprise')}</strong> {t('questions.plans.answer.enterpriseDesc')}
+            </li>
+          </ul>
+          <p className="mt-2">{t('questions.plans.answer.outro')}</p>
+        </div>
+      )
+    },
+    {
+      question: t('questions.freeFeatures.question'),
+      answer: (
+        <div>
+          {t('questions.freeFeatures.answer.intro')}
+          <ul className="mt-2 list-disc pl-5">
+            <li>{t('questions.freeFeatures.answer.scoring')}</li>
+            <li>{t('questions.freeFeatures.answer.email')}</li>
+            <li>{t('questions.freeFeatures.answer.team')}</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      question: t('questions.proFeatures.question'),
+      answer: (
+        <div>
+          {t('questions.proFeatures.answer.intro')}
+          <ul className="mt-2 list-disc pl-5">
+            <li>{t('questions.proFeatures.answer.unlimited')}</li>
+            <li>{t('questions.proFeatures.answer.predictions')}</li>
+            <li>{t('questions.proFeatures.answer.sentiment')}</li>
+            <li>{t('questions.proFeatures.answer.team')}</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      question: t('questions.enterpriseFeatures.question'),
+      answer: (
+        <div>
+          {t('questions.enterpriseFeatures.answer.intro')}
+          <ul className="mt-2 list-disc pl-5">
+            <li>{t('questions.enterpriseFeatures.answer.custom')}</li>
+            <li>{t('questions.enterpriseFeatures.answer.models')}</li>
+            <li>{t('questions.enterpriseFeatures.answer.storage')}</li>
+            <li>{t('questions.enterpriseFeatures.answer.support')}</li>
+            <li>{t('questions.enterpriseFeatures.answer.team')}</li>
+          </ul>
+          <p className="mt-2">{t('questions.enterpriseFeatures.answer.outro')}</p>
+        </div>
+      )
+    },
+    {
+      question: t('questions.upgradeDowngrade.question'),
+      answer: <p>{t('questions.upgradeDowngrade.answer')}</p>
+    },
+    {
+      question: t('questions.setupFee.question'),
+      answer: <p>{t('questions.setupFee.answer', { appName: APP_NAME })}</p>
+    },
+    {
+      question: t('questions.exceedLimits.question'),
+      answer: <p>{t('questions.exceedLimits.answer')}</p>
+    }
+  ];
+
   return (
     <GridSection>
       <div className="container py-20">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
           <div className="text-center lg:text-left">
             <h2 className="mb-2.5 text-3xl font-semibold md:text-5xl">
-              Frequently Asked Questions
+              {t('title')}
             </h2>
             <p className="mt-6 hidden text-muted-foreground md:block lg:max-w-[75%]">
-              Have questions about our pricing or plans?{' '}
+              {t('subtitle')}{' '}
               <Link
                 href={routes.marketing.Contact}
                 className="font-normal text-inherit underline hover:text-foreground"
               >
-                Contact us
+                {t('contact')}
               </Link>{' '}
-              - we're here to help you find the perfect fit for your needs.
+              {t('helpText')}
             </p>
           </div>
           <div className="mx-auto flex w-full max-w-xl flex-col">
@@ -134,7 +121,7 @@ export function PricingFAQ(): React.JSX.Element {
               type="single"
               collapsible
             >
-              {DATA.map((faq, index) => (
+              {faqData.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={index.toString()}

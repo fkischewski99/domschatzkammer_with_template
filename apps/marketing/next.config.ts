@@ -2,6 +2,9 @@ import { type NextConfig } from 'next/types';
 import { withContentCollections } from '@content-collections/next';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import { createSecureHeaders } from 'next-secure-headers';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const INTERNAL_PACKAGES = [
   '@workspace/common',
@@ -64,4 +67,6 @@ const bundleAnalyzerConfig =
     ? withBundleAnalyzer({ enabled: true })(nextConfig)
     : nextConfig;
 
-export default withContentCollections(bundleAnalyzerConfig);
+const intlConfig = withNextIntl(bundleAnalyzerConfig);
+
+export default withContentCollections(intlConfig);

@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { motion } from 'motion/react';
 
 import { Badge } from '@workspace/ui/components/badge';
@@ -13,45 +14,47 @@ import {
 import { Progress } from '@workspace/ui/components/progress';
 import { cn } from '@workspace/ui/lib/utils';
 
-const DATA = [
-  {
-    id: 'lead',
-    label: 'Lead',
-    deals: 45,
-    value: 100
-  },
-  {
-    id: 'qualified',
-    label: 'Qualified',
-    deals: 32,
-    value: 71
-  },
-  {
-    id: 'proposal',
-    label: 'Proposal',
-    deals: 18,
-    value: 40
-  },
-  {
-    id: 'negotiation',
-    label: 'Negotiation',
-    deals: 7,
-    value: 16
-  },
-  {
-    id: 'closed',
-    label: 'Closed',
-    deals: 3,
-    value: 7
-  }
-];
-
 const MotionCard = motion.create(Card);
 
 export function BentoPipelinesCard({
   className,
   ...other
 }: React.ComponentPropsWithoutRef<typeof MotionCard>): React.JSX.Element {
+  const t = useTranslations('bentoCards.pipelines');
+
+  const DATA = [
+    {
+      id: 'lead',
+      label: t('stages.lead'),
+      deals: 45,
+      value: 100
+    },
+    {
+      id: 'qualified',
+      label: t('stages.qualified'),
+      deals: 32,
+      value: 71
+    },
+    {
+      id: 'proposal',
+      label: t('stages.proposal'),
+      deals: 18,
+      value: 40
+    },
+    {
+      id: 'negotiation',
+      label: t('stages.negotiation'),
+      deals: 7,
+      value: 16
+    },
+    {
+      id: 'closed',
+      label: t('stages.closed'),
+      deals: 3,
+      value: 7
+    }
+  ];
+
   return (
     <MotionCard
       className={cn(
@@ -61,12 +64,11 @@ export function BentoPipelinesCard({
       {...other}
     >
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Pipelines</CardTitle>
+        <CardTitle className="text-xl font-semibold">{t('title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="line-clamp-2 text-sm text-muted-foreground lg:max-w-[55%]">
-          Track your sales pipeline stages. Get a detailed breakdown at a
-          glance.
+          {t('description')}
         </p>
         <div className="relative min-h-[142px] overflow-hidden">
           <div className="group absolute inset-0 top-2 flex flex-col justify-between">

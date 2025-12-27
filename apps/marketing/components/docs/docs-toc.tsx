@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import { useMounted } from '@workspace/ui/hooks/use-mounted';
 import { cn } from '@workspace/ui/lib/utils';
@@ -12,6 +13,7 @@ type DocsTocProps = {
 };
 
 export function DocsToc({ toc }: DocsTocProps): React.JSX.Element {
+  const t = useTranslations('docs');
   const itemIds = React.useMemo(
     () =>
       toc.items
@@ -32,7 +34,7 @@ export function DocsToc({ toc }: DocsTocProps): React.JSX.Element {
 
   return (
     <div className="space-y-2">
-      <p className="font-medium">On This Page</p>
+      <p className="font-medium">{t('onThisPage')}</p>
       <Tree
         tree={toc}
         activeItem={activeHeading}

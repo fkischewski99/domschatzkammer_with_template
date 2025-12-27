@@ -1,0 +1,762 @@
+{
+  "navigation": {
+    "product": "Product",
+    "resources": "Resources",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "story": "Story",
+    "docs": "Docs",
+    "signIn": "Sign in",
+    "signUp": "Start for free",
+    "features": {
+      "feature1": {
+        "title": "Feature 1",
+        "description": "Short description here"
+      },
+      "feature2": {
+        "title": "Feature 2",
+        "description": "Short description here"
+      },
+      "feature3": {
+        "title": "Feature 3",
+        "description": "Short description here"
+      },
+      "feature4": {
+        "title": "Feature 4",
+        "description": "Short description here"
+      },
+      "feature5": {
+        "title": "Feature 5",
+        "description": "Short description here"
+      }
+    },
+    "links": {
+      "contact": {
+        "title": "Contact",
+        "description": "Reach out for assistance"
+      },
+      "roadmap": {
+        "title": "Roadmap",
+        "description": "See what is coming next"
+      },
+      "docs": {
+        "title": "Docs",
+        "description": "Learn how to use our platform"
+      },
+      "apiReference": {
+        "title": "API Reference",
+        "description": "Build integrations with our API"
+      }
+    }
+  },
+  "hero": {
+    "badge": {
+      "new": "New!",
+      "announcement": "Put an announcement here 🎉"
+    },
+    "title": "Your revolutionary",
+    "titleLine2": "Next.js SaaS",
+    "description": "Build your next SaaS product with the most modern tech stack. Get authentication, database, payments, and more ready out of the box.",
+    "getStarted": "Get started",
+    "learnMore": "Learn more"
+  },
+  "footer": {
+    "heading": "Footer",
+    "product": "Product",
+    "resources": "Resources",
+    "about": "About",
+    "legal": "Legal",
+    "mission": "Our mission is to disrupt the market with AI.",
+    "features": {
+      "feature1": "Feature 1",
+      "feature2": "Feature 2",
+      "feature3": "Feature 3",
+      "feature4": "Feature 4",
+      "feature5": "Feature 5"
+    },
+    "links": {
+      "contact": "Contact",
+      "roadmap": "Roadmap",
+      "docs": "Docs",
+      "apiReference": "API Reference",
+      "story": "Story",
+      "blog": "Blog",
+      "careers": "Careers",
+      "termsOfUse": "Terms of Use",
+      "privacyPolicy": "Privacy Policy",
+      "cookiePolicy": "Cookie Policy"
+    },
+    "newsletter": {
+      "title": "Stay up to date",
+      "description": "Subscribe to our newsletter for updates",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe"
+    },
+    "copyright": "© {year} Your Company. All rights reserved."
+  },
+  "common": {
+    "getStarted": "Get started",
+    "learnMore": "Learn more",
+    "contactUs": "Contact us",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "dashboard": "Dashboard",
+    "language": "Language",
+    "switchLanguage": "Switch language",
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "notImplementedYet": "I'm not implemented yet."
+  },
+  "docs": {
+    "gettingStarted": "Getting Started",
+    "guides": "Guides",
+    "introduction": "Introduction",
+    "dependencies": "Dependencies",
+    "usingMdx": "Using MDX",
+    "onThisPage": "On this page",
+    "tableOfContents": "Table of Contents",
+    "searchDocs": "Search docs",
+    "searchPlaceholder": "Search docs (i.e. integrations, importing or billing)...",
+    "noResults": "No results found."
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Latest news and updates",
+    "readingTime": "{minutes} min read",
+    "publishedOn": "Published on {date}",
+    "by": "by"
+  },
+  "contact": {
+    "title": "Contact us",
+    "description": "We'd love to hear from you",
+    "badge": "Contact",
+    "titleFull": "We'd love to hear from you!",
+    "getInTouch": "Get in touch",
+    "intro": "If you have any questions, don't hesitate to contact our team. We'll get back to you within 48 hours.",
+    "contactDetails": "Contact details",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "message": "Message",
+    "messagePlaceholder": "Type your message here.",
+    "sendMessage": "Send message",
+    "placeholders": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "johndoe@example.com"
+    }
+  },
+  "pricing": {
+    "title": "Pricing",
+    "description": "Choose the right plan for your business",
+    "monthly": "Monthly",
+    "annually": "Annually",
+    "perMonth": "per month",
+    "perYear": "per year",
+    "getStarted": "Get started",
+    "contactSales": "Contact sales",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Have questions about our pricing or plans?",
+      "contact": "Contact us",
+      "helpText": "- we're here to help you find the perfect fit for your needs.",
+      "questions": {
+        "plans": {
+          "question": "What pricing plans does {appName} offer?",
+          "answer": {
+            "intro": "We offer three plans:",
+            "free": "Free:",
+            "freeDesc": "A starter plan for individuals or small teams",
+            "pro": "Pro:",
+            "proDesc": "Advanced features for growing businesses",
+            "enterprise": "Enterprise:",
+            "enterpriseDesc": "Custom solutions for large organizations",
+            "outro": "Each plan is designed to scale with your needs."
+          }
+        },
+        "freeFeatures": {
+          "question": "What's included in the Free plan?",
+          "answer": {
+            "intro": "The Free plan is perfect for getting started and includes:",
+            "scoring": "AI Contact Scoring for 100 contacts/month",
+            "email": "Smart Email Analysis for 1,000 emails/month",
+            "team": "Access for up to 2 team members"
+          }
+        },
+        "proFeatures": {
+          "question": "What features are in the Pro plan?",
+          "answer": {
+            "intro": "The Pro plan is ideal for growing teams and includes:",
+            "unlimited": "Unlimited AI Contact Scoring and Email Analysis",
+            "predictions": "Advanced Lead Predictions",
+            "sentiment": "Real-time Sentiment Analysis",
+            "team": "Up to 120 team members"
+          }
+        },
+        "enterpriseFeatures": {
+          "question": "What does the Enterprise plan offer?",
+          "answer": {
+            "intro": "The Enterprise plan is fully customizable and includes:",
+            "custom": "AI Contact Scoring and Email Analysis with custom limits",
+            "models": "Custom AI models for Lead Predictions",
+            "storage": "Advanced storage solutions",
+            "support": "24/7 Enterprise Support",
+            "team": "Unlimited team members",
+            "outro": "Contact us to discuss your organization's needs."
+          }
+        },
+        "upgradeDowngrade": {
+          "question": "What happens if I upgrade or downgrade my plan?",
+          "answer": "If you upgrade, you'll be charged a prorated amount for the remaining time in your billing cycle. If you downgrade, the changes will take effect at the end of your current billing cycle."
+        },
+        "setupFee": {
+          "question": "Is there a setup fee?",
+          "answer": "No, there are no setup fees. You can start using {appName} immediately after signing up."
+        },
+        "exceedLimits": {
+          "question": "What happens if I exceed my plan limits?",
+          "answer": "If you exceed your plan limits, you'll receive an alert and can either upgrade to a higher plan or adjust your usage to stay within your current plan."
+        }
+      }
+    }
+  },
+  "careers": {
+    "title": "Careers",
+    "description": "Join our team",
+    "openPositions": "Open Positions",
+    "apply": "Apply",
+    "fullTime": "Full-time",
+    "remote": "Remote",
+    "positions": {
+      "seniorSoftwareEngineer": {
+        "title": "Senior Software Engineer",
+        "department": "Engineering",
+        "description": "You will be responsible for the development of new and existing software products."
+      },
+      "productManager": {
+        "title": "Product Manager",
+        "department": "Engineering",
+        "description": "Help us build the next generation of Acme products."
+      },
+      "contentWriter": {
+        "title": "Content Writer",
+        "department": "Marketing",
+        "description": "Create engaging content for our blog, website, and social media channels."
+      },
+      "socialMediaManager": {
+        "title": "Social Media Manager",
+        "department": "Marketing",
+        "description": "Manage our social media presence and engage with our followers."
+      }
+    }
+  },
+  "story": {
+    "title": "Our Story",
+    "description": "Learn more about us",
+    "visionaries": "The visionaries",
+    "values": {
+      "quote": "We believe AI should enhance human relationships, not replace them."
+    },
+    "vision": {
+      "title": "Our vision",
+      "quote": "CRM shouldn't just store relationships — it should actively help you build better ones with AI.",
+      "paragraph1": "Traditional CRMs were built for a different era. We're creating the first true AI-native platform that automates the mundane and amplifies what humans do best: building meaningful relationships.",
+      "paragraph2": "By combining cutting-edge AI with decades of sales expertise, we've created a CRM that actually helps you sell better — predicting outcomes, suggesting next steps, and handling routine tasks automatically."
+    },
+    "team": {
+      "rickSanchez": {
+        "name": "Rick Sanchez",
+        "role": "Machine Learning Engineer",
+        "previousRole": "Formerly AI research engineer at Meta",
+        "education": "PhD in AI from Stanford"
+      },
+      "mortySmith": {
+        "name": "Morty Smith",
+        "role": "Senior Software Engineer",
+        "previousRole": "Formerly backend engineer at Google",
+        "education": "BSc in Computer Science from UC Berkeley"
+      }
+    }
+  },
+  "cookiePolicy": {
+    "badge": "Legal",
+    "title": "Cookie Policy",
+    "description": "Learn how we use cookies and similar technologies to improve your experience on our platform.",
+    "warning": "This policy provides a general framework. It should be reviewed and customized by a legal professional to suit your jurisdiction and use case.",
+    "cards": {
+      "whatAreCookies": {
+        "title": "What are Cookies?",
+        "content": "Cookies are small text files stored on your device that help us improve your experience by remembering preferences."
+      },
+      "typesOfCookies": {
+        "title": "Types of Cookies",
+        "content": "We use both session and persistent cookies to track user activity and enhance site functionality."
+      },
+      "managingCookies": {
+        "title": "Managing Cookies",
+        "content": "You can control cookie settings in your browser. However, disabling cookies may impact your experience on our site."
+      }
+    },
+    "accordion": {
+      "cookiesWeUse": {
+        "title": "Cookies We Use",
+        "content": "We use cookies for functionality (e.g., sessions), performance (e.g., analytics), and advertising (e.g., targeted ads)."
+      },
+      "thirdPartyCookies": {
+        "title": "Third-Party Cookies",
+        "content": "We may allow third-party services (such as Google Analytics) to place cookies on your device for specific purposes."
+      },
+      "howToManage": {
+        "title": "How to Manage Cookies",
+        "content": "You can adjust cookie settings in your browser. For more detailed instructions, refer to your browser's help guide."
+      },
+      "changes": {
+        "title": "Changes to Our Cookie Policy",
+        "content": "We may update this Cookie Policy from time to time. Any changes will be posted on this page."
+      }
+    },
+    "contactTitle": "Contact Information",
+    "contactText": "For questions or concerns, contact us at:"
+  },
+  "privacyPolicy": {
+    "badge": "Legal",
+    "title": "Privacy Policy",
+    "description": "Learn how we collect, use, and protect your data. Please read carefully to understand our practices.",
+    "warning": "This policy provides a general framework. It should be reviewed and customized by a legal professional to suit your jurisdiction and use case.",
+    "cards": {
+      "introduction": {
+        "title": "Introduction",
+        "content": "This Privacy Policy explains how we collect, use, and protect your personal data when you interact with our platform."
+      },
+      "informationCollection": {
+        "title": "Information Collection",
+        "content": "We collect information that you provide directly to us, such as when you sign up or interact with our services."
+      },
+      "dataUsage": {
+        "title": "Data Usage",
+        "content": "We use your data to provide, personalize, and improve your experience on our platform, including marketing and support."
+      }
+    },
+    "accordion": {
+      "dataProtection": {
+        "title": "How We Protect Your Data",
+        "content": "We implement various security measures, including encryption and secure storage, to protect your personal information."
+      },
+      "thirdPartySharing": {
+        "title": "Third-Party Sharing",
+        "content": "We may share your data with trusted third-party service providers for essential operations like payment processing or analytics."
+      },
+      "userRights": {
+        "title": "User Rights",
+        "content": "You have the right to access, update, or delete your personal data at any time. You can also opt-out of marketing communications."
+      },
+      "cookiesTracking": {
+        "title": "Cookies and Tracking",
+        "content": "We use cookies and similar technologies to personalize your experience and analyze usage patterns on our site."
+      },
+      "changes": {
+        "title": "Changes to This Policy",
+        "content": "We may update this Privacy Policy from time to time. Changes will be posted here, and continued use of the platform constitutes acceptance."
+      }
+    },
+    "contactTitle": "Contact Information",
+    "contactText": "For questions or concerns, contact us at:"
+  },
+  "termsOfUse": {
+    "badge": "Legal",
+    "title": "Terms of Use",
+    "description": "By accessing our platform, you agree to the terms outlined below. Please read them carefully to ensure you understand your rights and responsibilities.",
+    "warning": "These terms provide a general framework. They should be reviewed and customized by a legal professional to suit your jurisdiction and use case.",
+    "cards": {
+      "introduction": {
+        "title": "Introduction",
+        "content": "These terms outline the rules for using our platform. By continuing to use the platform, you agree to comply with them."
+      },
+      "eligibility": {
+        "title": "Eligibility",
+        "content": "Users must be at least 18 years old and provide accurate details to maintain their accounts."
+      },
+      "prohibitedUses": {
+        "title": "Prohibited Uses",
+        "content": "Users must avoid posting harmful content, distributing malware, or attempting unauthorized platform access."
+      }
+    },
+    "accordion": {
+      "intellectualProperty": {
+        "title": "Intellectual Property Rights",
+        "content": "All platform content, including trademarks and materials, is owned by us. Unauthorized use is prohibited."
+      },
+      "userContent": {
+        "title": "User-Generated Content",
+        "content": "You retain ownership of content you post but grant us a license to use it. Inappropriate content may be removed at our discretion."
+      },
+      "liability": {
+        "title": "Limitation of Liability",
+        "content": "Our platform is provided 'as is' without warranties. We are not liable for indirect damages, and users assume associated risks."
+      },
+      "termination": {
+        "title": "Termination of Access",
+        "content": "We may suspend or terminate access for violations of these terms, fraudulent activity, or other valid reasons."
+      },
+      "governingLaw": {
+        "title": "Governing Law and Disputes",
+        "content": "These terms are governed by the laws of [jurisdiction]. Disputes will be resolved through arbitration or designated courts."
+      },
+      "modifications": {
+        "title": "Modifications to Terms",
+        "content": "We reserve the right to update these terms. Changes will be posted here, and continued use constitutes acceptance."
+      }
+    },
+    "contactTitle": "Contact Information",
+    "contactText": "For questions or concerns, contact us at:"
+  },
+  "pricingCard": {
+    "recommended": "Recommended",
+    "day": "day",
+    "days": "days",
+    "freeTrial": "free trial",
+    "custom": "Custom",
+    "perMonth": "/ month",
+    "perSeat": "/ seat",
+    "currentPlan": "Current Plan",
+    "startTrial": "Start Trial",
+    "above": "above",
+    "forEvery": "for every",
+    "forEach": "for each",
+    "forTheNext": "for the next"
+  },
+  "cta": {
+    "title": "Ready to start?",
+    "button": "Start for free"
+  },
+  "faqHome": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Haven't found what you're looking for? Try",
+    "contact": "contacting",
+    "helpText": " us, we are glad to help.",
+    "questions": {
+      "whatDoes": {
+        "question": "What does {appName} do?",
+        "answer": "This is a demo application built with Achromatic. It will save you time and effort building your next SaaS. Here you would write something like \"{appName} helps you manage customer relationships, organize sales activities and improve service delivery to make your business more efficient and successful.\""
+      },
+      "benefits": {
+        "question": "How will this benefit my business?",
+        "answer": "By centralizing your customer data and automating tasks, {appName} makes it easier to track leads, manage your sales pipeline and collaborate with your team, saving you time and boosting your productivity."
+      },
+      "dataSafe": {
+        "question": "Is my data safe?",
+        "answer": "Your data security is our top priority. We use advanced encryption and follow industry-standard security measures to keep your information protected and compliant."
+      },
+      "integrations": {
+        "question": "What kind of integrations are available?",
+        "answer": "{appName} supports integration with various business tools, including CRMs, email marketing software and collaboration platforms. Connect with Salesforce, HubSpot and more to create a seamless workflow."
+      },
+      "onboarding": {
+        "question": "How easy is it to onboard my team?",
+        "answer": "The platform is designed for easy onboarding, with intuitive interfaces and step-by-step guides to help your team get up and running quickly."
+      },
+      "businessTypes": {
+        "question": "What types of businesses can use this?",
+        "answer": "{appName} is suitable for businesses of all sizes and industries, from startups to large enterprises, looking to streamline their customer relationship management."
+      },
+      "customize": {
+        "question": "Can I customize this to fit my business needs?",
+        "answer": "Absolutely. You can customize workflows, fields and templates to suit the unique needs of your business."
+      }
+    }
+  },
+  "problem": {
+    "title": "Attention Grabbing Title",
+    "problem1": {
+      "title": "Problem 1",
+      "description": "Describe a significant problem your ideal customer profile has. Explain how this problem impacts their goals or daily operations."
+    },
+    "problem2": {
+      "title": "Problem 2",
+      "description": "Describe a significant problem your ideal customer profile has. Explain how this problem impacts their goals or daily operations."
+    },
+    "problem3": {
+      "title": "Problem 3",
+      "description": "Describe a significant problem your ideal customer profile has. Explain how this problem impacts their goals or daily operations."
+    }
+  },
+  "solution": {
+    "title": "The next-gen SaaS",
+    "description": "{appName} is the engine that builds, scales and grows your company to the next level. Reminder that this is a demo and some of the features below don't exists.",
+    "operatingSystem": {
+      "title": "Your personal operating system",
+      "description": "Harness the power of AI to transform your business and automate almost everything with workflows.",
+      "features": {
+        "insights": "AI-driven insights",
+        "automation": "Smart automation",
+        "workflows": "Adaptive workflows",
+        "analytics": "Predictive analytics",
+        "nlp": "Natural language processing",
+        "prioritization": "Auto task prioritization"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "What people say",
+    "items": {
+      "davidZhang": {
+        "name": "David Zhang",
+        "role": "VP of Sales at GlobalTech Solutions",
+        "text": "has revolutionized how we manage customer relationships.",
+        "highlight": "Our team efficiency has improved by 75% since implementation.",
+        "conclusion": "The automated workflows are a game-changer for tech companies."
+      },
+      "mariaRodriguez": {
+        "name": "Maria Rodriguez",
+        "role": "Customer Success Director at Cloud Dynamics",
+        "text": "'s customer prediction model has drastically improved our targeting strategy.",
+        "highlight": "We've seen a 50% increase in conversion rates!",
+        "conclusion": "Their marketing automation features are unmatched."
+      },
+      "jamesWilson": {
+        "name": "James Wilson",
+        "role": "Head of Business Development at Velocity Inc",
+        "text": "As a startup, we needed a system that could scale with us.",
+        "highlight": "Our sales pipeline visibility has improved tenfold.",
+        "conclusion": "Essential tool for any growing business."
+      },
+      "sarahKim": {
+        "name": "Sarah Kim",
+        "role": "Senior Account Executive at Digital First",
+        "text": "'s multi-language support has made managing global customers effortless.",
+        "highlight": "Customer communication is now seamless across all regions.",
+        "conclusion": "Perfect for international teams."
+      },
+      "marcusJohnson": {
+        "name": "Marcus Johnson",
+        "role": "Sales Operations Manager at Revenue Pulse",
+        "text": "'s analytics dashboard gives us unprecedented insights into customer behavior.",
+        "highlight": "Our customer retention has increased by 40% using their predictive analytics.",
+        "conclusion": "Transformative for financial services."
+      },
+      "priyaSharma": {
+        "name": "Priya Sharma",
+        "role": "Chief Revenue Officer at Scale Systems",
+        "text": "'s integration with our existing tools has streamlined our entire operation.",
+        "highlight": "Customer service response times have been cut in half.",
+        "conclusion": "The automation features are exceptional."
+      },
+      "miguelSantos": {
+        "name": "Miguel Santos",
+        "role": "Account Management Director at Grow Corp",
+        "text": "'s sustainability tracking features help us monitor our environmental impact.",
+        "highlight": "Perfect for managing eco-conscious customer relationships.",
+        "conclusion": "Leading the way in sustainable business practices."
+      },
+      "lisaThompson": {
+        "name": "Lisa Thompson",
+        "role": "Inside Sales Manager at Quantum Enterprises",
+        "text": "'s customer segmentation tools have transformed our marketing approach.",
+        "highlight": "Our targeted campaigns now see 85% higher engagement rates.",
+        "conclusion": "Revolutionizing how we connect with customers."
+      },
+      "danielPark": {
+        "name": "Daniel Park",
+        "role": "Business Operations Lead at Swift Solutions",
+        "text": "'s HIPAA-compliant features make it perfect for healthcare providers.",
+        "highlight": "Secure patient relationship management has never been easier.",
+        "conclusion": "A milestone in healthcare CRM solutions."
+      },
+      "emmaAnderson": {
+        "name": "Emma Anderson",
+        "role": "Director of Client Relations at Peak Partners",
+        "text": "'s education-focused features have doubled our student engagement rates.",
+        "highlight": "Perfect for managing student and institution relationships.",
+        "conclusion": "Transforming educational administration."
+      },
+      "robertChen": {
+        "name": "Robert Chen",
+        "role": "Sales Enablement Manager at Catalyst Group",
+        "text": "'s enterprise-grade security features give us complete peace of mind.",
+        "highlight": "The most secure CRM solution we've ever used.",
+        "conclusion": "Setting new standards in data protection."
+      },
+      "mayaPatel": {
+        "name": "Maya Patel",
+        "role": "Customer Experience Director at Apex Solutions",
+        "text": "'s project management integration has streamlined our creative workflow.",
+        "highlight": "Client communication has never been more efficient.",
+        "conclusion": "Perfect for creative agencies."
+      },
+      "thomasOBrien": {
+        "name": "Thomas O'Brien",
+        "role": "Sales Strategy Manager at Future Dynamics",
+        "text": "'s startup-friendly pricing and scalability made it an easy choice.",
+        "highlight": "The perfect CRM solution that grows with your business.",
+        "conclusion": "Essential for modern startups."
+      }
+    }
+  },
+  "stats": {
+    "conversion": "Increased conversion",
+    "retention": "Improved retention",
+    "satisfaction": "Satisfaction rate",
+    "customers": "Customers in 85 countries"
+  },
+  "logos": {
+    "trusted": "Trusted by fast-growing companies around the world"
+  },
+  "pricingHero": {
+    "badge": "Pricing",
+    "title": "Plans for your business",
+    "description": "From early-stage startups to growing enterprises, {appName} has you covered."
+  },
+  "mobileMenu": {
+    "startForFree": "Start for free",
+    "signIn": "Sign in",
+    "theme": "Theme",
+    "toggleMenu": "Toggle Mobile Menu"
+  },
+  "cookieBanner": {
+    "message": "We use cookies primarily for analytics and to enhance your experience. By accepting you agree to our use of cookies.",
+    "learnMore": "Learn more",
+    "deny": "Deny",
+    "accept": "Accept"
+  },
+  "blogPosts": {
+    "badge": "Blog Posts",
+    "title": "Insights & News",
+    "description": "Learn more from members of our team and industry-leading experts.",
+    "readMore": "Read more"
+  },
+  "blogPost": {
+    "allPosts": "All posts",
+    "minuteRead": "1 minute read",
+    "minutesRead": "{minutes} minutes read"
+  },
+  "bentoCards": {
+    "customers": {
+      "title": "Customers",
+      "description": "Organize your contact and resource data in one place.",
+      "totalCustomers": "Total customers"
+    },
+    "campaigns": {
+      "title": "Campaigns",
+      "description": "Set up campaigns to notify your customer segment.",
+      "items": {
+        "welcomeEmail": {
+          "title": "Welcome Email",
+          "timing": "Sent upon customer registration"
+        },
+        "appointmentReminder": {
+          "title": "Appointment Reminder",
+          "timing": "24 hours before appointment"
+        },
+        "followUpEmail": {
+          "title": "Follow-up Email",
+          "timing": "2 days after initial contact"
+        },
+        "feedbackRequest": {
+          "title": "Feedback Request",
+          "timing": "48 hours after service completion"
+        },
+        "exclusiveOfferEmail": {
+          "title": "Exclusive Offer Email",
+          "timing": "Sent 7 days after inactivity"
+        },
+        "personalizedCheckIn": {
+          "title": "Personalized Check-in",
+          "timing": "30 days after last interaction"
+        },
+        "specialEventInvitation": {
+          "title": "Special Event Invitation",
+          "timing": "14 days before the event"
+        },
+        "reactivationCampaign": {
+          "title": "Reactivation Campaign",
+          "timing": "90 days after inactivity"
+        }
+      }
+    },
+    "magicInbox": {
+      "title": "Magic Inbox",
+      "description": "Centralize all customer communications in one shared inbox.",
+      "chat": "Chat",
+      "email": "Email"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Get instant insights into your business performance.",
+      "leads": "Leads",
+      "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June"
+      }
+    },
+    "pipelines": {
+      "title": "Pipelines",
+      "description": "Track your sales pipeline stages. Get a detailed breakdown at a glance.",
+      "stages": {
+        "lead": "Lead",
+        "qualified": "Qualified",
+        "proposal": "Proposal",
+        "negotiation": "Negotiation",
+        "closed": "Closed"
+      }
+    }
+  },
+  "aiAdvisor": {
+    "vercelLogo": "Vercel Logo",
+    "domain": "Domain",
+    "ceo": "CEO",
+    "founded": "Founded",
+    "estArr": "Est. ARR",
+    "location": "Location",
+    "tags": "Tags",
+    "saas": "SaaS",
+    "b2b": "B2B",
+    "funding": "Funding",
+    "title": "AI Advisor",
+    "contactHistory": "Vercel has been contacted 4 times in the past year. Suggested next contact is in 3 days."
+  },
+  "careersBenefits": {
+    "badge": "Careers",
+    "title": "Join our team",
+    "description": "Work remotely from wherever you want and help us build the future of {appName}",
+    "benefits": {
+      "innovation": {
+        "title": "Innovation at its core",
+        "description": "We are committed to pushing boundaries and fostering a culture of creativity."
+      },
+      "inclusive": {
+        "title": "Inclusive environment",
+        "description": "Our diverse and collaborative team welcomes individuals from all backgrounds."
+      },
+      "growth": {
+        "title": "Opportunities for growth",
+        "description": "We support continuous learning and career development through mentorship and resources."
+      }
+    }
+  },
+  "storyTimeline": {
+    "heading": "The road so far",
+    "milestones": {
+      "2023": {
+        "title": "The journey begins",
+        "description": "Started building an AI-powered CRM to transform sales workflows and boost productivity."
+      },
+      "2024": {
+        "title": "First milestones",
+        "description": "Launched our platform, earning early customers and recognition for real-time insights and deal predictions."
+      },
+      "2025": {
+        "title": "Scaling and innovation",
+        "description": "Expanded features with advanced AI analytics, onboarding more customers, and preparing for rapid growth."
+      }
+    }
+  },
+  "storyHero": {
+    "badge": "Our Story",
+    "title": "Reinventing CRM in the AI era",
+    "description": "From a bold vision to revolutionize CRM to the fastest-growing platform in history. We're building the intelligent CRM that works for you, not the other way around."
+  }
+}

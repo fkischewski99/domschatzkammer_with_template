@@ -1,5 +1,8 @@
+'use client';
+
 import * as React from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '~/src/i18n/navigation';
 import { format } from 'date-fns';
 import { ArrowLeftIcon } from 'lucide-react';
 
@@ -33,6 +36,8 @@ type BlogPostProps = {
 };
 
 export function BlogPost({ post }: BlogPostProps): React.JSX.Element {
+  const t = useTranslations('blogPost');
+
   return (
     <div className="border-b">
       <div className="container mx-auto flex max-w-3xl flex-col space-y-4 py-20">
@@ -42,7 +47,7 @@ export function BlogPost({ post }: BlogPostProps): React.JSX.Element {
             className="group mb-12 flex items-center space-x-1 text-sm leading-none text-foreground duration-200 hover:underline"
           >
             <ArrowLeftIcon className="size-4 shrink-0 transition-transform group-hover:-translate-x-0.5" />
-            <span>All posts</span>
+            <span>{t('allPosts')}</span>
           </Link>
           <div className="space-y-8">
             <div className="flex flex-row items-center justify-between gap-4 text-base text-muted-foreground">
@@ -72,7 +77,7 @@ export function BlogPost({ post }: BlogPostProps): React.JSX.Element {
                 </Avatar>
                 <span>{post.author?.name ?? ''}</span>
               </div>
-              <div>{estimateReadingTime(post.body.raw)}</div>
+              <div>{estimateReadingTime(post.body.raw, t)}</div>
             </div>
           </div>
         </div>
@@ -87,9 +92,10 @@ export function BlogPost({ post }: BlogPostProps): React.JSX.Element {
 
 function estimateReadingTime(
   text: string,
+  t: (key: string, values?: Record<string, string | number>) => string,
   wordsPerMinute: number = 250
 ): string {
   const words = text.trim().split(/\s+/).length;
   const minutes = Math.ceil(words / wordsPerMinute);
-  return minutes === 1 ? '1 minute read' : `${minutes} minutes read`;
+  return minutes === 1 ? t('minuteRead') : t('minutesRead', { minutes: String(minutes) });
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { ArrowLeftRightIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -274,6 +275,7 @@ export function BentoMagicInboxCard({
   className,
   ...other
 }: React.ComponentPropsWithoutRef<typeof MotionCard>): React.JSX.Element {
+  const t = useTranslations('bentoCards.magicInbox');
   const [active, setActive] = React.useState<number>(0);
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -291,11 +293,11 @@ export function BentoMagicInboxCard({
       {...other}
     >
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Magic Inbox</CardTitle>
+        <CardTitle className="text-xl font-semibold">{t('title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="line-clamp-2 text-sm text-muted-foreground">
-          Centralize all customer communications in one shared inbox.
+          {t('description')}
         </p>
         <div
           aria-hidden="true"
@@ -342,9 +344,9 @@ export function BentoMagicInboxCard({
             </div>
             {/* Text */}
             <div className="mt-px flex flex-row items-center gap-2 whitespace-nowrap rounded-lg bg-secondary px-3 py-1.5 text-sm text-foreground">
-              Chat
+              {t('chat')}
               <ArrowLeftRightIcon className="size-3 shrink-0" />
-              Email
+              {t('email')}
             </div>
           </div>
         </div>

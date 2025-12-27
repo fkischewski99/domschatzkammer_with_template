@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.achromatic.dev)",
+      "WebFetch(domain:next-intl.dev)",
+      "Bash(find:*)",
+      "Bash(for file in mobile-menu.tsx sections/hero.tsx sections/blog-post.tsx sections/pricing-faq.tsx sections/cta.tsx sections/blog-posts.tsx sections/faq.tsx fragments/cookie-banner.tsx cards/ai-advisor-card.tsx docs/docs-pager.tsx docs/docs-sidebar.tsx blog/mdx-component.tsx footer.tsx)",
+      "Bash(do sed -i '' \"s|import.*Link.*from ''next/link'';|import { Link } from ''~/src/i18n/navigation'';|g\" \"$file\")",
+      "Bash(done)",
+      "Bash(pnpm dev)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

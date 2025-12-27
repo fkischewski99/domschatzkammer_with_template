@@ -1,7 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '~/src/i18n/navigation';
 import { allPosts } from 'content-collections';
 import { format, isBefore } from 'date-fns';
 import { ArrowRightIcon } from 'lucide-react';
@@ -18,13 +19,15 @@ import { SiteHeading } from '~/components/fragments/site-heading';
 import { getInitials } from '~/lib/formatters';
 
 export function BlogPosts(): React.JSX.Element {
+  const t = useTranslations('blogPosts');
+
   return (
     <GridSection>
       <div className="container py-20 space-y-16">
         <SiteHeading
-          badge="Blog Posts"
-          title="Insights & News"
-          description="Learn more from members of our team and industry-leading experts."
+          badge={t('badge')}
+          title={t('title')}
+          description={t('description')}
         />
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -66,7 +69,7 @@ export function BlogPosts(): React.JSX.Element {
                     <span className="text-sm">{post.author?.name ?? ''}</span>
                   </div>
                   <div className="group flex items-center gap-2 text-sm hover:underline">
-                    Read more
+                    {t('readMore')}
                     <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>

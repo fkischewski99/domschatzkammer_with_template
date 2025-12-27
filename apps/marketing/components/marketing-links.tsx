@@ -21,41 +21,42 @@ import {
   XIcon
 } from '@workspace/ui/components/brand-icons';
 
-export const MENU_LINKS = [
+// Function to get menu links with translations
+export const getMenuLinks = (t: (key: string) => string) => [
   {
-    title: 'Product',
+    title: t('product'),
     items: [
       {
-        title: 'Feature 1',
-        description: 'Short description here',
+        title: t('features.feature1.title'),
+        description: t('features.feature1.description'),
         icon: <BoxIcon className="size-5 shrink-0" />,
         href: '#',
         external: false
       },
       {
-        title: 'Feature 2',
-        description: 'Short description here',
+        title: t('features.feature2.title'),
+        description: t('features.feature2.description'),
         icon: <PlayIcon className="size-5 shrink-0" />,
         href: '#',
         external: false
       },
       {
-        title: 'Feature 3',
-        description: 'Short description here',
+        title: t('features.feature3.title'),
+        description: t('features.feature3.description'),
         icon: <CircuitBoardIcon className="size-5 shrink-0" />,
         href: '#',
         external: false
       },
       {
-        title: 'Feature 4',
-        description: 'Short description here',
+        title: t('features.feature4.title'),
+        description: t('features.feature4.description'),
         icon: <LayoutIcon className="size-5 shrink-0" />,
         href: '#',
         external: false
       },
       {
-        title: 'Feature 5',
-        description: 'Short description here',
+        title: t('features.feature5.title'),
+        description: t('features.feature5.description'),
         icon: <FileBarChartIcon className="size-5 shrink-0" />,
         href: '#',
         external: false
@@ -63,32 +64,32 @@ export const MENU_LINKS = [
     ]
   },
   {
-    title: 'Resources',
+    title: t('resources'),
     items: [
       {
-        title: 'Contact',
-        description: 'Reach out for assistance',
+        title: t('links.contact.title'),
+        description: t('links.contact.description'),
         icon: <SendHorizonalIcon className="size-5 shrink-0" />,
         href: routes.marketing.Contact,
         external: false
       },
       {
-        title: 'Roadmap',
-        description: 'See what is coming next',
+        title: t('links.roadmap.title'),
+        description: t('links.roadmap.description'),
         icon: <LayoutIcon className="size-5 shrink-0" />,
         href: routes.marketing.Roadmap,
         external: true
       },
       {
-        title: 'Docs',
-        description: 'Learn how to use our platform',
+        title: t('links.docs.title'),
+        description: t('links.docs.description'),
         icon: <BookOpenIcon className="size-5 shrink-0" />,
         href: routes.marketing.Docs,
         external: false
       },
       {
-        title: 'API Reference',
-        description: 'Build integrations with our API',
+        title: t('links.apiReference.title'),
+        description: t('links.apiReference.description'),
         icon: <CodeIcon className="size-5 shrink-0" />,
         href: baseUrl.PublicApi,
         external: true
@@ -96,19 +97,74 @@ export const MENU_LINKS = [
     ]
   },
   {
-    title: 'Pricing',
+    title: t('pricing'),
     href: routes.marketing.Pricing,
     external: false
   },
   {
-    title: 'Blog',
+    title: t('blog'),
     href: routes.marketing.Blog,
     external: false
   },
   {
-    title: 'Story',
+    title: t('story'),
     href: routes.marketing.Story,
     external: false
+  }
+];
+
+// For backward compatibility, keep a default export
+export const MENU_LINKS = getMenuLinks((key) => key);
+
+// Function to get footer links with translations
+// Expects t to be scoped to 'footer' namespace
+export const getFooterLinks = (t: (key: string) => string) => [
+  {
+    title: t('product'),
+    links: [
+      { name: t('features.feature1'), href: '#', external: false },
+      { name: t('features.feature2'), href: '#', external: false },
+      { name: t('features.feature3'), href: '#', external: false },
+      { name: t('features.feature4'), href: '#', external: false },
+      { name: t('features.feature5'), href: '#', external: false }
+    ]
+  },
+  {
+    title: t('resources'),
+    links: [
+      { name: t('links.contact'), href: routes.marketing.Contact, external: false },
+      { name: t('links.roadmap'), href: routes.marketing.Roadmap, external: true },
+      { name: t('links.docs'), href: routes.marketing.Docs, external: false },
+      { name: t('links.apiReference'), href: baseUrl.PublicApi, external: true }
+    ]
+  },
+  {
+    title: t('about'),
+    links: [
+      { name: t('links.story'), href: routes.marketing.Story, external: false },
+      { name: t('links.blog'), href: routes.marketing.Blog, external: false },
+      { name: t('links.careers'), href: routes.marketing.Careers, external: false }
+    ]
+  },
+  {
+    title: t('legal'),
+    links: [
+      {
+        name: t('links.termsOfUse'),
+        href: routes.marketing.TermsOfUse,
+        external: false
+      },
+      {
+        name: t('links.privacyPolicy'),
+        href: routes.marketing.PrivacyPolicy,
+        external: false
+      },
+      {
+        name: t('links.cookiePolicy'),
+        href: routes.marketing.CookiePolicy,
+        external: false
+      }
+    ]
   }
 ];
 

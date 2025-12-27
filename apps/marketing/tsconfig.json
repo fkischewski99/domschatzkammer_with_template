@@ -2,6 +2,7 @@
   "extends": "@workspace/typescript-config/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "resolveJsonModule": true,
     "paths": {
       "~/*": ["./*"],
       "content-collections": ["./.content-collections/generated"],

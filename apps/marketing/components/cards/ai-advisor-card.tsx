@@ -1,5 +1,8 @@
+'use client';
+
 import * as React from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '~/src/i18n/navigation';
 import {
   CalendarIcon,
   DollarSignIcon,
@@ -65,6 +68,8 @@ export function AiAdvisorCard({
   className,
   ...props
 }: CardProps): React.JSX.Element {
+  const t = useTranslations('aiAdvisor');
+
   return (
     <Card
       className={cn('pb-0', className)}
@@ -78,7 +83,7 @@ export function AiAdvisorCard({
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <GlobeIcon className="size-4 text-muted-foreground" />
-            <span className="w-20 text-sm text-muted-foreground">Domain</span>
+            <span className="w-20 text-sm text-muted-foreground">{t('domain')}</span>
             <Link
               href="https://vercel.com"
               target="_blank"
@@ -90,54 +95,53 @@ export function AiAdvisorCard({
           </div>
           <div className="flex items-center gap-2">
             <User2Icon className="size-4 text-muted-foreground" />
-            <span className="w-20 text-sm text-muted-foreground">CEO</span>
+            <span className="w-20 text-sm text-muted-foreground">{t('ceo')}</span>
             <span className="text-sm">Guillermo Rauch</span>
           </div>
           <div className="flex items-center gap-2">
             <CalendarIcon className="size-4 text-muted-foreground" />
-            <span className="w-20 text-sm text-muted-foreground">Founded</span>
+            <span className="w-20 text-sm text-muted-foreground">{t('founded')}</span>
             <span className="text-sm">2015</span>
           </div>
           <div className="flex items-center gap-2">
             <LineChartIcon className="size-4 text-muted-foreground" />
-            <span className="w-20 text-sm text-muted-foreground">Est. ARR</span>
+            <span className="w-20 text-sm text-muted-foreground">{t('estArr')}</span>
             <span className="text-sm">$100-120M</span>
           </div>
           <div className="flex items-center gap-2">
             <MapPinIcon className="size-4 text-muted-foreground" />
-            <span className="w-20 text-sm text-muted-foreground">Location</span>
+            <span className="w-20 text-sm text-muted-foreground">{t('location')}</span>
             <span className="text-sm">California, USA</span>
           </div>
           <div className="flex items-center gap-2">
             <TagsIcon className="size-4 text-muted-foreground" />
-            <span className="w-20 text-sm text-muted-foreground">Tags</span>
+            <span className="w-20 text-sm text-muted-foreground">{t('tags')}</span>
             <div className="flex gap-1">
               <Badge
                 variant="secondary"
                 className="whitespace-nowrap pl-2 text-xs"
               >
-                SaaS
+                {t('saas')}
               </Badge>
               <Badge
                 variant="secondary"
                 className="whitespace-nowrap pl-2 text-xs"
               >
-                B2B
+                {t('b2b')}
               </Badge>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <DollarSignIcon className="size-4 text-muted-foreground" />
-            <span className="w-20 text-sm text-muted-foreground">Funding</span>
+            <span className="w-20 text-sm text-muted-foreground">{t('funding')}</span>
             <span className="text-sm">$250M Series E</span>
           </div>
         </div>
       </CardContent>
       <CardFooter className="flex-col items-start space-y-4 rounded-b-xl bg-neutral-50 py-6 dark:bg-neutral-900">
-        <h3 className="text-base font-semibold sm:text-lg">AI Advisor</h3>
+        <h3 className="text-base font-semibold sm:text-lg">{t('title')}</h3>
         <div className="min-h-10 max-w-md text-sm text-muted-foreground">
-          Vercel has been contacted 4 times in the past year. Suggested next
-          contact is in 3 days.
+          {t('contactHistory')}
         </div>
       </CardFooter>
     </Card>

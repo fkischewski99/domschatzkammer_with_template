@@ -1,7 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '~/src/i18n/navigation';
 import { usePathname } from 'next/navigation';
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -27,6 +28,7 @@ export function MobileMenu({
   ...other
 }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
   const [open, setOpen] = React.useState<boolean>(false);
+  const t = useTranslations('mobileMenu');
   const pathname = usePathname();
   const isDocs = pathname.startsWith(
     getPathname(routes.marketing.Docs, baseUrl.Marketing)
@@ -73,7 +75,7 @@ export function MobileMenu({
           variant="ghost"
           size="icon"
           aria-expanded={open}
-          aria-label="Toggle Mobile Menu"
+          aria-label={t('toggleMenu')}
           onClick={handleToggleMobileMenu}
           className="flex aspect-square h-fit select-none flex-col items-center justify-center rounded-full"
         >
@@ -121,6 +123,8 @@ function MainMobileMenu({
   onLinkClicked
 }: MainMobileMenuProps): React.JSX.Element {
   const [expanded, setExpanded] = React.useState<Record<string, boolean>>({});
+  const t = useTranslations('mobileMenu');
+
   return (
     <div className="fixed inset-0 z-50 mt-[69px] overflow-y-auto bg-background animate-in fade-in-0">
       <div className="flex size-full flex-col items-start space-y-3 p-4">
@@ -136,7 +140,7 @@ function MainMobileMenu({
             )}
             onClick={onLinkClicked}
           >
-            Start for free
+            {t('startForFree')}
           </Link>
           <Link
             href={routes.dashboard.auth.SignIn}
@@ -149,7 +153,7 @@ function MainMobileMenu({
               'w-full rounded-xl'
             )}
           >
-            Sign in
+            {t('signIn')}
           </Link>
         </div>
         <ul className="w-full">
@@ -242,7 +246,7 @@ function MainMobileMenu({
           ))}
         </ul>
         <div className="flex w-full items-center justify-between gap-2 border-y border-border/40 p-4">
-          <div className="text-base font-medium">Theme</div>
+          <div className="text-base font-medium">{t('theme')}</div>
           <ThemeSwitcher />
         </div>
       </div>
@@ -259,6 +263,8 @@ function DocsMobileMenu({
 }: DocsMobileMenuProps): React.JSX.Element {
   const [expanded, setExpanded] = React.useState<Record<string, boolean>>({});
   const pathname = usePathname();
+  const t = useTranslations('mobileMenu');
+
   return (
     <div className="fixed inset-0 z-50 mt-[69px] overflow-y-auto bg-background animate-in fade-in-0">
       <div className="flex size-full flex-col items-start space-y-3 p-4">
@@ -321,7 +327,7 @@ function DocsMobileMenu({
           ))}
         </ul>
         <div className="flex w-full items-center justify-between gap-2 border-y border-border/40 p-4">
-          <div className="text-base font-medium">Theme</div>
+          <div className="text-base font-medium">{t('theme')}</div>
           <ThemeSwitcher />
         </div>
       </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { TrendingUpIcon, UsersIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -47,6 +48,8 @@ export function BentoCustomersCard({
   className,
   ...other
 }: React.ComponentPropsWithoutRef<typeof MotionCard>): React.JSX.Element {
+  const t = useTranslations('bentoCards.customers');
+
   return (
     <MotionCard
       className={cn(
@@ -59,17 +62,17 @@ export function BentoCustomersCard({
       {...other}
     >
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Customers</CardTitle>
+        <CardTitle className="text-xl font-semibold">{t('title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="line-clamp-2 text-sm text-muted-foreground">
-          Organize your contact and resource data in one place.
+          {t('description')}
         </p>
         <div className="space-y-2.5 rounded-lg border p-4 shadow-xs">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <UsersIcon className="size-4 text-muted-foreground" />
-              <span className="text-sm font-medium">Total customers</span>
+              <span className="text-sm font-medium">{t('totalCustomers')}</span>
             </div>
             <motion.div
               className="flex items-center text-blue-500"

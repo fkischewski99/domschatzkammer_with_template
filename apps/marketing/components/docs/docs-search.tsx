@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { SearchIcon } from 'lucide-react';
 
 import { Button } from '@workspace/ui/components/button';
@@ -18,6 +19,7 @@ import { type DialogProps } from '@workspace/ui/components/dialog';
 import { DOCS_LINKS } from '~/components/marketing-links';
 
 export function DocsSearch(props: DialogProps): React.JSX.Element {
+  const t = useTranslations('docs');
   const router = useRouter();
   const [open, setOpen] = React.useState<boolean>(false);
 
@@ -56,7 +58,7 @@ export function DocsSearch(props: DialogProps): React.JSX.Element {
         {...props}
       >
         <SearchIcon className="size-3 shrink-0" />
-        <span>Search docs</span>
+        <span>{t('searchDocs')}</span>
         <kbd className="pointer-events-none absolute right-[0.3rem] top-[0.3rem] flex h-5 select-none items-center gap-1 rounded-sm border bg-background px-1.5 font-mono text-xs font-medium opacity-100">
           <span className="text-xs">⌘</span>K
         </kbd>
@@ -66,11 +68,11 @@ export function DocsSearch(props: DialogProps): React.JSX.Element {
         onOpenChange={setOpen}
       >
         <CommandInput
-          placeholder="Search docs (i.e. integrations, importing or billing)..."
+          placeholder={t('searchPlaceholder')}
           className="p-0!"
         />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>{t('noResults')}</CommandEmpty>
           {DOCS_LINKS.map((group) => (
             <CommandGroup
               key={group.title}

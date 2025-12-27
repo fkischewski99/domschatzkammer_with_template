@@ -1,0 +1,762 @@
+{
+  "navigation": {
+    "product": "Produkt",
+    "resources": "Ressourcen",
+    "pricing": "Preise",
+    "blog": "Blog",
+    "story": "Unsere Geschichte",
+    "docs": "Dokumentation",
+    "signIn": "Anmelden",
+    "signUp": "Kostenlos starten",
+    "features": {
+      "feature1": {
+        "title": "Feature 1",
+        "description": "Kurze Beschreibung hier"
+      },
+      "feature2": {
+        "title": "Feature 2",
+        "description": "Kurze Beschreibung hier"
+      },
+      "feature3": {
+        "title": "Feature 3",
+        "description": "Kurze Beschreibung hier"
+      },
+      "feature4": {
+        "title": "Feature 4",
+        "description": "Kurze Beschreibung hier"
+      },
+      "feature5": {
+        "title": "Feature 5",
+        "description": "Kurze Beschreibung hier"
+      }
+    },
+    "links": {
+      "contact": {
+        "title": "Kontakt",
+        "description": "Kontaktieren Sie uns für Unterstützung"
+      },
+      "roadmap": {
+        "title": "Roadmap",
+        "description": "Sehen Sie, was als Nächstes kommt"
+      },
+      "docs": {
+        "title": "Dokumentation",
+        "description": "Erfahren Sie, wie Sie unsere Plattform nutzen"
+      },
+      "apiReference": {
+        "title": "API-Referenz",
+        "description": "Erstellen Sie Integrationen mit unserer API"
+      }
+    }
+  },
+  "hero": {
+    "badge": {
+      "new": "Neu!",
+      "announcement": "Hier eine Ankündigung einfügen 🎉"
+    },
+    "title": "Ihr revolutionäres",
+    "titleLine2": "Next.js SaaS",
+    "description": "Bauen Sie Ihr nächstes SaaS-Produkt mit dem modernsten Tech-Stack. Erhalten Sie authentifizierung, Datenbank, Zahlungen und mehr sofort einsatzbereit.",
+    "getStarted": "Jetzt starten",
+    "learnMore": "Mehr erfahren"
+  },
+  "footer": {
+    "heading": "Fußzeile",
+    "product": "Produkt",
+    "resources": "Ressourcen",
+    "about": "Über uns",
+    "legal": "Rechtliches",
+    "mission": "Unsere Mission ist es, den Markt mit KI zu revolutionieren.",
+    "features": {
+      "feature1": "Feature 1",
+      "feature2": "Feature 2",
+      "feature3": "Feature 3",
+      "feature4": "Feature 4",
+      "feature5": "Feature 5"
+    },
+    "links": {
+      "contact": "Kontakt",
+      "roadmap": "Roadmap",
+      "docs": "Dokumentation",
+      "apiReference": "API-Referenz",
+      "story": "Unsere Geschichte",
+      "blog": "Blog",
+      "careers": "Karriere",
+      "termsOfUse": "Nutzungsbedingungen",
+      "privacyPolicy": "Datenschutzerklärung",
+      "cookiePolicy": "Cookie-Richtlinie"
+    },
+    "newsletter": {
+      "title": "Bleiben Sie auf dem Laufenden",
+      "description": "Abonnieren Sie unseren Newsletter für Updates",
+      "placeholder": "E-Mail-Adresse eingeben",
+      "subscribe": "Abonnieren"
+    },
+    "copyright": "© {year} Ihr Unternehmen. Alle Rechte vorbehalten."
+  },
+  "common": {
+    "getStarted": "Jetzt starten",
+    "learnMore": "Mehr erfahren",
+    "contactUs": "Kontaktieren Sie uns",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "dashboard": "Dashboard",
+    "language": "Sprache",
+    "switchLanguage": "Sprache wechseln",
+    "readMore": "Weiterlesen",
+    "viewAll": "Alle anzeigen",
+    "notImplementedYet": "Ich bin noch nicht implementiert."
+  },
+  "docs": {
+    "gettingStarted": "Erste Schritte",
+    "guides": "Anleitungen",
+    "introduction": "Einführung",
+    "dependencies": "Abhängigkeiten",
+    "usingMdx": "MDX verwenden",
+    "onThisPage": "Auf dieser Seite",
+    "tableOfContents": "Inhaltsverzeichnis",
+    "searchDocs": "Dokumentation durchsuchen",
+    "searchPlaceholder": "Dokumentation durchsuchen (z.B. Integrationen, Import oder Abrechnung)...",
+    "noResults": "Keine Ergebnisse gefunden."
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Neueste Nachrichten und Updates",
+    "readingTime": "{minutes} Min. Lesezeit",
+    "publishedOn": "Veröffentlicht am {date}",
+    "by": "von"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "description": "Wir würden gerne von Ihnen hören",
+    "badge": "Kontakt",
+    "titleFull": "Wir würden gerne von Ihnen hören!",
+    "getInTouch": "Kontaktieren Sie uns",
+    "intro": "Wenn Sie Fragen haben, zögern Sie nicht, unser Team zu kontaktieren. Wir melden uns innerhalb von 48 Stunden bei Ihnen.",
+    "contactDetails": "Kontaktdaten",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "messagePlaceholder": "Geben Sie hier Ihre Nachricht ein.",
+    "sendMessage": "Nachricht senden",
+    "placeholders": {
+      "firstName": "Max",
+      "lastName": "Mustermann",
+      "email": "max.mustermann@beispiel.de"
+    }
+  },
+  "pricing": {
+    "title": "Preise",
+    "description": "Wählen Sie den richtigen Plan für Ihr Unternehmen",
+    "monthly": "Monatlich",
+    "annually": "Jährlich",
+    "perMonth": "pro Monat",
+    "perYear": "pro Jahr",
+    "getStarted": "Jetzt starten",
+    "contactSales": "Vertrieb kontaktieren",
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "subtitle": "Haben Sie Fragen zu unseren Preisen oder Plänen?",
+      "contact": "Kontaktieren Sie uns",
+      "helpText": "- wir helfen Ihnen gerne, die perfekte Lösung für Ihre Bedürfnisse zu finden.",
+      "questions": {
+        "plans": {
+          "question": "Welche Preispläne bietet {appName} an?",
+          "answer": {
+            "intro": "Wir bieten drei Pläne an:",
+            "free": "Kostenlos:",
+            "freeDesc": "Ein Starter-Plan für Einzelpersonen oder kleine Teams",
+            "pro": "Pro:",
+            "proDesc": "Erweiterte Funktionen für wachsende Unternehmen",
+            "enterprise": "Enterprise:",
+            "enterpriseDesc": "Individuelle Lösungen für große Organisationen",
+            "outro": "Jeder Plan ist darauf ausgelegt, mit Ihren Anforderungen zu skalieren."
+          }
+        },
+        "freeFeatures": {
+          "question": "Was ist im kostenlosen Plan enthalten?",
+          "answer": {
+            "intro": "Der kostenlose Plan ist perfekt für den Einstieg und umfasst:",
+            "scoring": "KI-Kontakt-Bewertung für 100 Kontakte/Monat",
+            "email": "Smart E-Mail-Analyse für 1.000 E-Mails/Monat",
+            "team": "Zugang für bis zu 2 Teammitglieder"
+          }
+        },
+        "proFeatures": {
+          "question": "Welche Funktionen bietet der Pro-Plan?",
+          "answer": {
+            "intro": "Der Pro-Plan ist ideal für wachsende Teams und umfasst:",
+            "unlimited": "Unbegrenzte KI-Kontakt-Bewertung und E-Mail-Analyse",
+            "predictions": "Erweiterte Lead-Prognosen",
+            "sentiment": "Echtzeit-Stimmungsanalyse",
+            "team": "Bis zu 120 Teammitglieder"
+          }
+        },
+        "enterpriseFeatures": {
+          "question": "Was bietet der Enterprise-Plan?",
+          "answer": {
+            "intro": "Der Enterprise-Plan ist vollständig anpassbar und umfasst:",
+            "custom": "KI-Kontakt-Bewertung und E-Mail-Analyse mit individuellen Limits",
+            "models": "Benutzerdefinierte KI-Modelle für Lead-Prognosen",
+            "storage": "Erweiterte Speicherlösungen",
+            "support": "24/7 Enterprise-Support",
+            "team": "Unbegrenzte Teammitglieder",
+            "outro": "Kontaktieren Sie uns, um die Anforderungen Ihrer Organisation zu besprechen."
+          }
+        },
+        "upgradeDowngrade": {
+          "question": "Was passiert, wenn ich meinen Plan aktualisiere oder downgrade?",
+          "answer": "Wenn Sie ein Upgrade durchführen, wird Ihnen ein anteiliger Betrag für die verbleibende Zeit in Ihrem Abrechnungszeitraum berechnet. Wenn Sie ein Downgrade durchführen, treten die Änderungen am Ende Ihres aktuellen Abrechnungszeitraums in Kraft."
+        },
+        "setupFee": {
+          "question": "Gibt es eine Einrichtungsgebühr?",
+          "answer": "Nein, es gibt keine Einrichtungsgebühren. Sie können {appName} sofort nach der Registrierung nutzen."
+        },
+        "exceedLimits": {
+          "question": "Was passiert, wenn ich meine Plan-Limits überschreite?",
+          "answer": "Wenn Sie Ihre Plan-Limits überschreiten, erhalten Sie eine Benachrichtigung und können entweder auf einen höheren Plan upgraden oder Ihre Nutzung anpassen, um innerhalb Ihres aktuellen Plans zu bleiben."
+        }
+      }
+    }
+  },
+  "careers": {
+    "title": "Karriere",
+    "description": "Werden Sie Teil unseres Teams",
+    "openPositions": "Offene Stellen",
+    "apply": "Bewerben",
+    "fullTime": "Vollzeit",
+    "remote": "Remote",
+    "positions": {
+      "seniorSoftwareEngineer": {
+        "title": "Senior Software Engineer",
+        "department": "Engineering",
+        "description": "Sie sind verantwortlich für die Entwicklung neuer und bestehender Softwareprodukte."
+      },
+      "productManager": {
+        "title": "Product Manager",
+        "department": "Engineering",
+        "description": "Helfen Sie uns, die nächste Generation von Acme-Produkten zu entwickeln."
+      },
+      "contentWriter": {
+        "title": "Content Writer",
+        "department": "Marketing",
+        "description": "Erstellen Sie ansprechende Inhalte für unseren Blog, unsere Website und Social-Media-Kanäle."
+      },
+      "socialMediaManager": {
+        "title": "Social Media Manager",
+        "department": "Marketing",
+        "description": "Verwalten Sie unsere Social-Media-Präsenz und interagieren Sie mit unseren Followern."
+      }
+    }
+  },
+  "story": {
+    "title": "Unsere Geschichte",
+    "description": "Erfahren Sie mehr über uns",
+    "visionaries": "Die Visionäre",
+    "values": {
+      "quote": "Wir glauben, dass KI menschliche Beziehungen verbessern sollte, nicht ersetzen."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "quote": "CRM sollte nicht nur Beziehungen speichern – es sollte aktiv dabei helfen, mit KI bessere aufzubauen.",
+      "paragraph1": "Traditionelle CRMs wurden für eine andere Ära gebaut. Wir entwickeln die erste wirklich KI-native Plattform, die das Alltägliche automatisiert und verstärkt, was Menschen am besten können: bedeutungsvolle Beziehungen aufbauen.",
+      "paragraph2": "Durch die Kombination von modernster KI mit jahrzehntelanger Vertriebsexpertise haben wir ein CRM geschaffen, das Ihnen wirklich beim besseren Verkaufen hilft – es prognostiziert Ergebnisse, schlägt nächste Schritte vor und erledigt Routineaufgaben automatisch."
+    },
+    "team": {
+      "rickSanchez": {
+        "name": "Rick Sanchez",
+        "role": "Machine Learning Engineer",
+        "previousRole": "Ehemals KI-Forschungsingenieur bei Meta",
+        "education": "PhD in KI von Stanford"
+      },
+      "mortySmith": {
+        "name": "Morty Smith",
+        "role": "Senior Software Engineer",
+        "previousRole": "Ehemals Backend-Ingenieur bei Google",
+        "education": "BSc in Informatik von der UC Berkeley"
+      }
+    }
+  },
+  "cta": {
+    "title": "Bereit loszulegen?",
+    "button": "Kostenlos starten"
+  },
+  "faqHome": {
+    "title": "Häufig gestellte Fragen",
+    "subtitle": "Haben Sie nicht gefunden, wonach Sie suchen? Versuchen Sie,",
+    "contact": "uns zu kontaktieren",
+    "helpText": ", wir helfen Ihnen gerne weiter.",
+    "questions": {
+      "whatDoes": {
+        "question": "Was macht {appName}?",
+        "answer": "Dies ist eine Demoanwendung, die mit Achromatic erstellt wurde. Sie spart Ihnen Zeit und Mühe beim Aufbau Ihres nächsten SaaS. Hier würden Sie so etwas schreiben wie \"{appName} hilft Ihnen, Kundenbeziehungen zu verwalten, Vertriebsaktivitäten zu organisieren und die Servicebereitstellung zu verbessern, um Ihr Unternehmen effizienter und erfolgreicher zu machen.\""
+      },
+      "benefits": {
+        "question": "Wie wird dies meinem Unternehmen zugutekommen?",
+        "answer": "Durch die Zentralisierung Ihrer Kundendaten und die Automatisierung von Aufgaben erleichtert {appName} die Verfolgung von Leads, die Verwaltung Ihrer Vertriebspipeline und die Zusammenarbeit mit Ihrem Team, spart Ihnen Zeit und steigert Ihre Produktivität."
+      },
+      "dataSafe": {
+        "question": "Sind meine Daten sicher?",
+        "answer": "Die Sicherheit Ihrer Daten hat für uns oberste Priorität. Wir verwenden fortschrittliche Verschlüsselung und befolgen branchenübliche Sicherheitsmaßnahmen, um Ihre Informationen geschützt und konform zu halten."
+      },
+      "integrations": {
+        "question": "Welche Integrationen sind verfügbar?",
+        "answer": "{appName} unterstützt die Integration mit verschiedenen Geschäftstools, einschließlich CRMs, E-Mail-Marketing-Software und Kollaborationsplattformen. Verbinden Sie sich mit Salesforce, HubSpot und mehr, um einen nahtlosen Workflow zu erstellen."
+      },
+      "onboarding": {
+        "question": "Wie einfach ist es, mein Team einzubinden?",
+        "answer": "Die Plattform ist für eine einfache Einarbeitung konzipiert, mit intuitiven Benutzeroberflächen und Schritt-für-Schritt-Anleitungen, die Ihrem Team helfen, schnell loszulegen."
+      },
+      "businessTypes": {
+        "question": "Welche Arten von Unternehmen können dies nutzen?",
+        "answer": "{appName} ist für Unternehmen aller Größen und Branchen geeignet, von Startups bis hin zu großen Unternehmen, die ihr Kundenbeziehungsmanagement optimieren möchten."
+      },
+      "customize": {
+        "question": "Kann ich dies an meine Geschäftsbedürfnisse anpassen?",
+        "answer": "Absolut. Sie können Workflows, Felder und Vorlagen anpassen, um den einzigartigen Anforderungen Ihres Unternehmens gerecht zu werden."
+      }
+    }
+  },
+  "problem": {
+    "title": "Aufmerksamkeitsstarker Titel",
+    "problem1": {
+      "title": "Problem 1",
+      "description": "Beschreiben Sie ein bedeutendes Problem, das Ihr ideales Kundenprofil hat. Erklären Sie, wie sich dieses Problem auf ihre Ziele oder den täglichen Betrieb auswirkt."
+    },
+    "problem2": {
+      "title": "Problem 2",
+      "description": "Beschreiben Sie ein bedeutendes Problem, das Ihr ideales Kundenprofil hat. Erklären Sie, wie sich dieses Problem auf ihre Ziele oder den täglichen Betrieb auswirkt."
+    },
+    "problem3": {
+      "title": "Problem 3",
+      "description": "Beschreiben Sie ein bedeutendes Problem, das Ihr ideales Kundenprofil hat. Erklären Sie, wie sich dieses Problem auf ihre Ziele oder den täglichen Betrieb auswirkt."
+    }
+  },
+  "solution": {
+    "title": "Das Next-Gen SaaS",
+    "description": "{appName} ist der Motor, der Ihr Unternehmen auf die nächste Ebene baut, skaliert und wachsen lässt. Denken Sie daran, dass dies eine Demo ist und einige der unten aufgeführten Funktionen nicht existieren.",
+    "operatingSystem": {
+      "title": "Ihr persönliches Betriebssystem",
+      "description": "Nutzen Sie die Kraft der KI, um Ihr Unternehmen zu transformieren und fast alles mit Workflows zu automatisieren.",
+      "features": {
+        "insights": "KI-gestützte Einblicke",
+        "automation": "Intelligente Automatisierung",
+        "workflows": "Adaptive Workflows",
+        "analytics": "Prädiktive Analysen",
+        "nlp": "Natürliche Sprachverarbeitung",
+        "prioritization": "Automatische Aufgabenpriorisierung"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Was die Leute sagen",
+    "items": {
+      "davidZhang": {
+        "name": "David Zhang",
+        "role": "VP of Sales bei GlobalTech Solutions",
+        "text": "hat revolutioniert, wie wir Kundenbeziehungen verwalten.",
+        "highlight": "Die Effizienz unseres Teams hat sich seit der Implementierung um 75% verbessert.",
+        "conclusion": "Die automatisierten Workflows sind ein Game-Changer für Technologieunternehmen."
+      },
+      "mariaRodriguez": {
+        "name": "Maria Rodriguez",
+        "role": "Customer Success Director bei Cloud Dynamics",
+        "text": "s Kundenvorhersagemodell hat unsere Targeting-Strategie drastisch verbessert.",
+        "highlight": "Wir haben eine Steigerung der Konversionsraten um 50% gesehen!",
+        "conclusion": "Ihre Marketing-Automatisierungsfunktionen sind unübertroffen."
+      },
+      "jamesWilson": {
+        "name": "James Wilson",
+        "role": "Head of Business Development bei Velocity Inc",
+        "text": "Als Startup brauchten wir ein System, das mit uns skalieren kann.",
+        "highlight": "Die Transparenz unserer Vertriebspipeline hat sich verzehnfacht.",
+        "conclusion": "Unverzichtbares Tool für jedes wachsende Unternehmen."
+      },
+      "sarahKim": {
+        "name": "Sarah Kim",
+        "role": "Senior Account Executive bei Digital First",
+        "text": "s Mehrsprachenunterstützung hat die Verwaltung globaler Kunden mühelos gemacht.",
+        "highlight": "Die Kundenkommunikation ist jetzt nahtlos über alle Regionen hinweg.",
+        "conclusion": "Perfekt für internationale Teams."
+      },
+      "marcusJohnson": {
+        "name": "Marcus Johnson",
+        "role": "Sales Operations Manager bei Revenue Pulse",
+        "text": "s Analytics-Dashboard gibt uns beispiellose Einblicke in das Kundenverhalten.",
+        "highlight": "Unsere Kundenbindung hat sich um 40% erhöht durch ihre prädiktiven Analysen.",
+        "conclusion": "Transformativ für Finanzdienstleistungen."
+      },
+      "priyaSharma": {
+        "name": "Priya Sharma",
+        "role": "Chief Revenue Officer bei Scale Systems",
+        "text": "s Integration mit unseren bestehenden Tools hat unseren gesamten Betrieb optimiert.",
+        "highlight": "Die Reaktionszeiten des Kundenservice wurden halbiert.",
+        "conclusion": "Die Automatisierungsfunktionen sind außergewöhnlich."
+      },
+      "miguelSantos": {
+        "name": "Miguel Santos",
+        "role": "Account Management Director bei Grow Corp",
+        "text": "s Nachhaltigkeits-Tracking-Funktionen helfen uns, unsere Umweltauswirkungen zu überwachen.",
+        "highlight": "Perfekt für die Verwaltung umweltbewusster Kundenbeziehungen.",
+        "conclusion": "Wegweisend in nachhaltigen Geschäftspraktiken."
+      },
+      "lisaThompson": {
+        "name": "Lisa Thompson",
+        "role": "Inside Sales Manager bei Quantum Enterprises",
+        "text": "s Kundensegmentierungstools haben unseren Marketing-Ansatz transformiert.",
+        "highlight": "Unsere gezielten Kampagnen verzeichnen jetzt 85% höhere Engagement-Raten.",
+        "conclusion": "Revolutioniert, wie wir mit Kunden in Kontakt treten."
+      },
+      "danielPark": {
+        "name": "Daniel Park",
+        "role": "Business Operations Lead bei Swift Solutions",
+        "text": "s HIPAA-konforme Funktionen machen es perfekt für Gesundheitsdienstleister.",
+        "highlight": "Sicheres Patientenbeziehungsmanagement war noch nie so einfach.",
+        "conclusion": "Ein Meilenstein in Healthcare-CRM-Lösungen."
+      },
+      "emmaAnderson": {
+        "name": "Emma Anderson",
+        "role": "Director of Client Relations bei Peak Partners",
+        "text": "s bildungsorientierte Funktionen haben unsere Studentenengagement-Raten verdoppelt.",
+        "highlight": "Perfekt für die Verwaltung von Studenten- und Institutionsbeziehungen.",
+        "conclusion": "Transformiert die Bildungsverwaltung."
+      },
+      "robertChen": {
+        "name": "Robert Chen",
+        "role": "Sales Enablement Manager bei Catalyst Group",
+        "text": "s Enterprise-Grade-Sicherheitsfunktionen geben uns absolute Sicherheit.",
+        "highlight": "Die sicherste CRM-Lösung, die wir je verwendet haben.",
+        "conclusion": "Setzt neue Standards im Datenschutz."
+      },
+      "mayaPatel": {
+        "name": "Maya Patel",
+        "role": "Customer Experience Director bei Apex Solutions",
+        "text": "s Projektmanagement-Integration hat unseren kreativen Workflow optimiert.",
+        "highlight": "Die Kundenkommunikation war noch nie so effizient.",
+        "conclusion": "Perfekt für Kreativagenturen."
+      },
+      "thomasOBrien": {
+        "name": "Thomas O'Brien",
+        "role": "Sales Strategy Manager bei Future Dynamics",
+        "text": "s startup-freundliche Preisgestaltung und Skalierbarkeit machten es zu einer einfachen Wahl.",
+        "highlight": "Die perfekte CRM-Lösung, die mit Ihrem Unternehmen wächst.",
+        "conclusion": "Unverzichtbar für moderne Startups."
+      }
+    }
+  },
+  "stats": {
+    "conversion": "Höhere Conversion",
+    "retention": "Bessere Kundenbindung",
+    "satisfaction": "Zufriedenheitsrate",
+    "customers": "Kunden in 85 Ländern"
+  },
+  "logos": {
+    "trusted": "Vertraut von schnell wachsenden Unternehmen weltweit"
+  },
+  "pricingHero": {
+    "badge": "Preise",
+    "title": "Pläne für Ihr Unternehmen",
+    "description": "Von Start-ups in der Anfangsphase bis hin zu wachsenden Unternehmen, {appName} hat die Lösung für Sie."
+  },
+  "mobileMenu": {
+    "startForFree": "Kostenlos starten",
+    "signIn": "Anmelden",
+    "theme": "Design",
+    "toggleMenu": "Mobilmenü umschalten"
+  },
+  "cookieBanner": {
+    "message": "Wir verwenden Cookies hauptsächlich für Analysen und zur Verbesserung Ihrer Erfahrung. Durch Akzeptieren stimmen Sie unserer Verwendung von Cookies zu.",
+    "learnMore": "Mehr erfahren",
+    "deny": "Ablehnen",
+    "accept": "Akzeptieren"
+  },
+  "blogPosts": {
+    "badge": "Blog-Beiträge",
+    "title": "Einblicke & Neuigkeiten",
+    "description": "Erfahren Sie mehr von Mitgliedern unseres Teams und branchenführenden Experten.",
+    "readMore": "Weiterlesen"
+  },
+  "blogPost": {
+    "allPosts": "Alle Beiträge",
+    "minuteRead": "1 Minute Lesezeit",
+    "minutesRead": "{minutes} Minuten Lesezeit"
+  },
+  "bentoCards": {
+    "customers": {
+      "title": "Kunden",
+      "description": "Organisieren Sie Ihre Kontakt- und Ressourcendaten an einem Ort.",
+      "totalCustomers": "Kunden gesamt"
+    },
+    "campaigns": {
+      "title": "Kampagnen",
+      "description": "Richten Sie Kampagnen ein, um Ihr Kundensegment zu benachrichtigen.",
+      "items": {
+        "welcomeEmail": {
+          "title": "Willkommens-E-Mail",
+          "timing": "Gesendet bei Kundenregistrierung"
+        },
+        "appointmentReminder": {
+          "title": "Terminerinnerung",
+          "timing": "24 Stunden vor dem Termin"
+        },
+        "followUpEmail": {
+          "title": "Follow-up-E-Mail",
+          "timing": "2 Tage nach Erstkontakt"
+        },
+        "feedbackRequest": {
+          "title": "Feedback-Anfrage",
+          "timing": "48 Stunden nach Serviceabschluss"
+        },
+        "exclusiveOfferEmail": {
+          "title": "Exklusives Angebots-E-Mail",
+          "timing": "Gesendet 7 Tage nach Inaktivität"
+        },
+        "personalizedCheckIn": {
+          "title": "Persönlicher Check-in",
+          "timing": "30 Tage nach letzter Interaktion"
+        },
+        "specialEventInvitation": {
+          "title": "Besondere Eventeinladung",
+          "timing": "14 Tage vor dem Event"
+        },
+        "reactivationCampaign": {
+          "title": "Reaktivierungskampagne",
+          "timing": "90 Tage nach Inaktivität"
+        }
+      }
+    },
+    "magicInbox": {
+      "title": "Magic Inbox",
+      "description": "Zentralisieren Sie alle Kundenkommunikationen in einer gemeinsamen Inbox.",
+      "chat": "Chat",
+      "email": "E-Mail"
+    },
+    "analytics": {
+      "title": "Analytik",
+      "description": "Erhalten Sie sofortige Einblicke in Ihre Geschäftsleistung.",
+      "leads": "Leads",
+      "months": {
+        "january": "Januar",
+        "february": "Februar",
+        "march": "März",
+        "april": "April",
+        "may": "Mai",
+        "june": "Juni"
+      }
+    },
+    "pipelines": {
+      "title": "Pipelines",
+      "description": "Verfolgen Sie Ihre Vertriebspipeline-Phasen. Erhalten Sie eine detaillierte Übersicht auf einen Blick.",
+      "stages": {
+        "lead": "Lead",
+        "qualified": "Qualifiziert",
+        "proposal": "Angebot",
+        "negotiation": "Verhandlung",
+        "closed": "Abgeschlossen"
+      }
+    }
+  },
+  "aiAdvisor": {
+    "vercelLogo": "Vercel Logo",
+    "domain": "Domain",
+    "ceo": "CEO",
+    "founded": "Gegründet",
+    "estArr": "Geschätzter ARR",
+    "location": "Standort",
+    "tags": "Tags",
+    "saas": "SaaS",
+    "b2b": "B2B",
+    "funding": "Finanzierung",
+    "title": "KI-Berater",
+    "contactHistory": "Vercel wurde im letzten Jahr 4 Mal kontaktiert. Nächster empfohlener Kontakt ist in 3 Tagen."
+  },
+  "careersBenefits": {
+    "badge": "Karriere",
+    "title": "Werde Teil unseres Teams",
+    "description": "Arbeite remote von wo du willst und hilf uns, die Zukunft von {appName} zu gestalten",
+    "benefits": {
+      "innovation": {
+        "title": "Innovation im Kern",
+        "description": "Wir sind bestrebt, Grenzen zu überschreiten und eine Kultur der Kreativität zu fördern."
+      },
+      "inclusive": {
+        "title": "Inklusives Umfeld",
+        "description": "Unser vielfältiges und kollaboratives Team heißt Menschen aus allen Bereichen willkommen."
+      },
+      "growth": {
+        "title": "Wachstumsmöglichkeiten",
+        "description": "Wir unterstützen kontinuierliches Lernen und Karriereentwicklung durch Mentoring und Ressourcen."
+      }
+    }
+  },
+  "storyTimeline": {
+    "heading": "Der bisherige Weg",
+    "milestones": {
+      "2023": {
+        "title": "Die Reise beginnt",
+        "description": "Beginn des Aufbaus eines KI-gestützten CRM zur Transformation von Vertriebsworkflows und Steigerung der Produktivität."
+      },
+      "2024": {
+        "title": "Erste Meilensteine",
+        "description": "Einführung unserer Plattform, Gewinnung erster Kunden und Anerkennung für Echtzeit-Einblicke und Deal-Vorhersagen."
+      },
+      "2025": {
+        "title": "Skalierung und Innovation",
+        "description": "Erweiterung der Funktionen mit fortschrittlichen KI-Analysen, Gewinnung weiterer Kunden und Vorbereitung auf schnelles Wachstum."
+      }
+    }
+  },
+  "storyHero": {
+    "badge": "Unsere Geschichte",
+    "title": "CRM im KI-Zeitalter neu erfinden",
+    "description": "Von einer kühnen Vision, CRM zu revolutionieren, zur am schnellsten wachsenden Plattform der Geschichte. Wir bauen das intelligente CRM, das für Sie arbeitet, nicht umgekehrt."
+  },
+  "cookiePolicy": {
+    "badge": "Rechtliches",
+    "title": "Cookie-Richtlinie",
+    "description": "Erfahren Sie, wie wir Cookies und ähnliche Technologien verwenden, um Ihre Erfahrung auf unserer Plattform zu verbessern.",
+    "warning": "Diese Richtlinie bietet einen allgemeinen Rahmen. Sie sollte von einem Rechtsberater überprüft und an Ihre Rechtsordnung und Ihren Anwendungsfall angepasst werden.",
+    "cards": {
+      "whatAreCookies": {
+        "title": "Was sind Cookies?",
+        "content": "Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden und uns helfen, Ihre Erfahrung zu verbessern, indem sie Präferenzen speichern."
+      },
+      "typesOfCookies": {
+        "title": "Arten von Cookies",
+        "content": "Wir verwenden sowohl Sitzungs- als auch dauerhafte Cookies, um Benutzeraktivitäten zu verfolgen und die Funktionalität der Website zu verbessern."
+      },
+      "managingCookies": {
+        "title": "Cookies verwalten",
+        "content": "Sie können Cookie-Einstellungen in Ihrem Browser steuern. Das Deaktivieren von Cookies kann jedoch Ihre Erfahrung auf unserer Website beeinträchtigen."
+      }
+    },
+    "accordion": {
+      "cookiesWeUse": {
+        "title": "Von uns verwendete Cookies",
+        "content": "Wir verwenden Cookies für Funktionalität (z.B. Sitzungen), Leistung (z.B. Analysen) und Werbung (z.B. zielgerichtete Anzeigen)."
+      },
+      "thirdPartyCookies": {
+        "title": "Cookies von Drittanbietern",
+        "content": "Wir können Drittanbieterdiensten (wie Google Analytics) erlauben, Cookies auf Ihrem Gerät für bestimmte Zwecke zu platzieren."
+      },
+      "howToManage": {
+        "title": "Cookies verwalten",
+        "content": "Sie können Cookie-Einstellungen in Ihrem Browser anpassen. Für detailliertere Anweisungen konsultieren Sie die Hilfe Ihres Browsers."
+      },
+      "changes": {
+        "title": "Änderungen an unserer Cookie-Richtlinie",
+        "content": "Wir können diese Cookie-Richtlinie von Zeit zu Zeit aktualisieren. Alle Änderungen werden auf dieser Seite veröffentlicht."
+      }
+    },
+    "contactTitle": "Kontaktinformationen",
+    "contactText": "Bei Fragen oder Anliegen kontaktieren Sie uns unter:"
+  },
+  "privacyPolicy": {
+    "badge": "Rechtliches",
+    "title": "Datenschutzerklärung",
+    "description": "Erfahren Sie, wie wir Ihre Daten sammeln, verwenden und schützen. Bitte lesen Sie sorgfältig, um unsere Praktiken zu verstehen.",
+    "warning": "Diese Richtlinie bietet einen allgemeinen Rahmen. Sie sollte von einem Rechtsberater überprüft und an Ihre Rechtsordnung und Ihren Anwendungsfall angepasst werden.",
+    "cards": {
+      "introduction": {
+        "title": "Einführung",
+        "content": "Diese Datenschutzerklärung erklärt, wie wir Ihre personenbezogenen Daten sammeln, verwenden und schützen, wenn Sie mit unserer Plattform interagieren."
+      },
+      "informationCollection": {
+        "title": "Datenerfassung",
+        "content": "Wir sammeln Informationen, die Sie uns direkt zur Verfügung stellen, z.B. wenn Sie sich anmelden oder mit unseren Diensten interagieren."
+      },
+      "dataUsage": {
+        "title": "Datenverwendung",
+        "content": "Wir verwenden Ihre Daten, um Ihre Erfahrung auf unserer Plattform bereitzustellen, zu personalisieren und zu verbessern, einschließlich Marketing und Support."
+      }
+    },
+    "accordion": {
+      "dataProtection": {
+        "title": "Wie wir Ihre Daten schützen",
+        "content": "Wir implementieren verschiedene Sicherheitsmaßnahmen, einschließlich Verschlüsselung und sicherer Speicherung, um Ihre personenbezogenen Daten zu schützen."
+      },
+      "thirdPartySharing": {
+        "title": "Weitergabe an Dritte",
+        "content": "Wir können Ihre Daten mit vertrauenswürdigen Drittanbietern für wesentliche Vorgänge wie Zahlungsabwicklung oder Analysen teilen."
+      },
+      "userRights": {
+        "title": "Nutzerrechte",
+        "content": "Sie haben jederzeit das Recht, auf Ihre personenbezogenen Daten zuzugreifen, sie zu aktualisieren oder zu löschen. Sie können sich auch von Marketing-Kommunikation abmelden."
+      },
+      "cookiesTracking": {
+        "title": "Cookies und Tracking",
+        "content": "Wir verwenden Cookies und ähnliche Technologien, um Ihre Erfahrung zu personalisieren und Nutzungsmuster auf unserer Website zu analysieren."
+      },
+      "changes": {
+        "title": "Änderungen an dieser Richtlinie",
+        "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Änderungen werden hier veröffentlicht, und die fortgesetzte Nutzung der Plattform gilt als Zustimmung."
+      }
+    },
+    "contactTitle": "Kontaktinformationen",
+    "contactText": "Bei Fragen oder Anliegen kontaktieren Sie uns unter:"
+  },
+  "termsOfUse": {
+    "badge": "Rechtliches",
+    "title": "Nutzungsbedingungen",
+    "description": "Durch den Zugriff auf unsere Plattform stimmen Sie den unten aufgeführten Bedingungen zu. Bitte lesen Sie sie sorgfältig, um sicherzustellen, dass Sie Ihre Rechte und Pflichten verstehen.",
+    "warning": "Diese Bedingungen bieten einen allgemeinen Rahmen. Sie sollten von einem Rechtsberater überprüft und an Ihre Rechtsordnung und Ihren Anwendungsfall angepasst werden.",
+    "cards": {
+      "introduction": {
+        "title": "Einführung",
+        "content": "Diese Bedingungen legen die Regeln für die Nutzung unserer Plattform fest. Durch die fortgesetzte Nutzung der Plattform stimmen Sie zu, diese einzuhalten."
+      },
+      "eligibility": {
+        "title": "Berechtigung",
+        "content": "Benutzer müssen mindestens 18 Jahre alt sein und genaue Angaben machen, um ihre Konten zu verwalten."
+      },
+      "prohibitedUses": {
+        "title": "Unzulässige Nutzung",
+        "content": "Benutzer müssen es vermeiden, schädliche Inhalte zu veröffentlichen, Malware zu verbreiten oder unbefugten Zugriff auf die Plattform zu versuchen."
+      }
+    },
+    "accordion": {
+      "intellectualProperty": {
+        "title": "Geistige Eigentumsrechte",
+        "content": "Alle Plattforminhalte, einschließlich Marken und Materialien, gehören uns. Unbefugte Nutzung ist verboten."
+      },
+      "userContent": {
+        "title": "Nutzergenerierte Inhalte",
+        "content": "Sie behalten das Eigentum an Inhalten, die Sie veröffentlichen, gewähren uns jedoch eine Lizenz zur Nutzung. Unangemessene Inhalte können nach unserem Ermessen entfernt werden."
+      },
+      "liability": {
+        "title": "Haftungsbeschränkung",
+        "content": "Unsere Plattform wird 'wie besehen' ohne Garantien bereitgestellt. Wir haften nicht für indirekte Schäden, und Benutzer tragen die damit verbundenen Risiken."
+      },
+      "termination": {
+        "title": "Beendigung des Zugriffs",
+        "content": "Wir können den Zugriff bei Verstößen gegen diese Bedingungen, betrügerischen Aktivitäten oder anderen triftigen Gründen aussetzen oder beenden."
+      },
+      "governingLaw": {
+        "title": "Anwendbares Recht und Streitigkeiten",
+        "content": "Diese Bedingungen unterliegen den Gesetzen von [Rechtsordnung]. Streitigkeiten werden durch Schiedsverfahren oder bestimmte Gerichte beigelegt."
+      },
+      "modifications": {
+        "title": "Änderungen der Bedingungen",
+        "content": "Wir behalten uns das Recht vor, diese Bedingungen zu aktualisieren. Änderungen werden hier veröffentlicht, und die fortgesetzte Nutzung gilt als Zustimmung."
+      }
+    },
+    "contactTitle": "Kontaktinformationen",
+    "contactText": "Bei Fragen oder Anliegen kontaktieren Sie uns unter:"
+  },
+  "pricingCard": {
+    "recommended": "Empfohlen",
+    "day": "Tag",
+    "days": "Tage",
+    "freeTrial": "kostenlose Testphase",
+    "custom": "Individuell",
+    "perMonth": "/ Monat",
+    "perSeat": "/ Platz",
+    "currentPlan": "Aktueller Plan",
+    "startTrial": "Testversion starten",
+    "above": "über",
+    "forEvery": "für jeden",
+    "forEach": "für jeden",
+    "forTheNext": "für die nächsten"
+  }
+}

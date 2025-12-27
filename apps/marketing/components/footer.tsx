@@ -1,7 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '~/src/i18n/navigation';
 
 import { APP_NAME } from '@workspace/common/app';
 import { Button } from '@workspace/ui/components/button';
@@ -12,25 +13,30 @@ import { toast } from '@workspace/ui/components/sonner';
 import { ThemeSwitcher } from '@workspace/ui/components/theme-switcher';
 
 import { ExternalLink } from '~/components/fragments/external-link';
-import { FOOTER_LINKS, SOCIAL_LINKS } from '~/components/marketing-links';
+import { getFooterLinks, SOCIAL_LINKS } from '~/components/marketing-links';
 
 export function Footer(): React.JSX.Element {
+  const t = useTranslations('footer');
+  const tNav = useTranslations('navigation');
+  const tCommon = useTranslations('common');
+  const footerLinks = getFooterLinks(t);
+
   const handleSubscribe = (): void => {
-    toast.error("I'm not implemented yet.");
+    toast.error(tCommon('notImplementedYet'));
   };
   return (
     <footer className="px-2 pb-10 pt-20 sm:container">
-      <h2 className="sr-only">Footer</h2>
+      <h2 className="sr-only">{t('heading')}</h2>
       <div className="container">
         <div className="xl:grid xl:grid-cols-6 xl:gap-8">
           <div className="hidden xl:block">
             <Logo />
             <p className="mt-3 text-xs text-muted-foreground">
-              Our mission is to disrupt the market with AI.
+              {t('mission')}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:col-span-3">
-            {FOOTER_LINKS.map((group) => (
+            {footerLinks.map((group) => (
               <div key={group.title}>
                 <h3 className="text-sm font-semibold text-foreground">
                   {group.title}
@@ -61,13 +67,13 @@ export function Footer(): React.JSX.Element {
           </div>
           <div className="mt-10 space-y-4 lg:col-span-2 xl:mt-0">
             <h3 className="text-sm font-semibold text-foreground">
-              Subscribe to our newsletter
+              {t('newsletter.title')}
             </h3>
             <form className="py-2 sm:flex sm:max-w-md">
               <div className="w-full min-w-0">
                 <Input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t('newsletter.placeholder')}
                   className="w-full"
                 />
               </div>
@@ -76,7 +82,7 @@ export function Footer(): React.JSX.Element {
                   type="button"
                   onClick={handleSubscribe}
                 >
-                  Subscribe
+                  {t('newsletter.subscribe')}
                 </Button>
               </div>
             </form>
@@ -85,7 +91,7 @@ export function Footer(): React.JSX.Element {
         <div className="mt-8 border-t pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
+              {t('copyright', { year: new Date().getFullYear() }).replace('Your Company', APP_NAME)}
             </p>
             <div className="flex flex-row items-center gap-4">
               {SOCIAL_LINKS.map((link) => (

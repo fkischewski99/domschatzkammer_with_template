@@ -1,4 +1,7 @@
+'use client';
+
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { CircleCheckBigIcon } from 'lucide-react';
 
 import { APP_NAME } from '@workspace/common/app';
@@ -12,6 +15,8 @@ import { BentoPipelinesCard } from '~/components/cards/bento-pipelines-card';
 import { GridSection } from '~/components/fragments/grid-section';
 
 export function Solution(): React.JSX.Element {
+  const t = useTranslations('solution');
+
   return (
     <GridSection>
       <div className="bg-diagonal-lines">
@@ -19,12 +24,10 @@ export function Solution(): React.JSX.Element {
           <div className="container relative space-y-10">
             <div>
               <h2 className="mb-2.5 text-3xl font-semibold md:text-5xl">
-                The next-gen SaaS
+                {t('title')}
               </h2>
               <p className="mt-1 max-w-2xl text-muted-foreground md:mt-6">
-                {APP_NAME} is the engine that builds, scales and grows your
-                company to the next level. Reminder that this is a demo and some
-                of the features below don't exists.
+                {t('description', { appName: APP_NAME })}
               </p>
             </div>
             <div className="mx-auto xl:container xl:rounded-xl xl:bg-neutral-50 xl:p-6 dark:xl:bg-neutral-900">
@@ -65,20 +68,19 @@ export function Solution(): React.JSX.Element {
             <div className="grid gap-10 sm:container lg:grid-cols-2">
               <div className="order-1 lg:order-2">
                 <h2 className="mb-2.5 mt-8 text-3xl font-semibold md:text-5xl">
-                  Your personal operating system
+                  {t('operatingSystem.title')}
                 </h2>
                 <p className="mt-1 text-muted-foreground md:mt-6">
-                  Harness the power of AI to transform your business and
-                  automate almost everything with workflows.
+                  {t('operatingSystem.description')}
                 </p>
                 <ul className="mt-6 list-none flex-wrap items-center gap-6 space-y-3 md:flex md:space-y-0">
                   {[
-                    'AI-driven insights',
-                    'Smart automation',
-                    'Adaptive workflows',
-                    'Predictive analytics',
-                    'Natural language processing',
-                    'Auto task prioritization'
+                    t('operatingSystem.features.insights'),
+                    t('operatingSystem.features.automation'),
+                    t('operatingSystem.features.workflows'),
+                    t('operatingSystem.features.analytics'),
+                    t('operatingSystem.features.nlp'),
+                    t('operatingSystem.features.prioritization')
                   ].map((feature) => (
                     <li
                       key={feature}

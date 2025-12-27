@@ -32,6 +32,7 @@
     "mdast-util-toc": "7.1.0",
     "motion": "12.23.24",
     "next": "16.0.10",
+    "next-intl": "4.6.1",
     "next-secure-headers": "2.2.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",

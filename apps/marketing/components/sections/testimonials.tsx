@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Star } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -11,197 +12,60 @@ import { cn } from '@workspace/ui/lib/utils';
 import { GridSection } from '~/components/fragments/grid-section';
 import { Marquee } from '~/components/fragments/marquee';
 
-const DATA = [
-  {
-    name: 'David Zhang',
-    role: 'VP of Sales at GlobalTech Solutions',
-    img: 'https://randomuser.me/api/portraits/men/91.jpg',
-    description: (
-      <p>
-        {APP_NAME} has revolutionized how we manage customer relationships.{' '}
-        <strong>
-          Our team efficiency has improved by 75% since implementation.
-        </strong>{' '}
-        The automated workflows are a game-changer for tech companies.
-      </p>
-    )
-  },
-  {
-    name: 'Maria Rodriguez',
-    role: 'Customer Success Director at Cloud Dynamics',
-    img: 'https://randomuser.me/api/portraits/women/12.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s customer prediction model has drastically improved our
-        targeting strategy.{' '}
-        <strong>We've seen a 50% increase in conversion rates!</strong> Their
-        marketing automation features are unmatched.
-      </p>
-    )
-  },
-  {
-    name: 'James Wilson',
-    role: 'Head of Business Development at Velocity Inc',
-    img: 'https://randomuser.me/api/portraits/men/45.jpg',
-    description: (
-      <p>
-        As a startup, we needed a system that could scale with us. {APP_NAME}{' '}
-        delivers perfectly.{' '}
-        <strong>Our sales pipeline visibility has improved tenfold.</strong>{' '}
-        Essential tool for any growing business.
-      </p>
-    )
-  },
-  {
-    name: 'Sarah Kim',
-    role: 'Senior Account Executive at Digital First',
-    img: 'https://randomuser.me/api/portraits/women/83.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s multi-language support has made managing global customers
-        effortless.{' '}
-        <strong>
-          Customer communication is now seamless across all regions.
-        </strong>{' '}
-        Perfect for international teams.
-      </p>
-    )
-  },
-  {
-    name: 'Marcus Johnson',
-    role: 'Sales Operations Manager at Revenue Pulse',
-    img: 'https://randomuser.me/api/portraits/men/1.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s analytics dashboard gives us unprecedented insights into
-        customer behavior.{' '}
-        <strong>
-          Our customer retention has increased by 40% using their predictive
-          analytics.
-        </strong>{' '}
-        Transformative for financial services.
-      </p>
-    )
-  },
-  {
-    name: 'Priya Sharma',
-    role: 'Chief Revenue Officer at Scale Systems',
-    img: 'https://randomuser.me/api/portraits/women/5.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s integration with our existing tools has streamlined our
-        entire operation.{' '}
-        <strong>Customer service response times have been cut in half.</strong>{' '}
-        The automation features are exceptional.
-      </p>
-    )
-  },
-  {
-    name: 'Miguel Santos',
-    role: 'Account Management Director at Grow Corp',
-    img: 'https://randomuser.me/api/portraits/men/14.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s sustainability tracking features help us monitor our
-        environmental impact.{' '}
-        <strong>
-          Perfect for managing eco-conscious customer relationships.
-        </strong>{' '}
-        Leading the way in sustainable business practices.
-      </p>
-    )
-  },
-  {
-    name: 'Lisa Thompson',
-    role: 'Inside Sales Manager at Quantum Enterprises',
-    img: 'https://randomuser.me/api/portraits/women/56.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s customer segmentation tools have transformed our marketing
-        approach.{' '}
-        <strong>
-          Our targeted campaigns now see 85% higher engagement rates.
-        </strong>{' '}
-        Revolutionizing how we connect with customers.
-      </p>
-    )
-  },
-  {
-    name: 'Daniel Park',
-    role: 'Business Operations Lead at Swift Solutions',
-    img: 'https://randomuser.me/api/portraits/men/18.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s HIPAA-compliant features make it perfect for healthcare
-        providers.{' '}
-        <strong>
-          Secure patient relationship management has never been easier.
-        </strong>{' '}
-        A milestone in healthcare CRM solutions.
-      </p>
-    )
-  },
-  {
-    name: 'Emma Anderson',
-    role: 'Director of Client Relations at Peak Partners',
-    img: 'https://randomuser.me/api/portraits/women/73.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s education-focused features have doubled our student
-        engagement rates.{' '}
-        <strong>
-          Perfect for managing student and institution relationships.
-        </strong>{' '}
-        Transforming educational administration.
-      </p>
-    )
-  },
-  {
-    name: 'Robert Chen',
-    role: 'Sales Enablement Manager at Catalyst Group',
-    img: 'https://randomuser.me/api/portraits/men/25.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s enterprise-grade security features give us complete peace
-        of mind. <strong>The most secure CRM solution we've ever used.</strong>{' '}
-        Setting new standards in data protection.
-      </p>
-    )
-  },
-  {
-    name: 'Maya Patel',
-    role: 'Customer Experience Director at Apex Solutions',
-    img: 'https://randomuser.me/api/portraits/women/78.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s project management integration has streamlined our creative
-        workflow.{' '}
-        <strong>Client communication has never been more efficient.</strong>{' '}
-        Perfect for creative agencies.
-      </p>
-    )
-  },
-  {
-    name: "Thomas O'Brien",
-    role: 'Sales Strategy Manager at Future Dynamics',
-    img: 'https://randomuser.me/api/portraits/men/54.jpg',
-    description: (
-      <p>
-        {APP_NAME}'s startup-friendly pricing and scalability made it an easy
-        choice.{' '}
-        <strong>The perfect CRM solution that grows with your business.</strong>{' '}
-        Essential for modern startups.
-      </p>
-    )
-  }
-];
+const TESTIMONIAL_KEYS = [
+  'davidZhang',
+  'mariaRodriguez',
+  'jamesWilson',
+  'sarahKim',
+  'marcusJohnson',
+  'priyaSharma',
+  'miguelSantos',
+  'lisaThompson',
+  'danielPark',
+  'emmaAnderson',
+  'robertChen',
+  'mayaPatel',
+  'thomasOBrien'
+] as const;
+
+const TESTIMONIAL_IMAGES: Record<typeof TESTIMONIAL_KEYS[number], string> = {
+  davidZhang: 'https://randomuser.me/api/portraits/men/91.jpg',
+  mariaRodriguez: 'https://randomuser.me/api/portraits/women/12.jpg',
+  jamesWilson: 'https://randomuser.me/api/portraits/men/45.jpg',
+  sarahKim: 'https://randomuser.me/api/portraits/women/83.jpg',
+  marcusJohnson: 'https://randomuser.me/api/portraits/men/1.jpg',
+  priyaSharma: 'https://randomuser.me/api/portraits/women/5.jpg',
+  miguelSantos: 'https://randomuser.me/api/portraits/men/14.jpg',
+  lisaThompson: 'https://randomuser.me/api/portraits/women/56.jpg',
+  danielPark: 'https://randomuser.me/api/portraits/men/18.jpg',
+  emmaAnderson: 'https://randomuser.me/api/portraits/women/73.jpg',
+  robertChen: 'https://randomuser.me/api/portraits/men/25.jpg',
+  mayaPatel: 'https://randomuser.me/api/portraits/women/78.jpg',
+  thomasOBrien: 'https://randomuser.me/api/portraits/men/54.jpg'
+};
+
 
 export function Testimonials(): React.JSX.Element {
+  const t = useTranslations('testimonials');
+
+  const DATA = TESTIMONIAL_KEYS.map((key) => ({
+    name: t(`items.${key}.name`),
+    role: t(`items.${key}.role`),
+    img: TESTIMONIAL_IMAGES[key],
+    description: (
+      <p>
+        {APP_NAME} {t(`items.${key}.text`)}{' '}
+        <strong>{t(`items.${key}.highlight`)}</strong>{' '}
+        {t(`items.${key}.conclusion`)}
+      </p>
+    )
+  }));
+
   return (
     <GridSection hideVerticalGridLines>
       <div className="container border-x py-20 md:border-none">
         <h2 className="mb-8 text-center text-3xl font-semibold md:text-5xl lg:text-left">
-          What people say
+          {t('title')}
         </h2>
         <div className="relative mt-6 max-h-[640px] overflow-hidden">
           <div className="gap-4 md:columns-2 xl:columns-3 2xl:columns-4">

@@ -82,18 +82,18 @@ export const routes = {
     }
   },
   marketing: {
-    Api: `${baseUrl.Marketing}/api`,
-    Blog: `${baseUrl.Marketing}/blog`,
-    Careers: `${baseUrl.Marketing}/careers`,
-    Contact: `${baseUrl.Marketing}/contact`,
-    CookiePolicy: `${baseUrl.Marketing}/cookie-policy`,
-    Docs: `${baseUrl.Marketing}/docs`,
-    Index: `${baseUrl.Marketing}/`,
-    Pricing: `${baseUrl.Marketing}/pricing`,
-    PrivacyPolicy: `${baseUrl.Marketing}/privacy-policy`,
+    Api: '/api',
+    Blog: '/blog',
+    Careers: '/careers',
+    Contact: '/contact',
+    CookiePolicy: '/cookie-policy',
+    Docs: '/docs',
+    Index: '/',
+    Pricing: '/pricing',
+    PrivacyPolicy: '/privacy-policy',
     Roadmap: 'https://achromatic.canny.io',
-    Story: `${baseUrl.Marketing}/story`,
-    TermsOfUse: `${baseUrl.Marketing}/terms-of-use`
+    Story: '/story',
+    TermsOfUse: '/terms-of-use'
   }
 } as const;
 

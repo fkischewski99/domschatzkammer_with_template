@@ -1,4 +1,7 @@
+'use client';
+
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { AlertCircleIcon, BookIcon, ScaleIcon } from 'lucide-react';
 
 import {
@@ -18,69 +21,40 @@ import {
 import { GridSection } from '~/components/fragments/grid-section';
 import { SiteHeading } from '~/components/fragments/site-heading';
 
-const DATA_CARDS = [
-  {
-    title: 'Introduction',
-    icon: <BookIcon className="size-4 shrink-0" />,
-    content:
-      'This Privacy Policy explains how we collect, use, and protect your personal data when you interact with our platform.'
-  },
-  {
-    title: 'Information Collection',
-    icon: <ScaleIcon className="size-4 shrink-0" />,
-    content:
-      'We collect information that you provide directly to us, such as when you sign up or interact with our services.'
-  },
-  {
-    title: 'Data Usage',
-    icon: <AlertCircleIcon className="size-4 shrink-0" />,
-    content:
-      'We use your data to provide, personalize, and improve your experience on our platform, including marketing and support.'
-  }
-];
+const CARD_ICONS = {
+  introduction: <BookIcon className="size-4 shrink-0" />,
+  informationCollection: <ScaleIcon className="size-4 shrink-0" />,
+  dataUsage: <AlertCircleIcon className="size-4 shrink-0" />
+} as const;
 
-const DATA_ACCORDION = [
-  {
-    title: 'How We Protect Your Data',
-    content:
-      'We implement various security measures, including encryption and secure storage, to protect your personal information.'
-  },
-  {
-    title: 'Third-Party Sharing',
-    content:
-      'We may share your data with trusted third-party service providers for essential operations like payment processing or analytics.'
-  },
-  {
-    title: 'User Rights',
-    content:
-      'You have the right to access, update, or delete your personal data at any time. You can also opt-out of marketing communications.'
-  },
-  {
-    title: 'Cookies and Tracking',
-    content:
-      'We use cookies and similar technologies to personalize your experience and analyze usage patterns on our site.'
-  },
-  {
-    title: 'Changes to This Policy',
-    content:
-      'We may update this Privacy Policy from time to time. Changes will be posted here, and continued use of the platform constitutes acceptance.'
-  }
-];
+const CARD_KEYS = ['introduction', 'informationCollection', 'dataUsage'] as const;
+const ACCORDION_KEYS = ['dataProtection', 'thirdPartySharing', 'userRights', 'cookiesTracking', 'changes'] as const;
 
 export function PrivacyPolicy(): React.JSX.Element {
+  const t = useTranslations('privacyPolicy');
+
+  const DATA_CARDS = CARD_KEYS.map((key) => ({
+    title: t(`cards.${key}.title`),
+    icon: CARD_ICONS[key],
+    content: t(`cards.${key}.content`)
+  }));
+
+  const DATA_ACCORDION = ACCORDION_KEYS.map((key) => ({
+    title: t(`accordion.${key}.title`),
+    content: t(`accordion.${key}.content`)
+  }));
+
   return (
     <GridSection>
       <div className="container space-y-16 py-20">
         <SiteHeading
-          badge="Legal"
-          title="Privacy Policy"
-          description="Learn how we collect, use, and protect your data. Please read carefully to understand our practices."
+          badge={t('badge')}
+          title={t('title')}
+          description={t('description')}
         />
         <Alert variant="warning">
           <AlertDescription className="ml-3 text-base inline">
-            This policy provides a general framework. It should be reviewed and
-            customized by a legal professional to suit your jurisdiction and use
-            case.
+            {t('warning')}
           </AlertDescription>
         </Alert>
 
@@ -126,10 +100,10 @@ export function PrivacyPolicy(): React.JSX.Element {
 
         <div>
           <CardTitle className="text-lg text-primary">
-            Contact Information
+            {t('contactTitle')}
           </CardTitle>
           <p className="text-sm leading-relaxed">
-            For questions or concerns, contact us at:
+            {t('contactText')}
             <br />
             <a
               href="mailto:support@yourdomain.com"

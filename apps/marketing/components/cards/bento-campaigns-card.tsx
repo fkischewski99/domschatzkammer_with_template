@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { MailIcon, MessageSquareIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -18,56 +19,27 @@ import {
 } from '@workspace/ui/components/carousel';
 import { cn } from '@workspace/ui/lib/utils';
 
-const DATA = [
-  {
-    type: 'email',
-    icon: MailIcon,
-    title: 'Welcome Email',
-    timing: 'Sent upon customer registration'
-  },
-  {
-    type: 'message',
-    icon: MessageSquareIcon,
-    title: 'Appointment Reminder',
-    timing: '24 hours before appointment'
-  },
-  {
-    type: 'email',
-    icon: MailIcon,
-    title: 'Follow-up Email',
-    timing: '2 days after initial contact'
-  },
-  {
-    type: 'message',
-    icon: MessageSquareIcon,
-    title: 'Feedback Request',
-    timing: '48 hours after service completion'
-  },
-  {
-    type: 'email',
-    icon: MailIcon,
-    title: 'Exclusive Offer Email',
-    timing: 'Sent 7 days after inactivity'
-  },
-  {
-    type: 'message',
-    icon: MessageSquareIcon,
-    title: 'Personalized Check-in',
-    timing: '30 days after last interaction'
-  },
-  {
-    type: 'email',
-    icon: MailIcon,
-    title: 'Special Event Invitation',
-    timing: '14 days before the event'
-  },
-  {
-    type: 'message',
-    icon: MessageSquareIcon,
-    title: 'Reactivation Campaign',
-    timing: '90 days after inactivity'
-  }
-];
+const CAMPAIGN_KEYS = [
+  'welcomeEmail',
+  'appointmentReminder',
+  'followUpEmail',
+  'feedbackRequest',
+  'exclusiveOfferEmail',
+  'personalizedCheckIn',
+  'specialEventInvitation',
+  'reactivationCampaign'
+] as const;
+
+const CAMPAIGN_TYPES: Record<typeof CAMPAIGN_KEYS[number], { type: string; icon: typeof MailIcon }> = {
+  welcomeEmail: { type: 'email', icon: MailIcon },
+  appointmentReminder: { type: 'message', icon: MessageSquareIcon },
+  followUpEmail: { type: 'email', icon: MailIcon },
+  feedbackRequest: { type: 'message', icon: MessageSquareIcon },
+  exclusiveOfferEmail: { type: 'email', icon: MailIcon },
+  personalizedCheckIn: { type: 'message', icon: MessageSquareIcon },
+  specialEventInvitation: { type: 'email', icon: MailIcon },
+  reactivationCampaign: { type: 'message', icon: MessageSquareIcon }
+};
 
 const MotionCard = motion.create(Card);
 
@@ -75,6 +47,14 @@ export function BentoCampaignsCard({
   className,
   ...other
 }: React.ComponentPropsWithoutRef<typeof MotionCard>): React.JSX.Element {
+  const t = useTranslations('bentoCards.campaigns');
+
+  const DATA = CAMPAIGN_KEYS.map((key) => ({
+    title: t(`items.${key}.title`),
+    timing: t(`items.${key}.timing`),
+    icon: CAMPAIGN_TYPES[key].icon
+  }));
+
   return (
     <MotionCard
       className={cn(
@@ -84,11 +64,11 @@ export function BentoCampaignsCard({
       {...other}
     >
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Campaigns</CardTitle>
+        <CardTitle className="text-xl font-semibold">{t('title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
-          Set up campaigns to notify your customer segment.
+          {t('description')}
         </p>
         <Carousel
           opts={{

@@ -1,9 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
+import { useTranslations } from 'next-intl';
 import { baseUrl, getPathname, routes } from '@workspace/routes';
 import { buttonVariants } from '@workspace/ui/components/button';
 import { Logo } from '@workspace/ui/components/logo';
@@ -20,11 +18,16 @@ import { ThemeToggle } from '@workspace/ui/components/theme-toggle';
 import { cn } from '@workspace/ui/lib/utils';
 
 import { ExternalLink } from '~/components/fragments/external-link';
-import { MENU_LINKS } from '~/components/marketing-links';
+import { LanguageSwitcher } from '~/components/language-switcher';
+import { getMenuLinks } from '~/components/marketing-links';
 import { MobileMenu } from '~/components/mobile-menu';
+import { Link, usePathname } from '~/src/i18n/navigation';
 
 export function Navbar(): React.JSX.Element {
   const pathname = usePathname();
+  const t = useTranslations('navigation');
+  const menuLinks = getMenuLinks(t);
+
   return (
     <section className="sticky inset-x-0 top-0 z-40 border-b bg-background py-4">
       <div className="container">
@@ -45,7 +48,7 @@ export function Navbar(): React.JSX.Element {
                 }
               >
                 <NavigationMenuList>
-                  {MENU_LINKS.map((item, index) =>
+                  {menuLinks.map((item, index) =>
                     item.items ? (
                       <NavigationMenuItem key={index}>
                         <NavigationMenuTrigger
@@ -136,6 +139,7 @@ export function Navbar(): React.JSX.Element {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <LanguageSwitcher />
             <ThemeToggle className="rounded-xl border-none shadow-none" />
             <Link
               href={routes.dashboard.auth.SignIn}
@@ -146,7 +150,7 @@ export function Navbar(): React.JSX.Element {
                 'rounded-xl'
               )}
             >
-              Sign in
+              {t('signIn')}
             </Link>
             <Link
               href={routes.dashboard.auth.SignUp}
@@ -157,7 +161,7 @@ export function Navbar(): React.JSX.Element {
                 'rounded-xl'
               )}
             >
-              Start for free
+              {t('signUp')}
             </Link>
           </div>
         </nav>

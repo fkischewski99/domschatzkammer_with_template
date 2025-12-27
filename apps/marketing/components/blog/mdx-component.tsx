@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '~/src/i18n/navigation';
 import { useMDXComponent } from '@content-collections/mdx/react';
 
 import {

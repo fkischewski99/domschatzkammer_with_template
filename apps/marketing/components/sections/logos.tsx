@@ -1,4 +1,7 @@
+'use client';
+
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import { BlurFade } from '~/components/fragments/blur-fade';
 import { GridSection } from '~/components/fragments/grid-section';
@@ -111,12 +114,14 @@ const DATA = [
 ];
 
 export function Logos(): React.JSX.Element {
+  const t = useTranslations('logos');
+
   return (
     <GridSection className="bg-diagonal-lines">
       <div className="flex flex-col items-center justify-between gap-2 bg-background p-8 sm:flex-row sm:py-4">
         <BlurFade className="mb-6 sm:mb-0">
           <p className="max-w-[220px] text-center text-sm text-muted-foreground sm:text-left">
-            Trusted by fast-growing companies around the world
+            {t('trusted')}
           </p>
         </BlurFade>
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:max-w-4xl lg:gap-10">
