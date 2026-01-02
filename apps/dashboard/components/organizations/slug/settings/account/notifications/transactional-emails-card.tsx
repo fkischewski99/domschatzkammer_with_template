@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { FormProvider, type SubmitHandler } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -38,6 +39,9 @@ export function TransactionalEmailsCard({
   settings,
   ...other
 }: TransactionalEmailsCardProps): React.JSX.Element {
+  const t = useTranslations('account.notifications.transactional');
+  const tCommon = useTranslations('common');
+
   const methods = useZodForm({
     schema: updateTransactionalEmailsSchema,
     mode: 'onSubmit',
@@ -52,9 +56,9 @@ export function TransactionalEmailsCard({
     }
     const result = await updateTransactionalEmails(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Transactional emails updated');
+      toast.success(t('updateSuccess'));
     } else {
-      toast.error("Couldn't update transactional emails");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -71,9 +75,9 @@ export function TransactionalEmailsCard({
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between">
                   <div className="space-y-0.5">
-                    <FormLabel>Contacts</FormLabel>
+                    <FormLabel>{t('contacts')}</FormLabel>
                     <FormDescription>
-                      Someone on your team added or changed a lead.
+                      {t('contactsDescription')}
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -92,9 +96,9 @@ export function TransactionalEmailsCard({
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between">
                   <div className="space-y-0.5">
-                    <FormLabel>Inbox</FormLabel>
+                    <FormLabel>{t('inbox')}</FormLabel>
                     <FormDescription>
-                      Message is assigned to me or I got mentioned.
+                      {t('inboxDescription')}
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -113,9 +117,9 @@ export function TransactionalEmailsCard({
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between">
                   <div className="space-y-0.5">
-                    <FormLabel>Weekly summary</FormLabel>
+                    <FormLabel>{t('weeklySummary')}</FormLabel>
                     <FormDescription>
-                      Summary of all relevant acitivities in the past week.
+                      {t('weeklySummaryDescription')}
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -130,9 +134,9 @@ export function TransactionalEmailsCard({
             />
             <div className="flex flex-row items-center justify-between">
               <div className="space-y-0.5">
-                <Label>Security emails</Label>
+                <Label>{t('securityEmails')}</Label>
                 <FormDescription>
-                  Changes that do not require an email confirmation.
+                  {t('securityEmailsDescription')}
                 </FormDescription>
               </div>
               <Switch
@@ -152,7 +156,7 @@ export function TransactionalEmailsCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>

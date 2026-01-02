@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import {
   Card,
@@ -21,6 +22,8 @@ export function SessionsCard({
   className,
   ...other
 }: SessionsCardProps): React.JSX.Element {
+  const t = useTranslations('account.security.sessions');
+
   return (
     <Card
       className={cn('flex h-full flex-col p-0', className)}
@@ -32,7 +35,7 @@ export function SessionsCard({
             <SessionList sessions={sessions} />
           </ScrollArea>
         ) : (
-          <EmptyText className="p-6">No session found.</EmptyText>
+          <EmptyText className="p-6">{t('empty')}</EmptyText>
         )}
       </CardContent>
     </Card>

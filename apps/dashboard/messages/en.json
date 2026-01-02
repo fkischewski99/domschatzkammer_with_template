@@ -304,12 +304,14 @@
         "title": "Change password",
         "currentPassword": "Current password",
         "newPassword": "New password",
+        "verifyPassword": "Verify password",
         "noPasswordSet": "No password set yet.",
         "toggleVisibility": "Toggle password visibility",
         "changeSuccess": "Password changed!",
         "setSuccess": "Password set!",
         "changeError": "Couldn't change password. Please try again.",
-        "setError": "Couldn't set password. Please try again."
+        "setError": "Couldn't set password. Please try again.",
+        "changeButton": "Change"
       },
       "authenticator": {
         "title": "Authenticator app",
@@ -323,20 +325,34 @@
         "title": "Recovery codes"
       },
       "connectedAccounts": {
-        "title": "Connected accounts"
+        "title": "Connected accounts",
+        "empty": "No connected account found."
       },
       "sessions": {
-        "title": "Manage sessions"
+        "title": "Manage sessions",
+        "empty": "No session found."
       }
     },
     "notifications": {
       "marketing": {
         "title": "Marketing emails",
+        "newsletter": "Newsletter",
+        "newsletterDescription": "Receive emails filled with industry expertise.",
+        "productUpdates": "Product updates",
+        "productUpdatesDescription": "Receive emails with all new features and updates.",
         "updateSuccess": "Marketing emails updated",
         "updateError": "Couldn't update marketing emails"
       },
       "transactional": {
         "title": "Transactional emails",
+        "contacts": "Contacts",
+        "contactsDescription": "Someone on your team added or changed a lead.",
+        "inbox": "Inbox",
+        "inboxDescription": "Message is assigned to me or I got mentioned.",
+        "weeklySummary": "Weekly summary",
+        "weeklySummaryDescription": "Summary of all relevant acitivities in the past week.",
+        "securityEmails": "Security emails",
+        "securityEmailsDescription": "Changes that do not require an email confirmation.",
         "updateSuccess": "Transactional emails updated",
         "updateError": "Couldn't update transactional emails"
       }
@@ -380,7 +396,17 @@
       },
       "members": {
         "team": {
-          "title": "Team members"
+          "title": "Team members",
+          "filterPlaceholder": "Filter by name or email",
+          "inviteButton": "Invite member",
+          "empty": "No member found"
+        },
+        "invitations": {
+          "title": "Invitations",
+          "filterPlaceholder": "Filter by email",
+          "pending": "Pending",
+          "revoked": "Revoked",
+          "empty": "No {status} invitation found"
         },
         "invite": {
           "title": "Invite member",
@@ -433,16 +459,24 @@
         },
         "address": {
           "title": "Billing address",
+          "line1": "Address line 1",
+          "line2": "Address line 2",
+          "country": "Country",
+          "postalCode": "Postal code",
+          "city": "City",
+          "state": "State",
           "updateSuccess": "Billing address updated",
           "updateError": "Couldn't update billing address"
         },
         "email": {
           "title": "Billing email",
+          "emailAddress": "Email address",
           "updateSuccess": "Email recipient updated",
           "updateError": "Couldn't update email recipient"
         },
         "invoices": {
-          "title": "Invoices"
+          "title": "Invoices",
+          "empty": "No invoices received yet."
         }
       },
       "developers": {
@@ -457,7 +491,8 @@
           "updateError": "Couldn't update API key",
           "revokeConfirm": "Revoke this API key?",
           "revokeSuccess": "API key revoked",
-          "revokeError": "Couldn't revoke API key"
+          "revokeError": "Couldn't revoke API key",
+          "empty": "No API key found."
         },
         "webhooks": {
           "title": "Webhooks",
@@ -465,7 +500,8 @@
           "edit": "Edit webhook",
           "deleteConfirm": "Delete this webhook?",
           "deleteSuccess": "Webhook deleted",
-          "deleteError": "Couldn't delete webhook"
+          "deleteError": "Couldn't delete webhook",
+          "empty": "No webhook found."
         }
       }
     }

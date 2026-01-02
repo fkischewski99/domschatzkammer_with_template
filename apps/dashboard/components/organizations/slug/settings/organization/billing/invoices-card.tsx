@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import {
   Card,
@@ -21,6 +22,8 @@ export function InvoicesCard({
   className,
   ...other
 }: InvoicesCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.billing.invoices');
+
   return (
     <Card
       className={cn('flex h-full flex-col p-0', className)}
@@ -33,7 +36,7 @@ export function InvoicesCard({
           </ScrollArea>
         ) : (
           <EmptyText className="p-6 h-full flex items-center">
-            No invoices received yet.
+            {t('empty')}
           </EmptyText>
         )}
       </CardContent>

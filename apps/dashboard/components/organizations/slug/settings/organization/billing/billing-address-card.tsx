@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { type SubmitHandler } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -48,6 +49,9 @@ export function BillingAddressCard({
   address,
   ...other
 }: BillingAddressCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.billing.address');
+  const tCommon = useTranslations('common');
+
   const methods = useZodForm({
     schema: updateBillingAddressSchema,
     mode: 'onSubmit',
@@ -69,9 +73,9 @@ export function BillingAddressCard({
     }
     const result = await updateBillingAddress(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Billing address updated');
+      toast.success(t('updateSuccess'));
     } else {
-      toast.error("Couldn't update billing address");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -88,7 +92,7 @@ export function BillingAddressCard({
                 name="line1"
                 render={({ field }) => (
                   <FormItem className="flex w-full flex-col">
-                    <FormLabel>Address line 1</FormLabel>
+                    <FormLabel>{t('line1')}</FormLabel>
                     <FormControl>
                       <Input
                         type="text"
@@ -109,7 +113,7 @@ export function BillingAddressCard({
                 name="line2"
                 render={({ field }) => (
                   <FormItem className="flex w-full flex-col">
-                    <FormLabel>Address line 2</FormLabel>
+                    <FormLabel>{t('line2')}</FormLabel>
                     <FormControl>
                       <Input
                         type="text"
@@ -130,7 +134,7 @@ export function BillingAddressCard({
                 name="country"
                 render={({ field }) => (
                   <FormItem className="flex w-full flex-col">
-                    <FormLabel>Country</FormLabel>
+                    <FormLabel>{t('country')}</FormLabel>
                     <FormControl>
                       <Select
                         {...field}
@@ -173,7 +177,7 @@ export function BillingAddressCard({
                 name="postalCode"
                 render={({ field }) => (
                   <FormItem className="flex w-full flex-col">
-                    <FormLabel>Postal code</FormLabel>
+                    <FormLabel>{t('postalCode')}</FormLabel>
                     <FormControl>
                       <Input
                         type="text"
@@ -194,7 +198,7 @@ export function BillingAddressCard({
                 name="city"
                 render={({ field }) => (
                   <FormItem className="flex w-full flex-col">
-                    <FormLabel>City</FormLabel>
+                    <FormLabel>{t('city')}</FormLabel>
                     <FormControl>
                       <Input
                         type="text"
@@ -215,7 +219,7 @@ export function BillingAddressCard({
                 name="state"
                 render={({ field }) => (
                   <FormItem className="flex w-full flex-col">
-                    <FormLabel>State</FormLabel>
+                    <FormLabel>{t('state')}</FormLabel>
                     <FormControl>
                       <Input
                         type="text"
@@ -242,7 +246,7 @@ export function BillingAddressCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>

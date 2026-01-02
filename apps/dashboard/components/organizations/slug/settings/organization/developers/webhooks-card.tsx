@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -28,6 +29,8 @@ export function WebhooksCard({
   className,
   ...other
 }: WebhooksCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.developers.webhooks');
+
   const handleShowCreateWebhookModal = (): void => {
     NiceModal.show(CreateWebhookModal);
   };
@@ -42,7 +45,7 @@ export function WebhooksCard({
             <WebhookList webhooks={webhooks} />
           </ScrollArea>
         ) : (
-          <EmptyText className="p-6">No webhook found.</EmptyText>
+          <EmptyText className="p-6">{t('empty')}</EmptyText>
         )}
       </CardContent>
       <Separator />
@@ -53,7 +56,7 @@ export function WebhooksCard({
           size="default"
           onClick={handleShowCreateWebhookModal}
         >
-          Create webhook
+          {t('create')}
         </Button>
       </CardFooter>
     </Card>

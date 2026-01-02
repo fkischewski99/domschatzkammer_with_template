@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -31,6 +32,8 @@ export function MembersCard({
   className,
   ...other
 }: MembersCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.members.team');
+
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const filteredMembers = members.filter(
     (member) =>
@@ -53,7 +56,7 @@ export function MembersCard({
     >
       <CardHeader className="pb-0 flex flex-row items-center gap-2">
         <InputSearch
-          placeholder="Filter by name or email"
+          placeholder={t('filterPlaceholder')}
           value={searchQuery}
           onChange={handleSearchQueryChange}
         />
@@ -64,7 +67,7 @@ export function MembersCard({
           className="whitespace-nowrap"
           onClick={handleShowInviteMemberModal}
         >
-          Invite member
+          {t('inviteButton')}
         </Button>
       </CardHeader>
       <CardContent className="max-h-72 flex-1 overflow-hidden p-0">
@@ -77,7 +80,7 @@ export function MembersCard({
           </ScrollArea>
         ) : (
           <EmptyText className="p-6">
-            No member found {!!searchQuery && ' (filtered)'}.
+            {t('empty')} {!!searchQuery && ' (filtered)'}.
           </EmptyText>
         )}
       </CardContent>

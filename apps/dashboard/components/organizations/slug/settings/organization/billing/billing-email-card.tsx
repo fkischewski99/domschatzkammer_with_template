@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { type SubmitHandler } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -37,6 +38,9 @@ export function BillingEmailCard({
   email,
   ...other
 }: BillingEmailCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.billing.email');
+  const tCommon = useTranslations('common');
+
   const methods = useZodForm({
     schema: updateBillingEmailSchema,
     mode: 'onSubmit',
@@ -51,9 +55,9 @@ export function BillingEmailCard({
     }
     const result = await updateBillingEmail(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Email recipient updated');
+      toast.success(t('updateSuccess'));
     } else {
-      toast.error("Couldn't update email recipient");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -66,7 +70,7 @@ export function BillingEmailCard({
               name="email"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel>Email address</FormLabel>
+                  <FormLabel>{t('emailAddress')}</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
@@ -91,7 +95,7 @@ export function BillingEmailCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>

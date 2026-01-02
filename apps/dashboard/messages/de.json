@@ -304,12 +304,14 @@
         "title": "Passwort ändern",
         "currentPassword": "Aktuelles Passwort",
         "newPassword": "Neues Passwort",
+        "verifyPassword": "Passwort bestätigen",
         "noPasswordSet": "Noch kein Passwort festgelegt.",
         "toggleVisibility": "Passwortsichtbarkeit umschalten",
         "changeSuccess": "Passwort geändert!",
         "setSuccess": "Passwort festgelegt!",
         "changeError": "Passwort konnte nicht geändert werden. Bitte versuchen Sie es erneut.",
-        "setError": "Passwort konnte nicht festgelegt werden. Bitte versuchen Sie es erneut."
+        "setError": "Passwort konnte nicht festgelegt werden. Bitte versuchen Sie es erneut.",
+        "changeButton": "Ändern"
       },
       "authenticator": {
         "title": "Authenticator-App",
@@ -323,20 +325,34 @@
         "title": "Wiederherstellungscodes"
       },
       "connectedAccounts": {
-        "title": "Verbundene Konten"
+        "title": "Verbundene Konten",
+        "empty": "Kein verbundenes Konto gefunden."
       },
       "sessions": {
-        "title": "Sitzungen verwalten"
+        "title": "Sitzungen verwalten",
+        "empty": "Keine Sitzung gefunden."
       }
     },
     "notifications": {
       "marketing": {
         "title": "Marketing-E-Mails",
+        "newsletter": "Newsletter",
+        "newsletterDescription": "Erhalten Sie E-Mails mit Branchenexpertise.",
+        "productUpdates": "Produktupdates",
+        "productUpdatesDescription": "Erhalten Sie E-Mails mit allen neuen Funktionen und Updates.",
         "updateSuccess": "Marketing-E-Mails aktualisiert",
         "updateError": "Marketing-E-Mails konnten nicht aktualisiert werden"
       },
       "transactional": {
         "title": "Transaktions-E-Mails",
+        "contacts": "Kontakte",
+        "contactsDescription": "Jemand aus Ihrem Team hat einen Lead hinzugefügt oder geändert.",
+        "inbox": "Posteingang",
+        "inboxDescription": "Nachricht wurde mir zugewiesen oder ich wurde erwähnt.",
+        "weeklySummary": "Wöchentliche Zusammenfassung",
+        "weeklySummaryDescription": "Zusammenfassung aller relevanten Aktivitäten der letzten Woche.",
+        "securityEmails": "Sicherheits-E-Mails",
+        "securityEmailsDescription": "Änderungen, die keine E-Mail-Bestätigung erfordern.",
         "updateSuccess": "Transaktions-E-Mails aktualisiert",
         "updateError": "Transaktions-E-Mails konnten nicht aktualisiert werden"
       }
@@ -380,7 +396,17 @@
       },
       "members": {
         "team": {
-          "title": "Teammitglieder"
+          "title": "Teammitglieder",
+          "filterPlaceholder": "Nach Name oder E-Mail filtern",
+          "inviteButton": "Mitglied einladen",
+          "empty": "Kein Mitglied gefunden"
+        },
+        "invitations": {
+          "title": "Einladungen",
+          "filterPlaceholder": "Nach E-Mail filtern",
+          "pending": "Ausstehend",
+          "revoked": "Widerrufen",
+          "empty": "Keine {status} Einladung gefunden"
         },
         "invite": {
           "title": "Mitglied einladen",
@@ -433,16 +459,24 @@
         },
         "address": {
           "title": "Rechnungsadresse",
+          "line1": "Adresszeile 1",
+          "line2": "Adresszeile 2",
+          "country": "Land",
+          "postalCode": "Postleitzahl",
+          "city": "Stadt",
+          "state": "Bundesland",
           "updateSuccess": "Rechnungsadresse aktualisiert",
           "updateError": "Rechnungsadresse konnte nicht aktualisiert werden"
         },
         "email": {
           "title": "Rechnungs-E-Mail",
+          "emailAddress": "E-Mail-Adresse",
           "updateSuccess": "E-Mail-Empfänger aktualisiert",
           "updateError": "E-Mail-Empfänger konnte nicht aktualisiert werden"
         },
         "invoices": {
-          "title": "Rechnungen"
+          "title": "Rechnungen",
+          "empty": "Noch keine Rechnungen erhalten."
         }
       },
       "developers": {
@@ -457,7 +491,8 @@
           "updateError": "API-Schlüssel konnte nicht aktualisiert werden",
           "revokeConfirm": "Diesen API-Schlüssel widerrufen?",
           "revokeSuccess": "API-Schlüssel widerrufen",
-          "revokeError": "API-Schlüssel konnte nicht widerrufen werden"
+          "revokeError": "API-Schlüssel konnte nicht widerrufen werden",
+          "empty": "Kein API-Schlüssel gefunden."
         },
         "webhooks": {
           "title": "Webhooks",
@@ -465,7 +500,8 @@
           "edit": "Webhook bearbeiten",
           "deleteConfirm": "Diesen Webhook löschen?",
           "deleteSuccess": "Webhook gelöscht",
-          "deleteError": "Webhook konnte nicht gelöscht werden"
+          "deleteError": "Webhook konnte nicht gelöscht werden",
+          "empty": "Kein Webhook gefunden."
         }
       }
     }

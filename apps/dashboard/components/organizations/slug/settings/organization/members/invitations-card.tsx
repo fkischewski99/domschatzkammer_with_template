@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import { InvitationStatus } from '@workspace/database';
 import {
@@ -30,6 +31,8 @@ export function InvitationsCard({
   className,
   ...other
 }: InvitationsCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.members.invitations');
+
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [status, setStatus] = React.useState<string>(InvitationStatus.PENDING);
   const filteredInvitations = invitations
@@ -51,7 +54,7 @@ export function InvitationsCard({
     >
       <CardHeader className="pb-0 flex flex-row items-center gap-2">
         <InputSearch
-          placeholder="Filter by email"
+          placeholder={t('filterPlaceholder')}
           value={searchQuery}
           onChange={handleSearchQueryChange}
         />
@@ -60,8 +63,8 @@ export function InvitationsCard({
           onValueChange={setStatus}
         >
           <TabsList>
-            <TabsTrigger value={InvitationStatus.PENDING}>Pending</TabsTrigger>
-            <TabsTrigger value={InvitationStatus.REVOKED}>Revoked</TabsTrigger>
+            <TabsTrigger value={InvitationStatus.PENDING}>{t('pending')}</TabsTrigger>
+            <TabsTrigger value={InvitationStatus.REVOKED}>{t('revoked')}</TabsTrigger>
           </TabsList>
         </Tabs>
       </CardHeader>
@@ -75,7 +78,7 @@ export function InvitationsCard({
           </ScrollArea>
         ) : (
           <EmptyText className="p-6">
-            No {status.toLowerCase()} invitation found
+            {t('empty', { status: status.toLowerCase() })}
             {!!searchQuery && ' (filtered)'}.
           </EmptyText>
         )}

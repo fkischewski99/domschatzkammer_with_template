@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { FormProvider, type SubmitHandler } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -37,6 +38,9 @@ export function MarketingEmailsCard({
   settings,
   ...other
 }: MarketingEmailsCardProps): React.JSX.Element {
+  const t = useTranslations('account.notifications.marketing');
+  const tCommon = useTranslations('common');
+
   const methods = useZodForm({
     schema: updateMarketingEmailsSchema,
     mode: 'onSubmit',
@@ -51,9 +55,9 @@ export function MarketingEmailsCard({
     }
     const result = await updateMarketingEmails(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Marketing emails updated');
+      toast.success(t('updateSuccess'));
     } else {
-      toast.error("Couldn't update marketing emails");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -70,9 +74,9 @@ export function MarketingEmailsCard({
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between">
                   <div className="space-y-0.5">
-                    <FormLabel>Newsletter</FormLabel>
+                    <FormLabel>{t('newsletter')}</FormLabel>
                     <FormDescription>
-                      Receive emails filled with industry expertise.
+                      {t('newsletterDescription')}
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -91,9 +95,9 @@ export function MarketingEmailsCard({
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between">
                   <div className="space-y-0.5">
-                    <FormLabel>Product updates</FormLabel>
+                    <FormLabel>{t('productUpdates')}</FormLabel>
                     <FormDescription>
-                      Receive emails with all new features and updates.
+                      {t('productUpdatesDescription')}
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -118,7 +122,7 @@ export function MarketingEmailsCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { EyeIcon, LockIcon } from 'lucide-react';
 import { type SubmitHandler } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import { Alert, AlertDescription } from '@workspace/ui/components/alert';
 import { Button } from '@workspace/ui/components/button';
@@ -42,6 +43,8 @@ export function ChangePasswordCard({
   hasPasswordSet,
   ...other
 }: ChangePasswordCardProps): React.JSX.Element {
+  const t = useTranslations('account.security.changePassword');
+
   const methods = useZodForm({
     schema: changePasswordSchema,
     mode: 'onSubmit',
@@ -62,7 +65,7 @@ export function ChangePasswordCard({
     }
     const result = await changePassword(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success(hasPasswordSet ? 'Password changed!' : 'Password set!');
+      toast.success(hasPasswordSet ? t('changeSuccess') : t('setSuccess'));
       setErrorMessage('');
       methods.reset({
         hasPasswordSet: true,
@@ -93,8 +96,8 @@ export function ChangePasswordCard({
       } else {
         toast.error(
           hasPasswordSet
-            ? "Couldn't change password. Please try again."
-            : "Couldn't set password. Please try again."
+            ? t('changeError')
+            : t('setError')
         );
       }
     }
@@ -113,7 +116,7 @@ export function ChangePasswordCard({
               name="currentPassword"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Current password</FormLabel>
+                  <FormLabel>{t('currentPassword')}</FormLabel>
                   <FormControl>
                     {hasPasswordSet ? (
                       <InputPassword
@@ -130,7 +133,7 @@ export function ChangePasswordCard({
                         disabled
                         type="password"
                         autoCapitalize="off"
-                        placeholder="No password set yet."
+                        placeholder={t('noPasswordSet')}
                         startAdornment={
                           <LockIcon className="size-4 shrink-0" />
                         }
@@ -140,7 +143,7 @@ export function ChangePasswordCard({
                             type="button"
                             variant="ghost"
                             size="icon"
-                            aria-label="Toggle password visibility"
+                            aria-label={t('toggleVisibility')}
                             className="-mr-2.5 size-8"
                           >
                             <EyeIcon className="size-4 shrink-0" />
@@ -158,7 +161,7 @@ export function ChangePasswordCard({
               name="newPassword"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>New password</FormLabel>
+                  <FormLabel>{t('newPassword')}</FormLabel>
                   <FormControl>
                     <InputPassword
                       maxLength={72}
@@ -180,7 +183,7 @@ export function ChangePasswordCard({
               name="verifyPassword"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Verify password</FormLabel>
+                  <FormLabel>{t('verifyPassword')}</FormLabel>
                   <FormControl>
                     <InputPassword
                       maxLength={72}
@@ -214,7 +217,7 @@ export function ChangePasswordCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Change
+            {t('changeButton')}
           </Button>
         </CardFooter>
       </Card>

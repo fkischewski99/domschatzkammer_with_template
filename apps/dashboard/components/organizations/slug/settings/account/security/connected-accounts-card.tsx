@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import {
   Card,
@@ -21,6 +22,8 @@ export function ConnectedAccountsCard({
   className,
   ...other
 }: ConnectedAccountsCardProps): React.JSX.Element {
+  const t = useTranslations('account.security.connectedAccounts');
+
   return (
     <Card
       className={cn('flex flex-col p-0', className)}
@@ -32,7 +35,7 @@ export function ConnectedAccountsCard({
             <ConnectedAccountList connectedAccounts={connectedAccounts} />
           </ScrollArea>
         ) : (
-          <EmptyText className="p-6">No connected account found.</EmptyText>
+          <EmptyText className="p-6">{t('empty')}</EmptyText>
         )}
       </CardContent>
     </Card>

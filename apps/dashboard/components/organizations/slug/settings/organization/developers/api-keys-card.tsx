@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -29,6 +30,8 @@ export function ApiKeysCard({
   className,
   ...other
 }: ApiKeysCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.developers.apiKeys');
+
   const handleShowCreateApiKeyModal = async (): Promise<void> => {
     const apiKey: string = await NiceModal.show(CreateApiKeyModal);
     if (apiKey) {
@@ -46,7 +49,7 @@ export function ApiKeysCard({
             <ApiKeyList apiKeys={apiKeys} />
           </ScrollArea>
         ) : (
-          <EmptyText className="p-6">No API key found.</EmptyText>
+          <EmptyText className="p-6">{t('empty')}</EmptyText>
         )}
       </CardContent>
       <Separator />
@@ -57,7 +60,7 @@ export function ApiKeysCard({
           size="default"
           onClick={handleShowCreateApiKeyModal}
         >
-          Create API key
+          {t('create')}
         </Button>
       </CardFooter>
     </Card>
