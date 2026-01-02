@@ -3,6 +3,7 @@
 import NiceModal, { type NiceModalHocProps } from '@ebay/nice-modal-react';
 import { addYears, format, isBefore, startOfDay } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { type SubmitHandler } from 'react-hook-form';
 
 import { Button } from '@workspace/ui/components/button';
@@ -56,6 +57,8 @@ export type CreateApiKeyModalProps = NiceModalHocProps;
 export const CreateApiKeyModal = NiceModal.create<CreateApiKeyModalProps>(
   () => {
     const modal = useEnhancedModal();
+    const t = useTranslations('organization.settings.developers.apiKeys');
+    const tCommon = useTranslations('common');
     const mdUp = useMediaQuery(MediaQueries.MdUp, { ssr: false });
     const methods = useZodForm({
       schema: createApiKeySchema,
@@ -66,8 +69,8 @@ export const CreateApiKeyModal = NiceModal.create<CreateApiKeyModalProps>(
         expiresAt: addYears(startOfDay(new Date()), 1)
       }
     });
-    const title = 'Create API key';
-    const description = 'Create a new API key by filling out the form below.';
+    const title = t('create');
+    const description = t('createDescription');
     const neverExpires = methods.watch('neverExpires');
     const canSubmit =
       !methods.formState.isSubmitting &&
@@ -83,11 +86,11 @@ export const CreateApiKeyModal = NiceModal.create<CreateApiKeyModalProps>(
         !result.validationErrors &&
         result.data
       ) {
-        toast.success('API key added');
+        toast.success(t('createSuccess'));
         modal.resolve(result.data.apiKey);
         modal.handleClose();
       } else {
-        toast.error("Couldn't add API key");
+        toast.error(t('createError'));
       }
     };
     const renderForm = (
@@ -100,7 +103,7 @@ export const CreateApiKeyModal = NiceModal.create<CreateApiKeyModalProps>(
           name="description"
           render={({ field }) => (
             <FormItem className="flex w-full flex-col">
-              <FormLabel required>Description</FormLabel>
+              <FormLabel required>{tCommon('description')}</FormLabel>
               <FormControl>
                 <Input
                   type="text"
@@ -115,7 +118,7 @@ export const CreateApiKeyModal = NiceModal.create<CreateApiKeyModalProps>(
         />
         <div className="flex flex-col gap-1.5">
           <div className="flex flex-row items-center justify-between">
-            <FormLabel required>Expires on</FormLabel>
+            <FormLabel required>{t('expiresOnLabel')}</FormLabel>
             <FormField
               control={methods.control}
               name="neverExpires"
@@ -131,7 +134,7 @@ export const CreateApiKeyModal = NiceModal.create<CreateApiKeyModalProps>(
                       />
                     </FormControl>
                     <FormLabel className="leading-2 cursor-pointer">
-                      Never expires
+                      {t('neverExpires')}
                     </FormLabel>
                   </div>
                 </FormItem>
@@ -160,7 +163,7 @@ export const CreateApiKeyModal = NiceModal.create<CreateApiKeyModalProps>(
                         {field.value ? (
                           format(field.value, 'd MMM yyyy')
                         ) : (
-                          <span>Pick a date</span>
+                          <span>{t('pickDate')}</span>
                         )}
                         <CalendarIcon className="ml-auto size-4 shrink-0 opacity-50" />
                       </Button>
@@ -194,7 +197,7 @@ export const CreateApiKeyModal = NiceModal.create<CreateApiKeyModalProps>(
           variant="outline"
           onClick={modal.handleClose}
         >
-          Cancel
+          {tCommon('cancel')}
         </Button>
         <Button
           type="button"
@@ -203,7 +206,7 @@ export const CreateApiKeyModal = NiceModal.create<CreateApiKeyModalProps>(
           loading={methods.formState.isSubmitting}
           onClick={methods.handleSubmit(onSubmit)}
         >
-          Create
+          {t('createButton')}
         </Button>
       </>
     );

@@ -54,6 +54,9 @@ function ApiKeyListItem({
   className,
   ...other
 }: ApiKeyListItemProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.developers.apiKeys');
+  const tCommon = useTranslations('common');
+
   const handleShowUpdateApiKeyModal = (): void => {
     NiceModal.show(EditApiKeyModal, { apiKey });
   };
@@ -73,8 +76,8 @@ function ApiKeyListItem({
           className="text-xs font-normal text-muted-foreground"
         >
           {apiKey.expiresAt
-            ? `Expires on ${format(apiKey.expiresAt, 'dd MMM yyyy')}`
-            : 'Never expires'}
+            ? t('expiresOn', { date: format(apiKey.expiresAt, 'dd MMM yyyy') })
+            : t('neverExpires')}
         </div>
       </div>
       <DropdownMenu modal={false}>
@@ -83,10 +86,10 @@ function ApiKeyListItem({
             type="button"
             variant="ghost"
             className="size-8 p-0"
-            title="Open menu"
+            title={tCommon('openMenu')}
           >
             <MoreHorizontalIcon className="size-4 shrink-0" />
-            <span className="sr-only">Open menu</span>
+            <span className="sr-only">{tCommon('openMenu')}</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
@@ -94,14 +97,14 @@ function ApiKeyListItem({
             className="cursor-pointer"
             onClick={handleShowUpdateApiKeyModal}
           >
-            Edit
+            {tCommon('edit')}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             className="text-destructive! cursor-pointer"
             onClick={handleShowRevokeApiKeyModal}
           >
-            Revoke
+            {t('revoke')}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

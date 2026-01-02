@@ -1,6 +1,7 @@
 'use client';
 
 import NiceModal, { type NiceModalHocProps } from '@ebay/nice-modal-react';
+import { useTranslations } from 'next-intl';
 
 import {
   AlertDialog,
@@ -30,18 +31,19 @@ export type DisableAuthenticatorAppModalProps = NiceModalHocProps;
 
 export const DisableAuthenticatorAppModal =
   NiceModal.create<DisableAuthenticatorAppModalProps>(() => {
+    const t = useTranslations('account.security.multiFactorAuthentication.disableModal');
+    const tCommon = useTranslations('common');
     const modal = useEnhancedModal();
     const mdUp = useMediaQuery(MediaQueries.MdUp, { ssr: false });
-    const title = 'Disable authenticator app?';
-    const description =
-      'The authenticator app will be disabled, are you sure you want to continue?';
+    const title = t('title');
+    const description = t('description');
     const handleSubmit = async () => {
       const result = await disableAuthenticatorApp();
       if (!result?.serverError && !result?.validationErrors) {
-        toast.success('Authenticator app disabled');
+        toast.success(t('disableSuccess'));
         modal.handleClose();
       } else {
-        toast.error("Couldn't disable authenticator app");
+        toast.error(t('disableError'));
       }
     };
     const renderButtons = (
@@ -51,14 +53,14 @@ export const DisableAuthenticatorAppModal =
           variant="outline"
           onClick={modal.handleClose}
         >
-          Cancel
+          {tCommon('cancel')}
         </Button>
         <Button
           type="button"
           variant="destructive"
           onClick={handleSubmit}
         >
-          Yes, disable
+          {t('yesDisable')}
         </Button>
       </>
     );

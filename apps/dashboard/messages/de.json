@@ -302,7 +302,16 @@
         "deleteDescription": "Das Löschen Ihres Kontos ist unumkehrbar. Alle Ihre Daten werden dauerhaft von unseren Servern entfernt.",
         "deleteConfirm": "Konto löschen?",
         "deleteSuccess": "Konto gelöscht",
-        "deleteError": "Konto konnte nicht gelöscht werden"
+        "deleteError": "Konto konnte nicht gelöscht werden",
+        "deleteModal": {
+          "title": "Konto löschen?",
+          "description": "Bitte bestätigen Sie, dass Sie verstehen, was Sie tun, indem Sie das Kontrollkästchen unten aktivieren.",
+          "statement": "Mein Konto und alle zugehörigen Daten werden gelöscht.",
+          "assignOwnerWarning": "Bitte weisen Sie einen anderen Eigentümer zu, bevor Sie Ihr Konto für die folgenden Organisationen löschen:",
+          "success": "Konto gelöscht",
+          "error": "Konto konnte nicht gelöscht werden",
+          "signOutError": "Abmeldung fehlgeschlagen"
+        }
       }
     },
     "security": {
@@ -366,7 +375,27 @@
         "notEnabled": "Nicht aktiviert",
         "enable": "Aktivieren",
         "disable": "Deaktivieren",
-        "generateError": "TOTP-Setup-Daten konnten nicht generiert werden"
+        "generateError": "TOTP-Setup-Daten konnten nicht generiert werden",
+        "enableModal": {
+          "title": "Authenticator-App",
+          "description": "Fügen Sie eine Authenticator-App hinzu, indem Sie das untenstehende Formular ausfüllen.",
+          "instructionsPart1": "Verwenden Sie eine Authenticator-App wie",
+          "or": "oder",
+          "instructionsPart2": "scannen Sie diesen QR-Code. Es wird ein 6-stelliger Code für Sie generiert, den Sie unten eingeben können.",
+          "qrCodeAlt": "QR-Code",
+          "codeLabel": "6-stelligen Code aus der App eingeben",
+          "issuerInfo": "Wenn Ihre App nach einem Aussteller fragt, verwenden Sie \"{issuer}\" und für einen Kontonamen verwenden Sie \"{accountName}\".",
+          "turnOn": "Aktivieren",
+          "enableSuccess": "Authenticator-App aktiviert",
+          "enableError": "Authenticator-App konnte nicht aktiviert werden"
+        },
+        "disableModal": {
+          "title": "Authenticator-App deaktivieren?",
+          "description": "Die Authenticator-App wird deaktiviert, sind Sie sicher, dass Sie fortfahren möchten?",
+          "yesDisable": "Ja, deaktivieren",
+          "disableSuccess": "Authenticator-App deaktiviert",
+          "disableError": "Authenticator-App konnte nicht deaktiviert werden"
+        }
       }
     },
     "notifications": {
@@ -590,6 +619,7 @@
           "create": "API-Schlüssel erstellen",
           "createDescription": "Erstellen Sie einen neuen API-Schlüssel, indem Sie das untenstehende Formular ausfüllen.",
           "update": "API-Schlüssel aktualisieren",
+          "updateDescription": "Bearbeiten Sie den API-Schlüssel, indem Sie die Formularfelder unten ändern.",
           "createSuccess": "API-Schlüssel hinzugefügt",
           "createError": "API-Schlüssel konnte nicht hinzugefügt werden",
           "updateSuccess": "API-Schlüssel aktualisiert",
@@ -597,7 +627,13 @@
           "revokeConfirm": "Diesen API-Schlüssel widerrufen?",
           "revokeSuccess": "API-Schlüssel widerrufen",
           "revokeError": "API-Schlüssel konnte nicht widerrufen werden",
-          "empty": "Kein API-Schlüssel gefunden."
+          "revoke": "Widerrufen",
+          "empty": "Kein API-Schlüssel gefunden.",
+          "expiresOn": "Läuft ab am {date}",
+          "expiresOnLabel": "Läuft ab am",
+          "neverExpires": "Läuft nie ab",
+          "pickDate": "Datum auswählen",
+          "createButton": "Erstellen"
         },
         "webhooks": {
           "title": "Webhooks",
@@ -608,7 +644,8 @@
           "deleteConfirm": "Diesen Webhook löschen?",
           "deleteSuccess": "Webhook gelöscht",
           "deleteError": "Webhook konnte nicht gelöscht werden",
-          "empty": "Kein Webhook gefunden."
+          "empty": "Kein Webhook gefunden.",
+          "noTrigger": "Kein Trigger konfiguriert"
         }
       }
     }

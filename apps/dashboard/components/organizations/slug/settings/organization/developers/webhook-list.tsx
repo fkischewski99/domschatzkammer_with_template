@@ -3,6 +3,7 @@
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
 import { MoreHorizontalIcon, ZapIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { WebhookTrigger } from '@workspace/database';
 import { Badge } from '@workspace/ui/components/badge';
@@ -55,6 +56,9 @@ function WebhookListItem({
   className,
   ...other
 }: WebhookListItemProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.developers.webhooks');
+  const tCommon = useTranslations('common');
+
   const handleShowUpdateWebhookModal = (): void => {
     NiceModal.show(EditWebhookModal, { webhook });
   };
@@ -85,7 +89,7 @@ function WebhookListItem({
             ))}
           </div>
         ) : (
-          <p className="text-xs text-muted-foreground">No trigger configured</p>
+          <p className="text-xs text-muted-foreground">{t('noTrigger')}</p>
         )}
       </div>
       <DropdownMenu modal={false}>
@@ -94,10 +98,10 @@ function WebhookListItem({
             type="button"
             variant="ghost"
             className="size-8 p-0"
-            title="Open menu"
+            title={tCommon('openMenu')}
           >
             <MoreHorizontalIcon className="size-4 shrink-0" />
-            <span className="sr-only">Open menu</span>
+            <span className="sr-only">{tCommon('openMenu')}</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
@@ -105,14 +109,14 @@ function WebhookListItem({
             className="cursor-pointer"
             onClick={handleShowUpdateWebhookModal}
           >
-            Edit
+            {tCommon('edit')}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             className="text-destructive! cursor-pointer"
             onClick={handleShowDeleteWebhookModal}
           >
-            Delete
+            {tCommon('delete')}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import NiceModal, { type NiceModalHocProps } from '@ebay/nice-modal-react';
 import { CopyIcon, InfoIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { type SubmitHandler } from 'react-hook-form';
 
 import { Alert, AlertDescription } from '@workspace/ui/components/alert';
@@ -61,6 +62,8 @@ export type EnableAuthenticatorAppModalProps = NiceModalHocProps & {
 export const EnableAuthenticatorAppModal =
   NiceModal.create<EnableAuthenticatorAppModalProps>(
     ({ accountName, issuer, secret, dataUri }) => {
+      const t = useTranslations('account.security.multiFactorAuthentication.enableModal');
+      const tCommon = useTranslations('common');
       const modal = useEnhancedModal();
       const mdUp = useMediaQuery(MediaQueries.MdUp, { ssr: false });
       const methods = useZodForm({
@@ -74,14 +77,13 @@ export const EnableAuthenticatorAppModal =
         }
       });
       const copyToClipboard = useCopyToClipboard();
-      const title = 'Authenticator app';
-      const description =
-        'Add an authenticator app by filling out the form below.';
+      const title = t('title');
+      const description = t('description');
       const canSubmit =
         !methods.formState.isSubmitting && methods.formState.isValid;
       const handleCopySecret = async (): Promise<void> => {
         await copyToClipboard(secret);
-        toast.success('Copied!');
+        toast.success(tCommon('copied'));
       };
       const onSubmit: SubmitHandler<EnableAuthenticatorAppSchema> = async (
         values
@@ -92,7 +94,7 @@ export const EnableAuthenticatorAppModal =
 
         const result = await enableAuthenticatorApp(values);
         if (!result?.serverError && !result?.validationErrors && result?.data) {
-          toast.success('Authenticator app enabled');
+          toast.success(t('enableSuccess'));
           modal.resolve(result.data.recoveryCodes);
           modal.handleClose();
         } else {
@@ -101,7 +103,7 @@ export const EnableAuthenticatorAppModal =
               message: result.validationErrors.totpCode._errors[0]
             });
           } else {
-            toast.error("Couldn't enable authenticator app");
+            toast.error(t('enableError'));
           }
         }
       };
@@ -111,7 +113,7 @@ export const EnableAuthenticatorAppModal =
           onSubmit={methods.handleSubmit(onSubmit)}
         >
           <p className="text-sm text-muted-foreground">
-            Using an authenticator app like{' '}
+            {t('instructionsPart1')}{' '}
             <Link
               href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"
               target="_blank"
@@ -138,7 +140,7 @@ export const EnableAuthenticatorAppModal =
             >
               Authy
             </Link>{' '}
-            or{' '}
+            {t('or')}{' '}
             <Link
               href="https://1password.com/"
               target="_blank"
@@ -147,14 +149,13 @@ export const EnableAuthenticatorAppModal =
             >
               1Password
             </Link>{' '}
-            scan this QR code. It will generate a 6 digit code for you to enter
-            below.
+            {t('instructionsPart2')}
           </p>
           <div>
             <div className="mx-auto size-48">
               <img
                 src={dataUri}
-                alt="QR code"
+                alt={t('qrCodeAlt')}
               />
             </div>
             <div className="mx-auto flex flex-row items-center justify-center gap-2 text-xs font-semibold">
@@ -175,7 +176,7 @@ export const EnableAuthenticatorAppModal =
             name="totpCode"
             render={({ field }) => (
               <FormItem className="flex w-full flex-col items-center">
-                <FormLabel>Enter 6-digit code from the app</FormLabel>
+                <FormLabel>{t('codeLabel')}</FormLabel>
                 <FormControl>
                   <InputOTP
                     {...field}
@@ -203,10 +204,7 @@ export const EnableAuthenticatorAppModal =
           <Alert variant="info">
             <InfoIcon className="size-[18px] shrink-0" />
             <AlertDescription className="inline">
-              If your app asks for an issuer use "
-              <strong className="text-foreground">{issuer}</strong>" and for an
-              account name use "
-              <strong className="text-foreground">{accountName}</strong>".
+              {t('issuerInfo', { issuer, accountName })}
             </AlertDescription>
           </Alert>
         </form>
@@ -218,7 +216,7 @@ export const EnableAuthenticatorAppModal =
             variant="outline"
             onClick={modal.handleClose}
           >
-            Cancel
+            {tCommon('cancel')}
           </Button>
           <Button
             type="button"
@@ -227,7 +225,7 @@ export const EnableAuthenticatorAppModal =
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Turn on
+            {t('turnOn')}
           </Button>
         </>
       );

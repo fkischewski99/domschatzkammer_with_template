@@ -302,7 +302,16 @@
         "deleteDescription": "Deleting your account is irreversible. All your data will be permanently removed from our servers.",
         "deleteConfirm": "Delete account?",
         "deleteSuccess": "Account deleted",
-        "deleteError": "Couldn't delete account"
+        "deleteError": "Couldn't delete account",
+        "deleteModal": {
+          "title": "Delete account?",
+          "description": "Please confirm you understand what you are doing by ticking the checkbox below.",
+          "statement": "My account and all its data will be deleted.",
+          "assignOwnerWarning": "Please assign another owner before deleting your account for the following organizations:",
+          "success": "Account deleted",
+          "error": "Couldn't delete account",
+          "signOutError": "Couldn't sign out"
+        }
       }
     },
     "security": {
@@ -366,7 +375,27 @@
         "notEnabled": "Not enabled",
         "enable": "Enable",
         "disable": "Disable",
-        "generateError": "Couldn't generate TOTP setup data"
+        "generateError": "Couldn't generate TOTP setup data",
+        "enableModal": {
+          "title": "Authenticator app",
+          "description": "Add an authenticator app by filling out the form below.",
+          "instructionsPart1": "Using an authenticator app like",
+          "or": "or",
+          "instructionsPart2": "scan this QR code. It will generate a 6 digit code for you to enter below.",
+          "qrCodeAlt": "QR code",
+          "codeLabel": "Enter 6-digit code from the app",
+          "issuerInfo": "If your app asks for an issuer use \"{issuer}\" and for an account name use \"{accountName}\".",
+          "turnOn": "Turn on",
+          "enableSuccess": "Authenticator app enabled",
+          "enableError": "Couldn't enable authenticator app"
+        },
+        "disableModal": {
+          "title": "Disable authenticator app?",
+          "description": "The authenticator app will be disabled, are you sure you want to continue?",
+          "yesDisable": "Yes, disable",
+          "disableSuccess": "Authenticator app disabled",
+          "disableError": "Couldn't disable authenticator app"
+        }
       }
     },
     "notifications": {
@@ -590,6 +619,7 @@
           "create": "Create API key",
           "createDescription": "Create a new API key by filling out the form below.",
           "update": "Update API key",
+          "updateDescription": "Edit the API key by changing the form fields below.",
           "createSuccess": "API key added",
           "createError": "Couldn't add API key",
           "updateSuccess": "API key updated",
@@ -597,7 +627,13 @@
           "revokeConfirm": "Revoke this API key?",
           "revokeSuccess": "API key revoked",
           "revokeError": "Couldn't revoke API key",
-          "empty": "No API key found."
+          "revoke": "Revoke",
+          "empty": "No API key found.",
+          "expiresOn": "Expires on {date}",
+          "expiresOnLabel": "Expires on",
+          "neverExpires": "Never expires",
+          "pickDate": "Pick a date",
+          "createButton": "Create"
         },
         "webhooks": {
           "title": "Webhooks",
@@ -608,7 +644,8 @@
           "deleteConfirm": "Delete this webhook?",
           "deleteSuccess": "Webhook deleted",
           "deleteError": "Couldn't delete webhook",
-          "empty": "No webhook found."
+          "empty": "No webhook found.",
+          "noTrigger": "No trigger configured"
         }
       }
     }
