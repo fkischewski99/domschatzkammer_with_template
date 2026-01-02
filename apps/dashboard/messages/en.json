@@ -315,6 +315,7 @@
       }
     },
     "security": {
+      "passwordLoginHint": "Regardless of connected accounts, you will always have a password login as well.",
       "changePassword": {
         "title": "Change password",
         "sectionTitle": "Change password",

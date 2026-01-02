@@ -315,6 +315,7 @@
       }
     },
     "security": {
+      "passwordLoginHint": "Unabhängig von verbundenen Konten haben Sie immer auch eine Passwort-Anmeldung.",
       "changePassword": {
         "title": "Passwort ändern",
         "sectionTitle": "Passwort ändern",
