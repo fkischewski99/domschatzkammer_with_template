@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { type SubmitHandler } from 'react-hook-form';
 
@@ -42,6 +43,9 @@ export function OrganizationSlugCard({
   slug: initialSlug,
   ...other
 }: OrganizationDetailsCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.general.slug');
+  const tCommon = useTranslations('common');
+
   const methods = useZodForm({
     schema: updateOrganizationSlugSchema,
     mode: 'onSubmit',
@@ -68,7 +72,7 @@ export function OrganizationSlugCard({
         if (!result?.data?.isAvailable) {
           methods.setError('slug', {
             type: 'validate',
-            message: 'This slug is already taken.'
+            message: t('slugTaken')
           });
           return;
         }
@@ -76,7 +80,7 @@ export function OrganizationSlugCard({
     }
     const result = await updateOrganizationSlug(values);
     if (result?.serverError || result?.validationErrors) {
-      toast.error("Couldn't update slug");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -92,7 +96,7 @@ export function OrganizationSlugCard({
               name="slug"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel required>Slug</FormLabel>
+                  <FormLabel required>{tCommon('slug')}</FormLabel>
                   <FormControl>
                     <Input
                       type="text"
@@ -125,7 +129,7 @@ export function OrganizationSlugCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>
@@ -137,13 +141,14 @@ export function OrganizationSlugCard({
 // Client-side redirection might cause errors depending on the rendering cycle, because the current slug became invalid.
 // To solve this we use server-side redirection + query param for the success message.
 function useShowSlugUpdatedOnQueryParam(): void {
+  const t = useTranslations('organization.settings.general.slug');
   const searchParams = useSearchParams();
   const updated = searchParams.get('slugUpdated');
   const hasShownToast = React.useRef(false);
 
   React.useEffect(() => {
     if (updated === 'true' && !hasShownToast.current) {
-      toast.success('Slug updated');
+      toast.success(t('updateSuccess'));
       hasShownToast.current = true;
 
       // Clean up the query parameter
@@ -151,5 +156,5 @@ function useShowSlugUpdatedOnQueryParam(): void {
       url.searchParams.delete('slugUpdated');
       window.history.replaceState({}, '', url.toString());
     }
-  }, [updated]);
+  }, [updated, t]);
 }

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
 import { TrashIcon, UploadIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { type SubmitHandler } from 'react-hook-form';
 
 import { Avatar, AvatarFallback } from '@workspace/ui/components/avatar';
@@ -38,6 +39,9 @@ export function OrganizationLogoCard({
   logo: initialLogo,
   ...props
 }: OrganizationLogoCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.general.logo');
+  const tPhoto = useTranslations('account.profile.photo');
+
   const methods = useZodForm({
     schema: updateOrganizationLogoSchema,
     mode: 'onSubmit',
@@ -52,7 +56,7 @@ export function OrganizationLogoCard({
       const file = files[0];
       if (file.size > MAX_IMAGE_SIZE) {
         toast.error(
-          `Uploaded image shouldn't exceed ${MAX_IMAGE_SIZE / 1000000} MB size limit`
+          tPhoto('sizeError', { size: MAX_IMAGE_SIZE / 1000000 })
         );
       } else {
         const base64Image: string = await NiceModal.show(CropPhotoModal, {
@@ -91,9 +95,9 @@ export function OrganizationLogoCard({
     }
     const result = await updateOrganizationLogo(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Logo updated');
+      toast.success(t('updateSuccess'));
     } else {
-      toast.error("Couldn't update lgoo");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -131,12 +135,12 @@ export function OrganizationLogoCard({
                       <TrashIcon className="size-4 shrink-0" />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent side="right">Remove logo</TooltipContent>
+                  <TooltipContent side="right">{tPhoto('removeSuccess')}</TooltipContent>
                 </Tooltip>
               )}
             </div>
             <div className="flex flex-col space-y-1">
-              <span className="text-sm">Upload your logo</span>
+              <span className="text-sm">{t('uploadHint')}</span>
               <span className="text-xs text-muted-foreground">
                 *.png, *.jpeg files up to 5 MB
               </span>

@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { type SubmitHandler } from 'react-hook-form';
 
 import { Button } from '@workspace/ui/components/button';
@@ -49,6 +50,9 @@ export function PreferencesCard({
   preferences,
   ...other
 }: PreferencesCardProps): React.JSX.Element {
+  const t = useTranslations('account.profile.preferences');
+  const tCommon = useTranslations('common');
+
   const { theme, setTheme } = useTheme();
   const isMounted = useMounted();
   const methods = useZodForm({
@@ -66,10 +70,10 @@ export function PreferencesCard({
     }
     const result = await updatePreferences(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Preferences updated');
+      toast.success(t('updateSuccess'));
       setTheme(values.theme);
     } else {
-      toast.error("Couldn't update preferences");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -85,9 +89,9 @@ export function PreferencesCard({
               name="locale"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel>Language</FormLabel>
+                  <FormLabel>{t('language')}</FormLabel>
                   <FormDescription>
-                    This is the language that will be used in the application.
+                    {t('languageDescription')}
                   </FormDescription>
                   <FormControl>
                     <Select
@@ -129,9 +133,9 @@ export function PreferencesCard({
               name="theme"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Theme</FormLabel>
+                  <FormLabel>{t('theme')}</FormLabel>
                   <FormDescription>
-                    Select the theme for the application.
+                    {t('themeDescription')}
                   </FormDescription>
                   <FormControl>
                     <RadioCards
@@ -168,7 +172,7 @@ export function PreferencesCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>

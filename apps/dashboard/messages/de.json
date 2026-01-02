@@ -12,6 +12,9 @@
     "name": "Name",
     "email": "E-Mail",
     "phone": "Telefon",
+    "address": "Adresse",
+    "website": "Website",
+    "slug": "Slug",
     "description": "Beschreibung",
     "status": "Status",
     "openMenu": "Menü öffnen",
@@ -280,7 +283,10 @@
       },
       "preferences": {
         "title": "Einstellungen",
+        "language": "Sprache",
+        "languageDescription": "Dies ist die Sprache, die in der Anwendung verwendet wird.",
         "theme": "Theme",
+        "themeDescription": "Wählen Sie das Theme für die Anwendung.",
         "updateSuccess": "Einstellungen aktualisiert",
         "updateError": "Einstellungen konnten nicht aktualisiert werden"
       },

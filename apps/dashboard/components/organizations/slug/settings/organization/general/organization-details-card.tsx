@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { type SubmitHandler } from 'react-hook-form';
 
 import { Button } from '@workspace/ui/components/button';
@@ -38,6 +39,9 @@ export function OrganizationDetailsCard({
   details,
   ...props
 }: OrganizationDetailsCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.general.details');
+  const tCommon = useTranslations('common');
+
   const methods = useZodForm({
     schema: updateOrganizationDetailsSchema,
     mode: 'onSubmit',
@@ -58,9 +62,9 @@ export function OrganizationDetailsCard({
     }
     const result = await updateOrganizationDetails(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Details updated');
+      toast.success(t('updateSuccess'));
     } else {
-      toast.error("Couldn't update details");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -76,7 +80,7 @@ export function OrganizationDetailsCard({
               name="name"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel required>Name</FormLabel>
+                  <FormLabel required>{tCommon('name')}</FormLabel>
                   <FormControl>
                     <Input
                       type="text"
@@ -96,7 +100,7 @@ export function OrganizationDetailsCard({
               name="address"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel>Address</FormLabel>
+                  <FormLabel>{tCommon('address')}</FormLabel>
                   <FormControl>
                     <Input
                       type="text"
@@ -115,7 +119,7 @@ export function OrganizationDetailsCard({
               name="phone"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel>Phone</FormLabel>
+                  <FormLabel>{tCommon('phone')}</FormLabel>
                   <FormControl>
                     <Input
                       type="tel"
@@ -134,7 +138,7 @@ export function OrganizationDetailsCard({
               name="email"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{tCommon('email')}</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
@@ -153,7 +157,7 @@ export function OrganizationDetailsCard({
               name="website"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel>Website</FormLabel>
+                  <FormLabel>{tCommon('website')}</FormLabel>
                   <FormControl>
                     <Input
                       type="url"
@@ -179,7 +183,7 @@ export function OrganizationDetailsCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>

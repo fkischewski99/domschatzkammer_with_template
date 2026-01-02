@@ -3,6 +3,7 @@
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
 import { TrashIcon, UploadIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { type SubmitHandler } from 'react-hook-form';
 
 import { Avatar, AvatarFallback } from '@workspace/ui/components/avatar';
@@ -52,6 +53,10 @@ export function PersonalDetailsCard({
   details,
   ...other
 }: PersonalDetailsCardProps): React.JSX.Element {
+  const t = useTranslations('account.profile.personalDetails');
+  const tPhoto = useTranslations('account.profile.photo');
+  const tCommon = useTranslations('common');
+
   const methods = useZodForm({
     schema: updatePersonalDetailsSchema,
     mode: 'onSubmit',
@@ -70,7 +75,7 @@ export function PersonalDetailsCard({
       const file = files[0];
       if (file.size > MAX_IMAGE_SIZE) {
         toast.error(
-          `Uploaded image shouldn't exceed ${MAX_IMAGE_SIZE / 1000000} MB size limit`
+          tPhoto('sizeError', { size: MAX_IMAGE_SIZE / 1000000 })
         );
       } else {
         const base64Image: string = await NiceModal.show(CropPhotoModal, {
@@ -108,9 +113,9 @@ export function PersonalDetailsCard({
     }
     const result = await updatePersonalDetails(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Personal details updated');
+      toast.success(t('updateSuccess'));
     } else {
-      toast.error('Couldnt update personal details');
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -156,7 +161,7 @@ export function PersonalDetailsCard({
                         <TrashIcon className="size-4 shrink-0" />
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent side="right">Remove image</TooltipContent>
+                    <TooltipContent side="right">{t('removeImage')}</TooltipContent>
                   </Tooltip>
                 )}
               </div>
@@ -167,7 +172,7 @@ export function PersonalDetailsCard({
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel required>Name</FormLabel>
+                    <FormLabel required>{tCommon('name')}</FormLabel>
                     <FormControl>
                       <Input
                         type="text"
@@ -187,7 +192,7 @@ export function PersonalDetailsCard({
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone</FormLabel>
+                    <FormLabel>{tCommon('phone')}</FormLabel>
                     <FormControl>
                       <Input
                         type="tel"
@@ -201,7 +206,7 @@ export function PersonalDetailsCard({
                 )}
               />
               <div className="space-y-2">
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{tCommon('email')}</FormLabel>
                 <InputWithAdornments
                   type="email"
                   maxLength={255}
@@ -215,7 +220,7 @@ export function PersonalDetailsCard({
                       className="-mr-2.5 min-w-fit bg-background"
                       onClick={handleShowChangeEmailModal}
                     >
-                      Change
+                      {t('changeEmail')}
                     </Button>
                   }
                   disabled
@@ -234,7 +239,7 @@ export function PersonalDetailsCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>

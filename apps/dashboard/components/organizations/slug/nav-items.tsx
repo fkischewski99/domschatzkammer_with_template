@@ -1,3 +1,5 @@
+'use client';
+
 import {
   BellIcon,
   CodeIcon,
@@ -11,6 +13,7 @@ import {
   UsersIcon
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { replaceOrgSlug, routes } from '@workspace/routes';
 
@@ -23,19 +26,21 @@ type NavItem = {
 };
 
 export function createMainNavItems(slug: string): NavItem[] {
+  const t = useTranslations('navigation');
+
   return [
     {
-      title: 'Home',
+      title: t('home'),
       href: replaceOrgSlug(routes.dashboard.organizations.slug.Home, slug),
       icon: HomeIcon
     },
     {
-      title: 'Contacts',
+      title: t('contacts'),
       href: replaceOrgSlug(routes.dashboard.organizations.slug.Contacts, slug),
       icon: UsersIcon
     },
     {
-      title: 'Settings',
+      title: t('settings'),
       href: replaceOrgSlug(
         routes.dashboard.organizations.slug.settings.Index,
         slug
@@ -46,9 +51,11 @@ export function createMainNavItems(slug: string): NavItem[] {
 }
 
 export function createAccountNavItems(slug: string): NavItem[] {
+  const t = useTranslations('navigation.account');
+
   return [
     {
-      title: 'Profile',
+      title: t('profile'),
       href: replaceOrgSlug(
         routes.dashboard.organizations.slug.settings.account.Profile,
         slug
@@ -56,7 +63,7 @@ export function createAccountNavItems(slug: string): NavItem[] {
       icon: UserIcon
     },
     {
-      title: 'Security',
+      title: t('security'),
       href: replaceOrgSlug(
         routes.dashboard.organizations.slug.settings.account.Security,
         slug
@@ -64,7 +71,7 @@ export function createAccountNavItems(slug: string): NavItem[] {
       icon: LockKeyholeIcon
     },
     {
-      title: 'Notifications',
+      title: t('notifications'),
       href: replaceOrgSlug(
         routes.dashboard.organizations.slug.settings.account.Notifications,
         slug
@@ -75,9 +82,11 @@ export function createAccountNavItems(slug: string): NavItem[] {
 }
 
 export function createOrganizationNavItems(slug: string): NavItem[] {
+  const t = useTranslations('navigation.organization');
+
   return [
     {
-      title: 'General',
+      title: t('general'),
       href: replaceOrgSlug(
         routes.dashboard.organizations.slug.settings.organization.General,
         slug
@@ -85,7 +94,7 @@ export function createOrganizationNavItems(slug: string): NavItem[] {
       icon: StoreIcon
     },
     {
-      title: 'Members',
+      title: t('members'),
       href: replaceOrgSlug(
         routes.dashboard.organizations.slug.settings.organization.Members,
         slug
@@ -93,7 +102,7 @@ export function createOrganizationNavItems(slug: string): NavItem[] {
       icon: UserPlus2Icon
     },
     {
-      title: 'Billing',
+      title: t('billing'),
       href: replaceOrgSlug(
         routes.dashboard.organizations.slug.settings.organization.Billing,
         slug
@@ -101,7 +110,7 @@ export function createOrganizationNavItems(slug: string): NavItem[] {
       icon: CreditCardIcon
     },
     {
-      title: 'Developers',
+      title: t('developers'),
       href: replaceOrgSlug(
         routes.dashboard.organizations.slug.settings.organization.Developers,
         slug

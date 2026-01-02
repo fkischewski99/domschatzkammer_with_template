@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { format, parseISO } from 'date-fns';
 import { CopyIcon, PlusIcon, TrashIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import {
   useFieldArray,
   useFormContext,
@@ -65,6 +66,9 @@ export function BusinessHoursCard({
   className,
   ...other
 }: BusinessHoursCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.general.businessHours');
+  const tCommon = useTranslations('common');
+
   const methods = useZodForm({
     schema: updateBusinessHoursSchema,
     mode: 'all',
@@ -85,9 +89,9 @@ export function BusinessHoursCard({
     }
     const result = await updateBusinessHours(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Business hours updated');
+      toast.success(t('updateSuccess'));
     } else {
-      toast.error("Couldn't update business hours");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -109,7 +113,7 @@ export function BusinessHoursCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>
