@@ -33,6 +33,7 @@ import { ThemeSwitcher } from '@workspace/ui/components/theme-switcher';
 
 import { signOut } from '~/actions/auth/sign-out';
 import { CommandMenu } from '~/components/organizations/slug/command-menu';
+import { LanguageSwitcher } from '~/components/language-switcher';
 import { useActiveOrganization } from '~/hooks/use-active-organization';
 import { getInitials } from '~/lib/formatters';
 import type { ProfileDto } from '~/types/dtos/profile-dto';
@@ -215,6 +216,13 @@ export function NavUser({
                 >
                   <p>Theme</p>
                   <ThemeSwitcher />
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="flex cursor-default flex-row justify-between bg-transparent!"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <p>Language</p>
+                  <LanguageSwitcher />
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />

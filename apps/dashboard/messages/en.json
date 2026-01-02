@@ -20,7 +20,8 @@
     "view": "View",
     "send": "Send",
     "copied": "Copied!",
-    "goBack": "Go back"
+    "goBack": "Go back",
+    "switchLanguage": "Switch language"
   },
   "labels": {
     "contactStage": {
