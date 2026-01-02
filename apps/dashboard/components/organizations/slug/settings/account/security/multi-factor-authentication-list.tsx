@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import { toast } from '@workspace/ui/components/sonner';
@@ -45,6 +46,8 @@ function AuthenticatorAppListItem({
   className,
   ...other
 }: MultiFactorAuthenticationListItemProps): React.JSX.Element {
+  const t = useTranslations('account.security.multiFactorAuthentication');
+
   const isEnabled = !!authenticatorApp;
   const handleShowEnableAuthenticatorAppModal = async (): Promise<void> => {
     const result = await generateTotpSetupData();
@@ -63,7 +66,7 @@ function AuthenticatorAppListItem({
         NiceModal.show(RecoveryCodesModal, { recoveryCodes });
       }
     } else {
-      toast.error("Couldn't generate TOTP setup data");
+      toast.error(t('generateError'));
     }
   };
   const handleShowDisableAuthenticatorAppModal = (): void => {
@@ -106,10 +109,10 @@ function AuthenticatorAppListItem({
         </svg>
         <div className="flex min-w-0 flex-1 flex-col">
           <h5 className="overflow-hidden truncate text-sm font-medium">
-            Authenticator app
+            {t('authenticatorApp')}
           </h5>
           <div className="overflow-hidden truncate text-sm text-muted-foreground">
-            {isEnabled ? 'Enabled' : 'Not enabled'}
+            {isEnabled ? t('enabled') : t('notEnabled')}
           </div>
         </div>
       </div>
@@ -120,7 +123,7 @@ function AuthenticatorAppListItem({
           className="shrink-0"
           onClick={handleShowDisableAuthenticatorAppModal}
         >
-          Disable
+          {t('disable')}
         </Button>
       ) : (
         <Button
@@ -129,7 +132,7 @@ function AuthenticatorAppListItem({
           className="shrink-0"
           onClick={handleShowEnableAuthenticatorAppModal}
         >
-          Enable
+          {t('enable')}
         </Button>
       )}
     </li>

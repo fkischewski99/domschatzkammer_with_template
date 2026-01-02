@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { type SubmitHandler } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import {
   FacebookIcon,
@@ -46,6 +47,8 @@ export function SocialMediaCard({
   socialMedia,
   ...other
 }: SocialMediaCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.general.socialMedia');
+  const tCommon = useTranslations('common');
   const methods = useZodForm({
     schema: updateSocialMediaSchema,
     mode: 'all',
@@ -69,9 +72,9 @@ export function SocialMediaCard({
     }
     const result = await updateSocialMedia(values);
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Social media updated');
+      toast.success(t('updateSuccess'));
     } else {
-      toast.error("Couldn't update social media");
+      toast.error(t('updateError'));
     }
   };
   return (
@@ -242,7 +245,7 @@ export function SocialMediaCard({
               className="text-success hover:text-success -ml-3"
               onClick={handleToggleShowMore}
             >
-              {showMore ? 'Show less...' : 'Show more...'}
+              {showMore ? t('showLess') : t('showMore')}
             </Button>
           </form>
         </CardContent>
@@ -256,7 +259,7 @@ export function SocialMediaCard({
             loading={methods.formState.isSubmitting}
             onClick={methods.handleSubmit(onSubmit)}
           >
-            Save
+            {tCommon('save')}
           </Button>
         </CardFooter>
       </Card>

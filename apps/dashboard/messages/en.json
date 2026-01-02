@@ -262,6 +262,8 @@
     "profile": {
       "personalDetails": {
         "title": "Personal details",
+        "sectionTitle": "Personal details",
+        "sectionDescription": "Set your name and contact information, the email address entered here is used for your login access.",
         "removeImage": "Remove image",
         "changeEmail": "Change",
         "updateSuccess": "Personal details updated",
@@ -283,6 +285,8 @@
       },
       "preferences": {
         "title": "Preferences",
+        "sectionTitle": "Preferences",
+        "sectionDescription": "Change your preferred language and theme.",
         "language": "Language",
         "languageDescription": "This is the language that will be used in the application.",
         "theme": "Theme",
@@ -292,6 +296,8 @@
       },
       "dangerZone": {
         "title": "Danger zone",
+        "sectionTitle": "Danger zone",
+        "sectionDescription": "Be careful, an account deletion cannot be undone.",
         "deleteAccount": "Delete account",
         "deleteDescription": "Deleting your account is irreversible. All your data will be permanently removed from our servers.",
         "deleteConfirm": "Delete account?",
@@ -302,6 +308,8 @@
     "security": {
       "changePassword": {
         "title": "Change password",
+        "sectionTitle": "Change password",
+        "sectionDescription": "To make an update, enter your existing password followed by a new one. If you don't know your existing password, sign out and use the forgot password link.",
         "currentPassword": "Current password",
         "newPassword": "New password",
         "verifyPassword": "Verify password",
@@ -326,16 +334,46 @@
       },
       "connectedAccounts": {
         "title": "Connected accounts",
-        "empty": "No connected account found."
+        "sectionTitle": "Connected accounts",
+        "sectionDescription": "Sign up faster to your account by linking it to Google or Microsoft.",
+        "empty": "No connected account found.",
+        "connected": "Connected",
+        "notConnected": "Not connected",
+        "connect": "Connect",
+        "disconnect": "Disconnect",
+        "connectError": "Couldn't connect account",
+        "disconnectSuccess": "Account disconnected",
+        "disconnectError": "Couldn't disconnect account"
       },
       "sessions": {
         "title": "Manage sessions",
-        "empty": "No session found."
+        "sectionTitle": "Manage sessions",
+        "sectionDescription": "Sign out your active sessions on other browsers and devices.",
+        "empty": "No session found.",
+        "currentSession": "Current session",
+        "otherSession": "Other session",
+        "expired": "Expired",
+        "expiresOn": "Expires on {date}",
+        "signOut": "Sign out",
+        "signOutSuccess": "Session signed out",
+        "signOutError": "Couldn't sign out session"
+      },
+      "multiFactorAuthentication": {
+        "sectionTitle": "Multi-factor authentication",
+        "sectionDescription": "Add an extra layer of security to your login by requiring an additional factor.",
+        "authenticatorApp": "Authenticator app",
+        "enabled": "Enabled",
+        "notEnabled": "Not enabled",
+        "enable": "Enable",
+        "disable": "Disable",
+        "generateError": "Couldn't generate TOTP setup data"
       }
     },
     "notifications": {
       "marketing": {
         "title": "Marketing emails",
+        "sectionTitle": "Marketing emails",
+        "sectionDescription": "Receive emails about new products, features, and more.",
         "newsletter": "Newsletter",
         "newsletterDescription": "Receive emails filled with industry expertise.",
         "productUpdates": "Product updates",
@@ -345,6 +383,8 @@
       },
       "transactional": {
         "title": "Transactional emails",
+        "sectionTitle": "Transactional emails",
+        "sectionDescription": "Receive emails about team and account activities.",
         "contacts": "Contacts",
         "contactsDescription": "Someone on your team added or changed a lead.",
         "inbox": "Inbox",
@@ -363,32 +403,73 @@
       "general": {
         "details": {
           "title": "Organization details",
+          "sectionTitle": "Details",
+          "sectionDescription": "Basic details about your organization.",
           "updateSuccess": "Organization details updated",
           "updateError": "Couldn't update organization details"
         },
         "logo": {
           "title": "Organization logo",
+          "sectionTitle": "Logo",
+          "sectionDescription": "Update your organization's logo to make it easier to identify.",
           "uploadHint": "Upload your logo",
           "updateSuccess": "Logo updated",
           "updateError": "Couldn't update logo"
         },
         "slug": {
           "title": "Organization slug",
+          "sectionTitle": "URL",
+          "sectionDescription": "Update your organization's slug for a new URL. You will be redirected to the new URL.",
           "updateSuccess": "Slug updated",
           "updateError": "Couldn't update slug",
           "slugTaken": "This slug is already taken."
         },
         "socialMedia": {
-          "title": "Social media"
+          "title": "Social media",
+          "sectionTitle": "Social media",
+          "sectionDescription": "Add your organization's social media links.",
+          "showMore": "Show more...",
+          "showLess": "Show less...",
+          "updateSuccess": "Social media updated",
+          "updateError": "Couldn't update social media"
         },
         "businessHours": {
           "title": "Business hours",
+          "sectionTitle": "Business hours",
+          "sectionDescription": "Working hours of your organization.",
           "updateSuccess": "Business hours updated",
-          "updateError": "Couldn't update business hours"
+          "updateError": "Couldn't update business hours",
+          "newTimeSlot": "New time slot",
+          "removeTimeSlot": "Remove time slot",
+          "copyTimes": "Copy times",
+          "copyTimesTo": "Copy times to...",
+          "unavailable": "Unavailable",
+          "endTimeAfterStart": "End time should be after start time.",
+          "timesOverlap": "Times overlap with another set of times.",
+          "apply": "Apply",
+          "days": {
+            "monday": "Monday",
+            "mondayShort": "Mon",
+            "tuesday": "Tuesday",
+            "tuesdayShort": "Tue",
+            "wednesday": "Wednesday",
+            "wednesdayShort": "Wed",
+            "thursday": "Thursday",
+            "thursdayShort": "Thu",
+            "friday": "Friday",
+            "fridayShort": "Fri",
+            "saturday": "Saturday",
+            "saturdayShort": "Sat",
+            "sunday": "Sunday",
+            "sundayShort": "Sun"
+          }
         },
         "dangerZone": {
           "title": "Danger zone",
+          "sectionTitle": "Danger zone",
+          "sectionDescription": "Be careful, deleting cannot be undone. Only the owner can delete an organization.",
           "deleteOrganization": "Delete organization",
+          "deleteDescription": "Deleting your organization is irreversible. All the data will be permanently removed from our servers.",
           "deleteConfirm": "Delete organization?",
           "deleteSuccess": "Organization deleted",
           "deleteError": "Couldn't delete organization"
@@ -397,12 +478,16 @@
       "members": {
         "team": {
           "title": "Team members",
+          "sectionTitle": "Team",
+          "sectionDescription": "Manage and invite your colleagues.",
           "filterPlaceholder": "Filter by name or email",
           "inviteButton": "Invite member",
           "empty": "No member found"
         },
         "invitations": {
           "title": "Invitations",
+          "sectionTitle": "Invitations",
+          "sectionDescription": "Manage invitations of users who haven't accepted yet.",
           "filterPlaceholder": "Filter by email",
           "pending": "Pending",
           "revoked": "Revoked",
@@ -455,10 +540,24 @@
       "billing": {
         "plan": {
           "title": "Plan",
-          "currentCycle": "Current billing cycle ({startDate} - {endDate})"
+          "sectionTitle": "Plan",
+          "sectionDescription": "View, upgrade or cancel your plan. Billing is managed by our payment partner.",
+          "currentPlanMessage": "This organization is currently on the plan:",
+          "free": "Free",
+          "upgradePlan": "Upgrade plan",
+          "changePlan": "Change plan",
+          "canceled": "Canceled",
+          "trialEndsOn": "Your trial ends on",
+          "subscriptionCanceled": "Subscription canceled",
+          "subscriptionCanceledDescription": "Your subscription will be canceled at the end of the billing cycle.",
+          "currentCycle": "Current billing cycle ({startDate} - {endDate})",
+          "daysRemaining": "{days} days remaining",
+          "billingPortalError": "Failed to create billing portal session. Please try again."
         },
         "address": {
           "title": "Billing address",
+          "sectionTitle": "Billing address",
+          "sectionDescription": "This will be reflected in every upcoming invoice, past invoices are not affected.",
           "line1": "Address line 1",
           "line2": "Address line 2",
           "country": "Country",
@@ -470,18 +569,24 @@
         },
         "email": {
           "title": "Billing email",
+          "sectionTitle": "Email recipient",
+          "sectionDescription": "All billing correspondence will go to this email.",
           "emailAddress": "Email address",
           "updateSuccess": "Email recipient updated",
           "updateError": "Couldn't update email recipient"
         },
         "invoices": {
           "title": "Invoices",
+          "sectionTitle": "Invoices",
+          "sectionDescription": "Invoices are sent automatically to your billing email.",
           "empty": "No invoices received yet."
         }
       },
       "developers": {
         "apiKeys": {
           "title": "API Keys",
+          "sectionTitle": "API Keys",
+          "sectionDescription": "Manage your API keys for programmatic access to your organization's data.",
           "create": "Create API key",
           "createDescription": "Create a new API key by filling out the form below.",
           "update": "Update API key",
@@ -496,6 +601,8 @@
         },
         "webhooks": {
           "title": "Webhooks",
+          "sectionTitle": "Webhooks",
+          "sectionDescription": "Configure webhooks to receive real-time notifications about events in your organization.",
           "create": "Create webhook",
           "edit": "Edit webhook",
           "deleteConfirm": "Delete this webhook?",

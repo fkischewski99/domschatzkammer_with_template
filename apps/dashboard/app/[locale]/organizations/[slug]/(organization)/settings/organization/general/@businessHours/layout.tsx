@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 
-export default function BusinessHoursLayout({
+export default async function BusinessHoursLayout({
   children
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const t = await getTranslations('organization.settings.general.businessHours');
+
   return (
     <AnnotatedSection
-      title="Business hours"
-      description="Working hours of your organization."
+      title={t('sectionTitle')}
+      description={t('sectionDescription')}
     >
       {children}
     </AnnotatedSection>

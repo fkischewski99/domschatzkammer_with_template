@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -24,6 +25,8 @@ export function DeleteAccountCard({
   className,
   ...other
 }: DeleteAccountCardProps): React.JSX.Element {
+  const t = useTranslations('account.profile.dangerZone');
+
   const handleShowDeleteAccountModal = (): void => {
     NiceModal.show(DeleteAccountModal, { ownedOrganizations });
   };
@@ -34,8 +37,7 @@ export function DeleteAccountCard({
     >
       <CardContent>
         <p className="text-sm font-normal text-muted-foreground">
-          Deleting your account is irreversible. All your data will be
-          permanently removed from our servers.
+          {t('deleteDescription')}
         </p>
       </CardContent>
       <Separator />
@@ -46,7 +48,7 @@ export function DeleteAccountCard({
           size="default"
           onClick={handleShowDeleteAccountModal}
         >
-          Delete account
+          {t('deleteAccount')}
         </Button>
       </CardFooter>
     </Card>

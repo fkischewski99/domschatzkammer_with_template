@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -25,6 +26,7 @@ export function DeleteOrganizationCard({
   className,
   ...other
 }: DeleteOrganizationCardProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.general.dangerZone');
   const handleShowDeleteOrganizationModal = (): void => {
     NiceModal.show(DeleteOrganizationModal);
   };
@@ -35,8 +37,7 @@ export function DeleteOrganizationCard({
     >
       <CardContent>
         <p className="text-sm font-normal text-muted-foreground">
-          Deleting your organization is irreversible. All the data will be
-          permanently removed from our servers.
+          {t('deleteDescription')}
         </p>
       </CardContent>
       <Separator />
@@ -48,7 +49,7 @@ export function DeleteOrganizationCard({
           disabled={!profile.isOwner}
           onClick={handleShowDeleteOrganizationModal}
         >
-          Delete organization
+          {t('deleteOrganization')}
         </Button>
       </CardFooter>
     </Card>

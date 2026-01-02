@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 
-export default function OrganizationSlugLayout({
+export default async function OrganizationSlugLayout({
   children
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const t = await getTranslations('organization.settings.general.slug');
+
   return (
     <AnnotatedSection
-      title="URL"
-      description="Update your organization's slug for a new URL. You will be redirected to the new URL."
+      title={t('sectionTitle')}
+      description={t('sectionDescription')}
     >
       {children}
     </AnnotatedSection>

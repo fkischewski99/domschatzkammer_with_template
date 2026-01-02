@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 
-export default function PersonalDetailsLayout({
+export default async function PersonalDetailsLayout({
   children
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const t = await getTranslations('account.profile.personalDetails');
+
   return (
     <AnnotatedSection
-      title="Personal details"
-      description="Set your name and contact information, the email address entered here is used for your login access."
+      title={t('sectionTitle')}
+      description={t('sectionDescription')}
     >
       {children}
     </AnnotatedSection>

@@ -153,6 +153,8 @@ type WorkDayProps = {
 };
 
 function WorkDay({ name, index, dayOfWeek }: WorkDayProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.general.businessHours');
+  const tDays = useTranslations('organization.settings.general.businessHours.days');
   const { control } = useFormContext();
   const { fields, append, remove, update } = useFieldArray({
     control,
@@ -162,12 +164,12 @@ function WorkDay({ name, index, dayOfWeek }: WorkDayProps): React.JSX.Element {
   const timeSlots = fields as WorkTimeSlotDto[];
 
   const labelFull = React.useMemo(
-    () => capitalize(dayOfWeek.toLowerCase()),
-    [dayOfWeek]
+    () => tDays(dayOfWeek.toLowerCase()),
+    [dayOfWeek, tDays]
   );
   const labelShort = React.useMemo(
-    () => capitalize(dayOfWeek.toLowerCase().slice(0, 3)),
-    [dayOfWeek]
+    () => tDays(`${dayOfWeek.toLowerCase()}Short`),
+    [dayOfWeek, tDays]
   );
 
   const hasTimeSlots = !!timeSlots && timeSlots.length > 0;
@@ -252,7 +254,7 @@ function WorkDay({ name, index, dayOfWeek }: WorkDayProps): React.JSX.Element {
                     <PlusIcon className="size-4 shrink-0" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>New time slot</TooltipContent>
+                <TooltipContent>{t('newTimeSlot')}</TooltipContent>
               </Tooltip>
               <CopyTimesMenu
                 name={name}
@@ -262,7 +264,7 @@ function WorkDay({ name, index, dayOfWeek }: WorkDayProps): React.JSX.Element {
           </div>
         ) : (
           <p className="flex h-9 items-center pl-2 text-sm text-muted-foreground">
-            Unavailable
+            {t('unavailable')}
           </p>
         )}
       </div>
@@ -284,6 +286,7 @@ const WorkTimeSlot = React.memo(
     onRemove,
     onChange
   }: WorkTimeSlotProps): React.JSX.Element => {
+    const t = useTranslations('organization.settings.general.businessHours');
     const isIntervalValid = isEndGreaterThanStart(value);
     return (
       <div className="flex flex-col gap-2">
@@ -304,17 +307,17 @@ const WorkTimeSlot = React.memo(
                 <TrashIcon className="size-4 shrink-0" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Remove time slot</TooltipContent>
+            <TooltipContent>{t('removeTimeSlot')}</TooltipContent>
           </Tooltip>
         </div>
         {!isIntervalValid && (
           <FormDescription className="text-destructive">
-            End time should be after start time.
+            {t('endTimeAfterStart')}
           </FormDescription>
         )}
         {isIntervalValid && isOverlapping && (
           <FormDescription className="text-destructive">
-            Times overlap with another set of times.
+            {t('timesOverlap')}
           </FormDescription>
         )}
       </div>
@@ -420,6 +423,9 @@ type CopyTimesMenuProps = {
 
 const CopyTimesMenu = React.memo(
   ({ name, sourceDayOfWeek }: CopyTimesMenuProps): React.JSX.Element => {
+    const t = useTranslations('organization.settings.general.businessHours');
+    const tDays = useTranslations('organization.settings.general.businessHours.days');
+    const tCommon = useTranslations('common');
     const { setValue, getValues } = useFormContext();
     const [state, setState] = React.useState<Record<string, boolean>>({});
     const handleCopyDayOfWeek = (): void => {
@@ -460,11 +466,11 @@ const CopyTimesMenu = React.memo(
               </Button>
             </PopoverTrigger>
           </TooltipTrigger>
-          <TooltipContent>Copy times</TooltipContent>
+          <TooltipContent>{t('copyTimes')}</TooltipContent>
         </Tooltip>
         <PopoverContent className="max-w-[192px] p-2">
           <p className="px-4 py-2 text-sm text-muted-foreground">
-            Copy times to...
+            {t('copyTimesTo')}
           </p>
           <ul className="list-none pb-2">
             {Object.keys(DayOfWeek)
@@ -489,7 +495,7 @@ const CopyTimesMenu = React.memo(
                       onClick={handleToggleDayOfWeek}
                     >
                       <p className="text-sm">
-                        {capitalize(dayOfWeek.toLowerCase())}
+                        {tDays(dayOfWeek.toLowerCase())}
                       </p>
                       <Checkbox
                         disabled={sourceDayOfWeek === dayOfWeek}
@@ -510,7 +516,7 @@ const CopyTimesMenu = React.memo(
                 variant="outline"
                 className="w-full"
               >
-                Cancel
+                {tCommon('cancel')}
               </Button>
             </PopoverClose>
             <PopoverClose>
@@ -520,7 +526,7 @@ const CopyTimesMenu = React.memo(
                 className="w-full"
                 onClick={handleCopyDayOfWeek}
               >
-                Apply
+                {t('apply')}
               </Button>
             </PopoverClose>
           </div>

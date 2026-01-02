@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 
-export default function InvitationsLayout({
+export default async function InvitationsLayout({
   children
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const t = await getTranslations('organization.settings.members.invitations');
+
   return (
     <AnnotatedSection
-      title="Invitations"
-      description="Manage invitations of users who haven't accepted yet."
+      title={t('sectionTitle')}
+      description={t('sectionDescription')}
     >
       {children}
     </AnnotatedSection>

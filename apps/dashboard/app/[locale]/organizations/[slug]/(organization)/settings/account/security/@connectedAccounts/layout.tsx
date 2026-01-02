@@ -1,17 +1,20 @@
 import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 
 import { PasswordLoginHint } from '~/components/organizations/slug/settings/account/security/password-login-hint';
 
-export default function ConnectedAccountsLayout({
+export default async function ConnectedAccountsLayout({
   children
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const t = await getTranslations('account.security.connectedAccounts');
+
   return (
     <>
       <AnnotatedSection
-        title="Connected accounts"
-        description="Sign up faster to your account by linking it to Google or Microsoft."
+        title={t('sectionTitle')}
+        description={t('sectionDescription')}
       >
         {children}
       </AnnotatedSection>

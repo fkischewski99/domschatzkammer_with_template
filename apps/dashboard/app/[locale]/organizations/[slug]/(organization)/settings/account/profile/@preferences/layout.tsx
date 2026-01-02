@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 
-export default function PreferencesLayout({
+export default async function PreferencesLayout({
   children
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const t = await getTranslations('account.profile.preferences');
+
   return (
     <AnnotatedSection
-      title="Preferences"
-      description="Change your preferred language and theme."
+      title={t('sectionTitle')}
+      description={t('sectionDescription')}
     >
       {children}
     </AnnotatedSection>

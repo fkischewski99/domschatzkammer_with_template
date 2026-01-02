@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 
-export default function ChangePasswordLayout({
+export default async function ChangePasswordLayout({
   children
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const t = await getTranslations('account.security.changePassword');
+
   return (
     <AnnotatedSection
-      title="Change password"
-      description="To make an update, enter your existing password followed by a new one. If you don't know your existing password, sign out and use the forgot password link."
+      title={t('sectionTitle')}
+      description={t('sectionDescription')}
     >
       {children}
     </AnnotatedSection>

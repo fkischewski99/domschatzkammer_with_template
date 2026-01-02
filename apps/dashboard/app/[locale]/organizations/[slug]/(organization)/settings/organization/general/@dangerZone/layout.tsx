@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 
-export default function DangerZoneLayout({
+export default async function DangerZoneLayout({
   children
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const t = await getTranslations('organization.settings.general.dangerZone');
+
   return (
     <AnnotatedSection
-      title="Danger zone"
-      description="Be careful, deleting cannot be undone. Only the owner can delete an organization."
+      title={t('sectionTitle')}
+      description={t('sectionDescription')}
     >
       {children}
     </AnnotatedSection>

@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 
-export default function MultiFactorAuthenticationLayout({
+export default async function MultiFactorAuthenticationLayout({
   children
-}: React.PropsWithChildren): React.JSX.Element {
+}: React.PropsWithChildren): Promise<React.JSX.Element> {
+  const t = await getTranslations('account.security.multiFactorAuthentication');
+
   return (
     <AnnotatedSection
-      title="Multi-factor authentication"
-      description="Add an extra layer of security to your login by requiring an additional factor."
+      title={t('sectionTitle')}
+      description={t('sectionDescription')}
     >
       {children}
     </AnnotatedSection>

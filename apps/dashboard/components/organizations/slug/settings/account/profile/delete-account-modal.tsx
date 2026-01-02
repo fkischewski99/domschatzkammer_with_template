@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import NiceModal, { type NiceModalHocProps } from '@ebay/nice-modal-react';
 import { AlertCircleIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { FormProvider, type SubmitHandler } from 'react-hook-form';
 
 import { replaceOrgSlug, routes } from '@workspace/routes';
@@ -54,6 +55,8 @@ export const DeleteAccountModal = NiceModal.create<DeleteAccountModalProps>(
   ({ ownedOrganizations }) => {
     const modal = useEnhancedModal();
     const router = useRouter();
+    const t = useTranslations('account.profile.dangerZone.deleteModal');
+    const tCommon = useTranslations('common');
     const mdUp = useMediaQuery(MediaQueries.MdUp, { ssr: false });
     const methods = useZodForm({
       schema: deleteAccountSchema,
@@ -62,9 +65,8 @@ export const DeleteAccountModal = NiceModal.create<DeleteAccountModalProps>(
         statement: false
       }
     });
-    const title = 'Delete account?';
-    const description =
-      'Please confirm you understand what you are doing by ticking the checkbox below.';
+    const title = t('title');
+    const description = t('description');
     const canSubmit =
       !methods.formState.isSubmitting &&
       methods.formState.isValid &&
@@ -77,16 +79,16 @@ export const DeleteAccountModal = NiceModal.create<DeleteAccountModalProps>(
       const result = await deleteAccount();
       if (result) {
         if (!result.serverError && !result.validationErrors) {
-          toast.error('Account deleted');
+          toast.error(t('success'));
           modal.handleClose();
           const result = await signOut({ redirect: false });
           if (!result?.serverError && !result?.validationErrors) {
             router.push(routes.dashboard.auth.SignIn);
           } else {
-            toast.error("Couldn't sign out");
+            toast.error(t('signOutError'));
           }
         } else {
-          toast.error("Couldn't delete account");
+          toast.error(t('error'));
         }
       }
     };
@@ -108,7 +110,7 @@ export const DeleteAccountModal = NiceModal.create<DeleteAccountModalProps>(
                 />
               </FormControl>
               <FormLabel className="leading-2 cursor-pointer">
-                My account and all its data will be deleted.
+                {t('statement')}
               </FormLabel>
             </FormItem>
           )}
@@ -117,8 +119,7 @@ export const DeleteAccountModal = NiceModal.create<DeleteAccountModalProps>(
           <Alert variant="warning">
             <AlertCircleIcon className="size-[18px] shrink-0" />
             <AlertDescription className="inline">
-              Please assign another owner before deleting your account for the
-              following organizations:
+              {t('assignOwnerWarning')}
               <div className="max-h-40 overflow-y-auto overflow-x-hidden">
                 <ul className="list-disc">
                   {ownedOrganizations.map((organization) => (
@@ -153,7 +154,7 @@ export const DeleteAccountModal = NiceModal.create<DeleteAccountModalProps>(
           variant="outline"
           onClick={modal.handleClose}
         >
-          Cancel
+          {tCommon('cancel')}
         </Button>
         <Button
           type="button"
@@ -162,7 +163,7 @@ export const DeleteAccountModal = NiceModal.create<DeleteAccountModalProps>(
           loading={methods.formState.isSubmitting}
           onClick={methods.handleSubmit(onSubmit)}
         >
-          Delete
+          {tCommon('delete')}
         </Button>
       </>
     );

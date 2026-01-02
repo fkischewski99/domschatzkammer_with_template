@@ -3,6 +3,7 @@
 import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
 import { differenceInDays, format, formatDate } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 import { getProductPricePair } from '@workspace/billing/helpers';
 import { PriceModel } from '@workspace/billing/schema';
@@ -25,10 +26,11 @@ export type PlanDetailsProps = {
 };
 
 export function PlanDetails({ subscription, order }: PlanDetailsProps) {
+  const t = useTranslations('organization.settings.billing.plan');
   return (
     <div>
       <p className="text-sm text-muted-foreground">
-        This organization is currently on the plan:
+        {t('currentPlanMessage')}
       </p>
       <div className="space-y-4 pt-4 text-sm">
         {subscription ? (
@@ -50,6 +52,7 @@ type SubscriptionInfoProps = {
 function SubscriptionInfo({
   subscription
 }: SubscriptionInfoProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.billing.plan');
   const [pending, setPending] = React.useState<boolean>(false);
   const lineItems = subscription.items;
   if (!lineItems || lineItems.length === 0) {
@@ -86,7 +89,7 @@ function SubscriptionInfo({
         window.location.href = result.data.url;
       } else {
         toast.error(
-          'Failed to create billing portal session. Please try again.'
+          t('billingPortalError')
         );
       }
     } catch {
@@ -99,13 +102,13 @@ function SubscriptionInfo({
         <span>{product.name}</span>
         <span className="text-xs capitalize">
           {subscription.status === 'active' && subscription.cancelAtPeriodEnd
-            ? '(Canceled)'
+            ? `(${t('canceled')})`
             : `(${subscription.status})`}
         </span>
       </div>
       {subscription.status === 'trialing' && (
         <div className="flex flex-col gap-y-1">
-          <span className="font-semibold">Your trial ends on</span>
+          <span className="font-semibold">{t('trialEndsOn')}</span>
           <div className="text-muted-foreground">
             {subscription.trialEndsAt
               ? formatDate(subscription.trialEndsAt, 'P')
@@ -115,18 +118,21 @@ function SubscriptionInfo({
       )}
       {subscription.cancelAtPeriodEnd && (
         <Alert variant="warning">
-          <AlertTitle>Subscription canceled</AlertTitle>
+          <AlertTitle>{t('subscriptionCanceled')}</AlertTitle>
           <AlertDescription className="inline">
-            Your subscription will be canceled at the end of the billing cycle.
+            {t('subscriptionCanceledDescription')}
           </AlertDescription>
         </Alert>
       )}
       <div>
         <div className="flex justify-between space-x-8 pb-1 align-baseline">
           <p className="capitalize-sentence max-w-[75%] truncate text-xs text-foreground">
-            {`Current billing cycle (${format(subscription.periodStartsAt, 'MMM dd')} - ${format(subscription.periodEndsAt, 'MMM dd')})`}
+            {t('currentCycle', {
+              startDate: format(subscription.periodStartsAt, 'MMM dd'),
+              endDate: format(subscription.periodEndsAt, 'MMM dd')
+            })}
           </p>
-          <p className="text-xs text-muted-foreground">{`${daysToCycleEnd} days remaining`}</p>
+          <p className="text-xs text-muted-foreground">{t('daysRemaining', { days: daysToCycleEnd })}</p>
         </div>
         <div className="relative h-1 w-full overflow-hidden rounded-sm bg-muted p-0">
           <div
@@ -153,7 +159,7 @@ function SubscriptionInfo({
           loading={pending}
           onClick={handleBillingPortalRedirect}
         >
-          Change plan
+          {t('changePlan')}
         </Button>
       </div>
     </>
@@ -165,6 +171,7 @@ type OrderInfoProps = {
 };
 
 function OrderInfo({ order }: OrderInfoProps): React.JSX.Element {
+  const t = useTranslations('organization.settings.billing.plan');
   const [pending, setPending] = React.useState<boolean>(false);
   const lineItems = order.items;
   if (!lineItems || lineItems.length === 0) {
@@ -195,7 +202,7 @@ function OrderInfo({ order }: OrderInfoProps): React.JSX.Element {
         window.location.href = result.data.url;
       } else {
         toast.error(
-          'Failed to create billing portal session. Please try again.'
+          t('billingPortalError')
         );
       }
     } catch {
@@ -216,7 +223,7 @@ function OrderInfo({ order }: OrderInfoProps): React.JSX.Element {
           loading={pending}
           onClick={handleBillingPortalRedirect}
         >
-          Change plan
+          {t('changePlan')}
         </Button>
       </div>
     </>
@@ -224,19 +231,20 @@ function OrderInfo({ order }: OrderInfoProps): React.JSX.Element {
 }
 
 function NoPlan(): React.JSX.Element {
+  const t = useTranslations('organization.settings.billing.plan');
   const handleOpenUpgradePlanDialog = (): void => {
     NiceModal.show(UpgradePlanDialog);
   };
   return (
     <>
-      <div className="space-x-2 text-2xl">Free</div>
+      <div className="space-x-2 text-2xl">{t('free')}</div>
       <div>
         <Button
           type="button"
           variant="outline"
           onClick={handleOpenUpgradePlanDialog}
         >
-          Upgrade plan
+          {t('upgradePlan')}
         </Button>
       </div>
     </>

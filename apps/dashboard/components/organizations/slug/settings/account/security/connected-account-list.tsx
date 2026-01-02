@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import { OAuthProvider } from '@workspace/auth/providers.types';
 import {
@@ -51,12 +52,14 @@ function ConnectedAccountListItem({
   className,
   ...other
 }: ConnectedAccountListItemProps): React.JSX.Element {
+  const t = useTranslations('account.security.connectedAccounts');
+
   const handleConnect = async () => {
     const result = await connectAccount({
       provider: connectedAccount.id as OAuthProvider
     });
     if (result?.serverError || result?.validationErrors) {
-      toast.error("Couldn't connect account");
+      toast.error(t('connectError'));
     }
   };
   const handleDisconnect = async () => {
@@ -64,9 +67,9 @@ function ConnectedAccountListItem({
       provider: connectedAccount.id as OAuthProvider
     });
     if (!result?.serverError && !result?.validationErrors) {
-      toast.success('Account disconnected');
+      toast.success(t('disconnectSuccess'));
     } else {
-      toast.error("Couldn't disconnect account");
+      toast.error(t('disconnectError'));
     }
   };
   return (
@@ -84,7 +87,7 @@ function ConnectedAccountListItem({
             {identityProviderLabels[connectedAccount.id as OAuthProvider]}
           </h5>
           <p className="text-sm text-muted-foreground">
-            {connectedAccount.linked ? 'Connected' : 'Not connected'}
+            {connectedAccount.linked ? t('connected') : t('notConnected')}
           </p>
         </div>
       </div>
@@ -94,7 +97,7 @@ function ConnectedAccountListItem({
           variant="outline"
           onClick={handleDisconnect}
         >
-          Disconnect
+          {t('disconnect')}
         </Button>
       ) : (
         <Button
@@ -102,7 +105,7 @@ function ConnectedAccountListItem({
           variant="outline"
           onClick={handleConnect}
         >
-          Connect
+          {t('connect')}
         </Button>
       )}
     </li>

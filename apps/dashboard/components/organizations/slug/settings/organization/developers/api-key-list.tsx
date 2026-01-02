@@ -4,6 +4,7 @@ import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
 import { format } from 'date-fns';
 import { MoreHorizontalIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@workspace/ui/components/button';
 import {

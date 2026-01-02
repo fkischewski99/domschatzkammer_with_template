@@ -262,6 +262,8 @@
     "profile": {
       "personalDetails": {
         "title": "Persönliche Details",
+        "sectionTitle": "Persönliche Details",
+        "sectionDescription": "Legen Sie Ihren Namen und Ihre Kontaktinformationen fest. Die hier eingegebene E-Mail-Adresse wird für Ihren Login-Zugang verwendet.",
         "removeImage": "Bild entfernen",
         "changeEmail": "Ändern",
         "updateSuccess": "Persönliche Details aktualisiert",
@@ -283,6 +285,8 @@
       },
       "preferences": {
         "title": "Einstellungen",
+        "sectionTitle": "Einstellungen",
+        "sectionDescription": "Ändern Sie Ihre bevorzugte Sprache und Theme.",
         "language": "Sprache",
         "languageDescription": "Dies ist die Sprache, die in der Anwendung verwendet wird.",
         "theme": "Theme",
@@ -292,6 +296,8 @@
       },
       "dangerZone": {
         "title": "Gefahrenbereich",
+        "sectionTitle": "Gefahrenbereich",
+        "sectionDescription": "Seien Sie vorsichtig, eine Kontolöschung kann nicht rückgängig gemacht werden.",
         "deleteAccount": "Konto löschen",
         "deleteDescription": "Das Löschen Ihres Kontos ist unumkehrbar. Alle Ihre Daten werden dauerhaft von unseren Servern entfernt.",
         "deleteConfirm": "Konto löschen?",
@@ -302,6 +308,8 @@
     "security": {
       "changePassword": {
         "title": "Passwort ändern",
+        "sectionTitle": "Passwort ändern",
+        "sectionDescription": "Um eine Aktualisierung vorzunehmen, geben Sie Ihr aktuelles Passwort gefolgt von einem neuen ein. Wenn Sie Ihr aktuelles Passwort nicht kennen, melden Sie sich ab und verwenden Sie den Link zum Zurücksetzen des Passworts.",
         "currentPassword": "Aktuelles Passwort",
         "newPassword": "Neues Passwort",
         "verifyPassword": "Passwort bestätigen",
@@ -326,16 +334,46 @@
       },
       "connectedAccounts": {
         "title": "Verbundene Konten",
-        "empty": "Kein verbundenes Konto gefunden."
+        "sectionTitle": "Verbundene Konten",
+        "sectionDescription": "Melden Sie sich schneller bei Ihrem Konto an, indem Sie es mit Google oder Microsoft verknüpfen.",
+        "empty": "Kein verbundenes Konto gefunden.",
+        "connected": "Verbunden",
+        "notConnected": "Nicht verbunden",
+        "connect": "Verbinden",
+        "disconnect": "Trennen",
+        "connectError": "Konto konnte nicht verbunden werden",
+        "disconnectSuccess": "Konto getrennt",
+        "disconnectError": "Konto konnte nicht getrennt werden"
       },
       "sessions": {
         "title": "Sitzungen verwalten",
-        "empty": "Keine Sitzung gefunden."
+        "sectionTitle": "Sitzungen verwalten",
+        "sectionDescription": "Melden Sie Ihre aktiven Sitzungen in anderen Browsern und Geräten ab.",
+        "empty": "Keine Sitzung gefunden.",
+        "currentSession": "Aktuelle Sitzung",
+        "otherSession": "Andere Sitzung",
+        "expired": "Abgelaufen",
+        "expiresOn": "Läuft ab am {date}",
+        "signOut": "Abmelden",
+        "signOutSuccess": "Sitzung abgemeldet",
+        "signOutError": "Sitzung konnte nicht abgemeldet werden"
+      },
+      "multiFactorAuthentication": {
+        "sectionTitle": "Zwei-Faktor-Authentifizierung",
+        "sectionDescription": "Fügen Sie eine zusätzliche Sicherheitsebene zu Ihrem Login hinzu, indem Sie einen zusätzlichen Faktor benötigen.",
+        "authenticatorApp": "Authenticator-App",
+        "enabled": "Aktiviert",
+        "notEnabled": "Nicht aktiviert",
+        "enable": "Aktivieren",
+        "disable": "Deaktivieren",
+        "generateError": "TOTP-Setup-Daten konnten nicht generiert werden"
       }
     },
     "notifications": {
       "marketing": {
         "title": "Marketing-E-Mails",
+        "sectionTitle": "Marketing-E-Mails",
+        "sectionDescription": "Erhalten Sie E-Mails über neue Produkte, Funktionen und mehr.",
         "newsletter": "Newsletter",
         "newsletterDescription": "Erhalten Sie E-Mails mit Branchenexpertise.",
         "productUpdates": "Produktupdates",
@@ -345,6 +383,8 @@
       },
       "transactional": {
         "title": "Transaktions-E-Mails",
+        "sectionTitle": "Transaktions-E-Mails",
+        "sectionDescription": "Erhalten Sie E-Mails über Team- und Kontoaktivitäten.",
         "contacts": "Kontakte",
         "contactsDescription": "Jemand aus Ihrem Team hat einen Lead hinzugefügt oder geändert.",
         "inbox": "Posteingang",
@@ -363,32 +403,73 @@
       "general": {
         "details": {
           "title": "Organisationsdetails",
+          "sectionTitle": "Details",
+          "sectionDescription": "Grundlegende Details über Ihre Organisation.",
           "updateSuccess": "Organisationsdetails aktualisiert",
           "updateError": "Organisationsdetails konnten nicht aktualisiert werden"
         },
         "logo": {
           "title": "Organisationslogo",
+          "sectionTitle": "Logo",
+          "sectionDescription": "Aktualisieren Sie das Logo Ihrer Organisation, um es leichter erkennbar zu machen.",
           "uploadHint": "Laden Sie Ihr Logo hoch",
           "updateSuccess": "Logo aktualisiert",
           "updateError": "Logo konnte nicht aktualisiert werden"
         },
         "slug": {
           "title": "Organisations-Slug",
+          "sectionTitle": "URL",
+          "sectionDescription": "Aktualisieren Sie den Slug Ihrer Organisation für eine neue URL. Sie werden zur neuen URL weitergeleitet.",
           "updateSuccess": "Slug aktualisiert",
           "updateError": "Slug konnte nicht aktualisiert werden",
           "slugTaken": "Dieser Slug ist bereits vergeben."
         },
         "socialMedia": {
-          "title": "Soziale Medien"
+          "title": "Soziale Medien",
+          "sectionTitle": "Soziale Medien",
+          "sectionDescription": "Fügen Sie die Social-Media-Links Ihrer Organisation hinzu.",
+          "showMore": "Mehr anzeigen...",
+          "showLess": "Weniger anzeigen...",
+          "updateSuccess": "Soziale Medien aktualisiert",
+          "updateError": "Soziale Medien konnten nicht aktualisiert werden"
         },
         "businessHours": {
           "title": "Geschäftszeiten",
+          "sectionTitle": "Geschäftszeiten",
+          "sectionDescription": "Arbeitszeiten Ihrer Organisation.",
           "updateSuccess": "Geschäftszeiten aktualisiert",
-          "updateError": "Geschäftszeiten konnten nicht aktualisiert werden"
+          "updateError": "Geschäftszeiten konnten nicht aktualisiert werden",
+          "newTimeSlot": "Neues Zeitfenster",
+          "removeTimeSlot": "Zeitfenster entfernen",
+          "copyTimes": "Zeiten kopieren",
+          "copyTimesTo": "Zeiten kopieren nach...",
+          "unavailable": "Nicht verfügbar",
+          "endTimeAfterStart": "Endzeit muss nach Startzeit liegen.",
+          "timesOverlap": "Zeiten überschneiden sich mit einem anderen Zeitfenster.",
+          "apply": "Anwenden",
+          "days": {
+            "monday": "Montag",
+            "mondayShort": "Mo",
+            "tuesday": "Dienstag",
+            "tuesdayShort": "Di",
+            "wednesday": "Mittwoch",
+            "wednesdayShort": "Mi",
+            "thursday": "Donnerstag",
+            "thursdayShort": "Do",
+            "friday": "Freitag",
+            "fridayShort": "Fr",
+            "saturday": "Samstag",
+            "saturdayShort": "Sa",
+            "sunday": "Sonntag",
+            "sundayShort": "So"
+          }
         },
         "dangerZone": {
           "title": "Gefahrenbereich",
+          "sectionTitle": "Gefahrenbereich",
+          "sectionDescription": "Seien Sie vorsichtig, das Löschen kann nicht rückgängig gemacht werden. Nur der Eigentümer kann eine Organisation löschen.",
           "deleteOrganization": "Organisation löschen",
+          "deleteDescription": "Das Löschen Ihrer Organisation ist unumkehrbar. Alle Daten werden dauerhaft von unseren Servern entfernt.",
           "deleteConfirm": "Organisation löschen?",
           "deleteSuccess": "Organisation gelöscht",
           "deleteError": "Organisation konnte nicht gelöscht werden"
@@ -397,12 +478,16 @@
       "members": {
         "team": {
           "title": "Teammitglieder",
+          "sectionTitle": "Team",
+          "sectionDescription": "Verwalten und laden Sie Ihre Kollegen ein.",
           "filterPlaceholder": "Nach Name oder E-Mail filtern",
           "inviteButton": "Mitglied einladen",
           "empty": "Kein Mitglied gefunden"
         },
         "invitations": {
           "title": "Einladungen",
+          "sectionTitle": "Einladungen",
+          "sectionDescription": "Verwalten Sie Einladungen von Benutzern, die noch nicht akzeptiert haben.",
           "filterPlaceholder": "Nach E-Mail filtern",
           "pending": "Ausstehend",
           "revoked": "Widerrufen",
@@ -455,10 +540,24 @@
       "billing": {
         "plan": {
           "title": "Plan",
-          "currentCycle": "Aktueller Abrechnungszeitraum ({startDate} - {endDate})"
+          "sectionTitle": "Plan",
+          "sectionDescription": "Anzeigen, Upgrade oder Kündigung Ihres Plans. Die Abrechnung wird von unserem Zahlungspartner verwaltet.",
+          "currentPlanMessage": "Diese Organisation hat derzeit folgenden Plan:",
+          "free": "Kostenlos",
+          "upgradePlan": "Plan upgraden",
+          "changePlan": "Plan ändern",
+          "canceled": "Gekündigt",
+          "trialEndsOn": "Ihre Testphase endet am",
+          "subscriptionCanceled": "Abonnement gekündigt",
+          "subscriptionCanceledDescription": "Ihr Abonnement wird am Ende des Abrechnungszeitraums gekündigt.",
+          "currentCycle": "Aktueller Abrechnungszeitraum ({startDate} - {endDate})",
+          "daysRemaining": "{days} Tage verbleibend",
+          "billingPortalError": "Abrechnungsportal-Sitzung konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
         },
         "address": {
           "title": "Rechnungsadresse",
+          "sectionTitle": "Rechnungsadresse",
+          "sectionDescription": "Dies wird in jeder zukünftigen Rechnung berücksichtigt, vergangene Rechnungen sind nicht betroffen.",
           "line1": "Adresszeile 1",
           "line2": "Adresszeile 2",
           "country": "Land",
@@ -470,18 +569,24 @@
         },
         "email": {
           "title": "Rechnungs-E-Mail",
+          "sectionTitle": "E-Mail-Empfänger",
+          "sectionDescription": "Alle Rechnungskorrespondenz wird an diese E-Mail gesendet.",
           "emailAddress": "E-Mail-Adresse",
           "updateSuccess": "E-Mail-Empfänger aktualisiert",
           "updateError": "E-Mail-Empfänger konnte nicht aktualisiert werden"
         },
         "invoices": {
           "title": "Rechnungen",
+          "sectionTitle": "Rechnungen",
+          "sectionDescription": "Rechnungen werden automatisch an Ihre Rechnungs-E-Mail gesendet.",
           "empty": "Noch keine Rechnungen erhalten."
         }
       },
       "developers": {
         "apiKeys": {
           "title": "API-Schlüssel",
+          "sectionTitle": "API-Schlüssel",
+          "sectionDescription": "Verwalten Sie Ihre API-Schlüssel für den programmatischen Zugriff auf die Daten Ihrer Organisation.",
           "create": "API-Schlüssel erstellen",
           "createDescription": "Erstellen Sie einen neuen API-Schlüssel, indem Sie das untenstehende Formular ausfüllen.",
           "update": "API-Schlüssel aktualisieren",
@@ -496,6 +601,8 @@
         },
         "webhooks": {
           "title": "Webhooks",
+          "sectionTitle": "Webhooks",
+          "sectionDescription": "Konfigurieren Sie Webhooks, um Echtzeit-Benachrichtigungen über Ereignisse in Ihrer Organisation zu erhalten.",
           "create": "Webhook erstellen",
           "edit": "Webhook bearbeiten",
           "deleteConfirm": "Diesen Webhook löschen?",

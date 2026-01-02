@@ -47,6 +47,9 @@ export function InvitationsCard({
   ): void => {
     setSearchQuery(e.target?.value || '');
   };
+
+  const translatedStatus = status === InvitationStatus.PENDING ? t('pending').toLowerCase() : t('revoked').toLowerCase();
+
   return (
     <Card
       className={cn('flex h-full flex-col gap-0 pb-0', className)}
@@ -78,7 +81,7 @@ export function InvitationsCard({
           </ScrollArea>
         ) : (
           <EmptyText className="p-6">
-            {t('empty', { status: status.toLowerCase() })}
+            {t('empty', { status: translatedStatus })}
             {!!searchQuery && ' (filtered)'}.
           </EmptyText>
         )}
