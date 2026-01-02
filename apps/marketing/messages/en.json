@@ -11,23 +11,28 @@
     "features": {
       "feature1": {
         "title": "Feature 1",
-        "description": "Short description here"
+        "description": "Short description here",
+        "altText": "Feature 1 screenshot"
       },
       "feature2": {
         "title": "Feature 2",
-        "description": "Short description here"
+        "description": "Short description here",
+        "altText": "Feature 2 screenshot"
       },
       "feature3": {
         "title": "Feature 3",
-        "description": "Short description here"
+        "description": "Short description here",
+        "altText": "Feature 3 screenshot"
       },
       "feature4": {
         "title": "Feature 4",
-        "description": "Short description here"
+        "description": "Short description here",
+        "altText": "Feature 4 screenshot"
       },
       "feature5": {
         "title": "Feature 5",
-        "description": "Short description here"
+        "description": "Short description here",
+        "altText": "Feature 5 screenshot"
       }
     },
     "links": {
@@ -112,6 +117,19 @@
     "tryAgain": "Try again",
     "notFoundTitle": "Something's missing",
     "notFoundMessage": "Sorry, the page you are looking for doesn't exist or has been moved."
+  },
+  "docs": {
+    "breadcrumb": "Docs"
+  },
+  "metadata": {
+    "story": "Story",
+    "pricing": "Pricing",
+    "careers": "Careers",
+    "blog": "Blog",
+    "cookiePolicy": "Cookie Policy",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use"
   },
   "legal": {
     "badge": "Legal",
@@ -621,12 +639,14 @@
     "badge": "Blog Posts",
     "title": "Insights & News",
     "description": "Learn more from members of our team and industry-leading experts.",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "authorAvatar": "Author avatar"
   },
   "blogPost": {
     "allPosts": "All posts",
     "minuteRead": "1 minute read",
-    "minutesRead": "{minutes} minutes read"
+    "minutesRead": "{minutes} minutes read",
+    "authorAvatar": "Author avatar"
   },
   "bentoCards": {
     "customers": {

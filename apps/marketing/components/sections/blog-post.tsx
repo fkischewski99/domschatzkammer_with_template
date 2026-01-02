@@ -69,7 +69,7 @@ export function BlogPost({ post }: BlogPostProps): React.JSX.Element {
                 <Avatar className="relative size-7 flex-none rounded-full">
                   <AvatarImage
                     src={post.author?.avatar}
-                    alt="avatar"
+                    alt={t('authorAvatar')}
                   />
                   <AvatarFallback className="size-7 text-[10px]">
                     {getInitials(post.author?.name ?? '')}

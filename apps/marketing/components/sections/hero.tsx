@@ -270,7 +270,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/light-feature1.webp"
                 width="1328"
                 height="727"
-                alt="Feature 1 screenshot"
+                alt={t('feature1.altText')}
                 className="block rounded-xl border shadow dark:hidden"
               />
               <Image
@@ -279,7 +279,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/dark-feature1.webp"
                 width="1328"
                 height="727"
-                alt="Feature 1 screenshot"
+                alt={t('feature1.altText')}
                 className="hidden rounded-xl border shadow dark:block"
               />
             </UnderlinedTabsContent>
@@ -289,7 +289,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/light-feature2.webp"
                 width="1328"
                 height="727"
-                alt="Feature 2 screenshot"
+                alt={t('feature2.altText')}
                 className="block rounded-xl border shadow dark:hidden"
               />
               <Image
@@ -297,7 +297,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/dark-feature2.webp"
                 width="1328"
                 height="727"
-                alt="Feature 2 screenshot"
+                alt={t('feature2.altText')}
                 className="hidden rounded-xl border shadow dark:block"
               />
             </UnderlinedTabsContent>
@@ -307,7 +307,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/light-feature3.webp"
                 width="1328"
                 height="727"
-                alt="Feature 3 screenshot"
+                alt={t('feature3.altText')}
                 className="block rounded-xl border shadow dark:hidden"
               />
               <Image
@@ -315,7 +315,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/dark-feature3.webp"
                 width="1328"
                 height="727"
-                alt="Feature 3 screenshot"
+                alt={t('feature3.altText')}
                 className="hidden rounded-xl border shadow dark:block"
               />
             </UnderlinedTabsContent>
@@ -325,7 +325,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/light-feature4.webp"
                 width="1328"
                 height="727"
-                alt="Feature 4 screenshot"
+                alt={t('feature4.altText')}
                 className="block rounded-xl border shadow dark:hidden"
               />
               <Image
@@ -333,7 +333,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/dark-feature4.webp"
                 width="1328"
                 height="727"
-                alt="Feature 4 screenshot"
+                alt={t('feature4.altText')}
                 className="hidden rounded-xl border shadow dark:block"
               />
             </UnderlinedTabsContent>
@@ -343,7 +343,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/light-feature5.webp"
                 width="1328"
                 height="727"
-                alt="Feature 5 screenshot"
+                alt={t('feature5.altText')}
                 className="block rounded-xl border shadow dark:hidden"
               />
               <Image
@@ -351,7 +351,7 @@ function HeroIllustration(): React.JSX.Element {
                 src="/assets/hero/dark-feature5.webp"
                 width="1328"
                 height="727"
-                alt="Feature 5 screenshot"
+                alt={t('feature5.altText')}
                 className="hidden rounded-xl border shadow dark:block"
               />
             </UnderlinedTabsContent>

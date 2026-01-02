@@ -1,12 +1,16 @@
 import * as React from 'react';
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
 import { BlogPosts } from '~/components/sections/blog-posts';
 import { createTitle } from '~/lib/formatters';
 
-export const metadata: Metadata = {
-  title: createTitle('Blog')
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('metadata');
+  return {
+    title: createTitle(t('blog'))
+  };
+}
 
 export default function BlogPage(): React.JSX.Element {
   return <BlogPosts />;

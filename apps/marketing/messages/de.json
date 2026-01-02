@@ -11,23 +11,28 @@
     "features": {
       "feature1": {
         "title": "Feature 1",
-        "description": "Kurze Beschreibung hier"
+        "description": "Kurze Beschreibung hier",
+        "altText": "Feature 1 Screenshot"
       },
       "feature2": {
         "title": "Feature 2",
-        "description": "Kurze Beschreibung hier"
+        "description": "Kurze Beschreibung hier",
+        "altText": "Feature 2 Screenshot"
       },
       "feature3": {
         "title": "Feature 3",
-        "description": "Kurze Beschreibung hier"
+        "description": "Kurze Beschreibung hier",
+        "altText": "Feature 3 Screenshot"
       },
       "feature4": {
         "title": "Feature 4",
-        "description": "Kurze Beschreibung hier"
+        "description": "Kurze Beschreibung hier",
+        "altText": "Feature 4 Screenshot"
       },
       "feature5": {
         "title": "Feature 5",
-        "description": "Kurze Beschreibung hier"
+        "description": "Kurze Beschreibung hier",
+        "altText": "Feature 5 Screenshot"
       }
     },
     "links": {
@@ -112,6 +117,19 @@
     "tryAgain": "Erneut versuchen",
     "notFoundTitle": "Etwas fehlt",
     "notFoundMessage": "Entschuldigung, die Seite, die Sie suchen, existiert nicht oder wurde verschoben."
+  },
+  "docs": {
+    "breadcrumb": "Dokumentation"
+  },
+  "metadata": {
+    "story": "Unsere Geschichte",
+    "pricing": "Preise",
+    "careers": "Karriere",
+    "blog": "Blog",
+    "cookiePolicy": "Cookie-Richtlinie",
+    "contact": "Kontakt",
+    "privacyPolicy": "Datenschutzerklärung",
+    "termsOfUse": "Nutzungsbedingungen"
   },
   "legal": {
     "badge": "Rechtliches",
@@ -487,12 +505,14 @@
     "badge": "Blog-Beiträge",
     "title": "Einblicke & Neuigkeiten",
     "description": "Erfahren Sie mehr von Mitgliedern unseres Teams und branchenführenden Experten.",
-    "readMore": "Weiterlesen"
+    "readMore": "Weiterlesen",
+    "authorAvatar": "Autor-Avatar"
   },
   "blogPost": {
     "allPosts": "Alle Beiträge",
     "minuteRead": "1 Minute Lesezeit",
-    "minutesRead": "{minutes} Minuten Lesezeit"
+    "minutesRead": "{minutes} Minuten Lesezeit",
+    "authorAvatar": "Autor-Avatar"
   },
   "bentoCards": {
     "customers": {

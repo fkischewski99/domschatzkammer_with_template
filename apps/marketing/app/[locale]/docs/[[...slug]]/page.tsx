@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { allDocs } from 'content-collections';
 import { ChevronRightIcon } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
 import { baseUrl } from '@workspace/routes';
 import { ScrollArea } from '@workspace/ui/components/scroll-area';
@@ -66,11 +67,12 @@ export default async function DocsPage(
     return notFound();
   }
   const toc = await getTableOfContents(doc.body.raw);
+  const t = await getTranslations('docs');
   return (
     <main className="relative xl:grid xl:grid-cols-[1fr_250px]">
       <div className="mx-auto w-full min-w-0 py-10 xl:border-r xl:pr-6">
         <div className="mb-10 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
-          <div className="truncate">Docs</div>
+          <div className="truncate">{t('breadcrumb')}</div>
           <ChevronRightIcon className="size-3.5 shrink-0" />
           <div className="text-foreground">{doc.title}</div>
         </div>
