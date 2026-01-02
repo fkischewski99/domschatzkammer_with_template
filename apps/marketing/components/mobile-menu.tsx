@@ -21,7 +21,7 @@ import { RemoveScroll } from '@workspace/ui/lib/remove-scroll';
 import { cn } from '@workspace/ui/lib/utils';
 
 import { ExternalLink } from '~/components/fragments/external-link';
-import { DOCS_LINKS, MENU_LINKS } from '~/components/marketing-links';
+import { DOCS_LINKS, getMenuLinks } from '~/components/marketing-links';
 
 export function MobileMenu({
   className,
@@ -29,6 +29,7 @@ export function MobileMenu({
 }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
   const [open, setOpen] = React.useState<boolean>(false);
   const t = useTranslations('mobileMenu');
+  const tNav = useTranslations('navigation');
   const pathname = usePathname();
   const isDocs = pathname.startsWith(
     getPathname(routes.marketing.Docs, baseUrl.Marketing)
@@ -106,7 +107,10 @@ export function MobileMenu({
             {isDocs ? (
               <DocsMobileMenu onLinkClicked={handleToggleMobileMenu} />
             ) : (
-              <MainMobileMenu onLinkClicked={handleToggleMobileMenu} />
+              <MainMobileMenu
+                onLinkClicked={handleToggleMobileMenu}
+                menuLinks={getMenuLinks(tNav)}
+              />
             )}
           </RemoveScroll>
         </Portal>
@@ -117,10 +121,12 @@ export function MobileMenu({
 
 type MainMobileMenuProps = {
   onLinkClicked: () => void;
+  menuLinks: ReturnType<typeof getMenuLinks>;
 };
 
 function MainMobileMenu({
-  onLinkClicked
+  onLinkClicked,
+  menuLinks
 }: MainMobileMenuProps): React.JSX.Element {
   const [expanded, setExpanded] = React.useState<Record<string, boolean>>({});
   const t = useTranslations('mobileMenu');
@@ -157,7 +163,7 @@ function MainMobileMenu({
           </Link>
         </div>
         <ul className="w-full">
-          {MENU_LINKS.map((item) => (
+          {menuLinks.map((item) => (
             <li
               key={item.title}
               className="py-2"
