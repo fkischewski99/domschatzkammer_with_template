@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 // import { useCaptureError } from '@workspace/monitoring/hooks/use-capture-error';
 
@@ -13,6 +14,8 @@ export default function GlobalError({
   error,
   reset
 }: GlobalErrorProps): React.JSX.Element {
+  const t = useTranslations('errors');
+
   // We don't monitor the marketing app, but you can enable it if users report errors.
   // useCaptureError(error);
   React.useEffect(() => {
@@ -33,7 +36,7 @@ export default function GlobalError({
             fontFamily: 'system-ui, sans-serif'
           }}
         >
-          <h2>Something went wrong!</h2>
+          <h2>{t('globalError')}</h2>
           <button
             type="button"
             onClick={() => reset()}
@@ -43,7 +46,7 @@ export default function GlobalError({
               cursor: 'pointer'
             }}
           >
-            Try again
+            {t('tryAgain')}
           </button>
         </div>
       </body>

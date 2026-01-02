@@ -107,6 +107,12 @@
     "viewAll": "Alle anzeigen",
     "notImplementedYet": "Ich bin noch nicht implementiert."
   },
+  "errors": {
+    "globalError": "Ein Fehler ist aufgetreten!",
+    "tryAgain": "Erneut versuchen",
+    "notFoundTitle": "Etwas fehlt",
+    "notFoundMessage": "Entschuldigung, die Seite, die Sie suchen, existiert nicht oder wurde verschoben."
+  },
   "legal": {
     "badge": "Rechtliches",
     "contactTitle": "Kontaktinformationen",

@@ -107,6 +107,12 @@
     "viewAll": "View all",
     "notImplementedYet": "I'm not implemented yet."
   },
+  "errors": {
+    "globalError": "Something went wrong!",
+    "tryAgain": "Try again",
+    "notFoundTitle": "Something's missing",
+    "notFoundMessage": "Sorry, the page you are looking for doesn't exist or has been moved."
+  },
   "legal": {
     "badge": "Legal",
     "contactTitle": "Contact Information",
