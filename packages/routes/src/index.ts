@@ -15,67 +15,67 @@ export const routes = {
     Api: `${baseUrl.Dashboard}/api`,
     auth: {
       changeEmail: {
-        Expired: `${baseUrl.Dashboard}/auth/change-email/expired`,
-        Index: `${baseUrl.Dashboard}/auth/change-email`,
-        Invalid: `${baseUrl.Dashboard}/auth/change-email/invalid`,
-        Request: `${baseUrl.Dashboard}/auth/change-email/request`
+        Expired: `${baseUrl.Dashboard}/de/auth/change-email/expired`,
+        Index: `${baseUrl.Dashboard}/de/auth/change-email`,
+        Invalid: `${baseUrl.Dashboard}/de/auth/change-email/invalid`,
+        Request: `${baseUrl.Dashboard}/de/auth/change-email/request`
       },
-      Error: `${baseUrl.Dashboard}/auth/error`,
+      Error: `${baseUrl.Dashboard}/de/auth/error`,
       forgetPassword: {
-        Index: `${baseUrl.Dashboard}/auth/forgot-password`,
-        Success: `${baseUrl.Dashboard}/auth/forgot-password/success`
+        Index: `${baseUrl.Dashboard}/de/auth/forgot-password`,
+        Success: `${baseUrl.Dashboard}/de/auth/forgot-password/success`
       },
-      Index: `${baseUrl.Dashboard}/auth`,
-      RecoveryCode: `${baseUrl.Dashboard}/auth/recovery-code`,
+      Index: `${baseUrl.Dashboard}/de/auth`,
+      RecoveryCode: `${baseUrl.Dashboard}/de/auth/recovery-code`,
       resetPassword: {
-        Expired: `${baseUrl.Dashboard}/auth/reset-password/expired`,
-        Index: `${baseUrl.Dashboard}/auth/reset-password`,
-        Request: `${baseUrl.Dashboard}/auth/reset-password/request`,
-        Success: `${baseUrl.Dashboard}/auth/reset-password/success`
+        Expired: `${baseUrl.Dashboard}/de/auth/reset-password/expired`,
+        Index: `${baseUrl.Dashboard}/de/auth/reset-password`,
+        Request: `${baseUrl.Dashboard}/de/auth/reset-password/request`,
+        Success: `${baseUrl.Dashboard}/de/auth/reset-password/success`
       },
-      SignIn: `${baseUrl.Dashboard}/auth/sign-in`,
-      SignUp: `${baseUrl.Dashboard}/auth/sign-up`,
-      Totp: `${baseUrl.Dashboard}/auth/totp`,
+      SignIn: `${baseUrl.Dashboard}/de/auth/sign-in`,
+      SignUp: `${baseUrl.Dashboard}/de/auth/sign-up`,
+      Totp: `${baseUrl.Dashboard}/de/auth/totp`,
       verifyEmail: {
-        Expired: `${baseUrl.Dashboard}/auth/verify-email/expired`,
-        Index: `${baseUrl.Dashboard}/auth/verify-email`,
-        Request: `${baseUrl.Dashboard}/auth/verify-email/request`,
-        Success: `${baseUrl.Dashboard}/auth/verify-email/success`
+        Expired: `${baseUrl.Dashboard}/de/auth/verify-email/expired`,
+        Index: `${baseUrl.Dashboard}/de/auth/verify-email`,
+        Request: `${baseUrl.Dashboard}/de/auth/verify-email/request`,
+        Success: `${baseUrl.Dashboard}/de/auth/verify-email/success`
       }
     },
     Index: `${baseUrl.Dashboard}/`,
     invitations: {
-      AlreadyAccepted: `${baseUrl.Dashboard}/invitations/already-accepted`,
-      Index: `${baseUrl.Dashboard}/invitations`,
-      Request: `${baseUrl.Dashboard}/invitations/request`,
-      Revoked: `${baseUrl.Dashboard}/invitations/revoked`
+      AlreadyAccepted: `${baseUrl.Dashboard}/de/invitations/already-accepted`,
+      Index: `${baseUrl.Dashboard}/de/invitations`,
+      Request: `${baseUrl.Dashboard}/de/invitations/request`,
+      Revoked: `${baseUrl.Dashboard}/de/invitations/revoked`
     },
     onboarding: {
-      Index: `${baseUrl.Dashboard}/onboarding`,
-      Organization: `${baseUrl.Dashboard}/onboarding/organization`,
-      User: `${baseUrl.Dashboard}/onboarding/user`
+      Index: `${baseUrl.Dashboard}/de/onboarding`,
+      Organization: `${baseUrl.Dashboard}/de/onboarding/organization`,
+      User: `${baseUrl.Dashboard}/de/onboarding/user`
     },
     organizations: {
-      Index: `${baseUrl.Dashboard}/organizations`,
+      Index: `${baseUrl.Dashboard}/de/organizations`,
       slug: {
-        ChoosePlan: `${baseUrl.Dashboard}/organizations/[slug]/choose-plan`,
-        Contacts: `${baseUrl.Dashboard}/organizations/[slug]/contacts`,
-        Home: `${baseUrl.Dashboard}/organizations/[slug]/home`,
-        Index: `${baseUrl.Dashboard}/organizations/[slug]`,
+        ChoosePlan: `${baseUrl.Dashboard}/de/organizations/[slug]/choose-plan`,
+        Contacts: `${baseUrl.Dashboard}/de/organizations/[slug]/contacts`,
+        Home: `${baseUrl.Dashboard}/de/organizations/[slug]/home`,
+        Index: `${baseUrl.Dashboard}/de/organizations/[slug]`,
         settings: {
           account: {
-            Index: `${baseUrl.Dashboard}/organizations/[slug]/settings/account`,
-            Notifications: `${baseUrl.Dashboard}/organizations/[slug]/settings/account/notifications`,
-            Profile: `${baseUrl.Dashboard}/organizations/[slug]/settings/account/profile`,
-            Security: `${baseUrl.Dashboard}/organizations/[slug]/settings/account/security`
+            Index: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/account`,
+            Notifications: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/account/notifications`,
+            Profile: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/account/profile`,
+            Security: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/account/security`
           },
-          Index: `${baseUrl.Dashboard}/organizations/[slug]/settings`,
+          Index: `${baseUrl.Dashboard}/de/organizations/[slug]/settings`,
           organization: {
-            Billing: `${baseUrl.Dashboard}/organizations/[slug]/settings/organization/billing`,
-            Developers: `${baseUrl.Dashboard}/organizations/[slug]/settings/organization/developers`,
-            General: `${baseUrl.Dashboard}/organizations/[slug]/settings/organization/general`,
-            Index: `${baseUrl.Dashboard}/organizations/[slug]/settings/organization`,
-            Members: `${baseUrl.Dashboard}/organizations/[slug]/settings/organization/members`
+            Billing: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/billing`,
+            Developers: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/developers`,
+            General: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/general`,
+            Index: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization`,
+            Members: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/members`
           }
         }
       }

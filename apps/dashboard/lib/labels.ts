@@ -64,6 +64,32 @@ export const identityProviderLabels: Record<Provider, string> = {
   [Provider.MicrosoftEntraId]: 'Microsoft'
 };
 
+// Helper function to get auth error labels with translations
+export function getAuthErrorLabel(
+  t: (key: string) => string,
+  errorCode: AuthErrorCode
+): string {
+  const errorMap: Record<AuthErrorCode, string> = {
+    [AuthErrorCode.NewEmailConflict]: t('emailAlreadyExists'),
+    [AuthErrorCode.UnverifiedEmail]: t('emailNotVerified'),
+    [AuthErrorCode.IncorrectEmailOrPassword]: t('emailOrPasswordIncorrect'),
+    [AuthErrorCode.TotpCodeRequired]: t('totpRequired'),
+    [AuthErrorCode.IncorrectTotpCode]: t('totpIncorrect'),
+    [AuthErrorCode.MissingRecoveryCodes]: t('missingRecoveryCodes'),
+    [AuthErrorCode.IncorrectRecoveryCode]: t('recoveryCodeIncorrect'),
+    [AuthErrorCode.RequestExpired]: t('requestExpired'),
+    [AuthErrorCode.RateLimitExceeded]: t('rateLimitExceeded'),
+    [AuthErrorCode.IllegalOAuthProvider]: t('illegalOAuthProvider'),
+    [AuthErrorCode.InternalServerError]: t('somethingWentWrong'),
+    [AuthErrorCode.MissingOAuthEmail]: t('missingOAuthEmail'),
+    [AuthErrorCode.AlreadyLinked]: t('oauthAccountAlreadyLinked'),
+    [AuthErrorCode.RequiresExplicitLinking]: t('signInFirstToLink'),
+    [AuthErrorCode.UnknownError]: t('unknownError')
+  };
+  return errorMap[errorCode];
+}
+
+// Deprecated: Use getAuthErrorLabel with translations instead
 export const authErrorLabels: Record<AuthErrorCode, string> = {
   [AuthErrorCode.NewEmailConflict]: 'Email already exists.',
   [AuthErrorCode.UnverifiedEmail]: 'Email is not verified.',

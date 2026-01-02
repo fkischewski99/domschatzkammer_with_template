@@ -1,4 +1,7 @@
+'use client';
+
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import { cn } from '@workspace/ui/lib/utils';
 
@@ -6,6 +9,8 @@ export function OrContinueWith({
   className,
   ...other
 }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
+  const t = useTranslations('auth.signIn');
+
   return (
     <p
       className={cn(
@@ -14,7 +19,7 @@ export function OrContinueWith({
       )}
       {...other}
     >
-      Or continue with
+      {t('orContinueWith')}
     </p>
   );
 }

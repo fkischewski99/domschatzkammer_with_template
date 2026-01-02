@@ -1,0 +1,666 @@
+{
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "submit": "Absenden",
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "description": "Beschreibung",
+    "status": "Status",
+    "openMenu": "Menü öffnen",
+    "search": "Suchen...",
+    "add": "Hinzufügen",
+    "view": "Anzeigen",
+    "send": "Senden",
+    "copied": "Kopiert!",
+    "goBack": "Zurück"
+  },
+  "labels": {
+    "contactStage": {
+      "lead": "Lead",
+      "qualified": "Qualifiziert",
+      "opportunity": "Opportunity",
+      "proposal": "Angebot",
+      "inNegotiation": "In Verhandlung",
+      "lost": "Verloren",
+      "won": "Gewonnen"
+    },
+    "contactRecord": {
+      "person": "Person",
+      "company": "Unternehmen"
+    },
+    "role": {
+      "member": "Mitglied",
+      "admin": "Administrator"
+    },
+    "feedbackCategory": {
+      "suggestion": "Vorschlag",
+      "problem": "Problem",
+      "question": "Frage"
+    },
+    "webhookTrigger": {
+      "contactCreated": "Kontakt erstellt",
+      "contactUpdated": "Kontakt aktualisiert",
+      "contactDeleted": "Kontakt gelöscht"
+    },
+    "identityProvider": {
+      "credentials": "Anmeldedaten",
+      "totpCode": "TOTP-Code",
+      "recoveryCode": "Wiederherstellungscode",
+      "google": "Google",
+      "microsoft": "Microsoft"
+    },
+    "taskStatus": {
+      "open": "Offen",
+      "completed": "Abgeschlossen"
+    },
+    "theme": {
+      "light": "Hell",
+      "dark": "Dunkel",
+      "system": "System"
+    }
+  },
+  "navigation": {
+    "home": "Startseite",
+    "contacts": "Kontakte",
+    "settings": "Einstellungen",
+    "account": {
+      "profile": "Profil",
+      "security": "Sicherheit",
+      "notifications": "Benachrichtigungen"
+    },
+    "organization": {
+      "general": "Allgemein",
+      "members": "Mitglieder",
+      "billing": "Abrechnung",
+      "developers": "Entwickler"
+    },
+    "support": {
+      "inviteMember": "Mitglied einladen",
+      "feedback": "Feedback"
+    }
+  },
+  "onboarding": {
+    "stepIndicator": "Schritt {currentStep} von {totalSteps}",
+    "profile": {
+      "title": "Richten Sie Ihr Profil ein",
+      "description": "Überprüfen Sie, ob die Profilinformationen korrekt sind. Sie können dies später in den Kontoeinstellungen ändern.",
+      "removeImage": "Bild entfernen"
+    },
+    "organization": {
+      "title": "Fügen Sie Ihre Organisation hinzu",
+      "description": "Wir benötigen nur einige grundlegende Informationen, um Ihre Organisation einzurichten. Sie können dies später bearbeiten.",
+      "logo": "Logo",
+      "uploadLogo": "Laden Sie Ihr Logo hoch",
+      "uploadHint": "*.png, *.jpeg-Dateien bis zu 5 MB",
+      "slug": "Slug",
+      "exampleData": "Beispieldaten",
+      "exampleDataHint": "Empfohlen, um die Plattform zu erkunden",
+      "slugTaken": "Dieser Slug ist bereits vergeben."
+    },
+    "theme": {
+      "title": "Wählen Sie Ihr Theme",
+      "description": "Wählen Sie das Theme für die Anwendung. Sie können dies später ändern."
+    },
+    "navigation": {
+      "nextStep": "Nächster Schritt →",
+      "finish": "Fertigstellen"
+    },
+    "messages": {
+      "success": "Abgeschlossen und bereit!",
+      "error": "Anfrage konnte nicht abgeschlossen werden",
+      "signOutError": "Abmeldung fehlgeschlagen"
+    }
+  },
+  "invitations": {
+    "accept": {
+      "title": "Sie wurden eingeladen, beizutreten",
+      "description": "Werden Sie Teil eines großartigen Teams und arbeiten Sie mit talentierten Personen zusammen.",
+      "button": "Einladung annehmen",
+      "error": "Einladung konnte nicht angenommen werden"
+    },
+    "alreadyAccepted": {
+      "title": "Einladung wurde bereits angenommen",
+      "description": "Wenn Sie glauben, dass Sie diese Nachricht irrtümlich erreicht hat, sprechen Sie bitte mit Ihrem Team-Administrator und bitten Sie ihn, Sie erneut einzuladen. Falls Sie ein Konto haben, können Sie stattdessen versuchen, sich anzumelden."
+    },
+    "signInToAccept": {
+      "title": "Sie wurden eingeladen, beizutreten",
+      "toAccept": "Um die Einladung anzunehmen, melden Sie sich bitte als",
+      "wrongAccount": "Sie sind derzeit mit einem anderen Konto angemeldet. Melden Sie sich ab und melden Sie sich mit dem richtigen Konto an, um die Einladung anzunehmen.",
+      "signIn": "Anmelden"
+    },
+    "revoked": {
+      "title": "Einladung wurde widerrufen",
+      "description": "Diese Einladung ist nicht mehr gültig. Bitte kontaktieren Sie Ihren Team-Administrator für weitere Informationen."
+    }
+  },
+  "organizations": {
+    "list": {
+      "title": "Organisationen",
+      "description": "Wechseln Sie zu einer bestehenden Organisation oder fügen Sie eine neue hinzu.",
+      "addOrganization": "Organisation hinzufügen",
+      "noResults": "Keine Organisation gefunden",
+      "noResultsHint": "Passen Sie Ihre Suchanfrage an, um mehr anzuzeigen.",
+      "empty": "Fügen Sie Ihre erste Organisation hinzu, um zu beginnen."
+    },
+    "choosePlan": {
+      "title": "Upgraden Sie Ihren Plan",
+      "checkoutError": "Checkout-Sitzung konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
+      "portalError": "Abrechnungsportal-Sitzung konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+    }
+  },
+  "contacts": {
+    "table": {
+      "selectAll": "Alle auswählen",
+      "selectRow": "Zeile auswählen",
+      "columns": {
+        "name": "Name",
+        "email": "E-Mail",
+        "phone": "Telefon",
+        "stage": "Phase",
+        "tags": "Tags"
+      }
+    },
+    "empty": {
+      "title": "Noch kein Kontakt",
+      "description": "Fügen Sie Kontakte hinzu und sie werden hier angezeigt."
+    },
+    "add": {
+      "title": "Kontakt hinzufügen",
+      "description": "Erstellen Sie einen neuen Kontakt, indem Sie das untenstehende Formular ausfüllen.",
+      "record": "Datensatz",
+      "success": "Kontakt hinzugefügt",
+      "error": "Kontakt konnte nicht hinzugefügt werden"
+    },
+    "delete": {
+      "title": "Diesen Kontakt löschen?",
+      "description": "{contactName} wird dauerhaft gelöscht, sind Sie sicher, dass Sie fortfahren möchten?",
+      "success": "Kontakt gelöscht",
+      "error": "Kontakt konnte nicht gelöscht werden"
+    },
+    "bulkActions": {
+      "title": "Massenaktionen",
+      "exportCsv": "Als CSV exportieren",
+      "exportExcel": "Als Excel exportieren",
+      "delete": "Löschen",
+      "errorCsv": "Ausgewählte Kontakte konnten nicht als CSV exportiert werden",
+      "errorExcel": "Ausgewählte Kontakte konnten nicht als Excel exportiert werden"
+    },
+    "actions": {
+      "copyId": "Kontakt-ID kopieren",
+      "copyUrl": "Seiten-URL kopieren",
+      "addFavorite": "Zu Favoriten hinzufügen",
+      "removeFavorite": "Aus Favoriten entfernen",
+      "errorAddFavorite": "Favorit konnte nicht hinzugefügt werden",
+      "errorRemoveFavorite": "Favorit konnte nicht entfernt werden",
+      "errorReorderFavorites": "Favoriten konnten nicht neu sortiert werden"
+    },
+    "details": {
+      "noType": "Kein Typ verfügbar",
+      "noName": "Kein Name verfügbar",
+      "noEmail": "Keine E-Mail verfügbar",
+      "noPhone": "Keine Telefonnummer verfügbar",
+      "noAddress": "Keine Adresse verfügbar"
+    },
+    "notes": {
+      "add": "Notiz hinzufügen",
+      "addDescription": "Erstellen Sie eine neue Notiz, indem Sie das untenstehende Formular ausfüllen.",
+      "edit": "Notiz bearbeiten",
+      "addSuccess": "Notiz hinzugefügt",
+      "addError": "Notiz konnte nicht hinzugefügt werden",
+      "updateSuccess": "Notiz aktualisiert",
+      "updateError": "Notiz konnte nicht aktualisiert werden",
+      "delete": "Diese Notiz löschen?",
+      "deleteSuccess": "Notiz gelöscht",
+      "deleteError": "Notiz konnte nicht gelöscht werden"
+    },
+    "tasks": {
+      "add": "Aufgabe hinzufügen",
+      "addDescription": "Erstellen Sie eine neue Aufgabe, indem Sie das untenstehende Formular ausfüllen.",
+      "edit": "Aufgabe bearbeiten",
+      "title": "Titel",
+      "dueDate": "Fälligkeitsdatum",
+      "dueDatePlaceholder": "Fälligkeitsdatum",
+      "addSuccess": "Aufgabe hinzugefügt",
+      "addError": "Aufgabe konnte nicht hinzugefügt werden",
+      "updateSuccess": "Aufgabe aktualisiert",
+      "updateError": "Aufgabe konnte nicht aktualisiert werden",
+      "delete": "Diese Aufgabe löschen?",
+      "deleteSuccess": "Aufgabe gelöscht",
+      "deleteError": "Aufgabe konnte nicht gelöscht werden",
+      "dueDateUpdateSuccess": "Fälligkeitsdatum aktualisiert",
+      "dueDateUpdateError": "Fälligkeitsdatum konnte nicht aktualisiert werden"
+    },
+    "comments": {
+      "placeholder": "Hinterlassen Sie einen Kommentar...",
+      "editPlaceholder": "Kommentar bearbeiten...",
+      "delete": "Diesen Kommentar löschen?",
+      "deleteSuccess": "Kommentar gelöscht",
+      "deleteError": "Kommentar konnte nicht gelöscht werden"
+    },
+    "tags": {
+      "placeholder": "Geben Sie Ihr Tag ein und drücken Sie Enter"
+    },
+    "filters": {
+      "searchPlaceholder": "Nach Name oder E-Mail suchen...",
+      "tags": "Tags",
+      "filterByEmail": "Nach E-Mail filtern"
+    }
+  },
+  "account": {
+    "profile": {
+      "personalDetails": {
+        "title": "Persönliche Details",
+        "removeImage": "Bild entfernen",
+        "changeEmail": "Ändern",
+        "updateSuccess": "Persönliche Details aktualisiert",
+        "updateError": "Persönliche Details konnten nicht aktualisiert werden"
+      },
+      "changeEmail": {
+        "title": "E-Mail-Adresse ändern",
+        "success": "Änderungsanfrage gesendet",
+        "error": "Änderungsanfrage konnte nicht gesendet werden"
+      },
+      "photo": {
+        "cropTitle": "Foto zuschneiden",
+        "updateSuccess": "Bild aktualisiert",
+        "removeSuccess": "Bild entfernt",
+        "updateError": "Bild konnte nicht aktualisiert werden",
+        "removeError": "Bild konnte nicht entfernt werden",
+        "cropError": "Das Bild konnte nicht zugeschnitten werden.",
+        "sizeError": "Das hochgeladene Bild sollte {size} MB Größenlimit nicht überschreiten"
+      },
+      "preferences": {
+        "title": "Einstellungen",
+        "theme": "Theme",
+        "updateSuccess": "Einstellungen aktualisiert",
+        "updateError": "Einstellungen konnten nicht aktualisiert werden"
+      },
+      "dangerZone": {
+        "title": "Gefahrenbereich",
+        "deleteAccount": "Konto löschen",
+        "deleteDescription": "Das Löschen Ihres Kontos ist unumkehrbar. Alle Ihre Daten werden dauerhaft von unseren Servern entfernt.",
+        "deleteConfirm": "Konto löschen?",
+        "deleteSuccess": "Konto gelöscht",
+        "deleteError": "Konto konnte nicht gelöscht werden"
+      }
+    },
+    "security": {
+      "changePassword": {
+        "title": "Passwort ändern",
+        "currentPassword": "Aktuelles Passwort",
+        "newPassword": "Neues Passwort",
+        "noPasswordSet": "Noch kein Passwort festgelegt.",
+        "toggleVisibility": "Passwortsichtbarkeit umschalten",
+        "changeSuccess": "Passwort geändert!",
+        "setSuccess": "Passwort festgelegt!",
+        "changeError": "Passwort konnte nicht geändert werden. Bitte versuchen Sie es erneut.",
+        "setError": "Passwort konnte nicht festgelegt werden. Bitte versuchen Sie es erneut."
+      },
+      "authenticator": {
+        "title": "Authenticator-App",
+        "enableSuccess": "Authenticator-App aktiviert",
+        "disableConfirm": "Authenticator-App deaktivieren?",
+        "disableDescription": "Die Authenticator-App wird deaktiviert, sind Sie sicher, dass Sie fortfahren möchten?",
+        "disableSuccess": "Authenticator-App deaktiviert",
+        "disableError": "Authenticator-App konnte nicht deaktiviert werden"
+      },
+      "recoveryCodes": {
+        "title": "Wiederherstellungscodes"
+      },
+      "connectedAccounts": {
+        "title": "Verbundene Konten"
+      },
+      "sessions": {
+        "title": "Sitzungen verwalten"
+      }
+    },
+    "notifications": {
+      "marketing": {
+        "title": "Marketing-E-Mails",
+        "updateSuccess": "Marketing-E-Mails aktualisiert",
+        "updateError": "Marketing-E-Mails konnten nicht aktualisiert werden"
+      },
+      "transactional": {
+        "title": "Transaktions-E-Mails",
+        "updateSuccess": "Transaktions-E-Mails aktualisiert",
+        "updateError": "Transaktions-E-Mails konnten nicht aktualisiert werden"
+      }
+    }
+  },
+  "organization": {
+    "settings": {
+      "general": {
+        "details": {
+          "title": "Organisationsdetails",
+          "updateSuccess": "Organisationsdetails aktualisiert",
+          "updateError": "Organisationsdetails konnten nicht aktualisiert werden"
+        },
+        "logo": {
+          "title": "Organisationslogo",
+          "uploadHint": "Laden Sie Ihr Logo hoch",
+          "updateSuccess": "Logo aktualisiert",
+          "updateError": "Logo konnte nicht aktualisiert werden"
+        },
+        "slug": {
+          "title": "Organisations-Slug",
+          "updateSuccess": "Slug aktualisiert",
+          "updateError": "Slug konnte nicht aktualisiert werden",
+          "slugTaken": "Dieser Slug ist bereits vergeben."
+        },
+        "socialMedia": {
+          "title": "Soziale Medien"
+        },
+        "businessHours": {
+          "title": "Geschäftszeiten",
+          "updateSuccess": "Geschäftszeiten aktualisiert",
+          "updateError": "Geschäftszeiten konnten nicht aktualisiert werden"
+        },
+        "dangerZone": {
+          "title": "Gefahrenbereich",
+          "deleteOrganization": "Organisation löschen",
+          "deleteConfirm": "Organisation löschen?",
+          "deleteSuccess": "Organisation gelöscht",
+          "deleteError": "Organisation konnte nicht gelöscht werden"
+        }
+      },
+      "members": {
+        "team": {
+          "title": "Teammitglieder"
+        },
+        "invite": {
+          "title": "Mitglied einladen",
+          "description": "Laden Sie ein neues Mitglied zu Ihrer Organisation ein.",
+          "success": "Einladung gesendet",
+          "error": "Einladung konnte nicht gesendet werden",
+          "resendSuccess": "Einladung erneut gesendet",
+          "resendError": "Einladung konnte nicht erneut gesendet werden"
+        },
+        "update": {
+          "title": "Einladung aktualisieren",
+          "success": "Einladung aktualisiert",
+          "error": "Einladung konnte nicht aktualisiert werden"
+        },
+        "changeRole": {
+          "title": "Rolle ändern",
+          "success": "Rolle geändert",
+          "error": "Rolle konnte nicht geändert werden"
+        },
+        "remove": {
+          "confirm": "Dieses Mitglied entfernen?",
+          "success": "Mitglied entfernt",
+          "error": "Mitglied konnte nicht entfernt werden"
+        },
+        "transferOwnership": {
+          "title": "Eigentümerschaft übertragen?",
+          "success": "Eigentümerschaft übertragen",
+          "error": "Eigentümerschaft konnte nicht übertragen werden"
+        },
+        "leave": {
+          "confirm": "Organisation verlassen?",
+          "success": "Organisation verlassen",
+          "error": "Organisation konnte nicht verlassen werden"
+        },
+        "revoke": {
+          "confirm": "Diese Einladung widerrufen?",
+          "success": "Einladung widerrufen",
+          "error": "Einladung konnte nicht widerrufen werden"
+        },
+        "delete": {
+          "confirm": "Diese Einladung löschen?",
+          "success": "Einladung gelöscht",
+          "error": "Einladung konnte nicht gelöscht werden"
+        }
+      },
+      "billing": {
+        "plan": {
+          "title": "Plan",
+          "currentCycle": "Aktueller Abrechnungszeitraum ({startDate} - {endDate})"
+        },
+        "address": {
+          "title": "Rechnungsadresse",
+          "updateSuccess": "Rechnungsadresse aktualisiert",
+          "updateError": "Rechnungsadresse konnte nicht aktualisiert werden"
+        },
+        "email": {
+          "title": "Rechnungs-E-Mail",
+          "updateSuccess": "E-Mail-Empfänger aktualisiert",
+          "updateError": "E-Mail-Empfänger konnte nicht aktualisiert werden"
+        },
+        "invoices": {
+          "title": "Rechnungen"
+        }
+      },
+      "developers": {
+        "apiKeys": {
+          "title": "API-Schlüssel",
+          "create": "API-Schlüssel erstellen",
+          "createDescription": "Erstellen Sie einen neuen API-Schlüssel, indem Sie das untenstehende Formular ausfüllen.",
+          "update": "API-Schlüssel aktualisieren",
+          "createSuccess": "API-Schlüssel hinzugefügt",
+          "createError": "API-Schlüssel konnte nicht hinzugefügt werden",
+          "updateSuccess": "API-Schlüssel aktualisiert",
+          "updateError": "API-Schlüssel konnte nicht aktualisiert werden",
+          "revokeConfirm": "Diesen API-Schlüssel widerrufen?",
+          "revokeSuccess": "API-Schlüssel widerrufen",
+          "revokeError": "API-Schlüssel konnte nicht widerrufen werden"
+        },
+        "webhooks": {
+          "title": "Webhooks",
+          "create": "Webhook erstellen",
+          "edit": "Webhook bearbeiten",
+          "deleteConfirm": "Diesen Webhook löschen?",
+          "deleteSuccess": "Webhook gelöscht",
+          "deleteError": "Webhook konnte nicht gelöscht werden"
+        }
+      }
+    }
+  },
+  "dashboard": {
+    "home": {
+      "leadGeneration": {
+        "title": "Lead-Generierung",
+        "description": "Neue Kontakte zum Pool hinzugefügt.",
+        "contacts": "Kontakte",
+        "people": "Personen",
+        "companies": "Unternehmen"
+      },
+      "leastVisitedContacts": {
+        "title": "Am wenigsten besuchte Kontakte"
+      },
+      "mostVisitedContacts": {
+        "title": "Am meisten besuchte Kontakte"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "description": "Senden Sie Ihr Feedback, indem Sie das untenstehende Formular ausfüllen.",
+    "topic": "Thema",
+    "message": "Nachricht",
+    "success": "Feedback gesendet",
+    "error": "Feedback konnte nicht gesendet werden"
+  },
+  "auth": {
+    "metadata": {
+      "signIn": "Anmelden",
+      "signUp": "Registrieren",
+      "forgotPassword": "Passwort vergessen",
+      "resetLinkSent": "Reset-Link gesendet",
+      "resetPassword": "Passwort zurücksetzen",
+      "expiredChangeRequest": "Abgelaufene Änderungsanfrage",
+      "verifyEmail": "E-Mail bestätigen",
+      "emailVerification": "E-Mail-Bestätigung",
+      "emailVerificationExpired": "E-Mail-Bestätigung abgelaufen",
+      "emailVerificationSuccess": "E-Mail erfolgreich bestätigt",
+      "changeEmail": "E-Mail ändern",
+      "invalidChangeRequest": "Ungültige Änderungsanfrage",
+      "confirmViaAuthenticatorApp": "Per Authenticator-App bestätigen",
+      "recoveryCode": "Wiederherstellungscode",
+      "authError": "Authentifizierungsfehler"
+    },
+    "signIn": {
+      "title": "Bei Ihrem Konto anmelden",
+      "description": "Willkommen zurück! Bitte melden Sie sich an, um fortzufahren.",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "forgotPassword": "Passwort vergessen?",
+      "verifyEmail": "E-Mail bestätigen",
+      "signIn": "Anmelden",
+      "orContinueWith": "Oder fortfahren mit",
+      "google": "Google",
+      "microsoft": "Microsoft",
+      "noAccount": "Noch kein Konto?",
+      "signUp": "Registrieren",
+      "googleError": "Konnte nicht mit Google fortfahren",
+      "microsoftError": "Konnte nicht mit Microsoft fortfahren"
+    },
+    "signUp": {
+      "title": "Konto erstellen",
+      "description": "Bitte füllen Sie die Details aus, um loszulegen.",
+      "name": "Name",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "createAccount": "Konto erstellen",
+      "orContinueWith": "Oder fortfahren mit",
+      "google": "Google",
+      "microsoft": "Microsoft",
+      "haveAccount": "Bereits ein Konto?",
+      "signIn": "Anmelden",
+      "error": "Bei der Registrierung ist ein Fehler aufgetreten.",
+      "googleError": "Bei der Google-Registrierung ist ein Fehler aufgetreten.",
+      "microsoftError": "Bei der Microsoft-Registrierung ist ein Fehler aufgetreten.",
+      "termsAgreement": "Mit der Registrierung stimmen Sie unseren",
+      "termsOfUse": "Nutzungsbedingungen",
+      "and": "und",
+      "privacyPolicy": "Datenschutzrichtlinien",
+      "needHelp": "Hilfe benötigt?",
+      "getInTouch": "Kontakt aufnehmen"
+    },
+    "forgotPassword": {
+      "title": "Passwort vergessen?",
+      "description": "Keine Sorge! Wir senden Ihnen einen Link mit Anweisungen zum Zurücksetzen Ihres Passworts.",
+      "email": "E-Mail",
+      "sendInstructions": "Anweisungen senden",
+      "remembered": "Passwort wieder eingefallen?",
+      "signIn": "Anmelden",
+      "error": "Passwortänderung konnte nicht angefordert werden"
+    },
+    "forgotPasswordSuccess": {
+      "title": "Reset-Anweisungen gesendet",
+      "description": "Eine E-Mail mit einem Link und Reset-Anweisungen ist unterwegs an",
+      "notice": "Wenn Sie in Kürze keine E-Mail erhalten, überprüfen Sie, ob die eingegebene E-Mail-Adresse korrekt ist, prüfen Sie Ihren Spam-Ordner oder wenden Sie sich an den Support, falls das Problem weiterhin besteht.",
+      "backToLogin": "Zurück zur Anmeldung"
+    },
+    "resetPassword": {
+      "title": "Passwort zurücksetzen",
+      "description": "Verwenden Sie das untenstehende Formular, um Ihr Passwort zu ändern. Diese Anfrage läuft ab in",
+      "password": "Passwort",
+      "changePassword": "Passwort ändern",
+      "error": "Passwort konnte nicht zurückgesetzt werden."
+    },
+    "resetPasswordExpired": {
+      "title": "Reset-Anfrage ist abgelaufen",
+      "description": "Gehen Sie zurück und geben Sie die mit Ihrem Konto verknüpfte E-Mail-Adresse ein. Wir senden Ihnen einen weiteren Link mit Anweisungen zum Zurücksetzen Ihres Passworts.",
+      "tryAgain": "Erneut versuchen?",
+      "forgotPassword": "Passwort vergessen"
+    },
+    "resetPasswordSuccess": {
+      "title": "Passwort aktualisiert",
+      "description": "Ihr Passwort wurde erfolgreich geändert. Verwenden Sie Ihr neues Passwort zum Anmelden.",
+      "backToLogin": "Zurück zur Anmeldung"
+    },
+    "verifyEmail": {
+      "title": "Bitte überprüfen Sie Ihre E-Mail",
+      "description": "Ihre Registrierung war erfolgreich. Wir haben Ihnen eine E-Mail mit einem Bestätigungslink gesendet.",
+      "alternativeDescription": "Alternativ können Sie das Einmal-Passwort in der E-Mail zur Bestätigung verwenden.",
+      "code": "Code",
+      "verify": "Bestätigen",
+      "noEmail": "Keine E-Mail erhalten?",
+      "resend": "Erneut senden",
+      "resendSuccess": "E-Mail-Bestätigung erneut gesendet",
+      "resendError": "Bestätigung konnte nicht erneut gesendet werden",
+      "error": "E-Mail konnte nicht bestätigt werden"
+    },
+    "verifyEmailExpired": {
+      "title": "E-Mail-Bestätigung ist abgelaufen",
+      "description": "Entschuldigung, Ihre E-Mail-Bestätigung ist bereits abgelaufen! Sie müssen eine neue Bestätigung anfordern.",
+      "verifyEmail": "E-Mail bestätigen"
+    },
+    "verifyEmailSuccess": {
+      "title": "E-Mail bestätigt",
+      "description": "Ihre E-Mail wurde erfolgreich bestätigt. Sie können sich jetzt mit Ihrem Konto anmelden.",
+      "backToLogin": "Zurück zur Anmeldung"
+    },
+    "changeEmail": {
+      "title": "E-Mail geändert",
+      "description": "Ihre E-Mail wurde erfolgreich geändert auf",
+      "notice": "Daher wurden Sie abgemeldet und müssen sich erneut anmelden.",
+      "goToLogin": "Zur Anmeldung"
+    },
+    "changeEmailExpired": {
+      "title": "Änderungsanfrage ist abgelaufen",
+      "description": "Entschuldigung, Ihre E-Mail-Änderungsanfrage ist bereits abgelaufen! Sie müssen eine E-Mail-Änderung erneut anfordern.",
+      "changeEmail": "E-Mail ändern"
+    },
+    "changeEmailInvalid": {
+      "title": "Änderungsanfrage ist ungültig",
+      "description": "Entschuldigung, aber Ihre E-Mail-Änderungsanfrage ist nicht gültig! Dies kann passieren, wenn Sie mehrere Änderungsanfragen senden, die jeweils die vorherigen ungültig machen, oder wenn Sie Ihre E-Mail bereits geändert haben.",
+      "changeEmail": "E-Mail ändern"
+    },
+    "totp": {
+      "title": "Authenticator-Code",
+      "description": "Bitte geben Sie den 6-stelligen Code aus Ihrer Authenticator-App ein.",
+      "code": "Code",
+      "verify": "Bestätigen",
+      "signInAgain": "Erneut anmelden.",
+      "goBack": "Zurück",
+      "lostAccess": "Zugriff verloren",
+      "missingTokenParam": "Token-Parameter fehlt.",
+      "missingExpiryParam": "Ablauf-Parameter fehlt."
+    },
+    "recoveryCode": {
+      "title": "Wiederherstellungscode",
+      "description": "Jeder Wiederherstellungscode kann genau einmal verwendet werden, um ohne Ihren Authenticator Zugriff zu erhalten.",
+      "code": "Code",
+      "placeholder": "XXXXX-XXXXX",
+      "verify": "Bestätigen",
+      "goBack": "Zurück"
+    },
+    "error": {
+      "title": "Authentifizierungsfehler",
+      "description": "Beim Anmelden ist ein Fehler aufgetreten. Gehen Sie zurück zum Anmeldebildschirm und versuchen Sie es erneut.",
+      "backToLogin": "Zurück zur Anmeldung"
+    },
+    "passwordValidation": {
+      "allRequirementsMet": "Alle Anforderungen erfüllt",
+      "minLength": "oder mehr Zeichen",
+      "uppercaseAndLowercase": "Groß- und Kleinbuchstaben",
+      "atLeastOneNumber": "Mindestens eine Zahl"
+    },
+    "errors": {
+      "emailAlreadyExists": "E-Mail existiert bereits.",
+      "emailNotVerified": "E-Mail ist nicht bestätigt.",
+      "emailOrPasswordIncorrect": "E-Mail oder Passwort ist nicht korrekt.",
+      "totpRequired": "TOTP-Code ist erforderlich.",
+      "totpIncorrect": "Der TOTP-Code ist nicht korrekt.",
+      "missingRecoveryCodes": "Wiederherstellungscodes fehlen.",
+      "recoveryCodeIncorrect": "Der Wiederherstellungscode ist nicht korrekt.",
+      "requestExpired": "Anfrage ist abgelaufen.",
+      "rateLimitExceeded": "Rate-Limit überschritten.",
+      "illegalOAuthProvider": "Ungültiger OAuth-Anbieter.",
+      "somethingWentWrong": "Etwas ist schiefgegangen. Bitte versuchen Sie es später erneut.",
+      "missingOAuthEmail": "OAuth-E-Mail fehlt.",
+      "oauthAccountAlreadyLinked": "OAuth-Konto wurde bereits verknüpft.",
+      "signInFirstToLink": "Bitte melden Sie sich zuerst an, um dieses Konto zu verknüpfen",
+      "unknownError": "Unbekannter Fehler."
+    }
+  }
+}

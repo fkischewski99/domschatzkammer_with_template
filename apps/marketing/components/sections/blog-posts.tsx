@@ -7,7 +7,6 @@ import { allPosts } from 'content-collections';
 import { format, isBefore } from 'date-fns';
 import { ArrowRightIcon } from 'lucide-react';
 
-import { baseUrl } from '@workspace/routes';
 import {
   Avatar,
   AvatarFallback,
@@ -37,7 +36,7 @@ export function BlogPosts(): React.JSX.Element {
             .map((post, index) => (
               <Link
                 key={index}
-                href={`${baseUrl.Marketing}${post.slug}`}
+                href={post.slug}
                 className="flex h-full flex-col justify-between rounded-2xl bg-background p-6 shadow-xs transition-shadow hover:shadow-md dark:bg-accent/30 dark:hover:bg-accent/50"
               >
                 <div className="mb-4 flex items-center justify-between text-muted-foreground text-sm">

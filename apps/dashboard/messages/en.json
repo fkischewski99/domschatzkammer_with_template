@@ -1,0 +1,666 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "description": "Description",
+    "status": "Status",
+    "openMenu": "Open menu",
+    "search": "Search...",
+    "add": "Add",
+    "view": "View",
+    "send": "Send",
+    "copied": "Copied!",
+    "goBack": "Go back"
+  },
+  "labels": {
+    "contactStage": {
+      "lead": "Lead",
+      "qualified": "Qualified",
+      "opportunity": "Opportunity",
+      "proposal": "Proposal",
+      "inNegotiation": "In negotiation",
+      "lost": "Lost",
+      "won": "Won"
+    },
+    "contactRecord": {
+      "person": "Person",
+      "company": "Company"
+    },
+    "role": {
+      "member": "Member",
+      "admin": "Admin"
+    },
+    "feedbackCategory": {
+      "suggestion": "Suggestion",
+      "problem": "Problem",
+      "question": "Question"
+    },
+    "webhookTrigger": {
+      "contactCreated": "Contact created",
+      "contactUpdated": "Contact updated",
+      "contactDeleted": "Contact deleted"
+    },
+    "identityProvider": {
+      "credentials": "Credentials",
+      "totpCode": "TOTP code",
+      "recoveryCode": "Recovery code",
+      "google": "Google",
+      "microsoft": "Microsoft"
+    },
+    "taskStatus": {
+      "open": "Open",
+      "completed": "Completed"
+    },
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "contacts": "Contacts",
+    "settings": "Settings",
+    "account": {
+      "profile": "Profile",
+      "security": "Security",
+      "notifications": "Notifications"
+    },
+    "organization": {
+      "general": "General",
+      "members": "Members",
+      "billing": "Billing",
+      "developers": "Developers"
+    },
+    "support": {
+      "inviteMember": "Invite member",
+      "feedback": "Feedback"
+    }
+  },
+  "onboarding": {
+    "stepIndicator": "Step {currentStep} of {totalSteps}",
+    "profile": {
+      "title": "Set up your profile",
+      "description": "Check if the profile information is correct. You'll be able to change this later in the account settings page.",
+      "removeImage": "Remove image"
+    },
+    "organization": {
+      "title": "Add your organization",
+      "description": "We just need some basic info to get your organization set up. You'll be able to edit this later.",
+      "logo": "Logo",
+      "uploadLogo": "Upload your logo",
+      "uploadHint": "*.png, *.jpeg files up to 5 MB",
+      "slug": "Slug",
+      "exampleData": "Example data",
+      "exampleDataHint": "Recommended to explore the platform",
+      "slugTaken": "This slug is already taken."
+    },
+    "theme": {
+      "title": "Choose your theme",
+      "description": "Select the theme for the application. You'll be able to change this later."
+    },
+    "navigation": {
+      "nextStep": "Next step →",
+      "finish": "Finish"
+    },
+    "messages": {
+      "success": "Completed and ready to go!",
+      "error": "Couldn't complete request",
+      "signOutError": "Couldn't sign out"
+    }
+  },
+  "invitations": {
+    "accept": {
+      "title": "You have been invited to join",
+      "description": "Become part of an amazing team and work alongside talented individuals.",
+      "button": "Accept invitation",
+      "error": "Couldn't accept invitation"
+    },
+    "alreadyAccepted": {
+      "title": "Invitation was already accepted",
+      "description": "If you feel you've reached this message in error, please talk with your team administrator and ask them to reinvite you. In case you have an account you can try to log in instead."
+    },
+    "signInToAccept": {
+      "title": "You have been invited to join",
+      "toAccept": "To accept the invitation please sign in as",
+      "wrongAccount": "You are currently logged in with a different account. Sign out and log in with the correct account to accept the invitation.",
+      "signIn": "Sign in"
+    },
+    "revoked": {
+      "title": "Invitation was revoked",
+      "description": "This invitation is no longer valid. Please contact your team administrator for more information."
+    }
+  },
+  "organizations": {
+    "list": {
+      "title": "Organizations",
+      "description": "Jump into an existing organization or add a new one.",
+      "addOrganization": "Add organization",
+      "noResults": "No organization found",
+      "noResultsHint": "Adjust your search query to show more.",
+      "empty": "Add your first organization to get started."
+    },
+    "choosePlan": {
+      "title": "Upgrade your plan",
+      "checkoutError": "Failed to create checkout session. Please try again.",
+      "portalError": "Failed to create billing portal session. Please try again."
+    }
+  },
+  "contacts": {
+    "table": {
+      "selectAll": "Select all",
+      "selectRow": "Select row",
+      "columns": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "stage": "Stage",
+        "tags": "Tags"
+      }
+    },
+    "empty": {
+      "title": "No contact yet",
+      "description": "Add contacts and they will show up here."
+    },
+    "add": {
+      "title": "Add contact",
+      "description": "Create a new contact by filling out the form below.",
+      "record": "Record",
+      "success": "Contact added",
+      "error": "Couldn't add contact"
+    },
+    "delete": {
+      "title": "Delete this contact?",
+      "description": "{contactName} will be permanently deleted, are you sure you want to continue?",
+      "success": "Contact deleted",
+      "error": "Contact couldn't be deleted"
+    },
+    "bulkActions": {
+      "title": "Bulk actions",
+      "exportCsv": "Export to CSV",
+      "exportExcel": "Export to Excel",
+      "delete": "Delete",
+      "errorCsv": "Couldn't export selected contacts to CSV",
+      "errorExcel": "Couldn't export selected contacts to Excel"
+    },
+    "actions": {
+      "copyId": "Copy contact ID",
+      "copyUrl": "Copy page URL",
+      "addFavorite": "Add favorite",
+      "removeFavorite": "Remove favorite",
+      "errorAddFavorite": "Couldn't add favorite",
+      "errorRemoveFavorite": "Couldn't remove favorite",
+      "errorReorderFavorites": "Couldn't reorder favorites"
+    },
+    "details": {
+      "noType": "No type available",
+      "noName": "No name available",
+      "noEmail": "No email available",
+      "noPhone": "No phone available",
+      "noAddress": "No address available"
+    },
+    "notes": {
+      "add": "Add note",
+      "addDescription": "Create a new note by filling out the form below.",
+      "edit": "Edit note",
+      "addSuccess": "Note added",
+      "addError": "Couldn't add note",
+      "updateSuccess": "Note updated",
+      "updateError": "Couldn't update note",
+      "delete": "Delete this note?",
+      "deleteSuccess": "Note deleted",
+      "deleteError": "Couldn't delete note"
+    },
+    "tasks": {
+      "add": "Add task",
+      "addDescription": "Create a new task by filling out the form below.",
+      "edit": "Edit task",
+      "title": "Title",
+      "dueDate": "Due date",
+      "dueDatePlaceholder": "Due date",
+      "addSuccess": "Task added",
+      "addError": "Couldn't add task",
+      "updateSuccess": "Task updated",
+      "updateError": "Couldn't update task",
+      "delete": "Delete this task?",
+      "deleteSuccess": "Task deleted",
+      "deleteError": "Couldn't delete task",
+      "dueDateUpdateSuccess": "Due date updated",
+      "dueDateUpdateError": "Couldn't update due date"
+    },
+    "comments": {
+      "placeholder": "Leave a comment...",
+      "editPlaceholder": "Edit comment...",
+      "delete": "Delete this comment?",
+      "deleteSuccess": "Comment deleted",
+      "deleteError": "Couldn't delete comment"
+    },
+    "tags": {
+      "placeholder": "Type your tag and press enter"
+    },
+    "filters": {
+      "searchPlaceholder": "Search by name or email...",
+      "tags": "Tags",
+      "filterByEmail": "Filter by email"
+    }
+  },
+  "account": {
+    "profile": {
+      "personalDetails": {
+        "title": "Personal details",
+        "removeImage": "Remove image",
+        "changeEmail": "Change",
+        "updateSuccess": "Personal details updated",
+        "updateError": "Couldn't update personal details"
+      },
+      "changeEmail": {
+        "title": "Change email address",
+        "success": "Change request sent",
+        "error": "Couldn't send change request"
+      },
+      "photo": {
+        "cropTitle": "Crop photo",
+        "updateSuccess": "Image updated",
+        "removeSuccess": "Image removed",
+        "updateError": "Couldn't update image",
+        "removeError": "Couldn't remove image",
+        "cropError": "Failed to crop the image.",
+        "sizeError": "Uploaded image shouldn't exceed {size} MB size limit"
+      },
+      "preferences": {
+        "title": "Preferences",
+        "theme": "Theme",
+        "updateSuccess": "Preferences updated",
+        "updateError": "Couldn't update preferences"
+      },
+      "dangerZone": {
+        "title": "Danger zone",
+        "deleteAccount": "Delete account",
+        "deleteDescription": "Deleting your account is irreversible. All your data will be permanently removed from our servers.",
+        "deleteConfirm": "Delete account?",
+        "deleteSuccess": "Account deleted",
+        "deleteError": "Couldn't delete account"
+      }
+    },
+    "security": {
+      "changePassword": {
+        "title": "Change password",
+        "currentPassword": "Current password",
+        "newPassword": "New password",
+        "noPasswordSet": "No password set yet.",
+        "toggleVisibility": "Toggle password visibility",
+        "changeSuccess": "Password changed!",
+        "setSuccess": "Password set!",
+        "changeError": "Couldn't change password. Please try again.",
+        "setError": "Couldn't set password. Please try again."
+      },
+      "authenticator": {
+        "title": "Authenticator app",
+        "enableSuccess": "Authenticator app enabled",
+        "disableConfirm": "Disable authenticator app?",
+        "disableDescription": "The authenticator app will be disabled, are you sure you want to continue?",
+        "disableSuccess": "Authenticator app disabled",
+        "disableError": "Couldn't disable authenticator app"
+      },
+      "recoveryCodes": {
+        "title": "Recovery codes"
+      },
+      "connectedAccounts": {
+        "title": "Connected accounts"
+      },
+      "sessions": {
+        "title": "Manage sessions"
+      }
+    },
+    "notifications": {
+      "marketing": {
+        "title": "Marketing emails",
+        "updateSuccess": "Marketing emails updated",
+        "updateError": "Couldn't update marketing emails"
+      },
+      "transactional": {
+        "title": "Transactional emails",
+        "updateSuccess": "Transactional emails updated",
+        "updateError": "Couldn't update transactional emails"
+      }
+    }
+  },
+  "organization": {
+    "settings": {
+      "general": {
+        "details": {
+          "title": "Organization details",
+          "updateSuccess": "Organization details updated",
+          "updateError": "Couldn't update organization details"
+        },
+        "logo": {
+          "title": "Organization logo",
+          "uploadHint": "Upload your logo",
+          "updateSuccess": "Logo updated",
+          "updateError": "Couldn't update logo"
+        },
+        "slug": {
+          "title": "Organization slug",
+          "updateSuccess": "Slug updated",
+          "updateError": "Couldn't update slug",
+          "slugTaken": "This slug is already taken."
+        },
+        "socialMedia": {
+          "title": "Social media"
+        },
+        "businessHours": {
+          "title": "Business hours",
+          "updateSuccess": "Business hours updated",
+          "updateError": "Couldn't update business hours"
+        },
+        "dangerZone": {
+          "title": "Danger zone",
+          "deleteOrganization": "Delete organization",
+          "deleteConfirm": "Delete organization?",
+          "deleteSuccess": "Organization deleted",
+          "deleteError": "Couldn't delete organization"
+        }
+      },
+      "members": {
+        "team": {
+          "title": "Team members"
+        },
+        "invite": {
+          "title": "Invite member",
+          "description": "Invite a new member to your organization.",
+          "success": "Invitation sent",
+          "error": "Couldn't send invitation",
+          "resendSuccess": "Invitation re-sent",
+          "resendError": "Couldn't resend invitation"
+        },
+        "update": {
+          "title": "Update invitation",
+          "success": "Invitation updated",
+          "error": "Couldn't update invitation"
+        },
+        "changeRole": {
+          "title": "Change role",
+          "success": "Role changed",
+          "error": "Couldn't change role"
+        },
+        "remove": {
+          "confirm": "Remove this member?",
+          "success": "Member removed",
+          "error": "Couldn't remove member"
+        },
+        "transferOwnership": {
+          "title": "Transfer ownership?",
+          "success": "Ownership transferred",
+          "error": "Couldn't transfer ownership"
+        },
+        "leave": {
+          "confirm": "Leave organization?",
+          "success": "Left organization",
+          "error": "Couldn't leave organization"
+        },
+        "revoke": {
+          "confirm": "Revoke this invitation?",
+          "success": "Invitation revoked",
+          "error": "Couldn't revoke invitation"
+        },
+        "delete": {
+          "confirm": "Delete this invitation?",
+          "success": "Invitation deleted",
+          "error": "Couldn't delete invitation"
+        }
+      },
+      "billing": {
+        "plan": {
+          "title": "Plan",
+          "currentCycle": "Current billing cycle ({startDate} - {endDate})"
+        },
+        "address": {
+          "title": "Billing address",
+          "updateSuccess": "Billing address updated",
+          "updateError": "Couldn't update billing address"
+        },
+        "email": {
+          "title": "Billing email",
+          "updateSuccess": "Email recipient updated",
+          "updateError": "Couldn't update email recipient"
+        },
+        "invoices": {
+          "title": "Invoices"
+        }
+      },
+      "developers": {
+        "apiKeys": {
+          "title": "API Keys",
+          "create": "Create API key",
+          "createDescription": "Create a new API key by filling out the form below.",
+          "update": "Update API key",
+          "createSuccess": "API key added",
+          "createError": "Couldn't add API key",
+          "updateSuccess": "API key updated",
+          "updateError": "Couldn't update API key",
+          "revokeConfirm": "Revoke this API key?",
+          "revokeSuccess": "API key revoked",
+          "revokeError": "Couldn't revoke API key"
+        },
+        "webhooks": {
+          "title": "Webhooks",
+          "create": "Create webhook",
+          "edit": "Edit webhook",
+          "deleteConfirm": "Delete this webhook?",
+          "deleteSuccess": "Webhook deleted",
+          "deleteError": "Couldn't delete webhook"
+        }
+      }
+    }
+  },
+  "dashboard": {
+    "home": {
+      "leadGeneration": {
+        "title": "Lead generation",
+        "description": "New contacts added to the pool.",
+        "contacts": "Contacts",
+        "people": "People",
+        "companies": "Companies"
+      },
+      "leastVisitedContacts": {
+        "title": "Least visited contacts"
+      },
+      "mostVisitedContacts": {
+        "title": "Most visited contacts"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "description": "Send your feedback by filling out the form below.",
+    "topic": "Topic",
+    "message": "Message",
+    "success": "Feedback sent",
+    "error": "Couldn't send feedback"
+  },
+  "auth": {
+    "metadata": {
+      "signIn": "Sign in",
+      "signUp": "Sign up",
+      "forgotPassword": "Forgot password",
+      "resetLinkSent": "Reset link sent",
+      "resetPassword": "Reset password",
+      "expiredChangeRequest": "Expired change request",
+      "verifyEmail": "Verify Email",
+      "emailVerification": "Email Verification",
+      "emailVerificationExpired": "Email Verification Expired",
+      "emailVerificationSuccess": "Email Verification Success",
+      "changeEmail": "Change email",
+      "invalidChangeRequest": "Invalid change request",
+      "confirmViaAuthenticatorApp": "Confirm via authenticator app",
+      "recoveryCode": "Recovery code",
+      "authError": "Auth Error"
+    },
+    "signIn": {
+      "title": "Sign in to your account",
+      "description": "Welcome back! Please sign in to continue.",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "verifyEmail": "Verify email",
+      "signIn": "Sign in",
+      "orContinueWith": "Or continue with",
+      "google": "Google",
+      "microsoft": "Microsoft",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "googleError": "Couldn't continue with Google",
+      "microsoftError": "Couldn't continue with Microsoft"
+    },
+    "signUp": {
+      "title": "Create your account",
+      "description": "Please fill in the details to get started.",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "createAccount": "Create account",
+      "orContinueWith": "Or continue with",
+      "google": "Google",
+      "microsoft": "Microsoft",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "error": "An error occured during sign up.",
+      "googleError": "An error occured during Google sign up.",
+      "microsoftError": "An error occured during Microsoft sign up.",
+      "termsAgreement": "By signing up, you agree to our",
+      "termsOfUse": "Terms of Use",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy",
+      "needHelp": "Need help?",
+      "getInTouch": "Get in touch"
+    },
+    "forgotPassword": {
+      "title": "Forgot your password?",
+      "description": "No worries! We'll send you a link with instructions on how to reset your password.",
+      "email": "Email",
+      "sendInstructions": "Send instructions",
+      "remembered": "Remembered your password?",
+      "signIn": "Sign in",
+      "error": "Couldn't request password change"
+    },
+    "forgotPasswordSuccess": {
+      "title": "Reset instructions sent",
+      "description": "An email with a link and reset instructions is on its way to",
+      "notice": "If you don't receive an email soon, check that the email address you entered is correct, check your spam folder or reach out to support if the issue persists.",
+      "backToLogin": "Back to log in"
+    },
+    "resetPassword": {
+      "title": "Reset your password",
+      "description": "Use the form below to change your password. This request will expire in",
+      "password": "Password",
+      "changePassword": "Change password",
+      "error": "Couldn't reset password."
+    },
+    "resetPasswordExpired": {
+      "title": "Reset request is expired",
+      "description": "Go back and enter the email associated with your account and we will send you another link with instructions to reset your password.",
+      "tryAgain": "Want to try again?",
+      "forgotPassword": "Forgot password"
+    },
+    "resetPasswordSuccess": {
+      "title": "Password updated",
+      "description": "Your password has been successfully changed. Use your new password to log in.",
+      "backToLogin": "Back to log in"
+    },
+    "verifyEmail": {
+      "title": "Please check your email",
+      "description": "Your registration has been successful. We have sent you an email with a verification link.",
+      "alternativeDescription": "Alternatively you can use the one-time password in the email for verification.",
+      "code": "Code",
+      "verify": "Verify",
+      "noEmail": "Didn't receive an email?",
+      "resend": "Resend",
+      "resendSuccess": "Email verification resent",
+      "resendError": "Couldn't resend verification",
+      "error": "Couldn't verify email"
+    },
+    "verifyEmailExpired": {
+      "title": "Email verification is expired",
+      "description": "Sorry, your email verification is already expired! You need to request a verification again.",
+      "verifyEmail": "Verify email"
+    },
+    "verifyEmailSuccess": {
+      "title": "Email verified",
+      "description": "Your email has been successfully verified. You can log in with your account now.",
+      "backToLogin": "Back to log in"
+    },
+    "changeEmail": {
+      "title": "Email changed",
+      "description": "Your email has been successfully changed to",
+      "notice": "As a result, you've been logged out and must log back in.",
+      "goToLogin": "Go to log in"
+    },
+    "changeEmailExpired": {
+      "title": "Change request is expired",
+      "description": "Sorry, your change email request is already expired! You need to request an email change again.",
+      "changeEmail": "Change email"
+    },
+    "changeEmailInvalid": {
+      "title": "Change request is invalid",
+      "description": "Sorry, but your email change request is not valid! This can occur if you submit several change requests, each of which invalidates the prior ones, or if you have already changed your email.",
+      "changeEmail": "Change email"
+    },
+    "totp": {
+      "title": "Authenticator code",
+      "description": "Please enter the 6-digit code from your authenticator app.",
+      "code": "Code",
+      "verify": "Verify",
+      "signInAgain": "Sign in again.",
+      "goBack": "Go back",
+      "lostAccess": "Lost access",
+      "missingTokenParam": "Missing token param.",
+      "missingExpiryParam": "Missing expiry param."
+    },
+    "recoveryCode": {
+      "title": "Recovery code",
+      "description": "Each recovery code can be used exactly once to grant access without your authenticator.",
+      "code": "Code",
+      "placeholder": "XXXXX-XXXXX",
+      "verify": "Verify",
+      "goBack": "Go back"
+    },
+    "error": {
+      "title": "Auth Error",
+      "description": "An error occurred when logging you in. Head back to the sign in screen and try again.",
+      "backToLogin": "Back to log in"
+    },
+    "passwordValidation": {
+      "allRequirementsMet": "All requirements met",
+      "minLength": "or more characters",
+      "uppercaseAndLowercase": "Uppercase and lowercase letters",
+      "atLeastOneNumber": "At least one number"
+    },
+    "errors": {
+      "emailAlreadyExists": "Email already exists.",
+      "emailNotVerified": "Email is not verified.",
+      "emailOrPasswordIncorrect": "Email or password is not correct.",
+      "totpRequired": "TOTP code is required.",
+      "totpIncorrect": "The TOTP code is not correct.",
+      "missingRecoveryCodes": "Missing recovery codes.",
+      "recoveryCodeIncorrect": "The recovery code is not correct.",
+      "requestExpired": "Request has expired.",
+      "rateLimitExceeded": "Rate limit exceeded.",
+      "illegalOAuthProvider": "Illegal OAuth provider.",
+      "somethingWentWrong": "Something went wrong. Please try again later.",
+      "missingOAuthEmail": "Missing OAuth email.",
+      "oauthAccountAlreadyLinked": "OAuth account has been already linked.",
+      "signInFirstToLink": "Please sign in first to link this account",
+      "unknownError": "Unknown error."
+    }
+  }
+}

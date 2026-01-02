@@ -1,4 +1,7 @@
+'use client';
+
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 import { CircleCheck, XCircleIcon } from 'lucide-react';
 
 import { MINIMUM_PASSWORD_LENGTH } from '@workspace/auth/constants';
@@ -14,6 +17,7 @@ export type PasswordFormMessageProps = {
 export function PasswordFormMessage({
   password
 }: PasswordFormMessageProps): React.JSX.Element {
+  const t = useTranslations('auth.passwordValidation');
   const { error, formMessageId } = useFormField();
 
   const containsLowerAndUpperCase =
@@ -27,24 +31,24 @@ export function PasswordFormMessage({
     if (isPasswordValid) {
       return {
         met: true,
-        text: 'All requirements met'
+        text: t('allRequirementsMet')
       };
     }
     if (!hasMinimumLength) {
       return {
         met: false,
-        text: `${MINIMUM_PASSWORD_LENGTH} or more characters`
+        text: `${MINIMUM_PASSWORD_LENGTH} ${t('minLength')}`
       };
     }
     if (!containsLowerAndUpperCase) {
       return {
         met: false,
-        text: 'Uppercase and lowercase letters'
+        text: t('uppercaseAndLowercase')
       };
     }
     return {
       met: false,
-      text: 'At least one number'
+      text: t('atLeastOneNumber')
     };
   };
 

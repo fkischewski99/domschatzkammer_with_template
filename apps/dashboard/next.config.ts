@@ -1,8 +1,11 @@
 import { type NextConfig } from 'next/types';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import { createSecureHeaders } from 'next-secure-headers';
+import createNextIntlPlugin from 'next-intl/plugin';
 
 import { MonitoringProvider } from '@workspace/monitoring/provider';
+
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const INTERNAL_PACKAGES = [
   '@workspace/api-keys',
@@ -71,28 +74,28 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/',
-        destination: '/auth',
+        source: '/:locale',
+        destination: '/:locale/auth',
         permanent: false
       },
       {
-        source: '/auth',
-        destination: '/auth/sign-in',
+        source: '/:locale/auth',
+        destination: '/:locale/auth/sign-in',
         permanent: false
       },
       {
-        source: '/organizations/:slug/settings',
-        destination: '/organizations/:slug/settings/account',
+        source: '/:locale/organizations/:slug/settings',
+        destination: '/:locale/organizations/:slug/settings/account',
         permanent: false
       },
       {
-        source: '/organizations/:slug/settings/account',
-        destination: '/organizations/:slug/settings/account/profile',
+        source: '/:locale/organizations/:slug/settings/account',
+        destination: '/:locale/organizations/:slug/settings/account/profile',
         permanent: false
       },
       {
-        source: '/organizations/:slug/settings/organization',
-        destination: '/organizations/:slug/settings/organization/general',
+        source: '/:locale/organizations/:slug/settings/organization',
+        destination: '/:locale/organizations/:slug/settings/organization/general',
         permanent: false
       }
     ];
@@ -104,4 +107,6 @@ const bundleAnalyzerConfig =
     ? withBundleAnalyzer({ enabled: true })(nextConfig)
     : nextConfig;
 
-export default MonitoringProvider.withConfig(bundleAnalyzerConfig);
+const intlConfig = withNextIntl(bundleAnalyzerConfig);
+
+export default MonitoringProvider.withConfig(intlConfig);
