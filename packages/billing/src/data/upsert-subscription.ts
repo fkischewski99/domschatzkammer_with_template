@@ -37,7 +37,8 @@ export async function upsertSubscription(
         periodStartsAt: subscription.periodStartsAt,
         periodEndsAt: subscription.periodEndsAt,
         trialEndsAt: subscription.trialEndsAt,
-        trialStartsAt: subscription.trialStartsAt
+        trialStartsAt: subscription.trialStartsAt,
+        updatedAt: new Date()
       },
       update: {
         status: subscription.status,

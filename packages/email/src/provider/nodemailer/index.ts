@@ -28,7 +28,12 @@ class NodemailerEmailProvider implements EmailProvider {
       subject: payload.subject,
       html: payload.html,
       text: payload.text,
-      replyTo: payload.replyTo
+      replyTo: payload.replyTo,
+      attachments: payload.attachments?.map(att => ({
+        filename: att.filename,
+        content: att.content,
+        contentType: att.contentType,
+      })),
     });
   }
 }

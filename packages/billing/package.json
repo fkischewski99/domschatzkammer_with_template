@@ -22,6 +22,7 @@
     "lucide-react": "0.555.0",
     "next": "16.0.10",
     "next-intl": "4.6.1",
+    "pg-boss": "^11.1.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "server-only": "0.0.1",
@@ -49,6 +50,9 @@
     "./schema": "./src/schema.ts",
     "./seats": "./src/seats.ts",
     "./synchronize": "./src/synchronize.ts",
-    "./webhook": "./src/webhook.ts"
+    "./webhook": "./src/webhook.ts",
+    "./stripe-connect": "./src/stripe-connect/index.ts",
+    "./tickets": "./src/tickets/index.ts",
+    "./jobs": "./src/jobs/index.ts"
   }
 }

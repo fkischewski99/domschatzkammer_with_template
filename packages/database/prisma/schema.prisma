@@ -347,28 +347,29 @@ model OrderItem {
 }
 
 model Organization {
-  id                String         @id(map: "PK_Organization") @default(uuid()) @db.Uuid
-  slug              String         @unique @db.VarChar(255)
-  logo              String?        @db.VarChar(2048)
-  name              String         @db.VarChar(255)
-  address           String?        @db.VarChar(255)
-  phone             String?        @db.VarChar(32)
-  email             String?        @db.VarChar(255)
-  website           String?        @db.VarChar(2000)
-  linkedInProfile   String?        @db.VarChar(2000)
-  instagramProfile  String?        @db.VarChar(2000)
-  youTubeChannel    String?        @db.VarChar(2000)
-  xProfile          String?        @db.VarChar(2000)
-  tikTokProfile     String?        @db.VarChar(2000)
-  facebookPage      String?        @db.VarChar(2000)
-  billingCustomerId String?
-  billingEmail      String?        @db.VarChar(255)
-  billingLine1      String?        @db.VarChar(255)
-  billingLine2      String?        @db.VarChar(255)
-  billingCountry    String?        @db.VarChar(3)
-  billingPostalCode String?        @db.VarChar(16)
-  billingCity       String?        @db.VarChar(255)
-  billingState      String?        @db.VarChar(255)
+  id                     String         @id(map: "PK_Organization") @default(uuid()) @db.Uuid
+  slug                   String         @unique @db.VarChar(255)
+  logo                   String?        @db.VarChar(2048)
+  name                   String         @db.VarChar(255)
+  address                String?        @db.VarChar(255)
+  phone                  String?        @db.VarChar(32)
+  email                  String?        @db.VarChar(255)
+  website                String?        @db.VarChar(2000)
+  linkedInProfile        String?        @db.VarChar(2000)
+  instagramProfile       String?        @db.VarChar(2000)
+  youTubeChannel         String?        @db.VarChar(2000)
+  xProfile               String?        @db.VarChar(2000)
+  tikTokProfile          String?        @db.VarChar(2000)
+  facebookPage           String?        @db.VarChar(2000)
+  billingCustomerId      String?
+  stripeConnectAccountId String?        @unique @db.VarChar(255)
+  billingEmail           String?        @db.VarChar(255)
+  billingLine1           String?        @db.VarChar(255)
+  billingLine2           String?        @db.VarChar(255)
+  billingCountry         String?        @db.VarChar(3)
+  billingPostalCode      String?        @db.VarChar(16)
+  billingCity            String?        @db.VarChar(255)
+  billingState           String?        @db.VarChar(255)
   apiKeys           ApiKey[]
   businessHours     WorkHours[]
   contacts          Contact[]
@@ -378,8 +379,11 @@ model Organization {
   orders            Order[]
   subscriptions     Subscription[]
   webhooks          Webhook[]
+  tickets           Ticket[]
+  purchases         Purchase[]
 
   @@index([billingCustomerId], map: "IX_Organization_billingCustomerId")
+  @@index([stripeConnectAccountId], map: "IX_Organization_stripeConnectAccountId")
 }
 
 model OrganizationLogo {
@@ -479,6 +483,7 @@ model User {
   notifications                Notification[]
   pageVisits                   ContactPageVisit[]
   sessions                     Session[]
+  purchases                    Purchase[]
 }
 
 model UserImage {
@@ -530,4 +535,85 @@ model WorkTimeSlot {
   workHours   WorkHours @relation(fields: [workHoursId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@index([workHoursId], map: "IX_WorkTimeSlot_workHoursId")
+}
+
+// ---- Ticket Purchase System ---- //
+
+enum PurchaseStatus {
+  PENDING   @map("pending")
+  COMPLETED @map("completed")
+  REFUNDED  @map("refunded")
+  CANCELLED @map("cancelled")
+}
+
+model two_factor_bypass_codes {
+  id         String   @id @db.Uuid
+  userId     String   @db.Uuid
+  code       String   @db.VarChar(64)
+  used       Boolean  @default(false)
+  expires_at DateTime @db.Timestamptz(6)
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([code], map: "IX_TwoFactorBypassCode_code")
+  @@index([userId], map: "IX_TwoFactorBypassCode_userId")
+}
+
+model Ticket {
+  id              String       @id(map: "PK_Ticket") @default(uuid()) @db.Uuid
+  organizationId  String       @db.Uuid
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  name            String       @db.VarChar(255)
+  description     String?      @db.Text
+  price           Decimal      @db.Decimal(10, 2)
+  currency        String       @default("EUR") @db.VarChar(3)
+  features        Json         @default("[]") @db.JsonB
+  stock           Int?
+  validFrom       DateTime?    @db.Timestamptz(6)
+  validUntil      DateTime?    @db.Timestamptz(6)
+  isActive        Boolean      @default(true)
+  stripeProductId String?      @unique @db.VarChar(255)
+  stripePriceId   String?      @unique @db.VarChar(255)
+  purchases       Purchase[]
+  createdAt       DateTime     @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime     @updatedAt @db.Timestamptz(6)
+
+  @@index([organizationId, isActive], map: "IX_Ticket_org_active")
+  @@index([stripeProductId], map: "IX_Ticket_stripe_product")
+  @@index([stripePriceId], map: "IX_Ticket_stripe_price")
+}
+
+model Purchase {
+  id                    String         @id(map: "PK_Purchase") @default(uuid()) @db.Uuid
+  email                 String         @db.VarChar(255)
+  customerName          String?        @db.VarChar(255)
+  customerPhone         String?        @db.VarChar(50)
+  userId                String?        @db.Uuid
+  user                  User?          @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  ticketId              String         @db.Uuid
+  ticket                Ticket         @relation(fields: [ticketId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  organizationId        String         @db.Uuid
+  organization          Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  stripeSessionId       String         @unique @db.VarChar(255)
+  stripePaymentIntentId String?        @db.VarChar(255)
+  status                PurchaseStatus @default(PENDING)
+  totalAmount           Decimal        @db.Decimal(10, 2)
+  currency              String         @db.VarChar(3)
+  qrCode                String         @unique @db.Uuid
+  invalidated           Boolean        @default(false)
+  invalidatedAt         DateTime?      @db.Timestamptz(6)
+  invalidatedReason     String?        @db.Text
+  validated             Boolean        @default(false)
+  validatedAt           DateTime?      @db.Timestamptz(6)
+  validatedBy           String?        @db.VarChar(255)
+  metadata              Json?          @db.JsonB
+  purchasedAt           DateTime       @default(now()) @db.Timestamptz(6)
+  createdAt             DateTime       @default(now()) @db.Timestamptz(6)
+  updatedAt             DateTime       @updatedAt @db.Timestamptz(6)
+
+  @@index([organizationId, status], map: "IX_Purchase_org_status")
+  @@index([userId, status], map: "IX_Purchase_user_status")
+  @@index([email], map: "IX_Purchase_email")
+  @@index([qrCode], map: "IX_Purchase_qrcode")
+  @@index([stripeSessionId], map: "IX_Purchase_stripe_session")
+  @@index([ticketId], map: "IX_Purchase_ticketId")
 }

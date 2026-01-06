@@ -28,7 +28,8 @@ export async function upsertOrder(order: UpsertOrder): Promise<void> {
         status: order.status,
         provider: order.provider,
         currency: order.currency,
-        totalAmount: order.totalAmount
+        totalAmount: order.totalAmount,
+        updatedAt: new Date()
       },
       update: {
         status: order.status,
