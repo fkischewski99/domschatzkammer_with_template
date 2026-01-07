@@ -745,7 +745,10 @@
         "status": {
           "active": "Aktiv",
           "inactive": "Inaktiv",
-          "soldOut": "Ausverkauft"
+          "soldOut": "Ausverkauft",
+          "activated": "Ticket aktiviert",
+          "deactivated": "Ticket deaktiviert",
+          "toggleError": "Ticketstatus konnte nicht aktualisiert werden"
         }
       },
       "developers": {

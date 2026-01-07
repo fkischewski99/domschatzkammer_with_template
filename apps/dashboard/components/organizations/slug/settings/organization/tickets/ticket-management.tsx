@@ -3,11 +3,16 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { useOptimistic, useTransition } from 'react';
 import type { Ticket } from '@workspace/database';
+import { toast } from '@workspace/ui/components/sonner';
 
 import { Button } from '@workspace/ui/components/button';
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 import { Badge } from '@workspace/ui/components/badge';
+import { Switch } from '@workspace/ui/components/switch';
+
+import { toggleTicketStatus } from '~/actions/tickets/admin/toggle-ticket-status';
 
 interface TicketManagementProps {
   tickets: Ticket[];
@@ -19,6 +24,40 @@ export function TicketManagement({
   organizationSlug
 }: TicketManagementProps): React.JSX.Element {
   const t = useTranslations('organization.settings.tickets');
+  const [isPending, startTransition] = useTransition();
+
+  // Optimistic state for ticket statuses
+  const [optimisticTickets, setOptimisticTickets] = useOptimistic(
+    tickets,
+    (state, { ticketId, isActive }: { ticketId: string; isActive: boolean }) =>
+      state.map((ticket) =>
+        ticket.id === ticketId ? { ...ticket, isActive } : ticket
+      )
+  );
+
+  const handleToggleStatus = async (ticketId: string, newStatus: boolean) => {
+    startTransition(async () => {
+      // Optimistically update the UI
+      setOptimisticTickets({ ticketId, isActive: newStatus });
+
+      try {
+        const result = await toggleTicketStatus({
+          ticketId,
+          isActive: newStatus,
+        });
+
+        if (result?.serverError) {
+          toast.error(result.serverError);
+        } else {
+          toast.success(
+            newStatus ? t('status.activated') : t('status.deactivated')
+          );
+        }
+      } catch (error) {
+        toast.error(t('status.toggleError'));
+      }
+    });
+  };
 
   return (
     <AnnotatedSection
@@ -74,7 +113,7 @@ export function TicketManagement({
                     </tr>
                   </thead>
                   <tbody className="[&_tr:last-child]:border-0">
-                    {tickets.map((ticket) => (
+                    {optimisticTickets.map((ticket) => (
                       <tr
                         key={ticket.id}
                         className="border-b transition-colors hover:bg-muted/50"
@@ -94,9 +133,19 @@ export function TicketManagement({
                           {ticket.stock === null ? t('unlimited') : ticket.stock}
                         </td>
                         <td className="p-4 align-middle">
-                          <Badge variant={ticket.isActive ? 'default' : 'secondary'}>
-                            {ticket.isActive ? t('active') : t('inactive')}
-                          </Badge>
+                          <div className="flex items-center gap-2">
+                            <Switch
+                              checked={ticket.isActive}
+                              onCheckedChange={(checked) =>
+                                handleToggleStatus(ticket.id, checked)
+                              }
+                              disabled={isPending}
+                              aria-label={ticket.isActive ? t('active') : t('inactive')}
+                            />
+                            <span className="text-sm text-muted-foreground">
+                              {ticket.isActive ? t('active') : t('inactive')}
+                            </span>
+                          </div>
                         </td>
                         <td className="p-4 align-middle text-right">
                           <Link

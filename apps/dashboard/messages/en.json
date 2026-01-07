@@ -752,7 +752,10 @@
         "status": {
           "active": "Active",
           "inactive": "Inactive",
-          "soldOut": "Sold out"
+          "soldOut": "Sold out",
+          "activated": "Ticket activated",
+          "deactivated": "Ticket deactivated",
+          "toggleError": "Failed to update ticket status"
         }
       },
       "purchases": {
