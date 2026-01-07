@@ -19,8 +19,8 @@ export function PurchaseFilters({
   const searchParams = useSearchParams();
 
   // Initialize state from URL params
-  const [status, setStatus] = React.useState(searchParams.get('status') || '');
-  const [ticketId, setTicketId] = React.useState(searchParams.get('ticketId') || '');
+  const [status, setStatus] = React.useState(searchParams.get('status') || 'all');
+  const [ticketId, setTicketId] = React.useState(searchParams.get('ticketId') || 'all');
   const [email, setEmail] = React.useState(searchParams.get('email') || '');
   const [dateFrom, setDateFrom] = React.useState(searchParams.get('dateFrom') || '');
   const [dateTo, setDateTo] = React.useState(searchParams.get('dateTo') || '');
@@ -28,8 +28,8 @@ export function PurchaseFilters({
   const handleApplyFilters = () => {
     const params = new URLSearchParams();
 
-    if (status) params.set('status', status);
-    if (ticketId) params.set('ticketId', ticketId);
+    if (status && status !== 'all') params.set('status', status);
+    if (ticketId && ticketId !== 'all') params.set('ticketId', ticketId);
     if (email) params.set('email', email);
     if (dateFrom) params.set('dateFrom', dateFrom);
     if (dateTo) params.set('dateTo', dateTo);
@@ -43,8 +43,8 @@ export function PurchaseFilters({
   };
 
   const handleClearFilters = () => {
-    setStatus('');
-    setTicketId('');
+    setStatus('all');
+    setTicketId('all');
     setEmail('');
     setDateFrom('');
     setDateTo('');
@@ -52,7 +52,7 @@ export function PurchaseFilters({
     router.push(`/organizations/${organizationSlug}/settings/organization/purchases`);
   };
 
-  const hasActiveFilters = status || ticketId || email || dateFrom || dateTo;
+  const hasActiveFilters = (status && status !== 'all') || (ticketId && ticketId !== 'all') || email || dateFrom || dateTo;
 
   return (
     <div className="bg-white p-4 rounded-lg border border-gray-200 space-y-4">
@@ -67,7 +67,7 @@ export function PurchaseFilters({
               <SelectValue placeholder="All statuses" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All statuses</SelectItem>
+              <SelectItem value="all">All statuses</SelectItem>
               <SelectItem value="COMPLETED">Completed</SelectItem>
               <SelectItem value="PENDING">Pending</SelectItem>
               <SelectItem value="REFUNDED">Refunded</SelectItem>
@@ -86,7 +86,7 @@ export function PurchaseFilters({
               <SelectValue placeholder="All tickets" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All tickets</SelectItem>
+              <SelectItem value="all">All tickets</SelectItem>
               {availableTickets.map((ticket) => (
                 <SelectItem key={ticket.id} value={ticket.id}>
                   {ticket.name}
