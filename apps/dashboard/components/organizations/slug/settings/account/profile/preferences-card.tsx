@@ -82,7 +82,8 @@ export function PreferencesCard({
         const appLocale = result.data.locale.startsWith('de') ? 'de' : 'en';
         // Set cookie for next-intl middleware
         document.cookie = `NEXT_LOCALE=${appLocale}; path=/; max-age=31536000; SameSite=Lax`;
-        router.replace(pathname, { locale: appLocale });
+        // Use full page reload to ensure server components re-render with new locale
+        window.location.href = `/${appLocale}${pathname}`;
       }
     } else {
       toast.error(t('updateError'));
