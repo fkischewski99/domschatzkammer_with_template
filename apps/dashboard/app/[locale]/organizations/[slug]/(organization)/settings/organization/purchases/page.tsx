@@ -2,19 +2,30 @@ import * as React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { PurchaseListItem } from '~/data/purchases/get-organization-purchases';
+import type { PurchaseStatus } from '@workspace/database';
 import { prisma } from '@workspace/database/client';
 import { getOrganizationPurchases } from '~/data/purchases/get-organization-purchases';
+import { PurchaseFilters } from '~/components/purchases/purchase-filters';
 
 /**
  * Admin Purchase Management Page
- * Lists all purchases for the organization
+ * Lists all purchases for the organization with filtering
  */
 export default async function AdminPurchasesPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{
+    status?: string;
+    ticketId?: string;
+    email?: string;
+    dateFrom?: string;
+    dateTo?: string;
+  }>;
 }): Promise<React.JSX.Element> {
   const { slug } = await params;
+  const filters = await searchParams;
 
   // Get organization by slug
   const organization = await prisma.organization.findUnique({
@@ -25,10 +36,25 @@ export default async function AdminPurchasesPage({
     notFound();
   }
 
-  // Fetch all purchases for the organization
-  const purchases = await getOrganizationPurchases({
-    organizationId: organization.id,
+  // Get all tickets for the filter dropdown
+  const tickets = await prisma.ticket.findMany({
+    where: { organizationId: organization.id },
+    select: { id: true, name: true },
+    orderBy: { name: 'asc' },
   });
+
+  // Parse filter parameters
+  const purchaseFilters = {
+    organizationId: organization.id,
+    ...(filters.status && { status: filters.status as PurchaseStatus }),
+    ...(filters.ticketId && { ticketId: filters.ticketId }),
+    ...(filters.email && { email: filters.email }),
+    ...(filters.dateFrom && { dateFrom: new Date(filters.dateFrom) }),
+    ...(filters.dateTo && { dateTo: new Date(filters.dateTo) }),
+  };
+
+  // Fetch purchases with filters
+  const purchases = await getOrganizationPurchases(purchaseFilters);
 
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString('en-US', {
@@ -65,6 +91,12 @@ export default async function AdminPurchasesPage({
           </p>
         </div>
       </div>
+
+      {/* Filters */}
+      <PurchaseFilters
+        organizationSlug={organization.slug}
+        availableTickets={tickets}
+      />
 
       {purchases.length === 0 ? (
         <div className="text-center py-12 bg-gray-50 rounded-lg border border-gray-200">
