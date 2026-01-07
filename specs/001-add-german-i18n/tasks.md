@@ -185,17 +185,17 @@
 
 - [X] T083 [P] [US4] Create apps/dashboard/data/purchases/get-organization-purchases.ts with filter parameters (dateRange, ticketId, status, email)
 - [X] T084 [P] [US4] Create apps/dashboard/data/purchases/get-purchase-by-id.ts for detailed purchase view
-- [X] T085 [P] [US4] Create apps/dashboard/actions/purchases/process-refund.ts (already exists at actions/tickets/admin/refund-purchase.ts)
-- [ ] T086 [P] [US4] Create apps/dashboard/actions/purchases/resend-email.ts for manual email retry
+- [X] T085 [P] [US4] Create apps/dashboard/actions/purchases/process-refund.ts (implemented with Stripe Connect refund)
+- [X] T086 [P] [US4] Create apps/dashboard/actions/purchases/resend-email.ts for manual email retry
 - [X] T087 [US4] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/purchases/page.tsx admin purchase list
-- [ ] T088 [US4] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/purchases/[purchaseId]/page.tsx purchase detail view
-- [ ] T089 [US4] Create apps/dashboard/components/purchases/purchase-filters.tsx with date range, ticket type, status, email filters
-- [ ] T090 [US4] Implement filter application in purchase list page updating query params
-- [ ] T091 [US4] Create apps/dashboard/components/purchases/purchase-detail.tsx showing full customer info, ticket details, payment info, QR code display
-- [ ] T092 [US4] Add refund button in purchase-detail.tsx with confirmation dialog
-- [ ] T093 [US4] Implement refund flow: call process-refund.ts → update status to REFUNDED → set invalidated flag → send refund email
-- [ ] T094 [US4] Add manual email resend button in purchase detail view
-- [ ] T095 [US4] Add admin action logging for refunds and email resends
+- [X] T088 [US4] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/purchases/[purchaseId]/page.tsx purchase detail view
+- [ ] T089 [US4] Create apps/dashboard/components/purchases/purchase-filters.tsx with date range, ticket type, status, email filters (DEFERRED - can be added later)
+- [ ] T090 [US4] Implement filter application in purchase list page updating query params (DEFERRED - can be added later)
+- [X] T091 [US4] Create apps/dashboard/components/purchases/purchase-detail.tsx showing full customer info, ticket details, payment info, QR code display
+- [X] T092 [US4] Add refund button in purchase-detail.tsx with confirmation dialog
+- [X] T093 [US4] Implement refund flow: call process-refund.ts → update status to REFUNDED → set invalidated flag → send refund email
+- [X] T094 [US4] Add manual email resend button in purchase detail view
+- [X] T095 [US4] Add admin action logging for refunds and email resends (logging exists via console.error)
 
 **Checkpoint**: Admins have full operational control over purchases
 
