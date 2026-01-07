@@ -4,6 +4,7 @@ import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
 import { TrashIcon } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import { Avatar, AvatarFallback } from '@workspace/ui/components/avatar';
 import { Button } from '@workspace/ui/components/button';
@@ -42,6 +43,8 @@ export function OnboardingProfileStep({
   className,
   ...other
 }: OnboardingProfileStepProps): React.JSX.Element {
+  const t = useTranslations('onboarding.profile');
+  const tCommon = useTranslations('common');
   const methods = useFormContext<CompleteOnboardingSchema>();
   const image = methods.watch('profileStep.image');
   const name = methods.watch('profileStep.name');
@@ -82,11 +85,10 @@ export function OnboardingProfileStep({
       {...other}
     >
       <h1 className="text-xl font-semibold leading-none tracking-tight lg:text-2xl">
-        Set up your profile
+        {t('title')}
       </h1>
       <p className="text-sm text-muted-foreground lg:text-base">
-        Check if the profile information is correct. You'll be able to change
-        this later in the account settings page.
+        {t('description')}
       </p>
       <div className="mt-4 flex items-center justify-center pb-6">
         <div className="relative">
@@ -118,7 +120,7 @@ export function OnboardingProfileStep({
                   <TrashIcon className="size-4 shrink-0" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="right">Remove image</TooltipContent>
+              <TooltipContent side="right">{t('removeImage')}</TooltipContent>
             </Tooltip>
           )}
         </div>
@@ -129,7 +131,7 @@ export function OnboardingProfileStep({
           name="profileStep.name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel required>Name</FormLabel>
+              <FormLabel required>{tCommon('name')}</FormLabel>
               <FormControl>
                 <Input
                   type="text"
@@ -149,7 +151,7 @@ export function OnboardingProfileStep({
           name="profileStep.phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Phone</FormLabel>
+              <FormLabel>{tCommon('phone')}</FormLabel>
               <FormControl>
                 <Input
                   type="tel"
@@ -163,7 +165,7 @@ export function OnboardingProfileStep({
           )}
         />
         <div className="mb-2 flex flex-col space-y-2">
-          <FormLabel required>Email</FormLabel>
+          <FormLabel required>{tCommon('email')}</FormLabel>
           <Input
             type="email"
             maxLength={255}

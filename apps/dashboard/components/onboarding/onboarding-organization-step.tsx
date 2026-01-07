@@ -4,6 +4,7 @@ import * as React from 'react';
 import NiceModal from '@ebay/nice-modal-react';
 import { TrashIcon, UploadIcon } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import { baseUrl, getPathname, routes } from '@workspace/routes';
 import { Avatar, AvatarFallback } from '@workspace/ui/components/avatar';
@@ -49,6 +50,8 @@ export function OnboardingOrganizationStep({
   className,
   ...other
 }: OnboardingOrganizationStepProps): React.JSX.Element {
+  const t = useTranslations('onboarding.organization');
+  const tCommon = useTranslations('common');
   const methods = useFormContext<CompleteOnboardingSchema>();
   const logo = methods.watch('organizationStep.logo');
   const slug = methods.watch('organizationStep.slug');
@@ -83,14 +86,13 @@ export function OnboardingOrganizationStep({
       {...other}
     >
       <h1 className="text-xl font-semibold leading-none tracking-tight lg:text-2xl">
-        Add your organization
+        {t('title')}
       </h1>
       <p className="text-sm text-muted-foreground lg:text-base">
-        We just need some basic info to get your organization set up. You’ll be
-        able to edit this later.
+        {t('description')}
       </p>
       <div className="space-y-2">
-        <FormLabel>Logo</FormLabel>
+        <FormLabel>{t('logo')}</FormLabel>
         <div className="flex items-center space-x-4">
           <div className="relative">
             <ImageDropzone
@@ -119,14 +121,14 @@ export function OnboardingOrganizationStep({
                     <TrashIcon className="size-4 shrink-0" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Remove logo</TooltipContent>
+                <TooltipContent side="right">{t('removeLogo')}</TooltipContent>
               </Tooltip>
             )}
           </div>
           <div className="flex flex-col space-y-1">
-            <span className="text-sm">Upload your logo</span>
+            <span className="text-sm">{t('uploadLogo')}</span>
             <span className="text-xs text-muted-foreground">
-              *.png, *.jpeg files up to 5 MB
+              {t('uploadHint')}
             </span>
           </div>
         </div>
@@ -136,7 +138,7 @@ export function OnboardingOrganizationStep({
         name="organizationStep.name"
         render={({ field }) => (
           <FormItem className="flex w-full flex-col">
-            <FormLabel required>Name</FormLabel>
+            <FormLabel required>{tCommon('name')}</FormLabel>
             <FormControl>
               <Input
                 type="text"
@@ -165,7 +167,7 @@ export function OnboardingOrganizationStep({
         name="organizationStep.slug"
         render={({ field }) => (
           <FormItem className="flex w-full flex-col">
-            <FormLabel required>Slug</FormLabel>
+            <FormLabel required>{t('slug')}</FormLabel>
             <FormControl>
               <Input
                 type="text"
@@ -193,9 +195,9 @@ export function OnboardingOrganizationStep({
         render={({ field }) => (
           <FormItem className="flex flex-row items-center justify-between">
             <div className="space-y-0.5">
-              <FormLabel>Example data</FormLabel>
+              <FormLabel>{t('exampleData')}</FormLabel>
               <FormDescription>
-                Recommended to explore the platform
+                {t('exampleDataHint')}
               </FormDescription>
             </div>
             <FormControl>
@@ -217,7 +219,7 @@ export function OnboardingOrganizationStep({
           if (!result?.data?.isAvailable) {
             methods.setError('organizationStep.slug', {
               type: 'validate',
-              message: 'This slug is already taken.'
+              message: t('slugTaken')
             });
             return;
           }

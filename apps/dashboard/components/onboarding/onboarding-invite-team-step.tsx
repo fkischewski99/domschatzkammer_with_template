@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import { Role } from '@workspace/database';
 import { Button } from '@workspace/ui/components/button';
@@ -38,6 +39,7 @@ export function OnboardingInviteTeamStep({
   className,
   ...other
 }: OnboardingInvitationStepProps): React.JSX.Element {
+  const t = useTranslations('onboarding.inviteTeam');
   const methods = useFormContext<CompleteOnboardingSchema>();
   const { fields, append } = useFieldArray({
     control: methods.control,
@@ -51,21 +53,20 @@ export function OnboardingInviteTeamStep({
       className={cn('flex w-full flex-col gap-4', className)}
       {...other}
     >
-      <h1 className="text-3xl font-medium">Invite your team</h1>
+      <h1 className="text-3xl font-medium">{t('title')}</h1>
       <p className="text-base text-muted-foreground">
-        Add team members to get started. You can always invite more people
-        later.
+        {t('description')}
       </p>
       <div className="flex flex-col space-y-2">
         <div className="flex h-9 flex-row items-center justify-between">
-          <Label>Email address</Label>
+          <Label>{t('emailLabel')}</Label>
           {fields.length < 5 && (
             <Button
               type="button"
               variant="link"
               onClick={handleAppendInvitation}
             >
-              + Add invitation
+              {t('addInvitation')}
             </Button>
           )}
         </div>
@@ -83,7 +84,7 @@ export function OnboardingInviteTeamStep({
                     <Input
                       type="email"
                       maxLength={255}
-                      placeholder="user@email.com"
+                      placeholder={t('emailPlaceholder')}
                       {...field}
                     />
                   </FormControl>

@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/link';
 import { AlertCircleIcon, LockIcon, MailIcon, UserIcon } from 'lucide-react';
 import { type SubmitHandler } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import { routes } from '@workspace/routes';
 import { Alert, AlertDescription } from '@workspace/ui/components/alert';
@@ -36,6 +36,7 @@ import { cn } from '@workspace/ui/lib/utils';
 import { continueWithGoogle } from '~/actions/auth/continue-with-google';
 import { continueWithMicrosoft } from '~/actions/auth/continue-with-microsoft';
 import { signUp } from '~/actions/auth/sign-up';
+import { Link } from '~/src/i18n/navigation';
 import { OrContinueWith } from '~/components/auth/or-continue-with';
 import { PasswordFormMessage } from '~/components/auth/password-form-message';
 import { useZodForm } from '~/hooks/use-zod-form';
@@ -45,6 +46,7 @@ export function SignUpCard({
   className,
   ...other
 }: CardProps): React.JSX.Element {
+  const t = useTranslations('auth.signUp');
   const [errorMessage, setErrorMessage] = React.useState<string>();
   const methods = useZodForm({
     schema: signUpSchema,
@@ -62,20 +64,20 @@ export function SignUpCard({
       if (result.validationErrors?.email?._errors?.[0]) {
         setErrorMessage(result.validationErrors?.email?._errors?.[0]);
       } else {
-        setErrorMessage('An error occured during sign up.');
+        setErrorMessage(t('error'));
       }
     }
   };
   const handleSignInWithGoogle = async (): Promise<void> => {
     const result = await continueWithGoogle();
     if (result?.serverError || result?.validationErrors) {
-      setErrorMessage('An error occured during Google sign up.');
+      setErrorMessage(t('googleError'));
     }
   };
   const handleSignInWithMicrosoft = async (): Promise<void> => {
     const result = await continueWithMicrosoft();
     if (result?.serverError || result?.validationErrors) {
-      setErrorMessage('An error occured during Microsoft sign up.');
+      setErrorMessage(t('microsoftError'));
     }
   };
   return (
@@ -88,10 +90,10 @@ export function SignUpCard({
     >
       <CardHeader>
         <CardTitle className="text-base lg:text-lg">
-          Create your account
+          {t('title')}
         </CardTitle>
         <CardDescription>
-          Please fill in the details to get started.
+          {t('description')}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
@@ -105,7 +107,7 @@ export function SignUpCard({
               name="name"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t('name')}</FormLabel>
                   <FormControl>
                     <InputWithAdornments
                       type="text"
@@ -125,7 +127,7 @@ export function SignUpCard({
               name="email"
               render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t('email')}</FormLabel>
                   <FormControl>
                     <InputWithAdornments
                       type="email"
@@ -146,7 +148,7 @@ export function SignUpCard({
                 name="password"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{t('password')}</FormLabel>
                     <FormControl>
                       <InputPassword
                         maxLength={72}
@@ -178,7 +180,7 @@ export function SignUpCard({
               disabled={methods.formState.isSubmitting}
               loading={methods.formState.isSubmitting}
             >
-              Create account
+              {t('createAccount')}
             </Button>
           </form>
         </FormProvider>
@@ -195,7 +197,7 @@ export function SignUpCard({
               width="20"
               height="20"
             />
-            Google
+            {t('google')}
           </Button>
           <Button
             type="button"
@@ -208,17 +210,17 @@ export function SignUpCard({
               width="20"
               height="20"
             />
-            Microsoft
+            {t('microsoft')}
           </Button>
         </div>
       </CardContent>
       <CardFooter className="flex justify-center gap-1 text-sm text-muted-foreground">
-        <span>Already have an account?</span>
+        <span>{t('haveAccount')}</span>
         <Link
           href={routes.dashboard.auth.SignIn}
           className="text-foreground underline"
         >
-          Sign in
+          {t('signIn')}
         </Link>
       </CardFooter>
     </Card>

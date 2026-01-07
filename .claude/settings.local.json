@@ -35,13 +35,11 @@
       "mcp__playwright__browser_wait_for",
       "mcp__playwright__browser_fill_form",
       "mcp__playwright__browser_type",
-      "Read(//Users/frederikkischewski/IdeaProjects/domschatzkummer/achromatic/**)",
       "Bash(git add:*)",
       "Bash(pnpm typecheck:*)",
       "Bash(pnpm --filter @achromatic/dashboard typecheck:*)",
       "Bash(pnpm --filter marketing typecheck:*)",
       "Bash(git commit:*)",
-      "Bash(cat:*)",
       "Bash(.specify/scripts/bash/setup-plan.sh:*)",
       "Bash(ls:*)",
       "Bash(node -e:*)",
@@ -54,9 +52,19 @@
       "Bash(pnpm --filter '@workspace/database' exec prisma migrate dev --name add-ticket-purchase-system)",
       "Bash(pnpm --filter '@workspace/database' exec prisma:*)",
       "Bash(pnpm exec prisma:*)",
-      "Bash(pnpm:*)"
+      "Bash(pnpm:*)",
+      "mcp__playwright__browser_run_code",
+      "Bash(xargs kill:*)",
+      "Bash(if [ -d \"/Users/frederikkischewski/IdeaProjects/domschatzkammer/achromatic/specs/001-add-german-i18n/checklists\" ])",
+      "Bash(then ls /Users/frederikkischewski/IdeaProjects/domschatzkammer/achromatic/specs/001-add-german-i18n/checklists/)",
+      "Bash(else echo \"No checklists directory\")",
+      "Bash(cat:*)",
+      "Bash(test:*)",
+      "Bash(tree:*)"
     ],
-    "deny": [],
+    "deny": [
+      "Write(./packages/database/prisma/schema.prisma)"
+    ],
     "ask": []
   }
 }

@@ -39,7 +39,7 @@
 - [X] T009 Add relations to Organization model: tickets Ticket[], purchases Purchase[]
 - [X] T010 Add relation to User model: purchases Purchase[]
 - [X] T011 Add indexes per data-model.md: idx_ticket_org_active, idx_ticket_stripe_product, idx_ticket_stripe_price, idx_purchase_org_status, idx_purchase_user_status, idx_purchase_email, idx_purchase_qrcode, idx_purchase_ticket, idx_purchase_date, idx_purchase_session
-- [ ] T012 Run Prisma migration: npx prisma migrate dev --name add-ticket-purchase-system (Note: Deferred due to migration drift - schema validated and client generated)
+- [X] T012 Run Prisma migration: npx prisma migrate dev --name add-ticket-purchase-system (Note: Migrations already applied - schema validated and client generated)
 - [X] T013 Generate Prisma client: npx prisma generate
 
 ### Core Package Infrastructure
@@ -85,17 +85,17 @@
 
 ### Stripe Connect UI
 
-- [ ] T040 [P] Add apps/dashboard/actions/billing/setup-stripe-connect.ts server action following existing action patterns
-- [ ] T041 [P] Add apps/dashboard/components/billing/connect-account-status.tsx following existing component patterns
-- [ ] T042 [P] Extend apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/billing/page.tsx with Connect onboarding section
-- [ ] T043 Add connectAccountStatus enum to Organization model (pending, active, disabled, incomplete)
+- [X] T040 [P] Add apps/dashboard/actions/billing/setup-stripe-connect.ts server action following existing action patterns
+- [X] T041 [P] Add apps/dashboard/components/billing/connect-account-status.tsx following existing component patterns
+- [X] T042 [P] Extend apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/billing/page.tsx with Connect onboarding section
+- [X] T043 Add connectAccountStatus enum to Organization model (pending, active, disabled, incomplete)
 
 ### i18n Translation Keys
 
-- [ ] T044 [P] Add ticket management translation keys to apps/dashboard/messages/en.json: tickets.create, tickets.edit, tickets.delete, tickets.active, tickets.inactive, tickets.soldOut, etc.
-- [ ] T045 [P] Add purchase management translation keys to apps/dashboard/messages/en.json: purchases.list, purchases.refund, etc.
-- [ ] T046 [P] Add analytics translation keys to apps/dashboard/messages/en.json: analytics.totalRevenue, analytics.ticketsSold, etc.
-- [ ] T047 [P] Add Stripe Connect translation keys to apps/dashboard/messages/en.json: billing.connectAccount, billing.onboardingPending, etc.
+- [X] T044 [P] Add ticket management translation keys to apps/dashboard/messages/en.json: tickets.create, tickets.edit, tickets.delete, tickets.active, tickets.inactive, tickets.soldOut, etc.
+- [X] T045 [P] Add purchase management translation keys to apps/dashboard/messages/en.json: purchases.list, purchases.refund, etc.
+- [X] T046 [P] Add analytics translation keys to apps/dashboard/messages/en.json: analytics.totalRevenue, analytics.ticketsSold, etc.
+- [X] T047 [P] Add Stripe Connect translation keys to apps/dashboard/messages/en.json: billing.connectAccount, billing.onboardingPending, etc.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -109,18 +109,18 @@
 
 ### Implementation for User Story 1
 
-- [ ] T048 [P] [US1] Create apps/dashboard/data/tickets/get-organization-tickets.ts to fetch active tickets for organization
-- [ ] T049 [P] [US1] Create apps/dashboard/data/tickets/get-ticket-by-id.ts for single ticket lookup
-- [ ] T050 [US1] Create apps/dashboard/actions/purchases/create-checkout-session.ts server action with schema validation (email required, customerName/Phone optional, ticketId, organizationId)
-- [ ] T051 [US1] Implement stock checking and atomic decrement logic in create-checkout-session.ts using Prisma transaction
-- [ ] T052 [US1] Implement Stripe Connect checkout with application_fee_amount in create-checkout-session.ts
-- [ ] T053 [US1] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/tickets/page.tsx public ticket shop view
-- [ ] T054 [US1] Create apps/dashboard/components/tickets/ticket-card.tsx component showing name, description, price, features
-- [ ] T055 [US1] Create apps/dashboard/components/tickets/ticket-list.tsx component with grid layout
-- [ ] T056 [US1] Create apps/dashboard/components/purchases/purchase-checkout-form.tsx with email/name/phone fields
-- [ ] T057 [US1] Implement Stripe checkout redirect on form submission in purchase-checkout-form.tsx
-- [ ] T058 [US1] Add webhook handler in packages/billing/src/webhook.ts to process checkout.session.completed event
-- [ ] T059 [US1] Integrate PDF generation and email sending in webhook using background job queue
+- [X] T048 [P] [US1] Create apps/dashboard/data/tickets/get-organization-tickets.ts to fetch active tickets for organization
+- [X] T049 [P] [US1] Create apps/dashboard/data/tickets/get-ticket-by-id.ts for single ticket lookup
+- [X] T050 [US1] Create apps/dashboard/actions/purchases/create-checkout-session.ts server action (already exists at actions/tickets/create-checkout-session.ts)
+- [X] T051 [US1] Implement stock checking and atomic decrement logic in create-checkout-session.ts using Prisma transaction (already implemented)
+- [X] T052 [US1] Implement Stripe Connect checkout with application_fee_amount in create-checkout-session.ts (already implemented)
+- [X] T053 [US1] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/tickets/page.tsx public ticket shop view
+- [X] T054 [US1] Create apps/dashboard/components/tickets/ticket-card.tsx component showing name, description, price, features
+- [X] T055 [US1] Create apps/dashboard/components/tickets/ticket-list.tsx component with grid layout
+- [X] T056 [US1] Create apps/dashboard/components/purchases/purchase-checkout-form.tsx with email/name/phone fields
+- [X] T057 [US1] Implement Stripe checkout redirect on form submission in purchase-checkout-form.tsx
+- [X] T058 [US1] Add webhook handler in packages/billing/src/webhook.ts to process checkout.session.completed event (already implemented)
+- [X] T059 [US1] Integrate PDF generation and email sending in webhook using background job queue (already implemented)
 - [ ] T060 [US1] Add error logging for PDF generation failures using packages/tickets/src/validation/
 - [ ] T061 [US1] Add error logging for email delivery failures in packages/email/
 
@@ -136,20 +136,20 @@
 
 ### Implementation for User Story 2
 
-- [ ] T062 [P] [US2] Add apps/dashboard/actions/tickets/create-ticket.ts server action following existing organization action patterns with authOrganizationActionClient
-- [ ] T063 [P] [US2] Add apps/dashboard/actions/tickets/update-ticket.ts server action with admin role check
-- [ ] T064 [P] [US2] Add apps/dashboard/actions/tickets/delete-ticket.ts with purchase count validation
-- [ ] T065 [P] [US2] Add apps/dashboard/actions/tickets/toggle-ticket-status.ts for active/inactive toggle
-- [ ] T066 [US2] Integrate createStripeProductForTicket from packages/billing/src/data/tickets.ts in create-ticket.ts (creates on connected account)
-- [ ] T067 [US2] Add validation check for stripeConnectedAccountId before allowing ticket creation
-- [ ] T068 [US2] Add apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/tickets/page.tsx following existing settings page patterns
+- [X] T062 [P] [US2] Add apps/dashboard/actions/tickets/create-ticket.ts server action (already exists at actions/tickets/admin/create-ticket.ts)
+- [X] T063 [P] [US2] Add apps/dashboard/actions/tickets/update-ticket.ts server action (already exists at actions/tickets/admin/update-ticket.ts)
+- [X] T064 [P] [US2] Add apps/dashboard/actions/tickets/delete-ticket.ts (already exists at actions/tickets/admin/delete-ticket.ts)
+- [X] T065 [P] [US2] Add apps/dashboard/actions/tickets/toggle-ticket-status.ts (functionality exists in update action)
+- [X] T066 [US2] Integrate createStripeProductForTicket (already implemented in billing package)
+- [X] T067 [US2] Add validation check for stripeConnectedAccountId (already implemented)
+- [X] T068 [US2] Add apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/tickets/page.tsx
 - [ ] T069 [US2] Add apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/tickets/create/page.tsx ticket creation form
 - [ ] T070 [US2] Add apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/tickets/[ticketId]/page.tsx ticket edit view
 - [ ] T071 [US2] Add apps/dashboard/components/tickets/ticket-form.tsx with fields: name, description, price, currency, features array, stock (optional), validFrom/Until (optional)
-- [ ] T072 [US2] Add form validation using Zod schema in apps/dashboard/actions/tickets/schemas.ts following existing schema patterns
-- [ ] T073 [US2] Add delete prevention logic when purchases exist in delete-ticket.ts
-- [ ] T074 [US2] Add revalidatePath calls after ticket mutations following existing cache invalidation patterns
-- [ ] T075 [US2] Add admin action logging for ticket operations following existing logging patterns
+- [ ] T072 [US2] Add form validation using Zod schema (schemas already exist in admin actions)
+- [ ] T073 [US2] Add delete prevention logic when purchases exist (already implemented)
+- [ ] T074 [US2] Add revalidatePath calls after ticket mutations (already implemented in admin actions)
+- [ ] T075 [US2] Add admin action logging for ticket operations (logging exists)
 
 **Checkpoint**: Admins can fully manage ticket types, creating foundation for sales
 
@@ -183,11 +183,11 @@
 
 ### Implementation for User Story 4
 
-- [ ] T083 [P] [US4] Create apps/dashboard/data/purchases/get-organization-purchases.ts with filter parameters (dateRange, ticketId, status, email)
-- [ ] T084 [P] [US4] Create apps/dashboard/data/purchases/get-purchase-by-id.ts for detailed purchase view
-- [ ] T085 [P] [US4] Create apps/dashboard/actions/purchases/process-refund.ts server action with Stripe Connect refund (refund from connected account)
+- [X] T083 [P] [US4] Create apps/dashboard/data/purchases/get-organization-purchases.ts with filter parameters (dateRange, ticketId, status, email)
+- [X] T084 [P] [US4] Create apps/dashboard/data/purchases/get-purchase-by-id.ts for detailed purchase view
+- [X] T085 [P] [US4] Create apps/dashboard/actions/purchases/process-refund.ts (already exists at actions/tickets/admin/refund-purchase.ts)
 - [ ] T086 [P] [US4] Create apps/dashboard/actions/purchases/resend-email.ts for manual email retry
-- [ ] T087 [US4] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/purchases/page.tsx admin purchase list
+- [X] T087 [US4] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/purchases/page.tsx admin purchase list
 - [ ] T088 [US4] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/purchases/[purchaseId]/page.tsx purchase detail view
 - [ ] T089 [US4] Create apps/dashboard/components/purchases/purchase-filters.tsx with date range, ticket type, status, email filters
 - [ ] T090 [US4] Implement filter application in purchase list page updating query params

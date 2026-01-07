@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 
 import {
   FormControl,
@@ -29,6 +30,7 @@ export function OnboardingThemeStep({
   className,
   ...other
 }: OnboardingThemeStepProps): React.JSX.Element {
+  const t = useTranslations('onboarding.theme');
   const { setTheme } = useTheme();
   const methods = useFormContext<CompleteOnboardingSchema>();
   const selectedTheme = methods.watch('themeStep.theme');
@@ -44,11 +46,10 @@ export function OnboardingThemeStep({
       {...other}
     >
       <h1 className="text-xl font-semibold leading-none tracking-tight lg:text-2xl">
-        Choose your theme
+        {t('title')}
       </h1>
       <p className="text-sm text-muted-foreground lg:text-base">
-        Select the theme for the application. You’ll be able to change this
-        later.
+        {t('description')}
       </p>
       <FormField
         control={methods.control}

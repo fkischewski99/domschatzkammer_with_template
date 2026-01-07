@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslations } from 'next-intl';
 
 import { Button, type ButtonProps } from '@workspace/ui/components/button';
 
@@ -10,6 +11,8 @@ export function NextButton({
   isLastStep,
   ...rest
 }: NextButtonProps): React.JSX.Element {
+  const t = useTranslations('onboarding.navigation');
+
   return (
     <div>
       <Button
@@ -18,7 +21,7 @@ export function NextButton({
         className="mt-4"
         {...rest}
       >
-        {isLastStep ? 'Finish' : 'Next step →'}
+        {isLastStep ? t('finish') : t('nextStep')}
       </Button>
     </div>
   );
