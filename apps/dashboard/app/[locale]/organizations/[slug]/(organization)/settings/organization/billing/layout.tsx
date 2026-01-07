@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 
 export type BillingLayoutProps = {
   plan: React.ReactNode;
+  connect: React.ReactNode;
   billingEmail: React.ReactNode;
   billingAddress: React.ReactNode;
   invoices: React.ReactNode;
@@ -27,6 +28,7 @@ export type BillingLayoutProps = {
 
 export default async function BillingLayout({
   plan,
+  connect,
   billingEmail,
   billingAddress,
   invoices
@@ -48,6 +50,8 @@ export default async function BillingLayout({
       <PageBody>
         <AnnotatedLayout>
           {plan}
+          <Separator />
+          {connect}
           <Separator />
           {billingEmail}
           <Separator />

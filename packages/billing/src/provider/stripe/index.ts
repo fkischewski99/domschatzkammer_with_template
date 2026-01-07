@@ -38,7 +38,13 @@ class StripeBillingProvider implements BillingProvider {
 
   public getStripe(): Stripe {
     if (!this.stripe) {
-      this.stripe = new Stripe(keys().BILLING_STRIPE_SECRET_KEY!, {
+      const apiKey = keys().BILLING_STRIPE_SECRET_KEY;
+
+      if (!apiKey) {
+        throw new Error('BILLING_STRIPE_SECRET_KEY is not configured. Please add it to your .env file.');
+      }
+
+      this.stripe = new Stripe(apiKey, {
         apiVersion: '2025-11-17.clover'
       });
     }

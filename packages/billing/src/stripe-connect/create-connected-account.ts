@@ -14,7 +14,7 @@ import BillingProvider from '../provider/stripe';
  */
 export async function createConnectedAccount(params: {
   organizationId: string;
-  email: string;
+  email?: string;
   country?: string;
 }): Promise<Stripe.Account> {
   const stripe = BillingProvider.getStripe();
@@ -34,10 +34,9 @@ export async function createConnectedAccount(params: {
   }
 
   // Create Stripe Connect Express account
-  const account = await stripe.accounts.create({
+  const accountData: Stripe.AccountCreateParams = {
     type: 'express',
     country: params.country || 'DE', // Default to Germany
-    email: params.email,
     capabilities: {
       card_payments: { requested: true },
       transfers: { requested: true },
@@ -50,7 +49,14 @@ export async function createConnectedAccount(params: {
         },
       },
     },
-  });
+  };
+
+  // Only add email if provided (Stripe allows creating accounts without email)
+  if (params.email) {
+    accountData.email = params.email;
+  }
+
+  const account = await stripe.accounts.create(accountData);
 
   // Save the account ID to the organization
   await prisma.organization.update({
@@ -71,7 +77,7 @@ export async function createConnectedAccount(params: {
  */
 export async function getOrCreateConnectedAccount(params: {
   organizationId: string;
-  email: string;
+  email?: string;
   country?: string;
 }): Promise<Stripe.Account> {
   const organization = await prisma.organization.findUnique({

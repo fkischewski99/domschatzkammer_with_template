@@ -33,6 +33,7 @@ const dedupedGetActiveOrganization = cache(async function () {
         }
       },
       billingCustomerId: true,
+      stripeConnectAccountId: true,
       subscriptions: {
         select: {
           id: true,

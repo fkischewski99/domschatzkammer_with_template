@@ -107,7 +107,8 @@
       "slug": "Slug",
       "exampleData": "Beispieldaten",
       "exampleDataHint": "Empfohlen, um die Plattform zu erkunden",
-      "slugTaken": "Dieser Slug ist bereits vergeben."
+      "slugTaken": "Dieser Slug ist bereits vergeben.",
+      "removeLogo": "Logo entfernen"
     },
     "theme": {
       "title": "Wählen Sie Ihr Theme",
@@ -121,6 +122,13 @@
       "success": "Abgeschlossen und bereit!",
       "error": "Anfrage konnte nicht abgeschlossen werden",
       "signOutError": "Abmeldung fehlgeschlagen"
+    },
+    "inviteTeam": {
+      "title": "Laden Sie Ihr Team ein",
+      "description": "Fügen Sie Teammitglieder hinzu, um loszulegen. Sie können später jederzeit weitere Personen einladen.",
+      "emailLabel": "E-Mail-Adresse",
+      "addInvitation": "+ Einladung hinzufügen",
+      "emailPlaceholder": "benutzer@email.com"
     }
   },
   "invitations": {
@@ -610,6 +618,20 @@
           "sectionTitle": "Rechnungen",
           "sectionDescription": "Rechnungen werden automatisch an Ihre Rechnungs-E-Mail gesendet.",
           "empty": "Noch keine Rechnungen erhalten."
+        },
+        "connect": {
+          "title": "Stripe Connect",
+          "description": "Verbinden Sie Ihr Stripe-Konto, um Ticket-Zahlungen direkt zu akzeptieren.",
+          "sectionTitle": "Stripe Connect",
+          "sectionDescription": "Verbinden Sie Ihr Stripe-Konto, um Ticket-Zahlungen direkt zu akzeptieren.",
+          "status": "Status",
+          "statusActive": "Aktiv",
+          "statusNotSetup": "Nicht eingerichtet",
+          "statusActiveDescription": "Ihr Stripe Connect-Konto ist aktiv und bereit, Zahlungen zu akzeptieren.",
+          "statusNotSetupDescription": "Richten Sie Stripe Connect ein, um mit dem Verkauf von Tickets und der Annahme von Zahlungen zu beginnen.",
+          "setupConnect": "Stripe Connect einrichten",
+          "manageDashboard": "In Stripe verwalten",
+          "setupError": "Stripe Connect konnte nicht eingerichtet werden. Bitte versuchen Sie es erneut."
         }
       },
       "developers": {

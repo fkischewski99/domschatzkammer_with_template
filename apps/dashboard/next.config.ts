@@ -17,6 +17,7 @@ const INTERNAL_PACKAGES = [
   '@workspace/monitoring',
   '@workspace/rate-limit',
   '@workspace/routes',
+  '@workspace/tickets',
   '@workspace/ui',
   '@workspace/webhooks'
 ];
@@ -24,7 +25,14 @@ const INTERNAL_PACKAGES = [
 const nextConfig: NextConfig = {
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: INTERNAL_PACKAGES,
-  serverExternalPackages: ['@prisma/client', '@prisma/adapter-pg', 'pg'],
+  serverExternalPackages: [
+    '@prisma/client',
+    '@prisma/adapter-pg',
+    'pg',
+    'pg-boss',
+    'qrcode',
+    '@react-pdf/renderer'
+  ],
   /** Enable 'use cache' directive for data caching */
   cacheComponents: true,
   /** Custom cache life profiles */
