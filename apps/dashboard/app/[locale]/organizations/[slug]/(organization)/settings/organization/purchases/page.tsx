@@ -30,9 +30,19 @@ export default async function AdminPurchasesPage({
     organizationId: organization.id,
   });
 
+  // Convert Decimal to number for client component serialization
+  const serializedPurchases = purchases.map((purchase) => ({
+    ...purchase,
+    totalAmount: Number(purchase.totalAmount),
+    ticket: {
+      ...purchase.ticket,
+      price: Number(purchase.ticket.price),
+    },
+  }));
+
   return (
     <PurchaseManagement
-      purchases={purchases}
+      purchases={serializedPurchases}
       organizationSlug={organization.slug}
     />
   );

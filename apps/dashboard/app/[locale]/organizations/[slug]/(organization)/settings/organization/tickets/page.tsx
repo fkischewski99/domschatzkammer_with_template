@@ -27,5 +27,11 @@ export default async function TicketsPage({
     includeInactive: true,
   });
 
-  return <TicketManagement tickets={tickets} organizationSlug={organization.slug} />;
+  // Convert Decimal to number for client component serialization
+  const serializedTickets = tickets.map((ticket) => ({
+    ...ticket,
+    price: Number(ticket.price),
+  }));
+
+  return <TicketManagement tickets={serializedTickets} organizationSlug={organization.slug} />;
 }

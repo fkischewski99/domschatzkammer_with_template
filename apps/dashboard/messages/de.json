@@ -795,6 +795,12 @@
         "viewDetails": "Details anzeigen",
         "issueTicket": "Ticket ausstellen",
         "analytics": "Analytik",
+        "status": {
+          "COMPLETED": "Abgeschlossen",
+          "PENDING": "Ausstehend",
+          "REFUNDED": "Erstattet",
+          "CANCELLED": "Storniert"
+        },
         "table": {
           "date": "Datum",
           "customer": "Kunde",
@@ -802,6 +808,24 @@
           "amount": "Betrag",
           "status": "Status",
           "actions": "Aktionen"
+        },
+        "details": {
+          "heading": "Kaufdetails",
+          "subheading": "Details zu diesem Kauf anzeigen",
+          "purchaseId": "Kauf-ID",
+          "purchaseDate": "Kaufdatum",
+          "customer": "Kunde",
+          "email": "E-Mail",
+          "phone": "Telefon",
+          "ticketType": "Ticket-Typ",
+          "amount": "Betrag",
+          "status": "Status",
+          "complimentary": "Freiticket",
+          "issuedBy": "Ausgestellt von",
+          "reason": "Grund",
+          "backToList": "Zurück zur Liste",
+          "refund": "Erstatten",
+          "notFound": "Kauf nicht gefunden"
         },
         "issue": {
           "heading": "Freiticket ausstellen",

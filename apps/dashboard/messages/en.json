@@ -765,6 +765,12 @@
         "viewDetails": "View Details",
         "issueTicket": "Issue Ticket",
         "analytics": "Analytics",
+        "status": {
+          "COMPLETED": "Completed",
+          "PENDING": "Pending",
+          "REFUNDED": "Refunded",
+          "CANCELLED": "Cancelled"
+        },
         "table": {
           "date": "Date",
           "customer": "Customer",

@@ -59,39 +59,31 @@ export function PurchaseManagement({
               {t('noPurchases')}
             </p>
             <div className="flex gap-2">
-              <Button variant="outline" asChild>
-                <Link
-                  href={`/organizations/${organizationSlug}/settings/organization/purchases/analytics`}
-                >
+              <Link href={`/organizations/${organizationSlug}/settings/organization/purchases/analytics`}>
+                <Button variant="secondary" size="sm">
                   {t('analytics')}
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link
-                  href={`/organizations/${organizationSlug}/settings/organization/purchases/issue`}
-                >
+                </Button>
+              </Link>
+              <Link href={`/organizations/${organizationSlug}/settings/organization/purchases/issue`}>
+                <Button size="sm">
                   {t('issueTicket')}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
           </div>
         ) : (
           <>
             <div className="flex justify-end gap-2 mb-4">
-              <Button variant="outline" asChild>
-                <Link
-                  href={`/organizations/${organizationSlug}/settings/organization/purchases/analytics`}
-                >
+              <Link href={`/organizations/${organizationSlug}/settings/organization/purchases/analytics`}>
+                <Button variant="secondary" size="sm">
                   {t('analytics')}
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link
-                  href={`/organizations/${organizationSlug}/settings/organization/purchases/issue`}
-                >
+                </Button>
+              </Link>
+              <Link href={`/organizations/${organizationSlug}/settings/organization/purchases/issue`}>
+                <Button size="sm">
                   {t('issueTicket')}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
             <div className="rounded-lg border">
             <div className="relative w-full overflow-auto">
@@ -112,9 +104,6 @@ export function PurchaseManagement({
                     </th>
                     <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[13%]">
                       {t('table.status')}
-                    </th>
-                    <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground w-[10%]">
-                      {t('table.actions')}
                     </th>
                   </tr>
                 </thead>
@@ -149,16 +138,8 @@ export function PurchaseManagement({
                       </td>
                       <td className="p-4 align-middle">
                         <Badge variant={getStatusVariant(purchase.status)}>
-                          {purchase.status}
+                          {t(`status.${purchase.status}`)}
                         </Badge>
-                      </td>
-                      <td className="p-4 align-middle text-right">
-                        <Link
-                          href={`/organizations/${organizationSlug}/settings/organization/purchases/${purchase.id}`}
-                          className="text-sm font-medium text-primary hover:underline"
-                        >
-                          {t('viewDetails')}
-                        </Link>
                       </td>
                     </tr>
                   ))}

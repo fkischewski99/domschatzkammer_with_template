@@ -71,24 +71,20 @@ export function TicketManagement({
             <p className="text-sm text-muted-foreground mb-4">
               {t('noTickets')}
             </p>
-            <Button asChild>
-              <Link
-                href={`/organizations/${organizationSlug}/settings/organization/tickets/create`}
-              >
+            <Link href={`/organizations/${organizationSlug}/settings/organization/tickets/create`}>
+              <Button size="sm">
                 {t('createFirst')}
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         ) : (
           <>
             <div className="flex justify-end mb-4">
-              <Button asChild>
-                <Link
-                  href={`/organizations/${organizationSlug}/settings/organization/tickets/create`}
-                >
+              <Link href={`/organizations/${organizationSlug}/settings/organization/tickets/create`}>
+                <Button size="sm">
                   {t('createTicket')}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
             <div className="rounded-lg border">
               <div className="relative w-full overflow-auto">
