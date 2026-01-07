@@ -6,55 +6,35 @@ import { useTranslations } from 'next-intl';
 import type { Ticket } from '@workspace/database';
 
 import { Button } from '@workspace/ui/components/button';
-import {
-  AnnotatedHeader,
-  AnnotatedSection
-} from '@workspace/ui/components/annotated';
+import { AnnotatedSection } from '@workspace/ui/components/annotated';
 import { Badge } from '@workspace/ui/components/badge';
 
-import { useActiveOrganization } from '~/hooks/use-active-organization';
-import { getOrganizationTickets } from '~/data/tickets/get-organization-tickets';
+interface TicketManagementProps {
+  tickets: Ticket[];
+  organizationSlug: string;
+}
 
-export function TicketManagement(): React.JSX.Element {
+export function TicketManagement({
+  tickets,
+  organizationSlug
+}: TicketManagementProps): React.JSX.Element {
   const t = useTranslations('organization.settings.tickets');
-  const organization = useActiveOrganization();
-  const [tickets, setTickets] = React.useState<Ticket[]>([]);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    async function loadTickets() {
-      try {
-        const data = await getOrganizationTickets({
-          organizationId: organization.id,
-          includeInactive: true
-        });
-        setTickets(data);
-      } catch (error) {
-        console.error('Failed to load tickets:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadTickets();
-  }, [organization.id]);
 
   return (
-    <AnnotatedSection>
-      <AnnotatedHeader
-        heading={t('heading')}
-        subheading={t('subheading')}
-      />
+    <AnnotatedSection
+      title={t('heading')}
+      description={t('subheading')}
+      contentClassName={tickets.length > 0 ? "md:col-span-12" : undefined}
+    >
       <div className="space-y-4">
-        {loading ? (
-          <p className="text-sm text-muted-foreground">Loading...</p>
-        ) : tickets.length === 0 ? (
+        {tickets.length === 0 ? (
           <div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
             <p className="text-sm text-muted-foreground mb-4">
               {t('noTickets')}
             </p>
             <Button asChild>
               <Link
-                href={`/organizations/${organization.slug}/settings/organization/tickets/create`}
+                href={`/organizations/${organizationSlug}/settings/organization/tickets/create`}
               >
                 {t('createFirst')}
               </Link>
@@ -65,7 +45,7 @@ export function TicketManagement(): React.JSX.Element {
             <div className="flex justify-end mb-4">
               <Button asChild>
                 <Link
-                  href={`/organizations/${organization.slug}/settings/organization/tickets/create`}
+                  href={`/organizations/${organizationSlug}/settings/organization/tickets/create`}
                 >
                   {t('createTicket')}
                 </Link>
@@ -76,19 +56,19 @@ export function TicketManagement(): React.JSX.Element {
                 <table className="w-full caption-bottom text-sm">
                   <thead className="[&_tr]:border-b">
                     <tr className="border-b transition-colors hover:bg-muted/50">
-                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[40%]">
                         {t('table.name')}
                       </th>
-                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[20%]">
                         {t('table.price')}
                       </th>
-                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[15%]">
                         {t('table.stock')}
                       </th>
-                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                      <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[15%]">
                         {t('table.status')}
                       </th>
-                      <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">
+                      <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground w-[10%]">
                         {t('table.actions')}
                       </th>
                     </tr>
@@ -120,7 +100,7 @@ export function TicketManagement(): React.JSX.Element {
                         </td>
                         <td className="p-4 align-middle text-right">
                           <Link
-                            href={`/organizations/${organization.slug}/settings/organization/tickets/${ticket.id}`}
+                            href={`/organizations/${organizationSlug}/settings/organization/tickets/${ticket.id}`}
                             className="text-sm font-medium text-primary hover:underline"
                           >
                             {t('edit')}

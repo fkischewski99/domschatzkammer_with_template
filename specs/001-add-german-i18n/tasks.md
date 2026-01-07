@@ -121,8 +121,8 @@
 - [X] T057 [US1] Implement Stripe checkout redirect on form submission in purchase-checkout-form.tsx
 - [X] T058 [US1] Add webhook handler in packages/billing/src/webhook.ts to process checkout.session.completed event (already implemented)
 - [X] T059 [US1] Integrate PDF generation and email sending in webhook using background job queue (already implemented)
-- [ ] T060 [US1] Add error logging for PDF generation failures using packages/tickets/src/validation/
-- [ ] T061 [US1] Add error logging for email delivery failures in packages/email/
+- [X] T060 [US1] Add error logging for PDF generation failures using packages/tickets/src/validation/ (basic console.error logging exists)
+- [X] T061 [US1] Add error logging for email delivery failures in packages/email/ (basic console.error logging exists)
 
 **Checkpoint**: Anonymous customers can purchase tickets and receive PDF via email
 
@@ -143,13 +143,13 @@
 - [X] T066 [US2] Integrate createStripeProductForTicket (already implemented in billing package)
 - [X] T067 [US2] Add validation check for stripeConnectedAccountId (already implemented)
 - [X] T068 [US2] Add apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/tickets/page.tsx
-- [ ] T069 [US2] Add apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/tickets/create/page.tsx ticket creation form
-- [ ] T070 [US2] Add apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/tickets/[ticketId]/page.tsx ticket edit view
-- [ ] T071 [US2] Add apps/dashboard/components/tickets/ticket-form.tsx with fields: name, description, price, currency, features array, stock (optional), validFrom/Until (optional)
-- [ ] T072 [US2] Add form validation using Zod schema (schemas already exist in admin actions)
-- [ ] T073 [US2] Add delete prevention logic when purchases exist (already implemented)
-- [ ] T074 [US2] Add revalidatePath calls after ticket mutations (already implemented in admin actions)
-- [ ] T075 [US2] Add admin action logging for ticket operations (logging exists)
+- [X] T069 [US2] Add apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/tickets/create/page.tsx ticket creation form
+- [X] T070 [US2] Add apps/dashboard/app/[locale]/organizations/[slug]/(organization)/settings/organization/tickets/[ticketId]/page.tsx ticket edit view
+- [X] T071 [US2] Add apps/dashboard/components/tickets/ticket-form.tsx with fields: name, description, price, currency, features array, stock (optional), validFrom/Until (optional)
+- [X] T072 [US2] Add form validation using Zod schema (schemas already exist in admin actions)
+- [X] T073 [US2] Add delete prevention logic when purchases exist (already implemented)
+- [X] T074 [US2] Add revalidatePath calls after ticket mutations (already implemented in admin actions)
+- [X] T075 [US2] Add admin action logging for ticket operations (logging exists)
 
 **Checkpoint**: Admins can fully manage ticket types, creating foundation for sales
 
@@ -163,13 +163,13 @@
 
 ### Implementation for User Story 3
 
-- [ ] T076 [P] [US3] Create apps/dashboard/data/purchases/get-user-purchases.ts to fetch purchases where userId matches
-- [ ] T077 [US3] Modify apps/dashboard/actions/purchases/create-checkout-session.ts to include userId from session when authenticated
-- [ ] T078 [US3] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/purchases/page.tsx user purchase history view
-- [ ] T079 [US3] Create apps/dashboard/components/purchases/purchase-list.tsx component with columns: date, ticket type, amount, status, download PDF
-- [ ] T080 [US3] Add PDF regeneration endpoint in apps/dashboard/app/api/purchases/[purchaseId]/pdf/route.ts
-- [ ] T081 [US3] Implement PDF download button in purchase-list.tsx calling regeneration endpoint
-- [ ] T082 [US3] Pre-fill email field in purchase-checkout-form.tsx when user is authenticated using session data
+- [X] T076 [P] [US3] Create apps/dashboard/data/purchases/get-user-purchases.ts to fetch purchases where userId matches
+- [X] T077 [US3] Modify apps/dashboard/actions/purchases/create-checkout-session.ts to include userId from session when authenticated
+- [X] T078 [US3] Create apps/dashboard/app/[locale]/organizations/[slug]/(organization)/purchases/page.tsx user purchase history view
+- [X] T079 [US3] Create apps/dashboard/components/purchases/purchase-list.tsx component with columns: date, ticket type, amount, status, download PDF
+- [X] T080 [US3] Add PDF regeneration endpoint in apps/dashboard/app/api/purchases/[purchaseId]/pdf/route.ts
+- [X] T081 [US3] Implement PDF download button in purchase-list.tsx calling regeneration endpoint
+- [ ] T082 [US3] Pre-fill email field in purchase-checkout-form.tsx when user is authenticated using session data (DEFERRED - can be implemented later)
 
 **Checkpoint**: Authenticated users have seamless purchase experience with history tracking
 

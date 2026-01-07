@@ -666,23 +666,75 @@
           "create": "Create ticket"
         },
         "create": {
+          "heading": "Create Ticket",
+          "subheading": "Create a new ticket type for your organization.",
           "title": "Create ticket type",
           "description": "Create a new ticket type for your organization.",
           "success": "Ticket created",
           "error": "Couldn't create ticket"
         },
         "edit": {
+          "heading": "Edit Ticket",
+          "subheading": "Update ticket type details.",
           "title": "Edit ticket",
           "description": "Update ticket type details.",
           "success": "Ticket updated",
           "error": "Couldn't update ticket"
         },
         "delete": {
-          "confirm": "Delete this ticket type?",
-          "description": "This ticket type will be permanently deleted. This action cannot be undone.",
+          "heading": "Delete Ticket",
+          "subheading": "Permanently delete this ticket type. This action cannot be undone.",
+          "button": "Delete Ticket",
+          "confirm": {
+            "title": "Delete this ticket type?",
+            "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "deleting": "Deleting..."
+          },
           "success": "Ticket deleted",
           "error": "Couldn't delete ticket",
           "hasPurchases": "Cannot delete ticket type with existing purchases."
+        },
+        "form": {
+          "name": {
+            "label": "Ticket Name",
+            "placeholder": "Enter ticket name"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "Describe what this ticket includes"
+          },
+          "price": {
+            "label": "Price"
+          },
+          "currency": {
+            "label": "Currency"
+          },
+          "features": {
+            "label": "Features",
+            "placeholder": "Add a feature",
+            "add": "Add",
+            "maxReached": "Maximum 20 features reached"
+          },
+          "stock": {
+            "label": "Stock",
+            "placeholder": "Leave empty for unlimited",
+            "hint": "Leave empty for unlimited stock"
+          },
+          "validFrom": {
+            "label": "Valid From"
+          },
+          "validUntil": {
+            "label": "Valid Until"
+          },
+          "isActive": {
+            "label": "Ticket is active"
+          },
+          "cancel": "Cancel",
+          "create": "Create Ticket",
+          "update": "Update Ticket",
+          "submitting": "Saving..."
         },
         "fields": {
           "name": "Name",
@@ -1066,6 +1118,18 @@
       "ticketAlreadyValidated": "This ticket has already been validated",
       "ticketAlreadyInvalidated": "This ticket has been invalidated",
       "refundNotAllowed": "Refund not allowed for this purchase"
+    }
+  },
+  "purchases": {
+    "noPurchases": "You haven't made any purchases yet.",
+    "downloadPDF": "Download PDF",
+    "table": {
+      "date": "Date",
+      "ticket": "Ticket",
+      "organization": "Organization",
+      "amount": "Amount",
+      "status": "Status",
+      "actions": "Actions"
     }
   }
 }

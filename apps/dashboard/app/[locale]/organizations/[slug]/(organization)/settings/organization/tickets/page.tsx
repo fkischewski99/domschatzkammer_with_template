@@ -27,11 +27,5 @@ export default async function TicketsPage({
     includeInactive: true,
   });
 
-  // Serialize Decimal to string for Client Component
-  const serializedTickets = tickets.map((ticket) => ({
-    ...ticket,
-    price: ticket.price.toString(),
-  }));
-
-  return <TicketManagement tickets={serializedTickets} organizationSlug={organization.slug} />;
+  return <TicketManagement tickets={tickets} organizationSlug={organization.slug} />;
 }

@@ -651,6 +651,99 @@
           "stock": "Bestand",
           "status": "Status",
           "actions": "Aktionen"
+        },
+        "list": {
+          "title": "Tickets",
+          "description": "Verwalten Sie Ticket-Typen für Ihre Organisation.",
+          "empty": "Keine Ticket-Typen gefunden.",
+          "create": "Ticket erstellen"
+        },
+        "create": {
+          "heading": "Ticket erstellen",
+          "subheading": "Erstellen Sie einen neuen Ticket-Typ für Ihre Organisation.",
+          "title": "Ticket-Typ erstellen",
+          "description": "Erstellen Sie einen neuen Ticket-Typ für Ihre Organisation.",
+          "success": "Ticket erstellt",
+          "error": "Ticket konnte nicht erstellt werden"
+        },
+        "edit": {
+          "heading": "Ticket bearbeiten",
+          "subheading": "Ticket-Typ-Details aktualisieren.",
+          "title": "Ticket bearbeiten",
+          "description": "Ticket-Typ-Details aktualisieren.",
+          "success": "Ticket aktualisiert",
+          "error": "Ticket konnte nicht aktualisiert werden"
+        },
+        "delete": {
+          "heading": "Ticket löschen",
+          "subheading": "Diesen Ticket-Typ dauerhaft löschen. Diese Aktion kann nicht rückgängig gemacht werden.",
+          "button": "Ticket löschen",
+          "confirm": {
+            "title": "Diesen Ticket-Typ löschen?",
+            "description": "Sind Sie sicher, dass Sie \"{name}\" löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+            "cancel": "Abbrechen",
+            "delete": "Löschen",
+            "deleting": "Wird gelöscht..."
+          },
+          "success": "Ticket gelöscht",
+          "error": "Ticket konnte nicht gelöscht werden",
+          "hasPurchases": "Ticket-Typ mit bestehenden Käufen kann nicht gelöscht werden."
+        },
+        "form": {
+          "name": {
+            "label": "Ticket-Name",
+            "placeholder": "Ticket-Namen eingeben"
+          },
+          "description": {
+            "label": "Beschreibung",
+            "placeholder": "Beschreiben Sie, was dieses Ticket beinhaltet"
+          },
+          "price": {
+            "label": "Preis"
+          },
+          "currency": {
+            "label": "Währung"
+          },
+          "features": {
+            "label": "Funktionen",
+            "placeholder": "Funktion hinzufügen",
+            "add": "Hinzufügen",
+            "maxReached": "Maximum von 20 Funktionen erreicht"
+          },
+          "stock": {
+            "label": "Bestand",
+            "placeholder": "Leer lassen für unbegrenzt",
+            "hint": "Leer lassen für unbegrenzten Bestand"
+          },
+          "validFrom": {
+            "label": "Gültig ab"
+          },
+          "validUntil": {
+            "label": "Gültig bis"
+          },
+          "isActive": {
+            "label": "Ticket ist aktiv"
+          },
+          "cancel": "Abbrechen",
+          "create": "Ticket erstellen",
+          "update": "Ticket aktualisieren",
+          "submitting": "Wird gespeichert..."
+        },
+        "fields": {
+          "name": "Name",
+          "description": "Beschreibung",
+          "price": "Preis",
+          "currency": "Währung",
+          "features": "Funktionen",
+          "stock": "Bestand",
+          "validFrom": "Gültig ab",
+          "validUntil": "Gültig bis",
+          "isActive": "Aktiv"
+        },
+        "status": {
+          "active": "Aktiv",
+          "inactive": "Inaktiv",
+          "soldOut": "Ausverkauft"
         }
       },
       "developers": {
@@ -956,6 +1049,18 @@
       "ticketAlreadyValidated": "Dieses Ticket wurde bereits validiert",
       "ticketAlreadyInvalidated": "Dieses Ticket wurde ungültig gemacht",
       "refundNotAllowed": "Erstattung für diesen Kauf nicht erlaubt"
+    }
+  },
+  "purchases": {
+    "noPurchases": "Sie haben noch keine Käufe getätigt.",
+    "downloadPDF": "PDF herunterladen",
+    "table": {
+      "date": "Datum",
+      "ticket": "Ticket",
+      "organization": "Organisation",
+      "amount": "Betrag",
+      "status": "Status",
+      "actions": "Aktionen"
     }
   }
 }

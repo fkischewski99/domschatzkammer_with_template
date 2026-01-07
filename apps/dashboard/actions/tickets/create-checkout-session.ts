@@ -3,6 +3,7 @@
 import { prisma } from '@workspace/database/client';
 import { createTicketCheckoutSession } from '@workspace/billing/tickets';
 import { validateTicketAvailability } from '@workspace/tickets';
+import { auth } from '@workspace/auth';
 import { z } from 'zod';
 
 const CreateCheckoutSessionSchema = z.object({
@@ -30,6 +31,10 @@ export async function createCheckoutSession(
   input: CreateCheckoutSessionInput
 ): Promise<CreateCheckoutSessionResult> {
   try {
+    // Check for optional authentication
+    const authSession = await auth();
+    const userId = authSession?.user?.id ?? null;
+
     // Validate input
     const validated = CreateCheckoutSessionSchema.parse(input);
     const { ticketId, organizationId, customerEmail, customerName, customerPhone, quantity } = validated;
@@ -69,7 +74,7 @@ export async function createCheckoutSession(
     }
 
     // Create checkout session
-    const session = await createTicketCheckoutSession({
+    const stripeSession = await createTicketCheckoutSession({
       ticketId: ticket.id,
       email: customerEmail,
       customerName,
@@ -90,16 +95,17 @@ export async function createCheckoutSession(
         email: customerEmail,
         customerName,
         customerPhone,
+        userId, // Include userId if authenticated, null if anonymous
         ticketId: ticket.id,
         organizationId: ticket.organizationId,
-        stripeSessionId: session.id,
+        stripeSessionId: stripeSession.id,
         status: 'PENDING',
         totalAmount: ticket.price.times(quantity),
         currency: ticket.currency,
       },
     });
 
-    return { success: true, sessionUrl: session.url ?? undefined };
+    return { success: true, sessionUrl: stripeSession.url ?? undefined };
   } catch (error) {
     console.error('Error creating checkout session:', error);
     if (error instanceof z.ZodError) {
