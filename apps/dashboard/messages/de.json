@@ -646,6 +646,7 @@
         "unlimited": "Unbegrenzt",
         "active": "Aktiv",
         "inactive": "Inaktiv",
+        "editAction": "Bearbeiten",
         "edit": {
           "heading": "Ticket bearbeiten",
           "subheading": "Ticket-Typ-Details aktualisieren.",

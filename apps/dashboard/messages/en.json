@@ -653,6 +653,7 @@
         "unlimited": "Unlimited",
         "active": "Active",
         "inactive": "Inactive",
+        "editAction": "Edit",
         "edit": {
           "heading": "Edit Ticket",
           "subheading": "Update ticket type details.",

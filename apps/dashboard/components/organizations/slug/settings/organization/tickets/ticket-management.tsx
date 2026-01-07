@@ -103,7 +103,7 @@ export function TicketManagement({
                             href={`/organizations/${organizationSlug}/settings/organization/tickets/${ticket.id}`}
                             className="text-sm font-medium text-primary hover:underline"
                           >
-                            {t('edit')}
+                            {t('editAction')}
                           </Link>
                         </td>
                       </tr>
