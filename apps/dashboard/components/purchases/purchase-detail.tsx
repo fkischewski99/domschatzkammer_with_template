@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import type { PurchaseDetails } from '~/data/purchases/get-purchase-by-id';
 import Image from 'next/image';
@@ -9,6 +10,7 @@ import { Button } from '@workspace/ui/components/button';
 import { Badge } from '@workspace/ui/components/badge';
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 import { resendPurchaseEmail } from '~/actions/purchases/resend-email';
+import { processRefund } from '~/actions/purchases/process-refund';
 
 interface PurchaseDetailProps {
   purchase: PurchaseDetails;
@@ -20,7 +22,9 @@ export function PurchaseDetail({
   organizationSlug
 }: PurchaseDetailProps): React.JSX.Element {
   const t = useTranslations('purchases');
+  const router = useRouter();
   const [isResending, setIsResending] = React.useState(false);
+  const [isRefunding, setIsRefunding] = React.useState(false);
 
   const handleResendEmail = async () => {
     if (!confirm('Resend purchase confirmation email to the customer?')) {
@@ -42,6 +46,36 @@ export function PurchaseDetail({
       alert('Failed to resend email. Please try again.');
     } finally {
       setIsResending(false);
+    }
+  };
+
+  const handleProcessRefund = async () => {
+    const confirmMessage = `Are you sure you want to refund this purchase?\n\nAmount: ${Number(purchase.totalAmount).toFixed(2)} ${purchase.currency}\nCustomer: ${purchase.email}\n\nThis action cannot be undone. The ticket will be invalidated and the customer will be notified.`;
+
+    if (!confirm(confirmMessage)) {
+      return;
+    }
+
+    setIsRefunding(true);
+    try {
+      const result = await processRefund({
+        purchaseId: purchase.id,
+        reason: 'requested_by_customer'
+      });
+
+      if (result?.data) {
+        alert('Refund processed successfully! The customer will receive a confirmation email.');
+        router.refresh();
+      } else if (result?.serverError) {
+        alert(`Failed to process refund: ${result.serverError}`);
+      } else if (result?.validationErrors) {
+        alert('Invalid purchase data');
+      }
+    } catch (error) {
+      console.error('Error processing refund:', error);
+      alert('Failed to process refund. Please try again.');
+    } finally {
+      setIsRefunding(false);
     }
   };
 
@@ -204,12 +238,10 @@ export function PurchaseDetail({
               </Button>
               <Button
                 variant="destructive"
-                onClick={() => {
-                  // TODO: Implement refund flow in next task
-                  alert('Refund functionality coming soon');
-                }}
+                onClick={handleProcessRefund}
+                disabled={isRefunding}
               >
-                Process Refund
+                {isRefunding ? 'Processing Refund...' : 'Process Refund'}
               </Button>
             </>
           )}
