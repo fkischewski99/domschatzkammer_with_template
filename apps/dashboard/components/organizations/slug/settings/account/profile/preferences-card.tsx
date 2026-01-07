@@ -41,6 +41,7 @@ import {
   type UpdatePreferencesSchema
 } from '~/schemas/account/update-preferences-schema';
 import type { PreferencesDto } from '~/types/dtos/preferences-dto';
+import { useRouter, usePathname } from '~/src/i18n/navigation';
 
 export type PreferencesCardProps = CardProps & {
   preferences: PreferencesDto;
@@ -55,6 +56,9 @@ export function PreferencesCard({
 
   const { theme, setTheme } = useTheme();
   const isMounted = useMounted();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const methods = useZodForm({
     schema: updatePreferencesSchema,
     mode: 'onSubmit',
@@ -72,6 +76,14 @@ export function PreferencesCard({
     if (!result?.serverError && !result?.validationErrors) {
       toast.success(t('updateSuccess'));
       setTheme(values.theme);
+
+      // Redirect to the new locale if it changed
+      if (result.data?.locale) {
+        const appLocale = result.data.locale.startsWith('de') ? 'de' : 'en';
+        // Set cookie for next-intl middleware
+        document.cookie = `NEXT_LOCALE=${appLocale}; path=/; max-age=31536000; SameSite=Lax`;
+        router.replace(pathname, { locale: appLocale });
+      }
     } else {
       toast.error(t('updateError'));
     }

@@ -1,7 +1,6 @@
 'use server';
 import { updateTag } from 'next/cache';
 
-
 import { prisma } from '@workspace/database/client';
 
 import { authActionClient } from '~/actions/safe-action';
@@ -25,4 +24,9 @@ export const updatePreferences = authActionClient
     updateTag(
       Caching.createUserTag(UserCacheKey.Preferences, ctx.session.user.id)
     );
+
+    // Return the new locale so client can handle redirect
+    return {
+      locale: parsedInput.locale
+    };
   });

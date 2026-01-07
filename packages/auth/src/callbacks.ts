@@ -75,6 +75,25 @@ export const callbacks = {
         expires: sessionExpiry
       });
 
+      // Get user's preferred locale and redirect to it
+      const userLocale = await prisma.user.findUnique({
+        where: { id: user.id },
+        select: { locale: true }
+      });
+
+      if (userLocale?.locale) {
+        // Map user locale (en-US, en-GB, de-DE) to app locale (en, de)
+        const appLocale = userLocale.locale.startsWith('de') ? 'de' : 'en';
+        // Store locale preference in cookie for middleware to use
+        cookieStore.set({
+          name: 'NEXT_LOCALE',
+          value: appLocale,
+          path: '/',
+          httpOnly: false,
+          sameSite: 'lax'
+        });
+      }
+
       // already authorized
       return true;
     }
@@ -159,6 +178,27 @@ export const callbacks = {
     }
     if (profile.name) {
       profile.name = profile.name.substring(0, 64);
+    }
+
+    // Get user's preferred locale and set cookie for OAuth sign-ins
+    if (user?.id) {
+      const userLocale = await prisma.user.findUnique({
+        where: { id: user.id },
+        select: { locale: true }
+      });
+
+      if (userLocale?.locale) {
+        // Map user locale (en-US, en-GB, de-DE) to app locale (en, de)
+        const appLocale = userLocale.locale.startsWith('de') ? 'de' : 'en';
+        const cookieStore = await cookies();
+        cookieStore.set({
+          name: 'NEXT_LOCALE',
+          value: appLocale,
+          path: '/',
+          httpOnly: false,
+          sameSite: 'lax'
+        });
+      }
     }
 
     return true;
