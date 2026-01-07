@@ -643,6 +643,22 @@
         }
       },
       "tickets": {
+        "heading": "Ticket Management",
+        "subheading": "Manage ticket types for your organization",
+        "noTickets": "No tickets created yet. Create your first ticket to start selling.",
+        "createFirst": "Create First Ticket",
+        "createTicket": "Create Ticket",
+        "unlimited": "Unlimited",
+        "active": "Active",
+        "inactive": "Inactive",
+        "edit": "Edit",
+        "table": {
+          "name": "Name",
+          "price": "Price",
+          "stock": "Stock",
+          "status": "Status",
+          "actions": "Actions"
+        },
         "list": {
           "title": "Tickets",
           "description": "Manage ticket types for your organization.",

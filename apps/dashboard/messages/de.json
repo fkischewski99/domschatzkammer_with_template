@@ -635,6 +635,24 @@
           "setupError": "Stripe Connect konnte nicht eingerichtet werden. Bitte versuchen Sie es erneut."
         }
       },
+      "tickets": {
+        "heading": "Ticket-Verwaltung",
+        "subheading": "Verwalten Sie Ticket-Typen für Ihre Organisation",
+        "noTickets": "Noch keine Tickets erstellt. Erstellen Sie Ihr erstes Ticket, um mit dem Verkauf zu beginnen.",
+        "createFirst": "Erstes Ticket erstellen",
+        "createTicket": "Ticket erstellen",
+        "unlimited": "Unbegrenzt",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "edit": "Bearbeiten",
+        "table": {
+          "name": "Name",
+          "price": "Preis",
+          "stock": "Bestand",
+          "status": "Status",
+          "actions": "Aktionen"
+        }
+      },
       "developers": {
         "apiKeys": {
           "title": "API-Schlüssel",
