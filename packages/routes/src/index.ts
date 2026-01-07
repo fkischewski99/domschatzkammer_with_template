@@ -75,7 +75,8 @@ export const routes = {
             Developers: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/developers`,
             General: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/general`,
             Index: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization`,
-            Members: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/members`
+            Members: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/members`,
+            Tickets: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/tickets`
           }
         }
       }

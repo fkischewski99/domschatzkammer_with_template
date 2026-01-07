@@ -8,6 +8,7 @@ import {
   LockKeyholeIcon,
   SettingsIcon,
   StoreIcon,
+  TicketIcon,
   UserIcon,
   UserPlus2Icon,
   UsersIcon
@@ -108,6 +109,14 @@ export function createOrganizationNavItems(slug: string): NavItem[] {
         slug
       ),
       icon: CreditCardIcon
+    },
+    {
+      title: t('tickets'),
+      href: replaceOrgSlug(
+        routes.dashboard.organizations.slug.settings.organization.Tickets,
+        slug
+      ),
+      icon: TicketIcon
     },
     {
       title: t('developers'),
