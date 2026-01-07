@@ -74,6 +74,7 @@
   "navigation": {
     "home": "Startseite",
     "contacts": "Kontakte",
+    "purchases": "Meine Käufe",
     "settings": "Einstellungen",
     "account": {
       "profile": "Profil",
@@ -85,6 +86,7 @@
       "members": "Mitglieder",
       "billing": "Abrechnung",
       "tickets": "Tickets",
+      "purchases": "Käufe",
       "developers": "Entwickler"
     },
     "support": {

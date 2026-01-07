@@ -62,6 +62,7 @@ export const routes = {
         Contacts: `${baseUrl.Dashboard}/de/organizations/[slug]/contacts`,
         Home: `${baseUrl.Dashboard}/de/organizations/[slug]/home`,
         Index: `${baseUrl.Dashboard}/de/organizations/[slug]`,
+        Purchases: `${baseUrl.Dashboard}/de/organizations/[slug]/purchases`,
         settings: {
           account: {
             Index: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/account`,
@@ -76,6 +77,7 @@ export const routes = {
             General: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/general`,
             Index: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization`,
             Members: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/members`,
+            Purchases: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/purchases`,
             Tickets: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/tickets`
           }
         }

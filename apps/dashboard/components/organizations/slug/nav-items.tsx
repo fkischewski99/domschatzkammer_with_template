@@ -6,6 +6,7 @@ import {
   CreditCardIcon,
   HomeIcon,
   LockKeyholeIcon,
+  ReceiptIcon,
   SettingsIcon,
   StoreIcon,
   TicketIcon,
@@ -39,6 +40,11 @@ export function createMainNavItems(slug: string): NavItem[] {
       title: t('contacts'),
       href: replaceOrgSlug(routes.dashboard.organizations.slug.Contacts, slug),
       icon: UsersIcon
+    },
+    {
+      title: t('purchases'),
+      href: replaceOrgSlug(routes.dashboard.organizations.slug.Purchases, slug),
+      icon: ReceiptIcon
     },
     {
       title: t('settings'),
@@ -117,6 +123,14 @@ export function createOrganizationNavItems(slug: string): NavItem[] {
         slug
       ),
       icon: TicketIcon
+    },
+    {
+      title: t('purchases'),
+      href: replaceOrgSlug(
+        routes.dashboard.organizations.slug.settings.organization.Purchases,
+        slug
+      ),
+      icon: ReceiptIcon
     },
     {
       title: t('developers'),
