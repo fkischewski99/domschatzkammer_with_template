@@ -646,7 +646,14 @@
         "unlimited": "Unbegrenzt",
         "active": "Aktiv",
         "inactive": "Inaktiv",
-        "edit": "Bearbeiten",
+        "edit": {
+          "heading": "Ticket bearbeiten",
+          "subheading": "Ticket-Typ-Details aktualisieren.",
+          "title": "Ticket bearbeiten",
+          "description": "Ticket-Typ-Details aktualisieren.",
+          "success": "Ticket aktualisiert",
+          "error": "Ticket konnte nicht aktualisiert werden"
+        },
         "table": {
           "name": "Name",
           "price": "Preis",
@@ -667,14 +674,6 @@
           "description": "Erstellen Sie einen neuen Ticket-Typ für Ihre Organisation.",
           "success": "Ticket erstellt",
           "error": "Ticket konnte nicht erstellt werden"
-        },
-        "edit": {
-          "heading": "Ticket bearbeiten",
-          "subheading": "Ticket-Typ-Details aktualisieren.",
-          "title": "Ticket bearbeiten",
-          "description": "Ticket-Typ-Details aktualisieren.",
-          "success": "Ticket aktualisiert",
-          "error": "Ticket konnte nicht aktualisiert werden"
         },
         "delete": {
           "heading": "Ticket löschen",
@@ -783,6 +782,60 @@
           "deleteError": "Webhook konnte nicht gelöscht werden",
           "empty": "Kein Webhook gefunden.",
           "noTrigger": "Kein Trigger konfiguriert"
+        }
+      },
+      "purchases": {
+        "heading": "Kaufverwaltung",
+        "subheading": "Alle Ticketkäufe für Ihre Organisation anzeigen und verwalten",
+        "noPurchases": "Noch keine Käufe.",
+        "viewDetails": "Details anzeigen",
+        "issueTicket": "Ticket ausstellen",
+        "analytics": "Analytik",
+        "table": {
+          "date": "Datum",
+          "customer": "Kunde",
+          "ticket": "Ticket",
+          "amount": "Betrag",
+          "status": "Status",
+          "actions": "Aktionen"
+        },
+        "issue": {
+          "heading": "Freiticket ausstellen",
+          "subheading": "Kostenloses Ticket ohne Zahlung an einen Kunden ausstellen",
+          "ticketType": "Ticket-Typ",
+          "selectTicket": "Ticket-Typ auswählen",
+          "normalPrice": "Normalpreis",
+          "email": "E-Mail-Adresse",
+          "emailPlaceholder": "kunde@beispiel.de",
+          "customerName": "Kundenname (optional)",
+          "customerNamePlaceholder": "Max Mustermann",
+          "customerPhone": "Telefonnummer (optional)",
+          "customerPhonePlaceholder": "+49 123 456 789",
+          "reason": "Grund (optional)",
+          "reasonPlaceholder": "VIP-Gast, Werbeaktion, etc.",
+          "cancel": "Abbrechen",
+          "issueTicket": "Freiticket ausstellen",
+          "issuing": "Wird ausgestellt...",
+          "success": "Freiticket erfolgreich ausgestellt",
+          "error": "Freiticket konnte nicht ausgestellt werden",
+          "validationError": "Bitte wählen Sie einen Ticket-Typ und geben Sie eine E-Mail-Adresse ein"
+        }
+      },
+      "analytics": {
+        "title": "Analytik",
+        "description": "Ticketverkäufe und Umsatzanalysen anzeigen.",
+        "totalRevenue": "Gesamtumsatz",
+        "ticketsSold": "Verkaufte Tickets",
+        "averageOrderValue": "Durchschnittlicher Bestellwert",
+        "byTicketType": "Verkäufe nach Ticket-Typ",
+        "timeline": "Verkaufsverlauf",
+        "noData": "Keine Daten für diesen Zeitraum verfügbar",
+        "dateRange": {
+          "last7Days": "Letzte 7 Tage",
+          "last30Days": "Letzte 30 Tage",
+          "last90Days": "Letzte 90 Tage",
+          "allTime": "Gesamter Zeitraum",
+          "custom": "Benutzerdefinierter Zeitraum"
         }
       }
     }

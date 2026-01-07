@@ -55,11 +55,11 @@ export function PurchaseFilters({
   const hasActiveFilters = (status && status !== 'all') || (ticketId && ticketId !== 'all') || email || dateFrom || dateTo;
 
   return (
-    <div className="bg-white p-4 rounded-lg border border-gray-200 space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-end gap-4">
         {/* Status Filter */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="w-[160px]">
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">
             Status
           </label>
           <Select value={status} onValueChange={setStatus}>
@@ -77,8 +77,8 @@ export function PurchaseFilters({
         </div>
 
         {/* Ticket Type Filter */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="w-[160px]">
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">
             Ticket Type
           </label>
           <Select value={ticketId} onValueChange={setTicketId}>
@@ -97,8 +97,8 @@ export function PurchaseFilters({
         </div>
 
         {/* Email Filter */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="w-[200px]">
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">
             Customer Email
           </label>
           <Input
@@ -110,8 +110,8 @@ export function PurchaseFilters({
         </div>
 
         {/* Date From Filter */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="w-[150px]">
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">
             From Date
           </label>
           <Input
@@ -122,8 +122,8 @@ export function PurchaseFilters({
         </div>
 
         {/* Date To Filter */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="w-[150px]">
+          <label className="block text-sm font-medium text-muted-foreground mb-1.5">
             To Date
           </label>
           <Input
@@ -132,18 +132,18 @@ export function PurchaseFilters({
             onChange={(e) => setDateTo(e.target.value)}
           />
         </div>
-      </div>
 
-      {/* Action Buttons */}
-      <div className="flex gap-2">
-        <Button onClick={handleApplyFilters}>
-          Apply Filters
-        </Button>
-        {hasActiveFilters && (
-          <Button variant="outline" onClick={handleClearFilters}>
-            Clear Filters
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          <Button size="sm" onClick={handleApplyFilters}>
+            Apply Filters
           </Button>
-        )}
+          {hasActiveFilters && (
+            <Button size="sm" variant="outline" onClick={handleClearFilters}>
+              Clear
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

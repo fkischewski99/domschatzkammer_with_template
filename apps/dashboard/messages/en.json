@@ -653,7 +653,14 @@
         "unlimited": "Unlimited",
         "active": "Active",
         "inactive": "Inactive",
-        "edit": "Edit",
+        "edit": {
+          "heading": "Edit Ticket",
+          "subheading": "Update ticket type details.",
+          "title": "Edit ticket",
+          "description": "Update ticket type details.",
+          "success": "Ticket updated",
+          "error": "Couldn't update ticket"
+        },
         "table": {
           "name": "Name",
           "price": "Price",
@@ -674,14 +681,6 @@
           "description": "Create a new ticket type for your organization.",
           "success": "Ticket created",
           "error": "Couldn't create ticket"
-        },
-        "edit": {
-          "heading": "Edit Ticket",
-          "subheading": "Update ticket type details.",
-          "title": "Edit ticket",
-          "description": "Update ticket type details.",
-          "success": "Ticket updated",
-          "error": "Couldn't update ticket"
         },
         "delete": {
           "heading": "Delete Ticket",
@@ -756,59 +755,51 @@
         }
       },
       "purchases": {
-        "list": {
-          "title": "Purchases",
-          "description": "View and manage ticket purchases.",
-          "empty": "No purchases found.",
-          "filters": "Filters"
-        },
-        "detail": {
-          "title": "Purchase details",
+        "heading": "Purchase Management",
+        "subheading": "View and manage all ticket purchases for your organization",
+        "noPurchases": "No purchases yet.",
+        "viewDetails": "View Details",
+        "issueTicket": "Issue Ticket",
+        "analytics": "Analytics",
+        "table": {
+          "date": "Date",
           "customer": "Customer",
           "ticket": "Ticket",
-          "payment": "Payment",
-          "qrCode": "QR Code",
-          "downloadPdf": "Download PDF"
-        },
-        "refund": {
-          "confirm": "Refund this purchase?",
-          "description": "This will refund the payment and invalidate the ticket.",
-          "success": "Purchase refunded",
-          "error": "Couldn't process refund"
-        },
-        "resendEmail": {
-          "confirm": "Resend confirmation email?",
-          "success": "Email sent",
-          "error": "Couldn't send email"
+          "amount": "Amount",
+          "status": "Status",
+          "actions": "Actions"
         },
         "issue": {
-          "title": "Issue complimentary ticket",
-          "description": "Issue a free ticket to a customer.",
-          "success": "Ticket issued",
-          "error": "Couldn't issue ticket"
-        },
-        "status": {
-          "pending": "Pending",
-          "completed": "Completed",
-          "refunded": "Refunded",
-          "cancelled": "Cancelled"
-        },
-        "filters": {
-          "dateRange": "Date range",
-          "ticketType": "Ticket type",
-          "status": "Status",
-          "email": "Email",
-          "apply": "Apply filters",
-          "reset": "Reset"
+          "heading": "Issue Complimentary Ticket",
+          "subheading": "Issue a free ticket to a customer without payment",
+          "ticketType": "Ticket Type",
+          "selectTicket": "Select a ticket type",
+          "normalPrice": "Normal price",
+          "email": "Email Address",
+          "emailPlaceholder": "customer@example.com",
+          "customerName": "Customer Name (optional)",
+          "customerNamePlaceholder": "John Doe",
+          "customerPhone": "Phone Number (optional)",
+          "customerPhonePlaceholder": "+1 234 567 890",
+          "reason": "Reason (optional)",
+          "reasonPlaceholder": "VIP guest, promotional offer, etc.",
+          "cancel": "Cancel",
+          "issueTicket": "Issue Complimentary Ticket",
+          "issuing": "Issuing...",
+          "success": "Complimentary ticket issued successfully",
+          "error": "Failed to issue complimentary ticket",
+          "validationError": "Please select a ticket type and enter an email address"
         }
       },
       "analytics": {
         "title": "Analytics",
         "description": "View ticket sales and revenue analytics.",
-        "totalRevenue": "Total revenue",
-        "ticketsSold": "Tickets sold",
-        "byTicketType": "Sales by ticket type",
-        "timeline": "Sales timeline",
+        "totalRevenue": "Total Revenue",
+        "ticketsSold": "Tickets Sold",
+        "averageOrderValue": "Average Order Value",
+        "byTicketType": "Sales by Ticket Type",
+        "timeline": "Sales Timeline",
+        "noData": "No data available for this period",
         "dateRange": {
           "last7Days": "Last 7 days",
           "last30Days": "Last 30 days",
