@@ -18,10 +18,13 @@ import { OrganizationPageTitle } from '~/components/organizations/slug/organizat
 
 export default async function CreateEventPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ startTime?: string; endTime?: string }>;
 }): Promise<React.JSX.Element> {
   const { slug } = await params;
+  const { startTime, endTime } = await searchParams;
   const t = await getTranslations('organization.settings.events');
 
   const organization = await prisma.organization.findUnique({
@@ -60,6 +63,8 @@ export default async function CreateEventPage({
               organizationSlug={organization.slug}
               locations={locations}
               mode="create"
+              defaultStartTime={startTime}
+              defaultEndTime={endTime}
             />
           </AnnotatedSection>
         </AnnotatedLayout>

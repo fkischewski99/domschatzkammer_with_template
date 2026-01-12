@@ -29,6 +29,8 @@ interface EventFormProps {
   locations: Location[];
   event?: SerializedEventDetail;
   mode: 'create' | 'edit';
+  defaultStartTime?: string;
+  defaultEndTime?: string;
 }
 
 export function EventForm({
@@ -36,6 +38,8 @@ export function EventForm({
   locations,
   event,
   mode,
+  defaultStartTime,
+  defaultEndTime,
 }: EventFormProps): React.JSX.Element {
   const router = useRouter();
   const t = useTranslations('organization.settings.events.form');
@@ -121,9 +125,22 @@ export function EventForm({
     router.push(`/organizations/${organizationSlug}/events`);
   };
 
-  const formatDateTimeLocal = (date: Date | null | undefined) => {
+  const formatDateTimeLocal = (date: Date | string | null | undefined) => {
     if (!date) return '';
     return new Date(date).toISOString().slice(0, 16);
+  };
+
+  // Get the default values for start/end times
+  const getStartTimeDefault = () => {
+    if (event?.startTime) return formatDateTimeLocal(event.startTime);
+    if (defaultStartTime) return formatDateTimeLocal(defaultStartTime);
+    return '';
+  };
+
+  const getEndTimeDefault = () => {
+    if (event?.endTime) return formatDateTimeLocal(event.endTime);
+    if (defaultEndTime) return formatDateTimeLocal(defaultEndTime);
+    return '';
   };
 
   return (
@@ -177,7 +194,7 @@ export function EventForm({
               name="startTime"
               type="datetime-local"
               required
-              defaultValue={formatDateTimeLocal(event?.startTime)}
+              defaultValue={getStartTimeDefault()}
               disabled={loading}
             />
           </div>
@@ -191,7 +208,7 @@ export function EventForm({
               name="endTime"
               type="datetime-local"
               required
-              defaultValue={formatDateTimeLocal(event?.endTime)}
+              defaultValue={getEndTimeDefault()}
               disabled={loading}
             />
           </div>

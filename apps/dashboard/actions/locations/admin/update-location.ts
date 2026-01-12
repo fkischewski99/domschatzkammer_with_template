@@ -45,6 +45,7 @@ export const updateLocation = authOrganizationActionClient
         city: parsedInput.city,
         postalCode: parsedInput.postalCode || null,
         isActive: parsedInput.isActive,
+        color: parsedInput.color || null,
       },
     });
 

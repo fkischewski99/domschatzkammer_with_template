@@ -69,7 +69,7 @@ function Button({
           </span>
         </>
       ) : (
-        <>{children}</>
+        children
       )}
     </Comp>
   );

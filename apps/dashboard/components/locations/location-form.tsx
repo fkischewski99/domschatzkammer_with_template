@@ -46,6 +46,7 @@ export function LocationForm({
       city: formData.get('city') as string,
       postalCode: formData.get('postalCode') as string,
       isActive: formData.get('isActive') === 'on',
+      color: formData.get('color') as string || null,
     };
 
     try {
@@ -189,6 +190,24 @@ export function LocationForm({
           <Label htmlFor="isActive" className="cursor-pointer">
             {t('isActive.label')}
           </Label>
+        </div>
+
+        {/* Calendar Color */}
+        <div className="space-y-2">
+          <Label htmlFor="color">{t('color.label')}</Label>
+          <div className="flex items-center gap-3">
+            <Input
+              id="color"
+              name="color"
+              type="color"
+              className="h-10 w-20 p-1 cursor-pointer"
+              defaultValue={location?.color || '#3B82F6'}
+              disabled={loading}
+            />
+            <span className="text-sm text-muted-foreground">
+              {t('color.hint')}
+            </span>
+          </div>
         </div>
       </div>
 

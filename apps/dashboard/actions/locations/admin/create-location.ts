@@ -29,6 +29,7 @@ export const createLocation = authOrganizationActionClient
         city: parsedInput.city,
         postalCode: parsedInput.postalCode || null,
         isActive: parsedInput.isActive ?? true,
+        color: parsedInput.color || null,
       },
     });
 

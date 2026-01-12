@@ -30,6 +30,12 @@ export const locationSchema = z.object({
 
   isActive: z.boolean()
     .default(true),
+
+  color: z.string()
+    .regex(/^#[0-9A-Fa-f]{6}$/, 'Must be a valid hex color (e.g. #3B82F6).')
+    .optional()
+    .nullable()
+    .or(z.literal('')),
 });
 
 export type LocationSchema = z.infer<typeof locationSchema>;
