@@ -15,7 +15,7 @@ type ContactStage =
 
 type ContactRecord = 'PERSON' | 'COMPANY';
 
-type Role = 'MEMBER' | 'ADMIN';
+type Role = 'MEMBER' | 'GUIDE' | 'ADMIN';
 
 type FeedbackCategory = 'SUGGESTION' | 'PROBLEM' | 'QUESTION';
 
@@ -41,6 +41,7 @@ export const contactRecordLabel: Record<ContactRecord, string> = {
 
 export const roleLabels: Record<Role, string> = {
   MEMBER: 'Member',
+  GUIDE: 'Guide',
   ADMIN: 'Admin'
 };
 

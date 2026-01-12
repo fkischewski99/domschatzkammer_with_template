@@ -65,6 +65,7 @@ enum InvitationStatus {
 
 enum Role {
   MEMBER @map("member")
+  GUIDE  @map("guide")
   ADMIN  @map("admin")
 }
 
@@ -561,6 +562,7 @@ model Location {
   city        String  @db.VarChar(255)
   postalCode  String? @db.VarChar(20)
   isActive    Boolean @default(true)
+  color       String? @db.VarChar(7) // Hex color e.g. "#3B82F6"
 
   events Event[]
 
