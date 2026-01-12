@@ -51,6 +51,7 @@
     "./send-welcome-email": "./src/send-welcome-email.ts",
     "./send-purchase-confirmation-email": "./src/send-purchase-confirmation-email.ts",
     "./send-refund-confirmation-email": "./src/send-refund-confirmation-email.ts",
+    "./send-event-cancelled-email": "./src/send-event-cancelled-email.ts",
     "./templates/confirm-email-address-change-email": "./src/templates/confirm-email-address-change-email.tsx",
     "./templates/connected-account-security-alert-email": "./src/templates/connected-account-security-alert-email.tsx",
     "./templates/feedback-email": "./src/templates/feedback-email.tsx",
@@ -60,6 +61,7 @@
     "./templates/verify-email-address-email": "./src/templates/verify-email-address-email.tsx",
     "./templates/welcome-email": "./src/templates/welcome-email.tsx",
     "./templates/purchase-confirmation-email": "./src/templates/purchase-confirmation-email.tsx",
-    "./templates/refund-confirmation-email": "./src/templates/refund-confirmation-email.tsx"
+    "./templates/refund-confirmation-email": "./src/templates/refund-confirmation-email.tsx",
+    "./templates/event-cancelled-email": "./src/templates/event-cancelled-email.tsx"
   }
 }

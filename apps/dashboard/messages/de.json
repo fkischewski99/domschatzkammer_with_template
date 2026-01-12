@@ -1028,7 +1028,44 @@
           },
           "goBack": "Zurück",
           "confirm": "Veranstaltung absagen",
-          "cancelling": "Wird abgesagt..."
+          "cancelling": "Wird abgesagt...",
+          "withRefunds": {
+            "title": "Veranstaltung absagen & Rückerstattungen",
+            "loading": "Lade Kaufinformationen...",
+            "confirm": "Absagen & Erstatten",
+            "noPurchases": "Keine Ticketkäufe zum Erstatten.",
+            "noStripeConnect": {
+              "title": "Stripe nicht konfiguriert",
+              "description": "Ihre Organisation hat Stripe Connect nicht konfiguriert. Bitte richten Sie Stripe ein, um Rückerstattungen zu verarbeiten."
+            },
+            "summary": {
+              "title": "Rückerstattungs-Übersicht",
+              "purchases": "{count, plural, =0 {Keine Käufe} =1 {1 Kauf} other {# Käufe}} werden verarbeitet",
+              "refundAmount": "Gesamtbetrag der Rückerstattung: {amount}",
+              "freeTickets": "{count, plural, =1 {1 kostenloses Ticket} other {# kostenlose Tickets}} werden ungültig"
+            },
+            "processing": {
+              "title": "Absage wird verarbeitet",
+              "description": "Bitte warten Sie, während Rückerstattungen verarbeitet und Benachrichtigungen versendet werden..."
+            },
+            "results": {
+              "title": "Absage abgeschlossen",
+              "success": "Alle Rückerstattungen erfolgreich verarbeitet!",
+              "partial": "Einige Rückerstattungen konnten nicht verarbeitet werden",
+              "refundsProcessed": "Rückerstattungen verarbeitet",
+              "freeTicketsInvalidated": "Kostenlose Tickets ungültig",
+              "refundsFailed": "Rückerstattungen fehlgeschlagen",
+              "emailsSent": "E-Mails versendet",
+              "totalRefunded": "Gesamt erstattet",
+              "failedDetails": "Fehlgeschlagene Rückerstattungen",
+              "retryFailed": "Fehlgeschlagene erneut versuchen",
+              "retrying": "Wird erneut versucht...",
+              "close": "Schließen"
+            },
+            "error": {
+              "title": "Fehler"
+            }
+          }
         },
         "form": {
           "name": {

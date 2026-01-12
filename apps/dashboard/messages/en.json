@@ -980,7 +980,44 @@
           },
           "goBack": "Go Back",
           "confirm": "Cancel Event",
-          "cancelling": "Cancelling..."
+          "cancelling": "Cancelling...",
+          "withRefunds": {
+            "title": "Cancel Event & Process Refunds",
+            "loading": "Loading purchase information...",
+            "confirm": "Cancel Event & Refund",
+            "noPurchases": "No ticket purchases to refund.",
+            "noStripeConnect": {
+              "title": "Stripe Not Configured",
+              "description": "Your organization does not have Stripe Connect configured. Please set up Stripe to process refunds."
+            },
+            "summary": {
+              "title": "Refund Summary",
+              "purchases": "{count, plural, =0 {No purchases} =1 {1 purchase} other {# purchases}} will be processed",
+              "refundAmount": "Total refund amount: {amount}",
+              "freeTickets": "{count, plural, =1 {1 free ticket} other {# free tickets}} will be invalidated"
+            },
+            "processing": {
+              "title": "Processing Cancellation",
+              "description": "Please wait while we process refunds and send notifications..."
+            },
+            "results": {
+              "title": "Cancellation Complete",
+              "success": "All refunds processed successfully!",
+              "partial": "Some refunds could not be processed",
+              "refundsProcessed": "Refunds processed",
+              "freeTicketsInvalidated": "Free tickets invalidated",
+              "refundsFailed": "Refunds failed",
+              "emailsSent": "Emails sent",
+              "totalRefunded": "Total refunded",
+              "failedDetails": "Failed Refunds",
+              "retryFailed": "Retry Failed Refunds",
+              "retrying": "Retrying...",
+              "close": "Close"
+            },
+            "error": {
+              "title": "Error"
+            }
+          }
         },
         "form": {
           "name": {

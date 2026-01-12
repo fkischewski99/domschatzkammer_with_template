@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 import { Button } from '@workspace/ui/components/button';
 
-import { CancelEventModal } from '~/components/events/cancel-event-modal';
+import { CancelEventWithRefundsModal } from '~/components/events/cancel-event-with-refunds-modal';
 
 interface CancelEventSectionProps {
   eventId: string;
@@ -45,7 +45,7 @@ export function CancelEventSection({
         </Button>
       </AnnotatedSection>
 
-      <CancelEventModal
+      <CancelEventWithRefundsModal
         eventId={eventId}
         eventName={eventName}
         organizationSlug={organizationSlug}
