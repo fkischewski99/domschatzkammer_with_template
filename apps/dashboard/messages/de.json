@@ -928,6 +928,10 @@
           "isActive": {
             "label": "Aktiv"
           },
+          "color": {
+            "label": "Kalender-Farbe",
+            "hint": "Events werden in dieser Farbe im Kalender angezeigt."
+          },
           "cancel": "Abbrechen",
           "create": "Standort erstellen",
           "update": "Standort aktualisieren",
@@ -970,7 +974,10 @@
           "calendar": "Kalenderansicht"
         },
         "calendar": {
-          "today": "Heute"
+          "today": "Heute",
+          "clickToCreate": "Klicken um Veranstaltung zu erstellen",
+          "dragToMove": "Ziehen um Veranstaltung zu verschieben",
+          "updateError": "Fehler beim Aktualisieren der Veranstaltungszeit"
         },
         "status": {
           "published": "Veröffentlicht",

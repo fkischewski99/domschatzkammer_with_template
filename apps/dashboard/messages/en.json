@@ -880,6 +880,10 @@
           "isActive": {
             "label": "Active"
           },
+          "color": {
+            "label": "Calendar Color",
+            "hint": "Events will be displayed in this color on the calendar."
+          },
           "cancel": "Cancel",
           "create": "Create Location",
           "update": "Update Location",
@@ -922,7 +926,10 @@
           "calendar": "Calendar view"
         },
         "calendar": {
-          "today": "Today"
+          "today": "Today",
+          "clickToCreate": "Click to create event",
+          "dragToMove": "Drag to move event",
+          "updateError": "Failed to update event time"
         },
         "status": {
           "published": "Published",

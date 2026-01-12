@@ -9,7 +9,12 @@ import { toast } from '@workspace/ui/components/sonner';
 import { EventCalendar } from './event-calendar';
 import { EventList } from './event-list';
 import { toggleEventPublish } from '~/actions/events/admin/toggle-publish';
+import { updateEventTime } from '~/actions/events/admin/update-event-time';
 import type { SerializedEventWithRelations } from '~/data/events/get-organization-events';
+
+type OptimisticAction =
+  | { type: 'togglePublish'; eventId: string; isPublished: boolean }
+  | { type: 'updateTime'; eventId: string; startTime: string; endTime: string };
 
 export type EventsContentProps = {
   events: SerializedEventWithRelations[];
@@ -29,15 +34,26 @@ export function EventsContent({
 
   const [optimisticEvents, setOptimisticEvents] = useOptimistic(
     events,
-    (state, { eventId, isPublished }: { eventId: string; isPublished: boolean }) =>
-      state.map((event) =>
-        event.id === eventId ? { ...event, isPublished } : event
-      )
+    (state, action: OptimisticAction) => {
+      if (action.type === 'togglePublish') {
+        return state.map((event) =>
+          event.id === action.eventId ? { ...event, isPublished: action.isPublished } : event
+        );
+      }
+      if (action.type === 'updateTime') {
+        return state.map((event) =>
+          event.id === action.eventId
+            ? { ...event, startTime: new Date(action.startTime), endTime: new Date(action.endTime) }
+            : event
+        );
+      }
+      return state;
+    }
   );
 
   const handleTogglePublish = async (eventId: string, newStatus: boolean) => {
     startTransition(async () => {
-      setOptimisticEvents({ eventId, isPublished: newStatus });
+      setOptimisticEvents({ type: 'togglePublish', eventId, isPublished: newStatus });
 
       try {
         const result = await toggleEventPublish({
@@ -54,6 +70,22 @@ export function EventsContent({
         }
       } catch (error) {
         toast.error(t('status.toggleError'));
+      }
+    });
+  };
+
+  const handleEventTimeUpdate = (eventId: string, startTime: string, endTime: string) => {
+    startTransition(async () => {
+      setOptimisticEvents({ type: 'updateTime', eventId, startTime, endTime });
+
+      try {
+        const result = await updateEventTime({ eventId, startTime, endTime });
+
+        if (result?.serverError) {
+          toast.error(result.serverError);
+        }
+      } catch (error) {
+        toast.error(t('calendar.updateError'));
       }
     });
   };
@@ -84,6 +116,7 @@ export function EventsContent({
         <EventCalendar
           events={filteredEvents}
           organizationSlug={organizationSlug}
+          onEventTimeUpdate={handleEventTimeUpdate}
         />
       </div>
     );
