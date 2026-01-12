@@ -1406,6 +1406,11 @@
       "saving": "Saving...",
       "delete": "Remove",
       "cancel": "Cancel",
+      "saveSuccess": "Availability saved",
+      "saveError": "Failed to save availability",
+      "deleteSuccess": "Availability removed",
+      "deleteError": "Failed to remove availability",
+      "bulkSaveSuccess": "Availability updated for selected dates",
       "views": {
         "calendar": "Calendar",
         "list": "List"

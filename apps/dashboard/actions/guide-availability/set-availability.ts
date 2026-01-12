@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { updateTag } from 'next/cache';
 
 import { ForbiddenError } from '@workspace/common/errors';
 import { prisma } from '@workspace/database/client';
@@ -8,6 +8,7 @@ import { isOrganizationGuideOrAbove } from '@workspace/auth/permissions';
 
 import { authOrganizationActionClient } from '~/actions/safe-action';
 import { setAvailabilitySchema } from '~/schemas/guide-availability/set-availability-schema';
+import { Caching, OrganizationCacheKey } from '~/data/caching';
 
 export const setAvailability = authOrganizationActionClient
   .metadata({ actionName: 'setAvailability' })
@@ -22,12 +23,16 @@ export const setAvailability = authOrganizationActionClient
       throw new ForbiddenError('Only guides can set availability.');
     }
 
+    // Parse YYYY-MM-DD string to UTC midnight date
+    const [year, month, day] = parsedInput.date.split('-').map(Number);
+    const normalizedDate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
+
     await prisma.guideAvailability.upsert({
       where: {
         userId_organizationId_date: {
           userId: ctx.session.user.id,
           organizationId: ctx.organization.id,
-          date: parsedInput.date
+          date: normalizedDate
         }
       },
       update: {
@@ -37,11 +42,16 @@ export const setAvailability = authOrganizationActionClient
       create: {
         userId: ctx.session.user.id,
         organizationId: ctx.organization.id,
-        date: parsedInput.date,
+        date: normalizedDate,
         status: parsedInput.status,
         notes: parsedInput.notes
       }
     });
 
-    revalidatePath(`/organizations/${ctx.organization.slug}/my-availability`);
+    updateTag(
+      Caching.createOrganizationTag(
+        OrganizationCacheKey.GuideAvailability,
+        ctx.organization.id
+      )
+    );
   });

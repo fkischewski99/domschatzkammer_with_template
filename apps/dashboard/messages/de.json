@@ -1417,6 +1417,11 @@
       "saving": "Speichert...",
       "delete": "Entfernen",
       "cancel": "Abbrechen",
+      "saveSuccess": "Verfügbarkeit gespeichert",
+      "saveError": "Fehler beim Speichern der Verfügbarkeit",
+      "deleteSuccess": "Verfügbarkeit entfernt",
+      "deleteError": "Fehler beim Entfernen der Verfügbarkeit",
+      "bulkSaveSuccess": "Verfügbarkeit für ausgewählte Tage aktualisiert",
       "views": {
         "calendar": "Kalender",
         "list": "Liste"

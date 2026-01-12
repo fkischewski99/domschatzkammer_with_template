@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { updateTag } from 'next/cache';
 
 import { ForbiddenError } from '@workspace/common/errors';
 import { prisma } from '@workspace/database/client';
@@ -8,6 +8,7 @@ import { isOrganizationGuideOrAbove } from '@workspace/auth/permissions';
 
 import { authOrganizationActionClient } from '~/actions/safe-action';
 import { availabilityRangeSchema } from '~/schemas/guide-availability/availability-range-schema';
+import { Caching, OrganizationCacheKey } from '~/data/caching';
 
 export const setAvailabilityRange = authOrganizationActionClient
   .metadata({ actionName: 'setAvailabilityRange' })
@@ -24,14 +25,21 @@ export const setAvailabilityRange = authOrganizationActionClient
 
     const { startDate, endDate, status, notes } = parsedInput;
 
-    // Generate all dates in the range
-    const dates: Date[] = [];
-    const currentDate = new Date(startDate);
-    const end = new Date(endDate);
+    // Parse YYYY-MM-DD strings to generate UTC dates
+    const parseDate = (dateStr: string): Date => {
+      const [year, month, day] = dateStr.split('-').map(Number);
+      return new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
+    };
 
+    // Generate all dates in the range (in UTC)
+    const dates: Date[] = [];
+    const start = parseDate(startDate);
+    const end = parseDate(endDate);
+
+    const currentDate = new Date(start);
     while (currentDate <= end) {
       dates.push(new Date(currentDate));
-      currentDate.setDate(currentDate.getDate() + 1);
+      currentDate.setUTCDate(currentDate.getUTCDate() + 1);
     }
 
     // Upsert all dates
@@ -60,5 +68,10 @@ export const setAvailabilityRange = authOrganizationActionClient
       )
     );
 
-    revalidatePath(`/organizations/${ctx.organization.slug}/my-availability`);
+    updateTag(
+      Caching.createOrganizationTag(
+        OrganizationCacheKey.GuideAvailability,
+        ctx.organization.id
+      )
+    );
   });

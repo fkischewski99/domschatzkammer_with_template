@@ -5,7 +5,9 @@ import { useTranslations } from 'next-intl';
 import { format } from 'date-fns';
 import { de, enUS } from 'date-fns/locale';
 import { useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import { AvailabilityStatus } from '@workspace/database';
+import { toast } from '@workspace/ui/components/sonner';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -25,18 +27,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@workspace/ui/components/select';
-import { Alert, AlertDescription } from '@workspace/ui/components/alert';
 
 import { setAvailability } from '~/actions/guide-availability/set-availability';
 import { deleteAvailability } from '~/actions/guide-availability/delete-availability';
 import type { GuideAvailabilityDto } from '~/types/dtos/guide-availability-dto';
+
+// Format Date to YYYY-MM-DD string (timezone-safe)
+function formatDateString(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
 
 interface SetAvailabilityModalProps {
   date: Date;
   existingAvailability?: GuideAvailabilityDto;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onSuccess?: () => void;
 }
 
 export function SetAvailabilityModal({
@@ -44,77 +52,78 @@ export function SetAvailabilityModal({
   existingAvailability,
   open,
   onOpenChange,
-  onSuccess,
 }: SetAvailabilityModalProps): React.JSX.Element {
   const t = useTranslations('guides.availability');
   const locale = useLocale();
   const dateLocale = locale === 'de' ? de : enUS;
+  const router = useRouter();
 
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState<string | null>(null);
   const [status, setStatus] = React.useState<AvailabilityStatus>(
     existingAvailability?.status ?? AvailabilityStatus.AVAILABLE
   );
   const [notes, setNotes] = React.useState(existingAvailability?.notes ?? '');
+  const [isSaving, setIsSaving] = React.useState(false);
 
   // Reset form when modal opens with new date
   React.useEffect(() => {
     if (open) {
       setStatus(existingAvailability?.status ?? AvailabilityStatus.AVAILABLE);
       setNotes(existingAvailability?.notes ?? '');
-      setError(null);
     }
   }, [open, existingAvailability]);
 
   const handleSave = async () => {
-    setLoading(true);
-    setError(null);
+    const trimmedNotes = notes.trim() || null;
+    setIsSaving(true);
 
     try {
       const result = await setAvailability({
-        date,
+        date: formatDateString(date),
         status,
-        notes: notes.trim() || null,
+        notes: trimmedNotes,
       });
 
       if (result?.serverError) {
-        setError(result.serverError);
-        setLoading(false);
+        toast.error(t('saveError'));
         return;
       }
 
-      onSuccess?.();
+      toast.success(t('saveSuccess'));
       onOpenChange(false);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred');
-      setLoading(false);
+      router.refresh();
+    } catch (error) {
+      console.error('Failed to save availability:', error);
+      toast.error(t('saveError'));
+    } finally {
+      setIsSaving(false);
     }
   };
 
   const handleDelete = async () => {
-    setLoading(true);
-    setError(null);
+    setIsSaving(true);
 
     try {
-      const result = await deleteAvailability({ date });
+      const result = await deleteAvailability({ date: formatDateString(date) });
 
       if (result?.serverError) {
-        setError(result.serverError);
-        setLoading(false);
+        toast.error(t('deleteError'));
         return;
       }
 
-      onSuccess?.();
+      toast.success(t('deleteSuccess'));
       onOpenChange(false);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred');
-      setLoading(false);
+      router.refresh();
+    } catch (error) {
+      console.error('Failed to delete availability:', error);
+      toast.error(t('deleteError'));
+    } finally {
+      setIsSaving(false);
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="max-w-sm">
         <DialogHeader>
           <DialogTitle>{t('setAvailability')}</DialogTitle>
           <DialogDescription>
@@ -122,19 +131,12 @@ export function SetAvailabilityModal({
           </DialogDescription>
         </DialogHeader>
 
-        {error && (
-          <Alert variant="destructive">
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-
         <div className="space-y-4 py-4">
           <div className="space-y-2">
             <Label htmlFor="status">{t('status.label')}</Label>
             <Select
               value={status}
               onValueChange={(value) => setStatus(value as AvailabilityStatus)}
-              disabled={loading}
             >
               <SelectTrigger id="status">
                 <SelectValue />
@@ -165,7 +167,6 @@ export function SetAvailabilityModal({
               placeholder={t('notesPlaceholder')}
               rows={3}
               maxLength={500}
-              disabled={loading}
             />
           </div>
         </div>
@@ -176,7 +177,7 @@ export function SetAvailabilityModal({
               type="button"
               variant="destructive"
               onClick={handleDelete}
-              disabled={loading}
+              disabled={isSaving}
               className="w-full sm:w-auto"
             >
               {t('delete')}
@@ -187,16 +188,12 @@ export function SetAvailabilityModal({
             type="button"
             variant="outline"
             onClick={() => onOpenChange(false)}
-            disabled={loading}
+            disabled={isSaving}
           >
             {t('cancel')}
           </Button>
-          <Button
-            type="button"
-            onClick={handleSave}
-            disabled={loading}
-          >
-            {loading ? t('saving') : t('save')}
+          <Button type="button" onClick={handleSave} disabled={isSaving}>
+            {isSaving ? t('saving') : t('save')}
           </Button>
         </DialogFooter>
       </DialogContent>

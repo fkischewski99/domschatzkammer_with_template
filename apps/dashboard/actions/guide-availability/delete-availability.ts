@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { updateTag } from 'next/cache';
 
 import { ForbiddenError } from '@workspace/common/errors';
 import { prisma } from '@workspace/database/client';
@@ -8,6 +8,7 @@ import { isOrganizationGuideOrAbove } from '@workspace/auth/permissions';
 
 import { authOrganizationActionClient } from '~/actions/safe-action';
 import { deleteAvailabilitySchema } from '~/schemas/guide-availability/delete-availability-schema';
+import { Caching, OrganizationCacheKey } from '~/data/caching';
 
 export const deleteAvailability = authOrganizationActionClient
   .metadata({ actionName: 'deleteAvailability' })
@@ -22,13 +23,22 @@ export const deleteAvailability = authOrganizationActionClient
       throw new ForbiddenError('Only guides can manage availability.');
     }
 
+    // Parse YYYY-MM-DD string to UTC midnight date
+    const [year, month, day] = parsedInput.date.split('-').map(Number);
+    const normalizedDate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
+
     await prisma.guideAvailability.deleteMany({
       where: {
         userId: ctx.session.user.id,
         organizationId: ctx.organization.id,
-        date: parsedInput.date
+        date: normalizedDate
       }
     });
 
-    revalidatePath(`/organizations/${ctx.organization.slug}/my-availability`);
+    updateTag(
+      Caching.createOrganizationTag(
+        OrganizationCacheKey.GuideAvailability,
+        ctx.organization.id
+      )
+    );
   });
