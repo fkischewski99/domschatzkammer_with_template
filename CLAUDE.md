@@ -76,4 +76,4 @@ pnpm syncpack:fix                  # Fix version mismatches
 
 ## Important Skills
 - ALWAYS test your progress with the crome extension and the browser-feature-tester agent
-- 
+- DONT modify migrations after you pushed them to the remote db
