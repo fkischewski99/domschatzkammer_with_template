@@ -380,10 +380,11 @@ model Organization {
   orders            Order[]
   subscriptions     Subscription[]
   webhooks          Webhook[]
-  tickets           Ticket[]
-  purchases         Purchase[]
-  locations         Location[]
-  events            Event[]
+  tickets              Ticket[]
+  purchases            Purchase[]
+  locations            Location[]
+  events               Event[]
+  guideAvailabilities  GuideAvailability[]
 
   @@index([billingCustomerId], map: "IX_Organization_billingCustomerId")
   @@index([stripeConnectAccountId], map: "IX_Organization_stripeConnectAccountId")
@@ -487,6 +488,7 @@ model User {
   pageVisits                   ContactPageVisit[]
   sessions                     Session[]
   purchases                    Purchase[]
+  guideAvailabilities          GuideAvailability[]
 }
 
 model UserImage {
@@ -675,4 +677,28 @@ model Purchase {
   @@index([qrCode], map: "IX_Purchase_qrcode")
   @@index([stripeSessionId], map: "IX_Purchase_stripe_session")
   @@index([ticketId], map: "IX_Purchase_ticketId")
+}
+
+// ---- Guide Availability ---- //
+
+enum AvailabilityStatus {
+  AVAILABLE   @map("available")
+  UNAVAILABLE @map("unavailable")
+}
+
+model GuideAvailability {
+  id             String             @id(map: "PK_GuideAvailability") @default(uuid()) @db.Uuid
+  userId         String             @db.Uuid
+  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  organizationId String             @db.Uuid
+  organization   Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  date           DateTime           @db.Date
+  status         AvailabilityStatus @default(AVAILABLE)
+  notes          String?            @db.VarChar(500)
+  createdAt      DateTime           @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime           @updatedAt @db.Timestamptz(6)
+
+  @@unique([userId, organizationId, date], map: "UQ_GuideAvailability_user_org_date")
+  @@index([organizationId, date], map: "IX_GuideAvailability_org_date")
+  @@index([userId, organizationId], map: "IX_GuideAvailability_user_org")
 }

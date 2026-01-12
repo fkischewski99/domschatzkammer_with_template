@@ -77,6 +77,7 @@
     "events": "Veranstaltungen",
     "contacts": "Kontakte",
     "purchases": "Meine Käufe",
+    "myAvailability": "Meine Verfügbarkeit",
     "settings": "Einstellungen",
     "account": {
       "profile": "Profil",
@@ -90,6 +91,7 @@
       "tickets": "Tickets",
       "purchases": "Käufe",
       "locations": "Standorte",
+      "guides": "Domführer",
       "developers": "Entwickler"
     },
     "support": {
@@ -1397,6 +1399,44 @@
       "amount": "Betrag",
       "status": "Status",
       "actions": "Aktionen"
+    }
+  },
+  "guides": {
+    "availability": {
+      "title": "Meine Verfügbarkeit",
+      "description": "Legen Sie fest, wann Sie für Führungen verfügbar sind",
+      "status": {
+        "label": "Status",
+        "available": "Verfügbar",
+        "unavailable": "Nicht verfügbar"
+      },
+      "setAvailability": "Verfügbarkeit setzen",
+      "notes": "Notizen (optional)",
+      "notesPlaceholder": "Notizen zu Ihrer Verfügbarkeit hinzufügen...",
+      "save": "Speichern",
+      "saving": "Speichert...",
+      "delete": "Entfernen",
+      "cancel": "Abbrechen",
+      "views": {
+        "calendar": "Kalender",
+        "list": "Liste"
+      },
+      "list": {
+        "date": "Datum",
+        "day": "Tag",
+        "status": "Status",
+        "notes": "Notizen",
+        "selectAll": "Alle auswählen",
+        "clearSelection": "Auswahl aufheben",
+        "setSelected": "Auswahl setzen"
+      }
+    },
+    "overview": {
+      "title": "Domführer-Verfügbarkeiten",
+      "description": "Übersicht aller Domführer-Verfügbarkeiten",
+      "guide": "Domführer",
+      "filterByDate": "Nach Datum filtern",
+      "noGuides": "Keine Domführer in dieser Organisation"
     }
   }
 }

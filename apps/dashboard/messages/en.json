@@ -77,6 +77,7 @@
     "events": "Events",
     "contacts": "Contacts",
     "purchases": "My Purchases",
+    "myAvailability": "My Availability",
     "settings": "Settings",
     "account": {
       "profile": "Profile",
@@ -90,6 +91,7 @@
       "tickets": "Tickets",
       "purchases": "Purchases",
       "locations": "Locations",
+      "guides": "Guides",
       "developers": "Developers"
     },
     "support": {
@@ -1386,6 +1388,44 @@
       "amount": "Amount",
       "status": "Status",
       "actions": "Actions"
+    }
+  },
+  "guides": {
+    "availability": {
+      "title": "My Availability",
+      "description": "Set when you are available for tours",
+      "status": {
+        "label": "Status",
+        "available": "Available",
+        "unavailable": "Unavailable"
+      },
+      "setAvailability": "Set Availability",
+      "notes": "Notes (optional)",
+      "notesPlaceholder": "Add notes about your availability...",
+      "save": "Save",
+      "saving": "Saving...",
+      "delete": "Remove",
+      "cancel": "Cancel",
+      "views": {
+        "calendar": "Calendar",
+        "list": "List"
+      },
+      "list": {
+        "date": "Date",
+        "day": "Day",
+        "status": "Status",
+        "notes": "Notes",
+        "selectAll": "Select all",
+        "clearSelection": "Clear",
+        "setSelected": "Set selection"
+      }
+    },
+    "overview": {
+      "title": "Guide Availability",
+      "description": "Overview of all guide availabilities",
+      "guide": "Guide",
+      "filterByDate": "Filter by date",
+      "noGuides": "No guides in this organization"
     }
   }
 }

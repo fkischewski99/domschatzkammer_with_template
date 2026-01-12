@@ -80,3 +80,18 @@ export async function isOrganizationGuideOrAbove(
     membership.role === Role.GUIDE
   );
 }
+
+export async function isOrganizationAdminOrAbove(
+  userId: string,
+  organizationId: string
+): Promise<boolean> {
+  const membership = await prisma.membership.findFirst({
+    where: { userId, organizationId },
+    select: { role: true, isOwner: true }
+  });
+  if (!membership) {
+    throw new NotFoundError('Membership not found');
+  }
+
+  return membership.isOwner || membership.role === Role.ADMIN;
+}

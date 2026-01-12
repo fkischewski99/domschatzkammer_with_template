@@ -3,6 +3,7 @@
 import {
   BellIcon,
   CalendarIcon,
+  CalendarDaysIcon,
   CodeIcon,
   CreditCardIcon,
   HomeIcon,
@@ -52,6 +53,11 @@ export function createMainNavItems(slug: string): NavItem[] {
       title: t('purchases'),
       href: replaceOrgSlug(routes.dashboard.organizations.slug.Purchases, slug),
       icon: ReceiptIcon
+    },
+    {
+      title: t('myAvailability'),
+      href: replaceOrgSlug(routes.dashboard.organizations.slug.MyAvailability, slug),
+      icon: CalendarDaysIcon
     },
     {
       title: t('settings'),
@@ -146,6 +152,14 @@ export function createOrganizationNavItems(slug: string): NavItem[] {
         slug
       ),
       icon: MapPinIcon
+    },
+    {
+      title: t('guides'),
+      href: replaceOrgSlug(
+        routes.dashboard.organizations.slug.settings.organization.Guides,
+        slug
+      ),
+      icon: CalendarDaysIcon
     },
     {
       title: t('developers'),

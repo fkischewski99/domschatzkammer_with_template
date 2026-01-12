@@ -63,6 +63,7 @@ export const routes = {
         Events: `${baseUrl.Dashboard}/de/organizations/[slug]/events`,
         Home: `${baseUrl.Dashboard}/de/organizations/[slug]/home`,
         Index: `${baseUrl.Dashboard}/de/organizations/[slug]`,
+        MyAvailability: `${baseUrl.Dashboard}/de/organizations/[slug]/my-availability`,
         Purchases: `${baseUrl.Dashboard}/de/organizations/[slug]/purchases`,
         settings: {
           account: {
@@ -76,6 +77,7 @@ export const routes = {
             Billing: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/billing`,
             Developers: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/developers`,
             General: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/general`,
+            Guides: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/guides`,
             Index: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization`,
             Locations: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/locations`,
             Members: `${baseUrl.Dashboard}/de/organizations/[slug]/settings/organization/members`,

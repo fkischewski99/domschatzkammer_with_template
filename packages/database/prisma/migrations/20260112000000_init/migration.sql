@@ -31,6 +31,9 @@ CREATE TYPE "WebhookTrigger" AS ENUM ('contactCreated', 'contactUpdated', 'conta
 -- CreateEnum
 CREATE TYPE "PurchaseStatus" AS ENUM ('pending', 'completed', 'refunded', 'cancelled');
 
+-- CreateEnum
+CREATE TYPE "AvailabilityStatus" AS ENUM ('available', 'unavailable');
+
 -- CreateTable
 CREATE TABLE "Account" (
     "id" UUID NOT NULL,
@@ -554,6 +557,20 @@ CREATE TABLE "Purchase" (
 );
 
 -- CreateTable
+CREATE TABLE "GuideAvailability" (
+    "id" UUID NOT NULL,
+    "userId" UUID NOT NULL,
+    "organizationId" UUID NOT NULL,
+    "date" DATE NOT NULL,
+    "status" "AvailabilityStatus" NOT NULL DEFAULT 'available',
+    "notes" VARCHAR(500),
+    "createdAt" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMPTZ(6) NOT NULL,
+
+    CONSTRAINT "PK_GuideAvailability" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_ContactToContactTag" (
     "A" UUID NOT NULL,
     "B" UUID NOT NULL,
@@ -766,6 +783,15 @@ CREATE INDEX "IX_Purchase_stripe_session" ON "Purchase"("stripeSessionId");
 CREATE INDEX "IX_Purchase_ticketId" ON "Purchase"("ticketId");
 
 -- CreateIndex
+CREATE INDEX "IX_GuideAvailability_org_date" ON "GuideAvailability"("organizationId", "date");
+
+-- CreateIndex
+CREATE INDEX "IX_GuideAvailability_user_org" ON "GuideAvailability"("userId", "organizationId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UQ_GuideAvailability_user_org_date" ON "GuideAvailability"("userId", "organizationId", "date");
+
+-- CreateIndex
 CREATE INDEX "_ContactToContactTag_B_index" ON "_ContactToContactTag"("B");
 
 -- AddForeignKey
@@ -878,6 +904,12 @@ ALTER TABLE "Purchase" ADD CONSTRAINT "Purchase_ticketId_fkey" FOREIGN KEY ("tic
 
 -- AddForeignKey
 ALTER TABLE "Purchase" ADD CONSTRAINT "Purchase_organizationId_fkey" FOREIGN KEY ("organizationId") REFERENCES "Organization"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "GuideAvailability" ADD CONSTRAINT "GuideAvailability_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "GuideAvailability" ADD CONSTRAINT "GuideAvailability_organizationId_fkey" FOREIGN KEY ("organizationId") REFERENCES "Organization"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_ContactToContactTag" ADD CONSTRAINT "_ContactToContactTag_A_fkey" FOREIGN KEY ("A") REFERENCES "Contact"("id") ON DELETE CASCADE ON UPDATE CASCADE;

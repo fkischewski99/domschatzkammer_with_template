@@ -1,0 +1,327 @@
+'use client';
+
+import * as React from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { format, addDays, startOfDay, isSameDay } from 'date-fns';
+import { de, enUS } from 'date-fns/locale';
+import { AvailabilityStatus } from '@workspace/database';
+import { Check, X } from 'lucide-react';
+
+import { Button } from '@workspace/ui/components/button';
+import { Checkbox } from '@workspace/ui/components/checkbox';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@workspace/ui/components/table';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@workspace/ui/components/select';
+import { Alert, AlertDescription } from '@workspace/ui/components/alert';
+import { cn } from '@workspace/ui/lib/utils';
+
+import type { GuideAvailabilityDto } from '~/types/dtos/guide-availability-dto';
+import { setAvailability } from '~/actions/guide-availability/set-availability';
+import { setAvailabilityRange } from '~/actions/guide-availability/set-availability-range';
+import { AvailabilityLegend } from './availability-legend';
+
+interface AvailabilityListProps {
+  availabilities: GuideAvailabilityDto[];
+  daysToShow?: number;
+  onRefresh?: () => void;
+}
+
+export function AvailabilityList({
+  availabilities,
+  daysToShow = 30,
+  onRefresh,
+}: AvailabilityListProps): React.JSX.Element {
+  const t = useTranslations('guides.availability');
+  const locale = useLocale();
+  const dateLocale = locale === 'de' ? de : enUS;
+
+  const [selectedDates, setSelectedDates] = React.useState<Set<string>>(new Set());
+  const [bulkStatus, setBulkStatus] = React.useState<AvailabilityStatus>(
+    AvailabilityStatus.AVAILABLE
+  );
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+
+  // Generate list of dates from today
+  const dates = React.useMemo(() => {
+    const result: Date[] = [];
+    const today = startOfDay(new Date());
+    for (let i = 0; i < daysToShow; i++) {
+      result.push(addDays(today, i));
+    }
+    return result;
+  }, [daysToShow]);
+
+  // Create a map of dates to availability for quick lookup
+  const availabilityMap = React.useMemo(() => {
+    const map = new Map<string, GuideAvailabilityDto>();
+    for (const a of availabilities) {
+      const dateKey = new Date(a.date).toDateString();
+      map.set(dateKey, a);
+    }
+    return map;
+  }, [availabilities]);
+
+  const getAvailabilityForDate = (date: Date): GuideAvailabilityDto | undefined => {
+    return availabilityMap.get(date.toDateString());
+  };
+
+  const toggleDate = (date: Date) => {
+    const dateKey = date.toDateString();
+    const newSelected = new Set(selectedDates);
+    if (newSelected.has(dateKey)) {
+      newSelected.delete(dateKey);
+    } else {
+      newSelected.add(dateKey);
+    }
+    setSelectedDates(newSelected);
+  };
+
+  const selectAll = () => {
+    const allDateKeys = new Set(dates.map((d) => d.toDateString()));
+    setSelectedDates(allDateKeys);
+  };
+
+  const clearSelection = () => {
+    setSelectedDates(new Set());
+  };
+
+  const handleSingleStatusChange = async (date: Date, status: AvailabilityStatus) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const result = await setAvailability({
+        date,
+        status,
+        notes: null,
+      });
+
+      if (result?.serverError) {
+        setError(result.serverError);
+      } else {
+        onRefresh?.();
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unexpected error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBulkSetStatus = async () => {
+    if (selectedDates.size === 0) return;
+
+    setLoading(true);
+    setError(null);
+
+    // Find the date range from selected dates
+    const selectedDateObjects = Array.from(selectedDates).map((ds) => new Date(ds));
+    selectedDateObjects.sort((a, b) => a.getTime() - b.getTime());
+
+    const startDate = selectedDateObjects[0];
+    const endDate = selectedDateObjects[selectedDateObjects.length - 1];
+
+    // Check if dates are consecutive - if so, use range endpoint
+    const isConsecutive = selectedDateObjects.every((date, i) => {
+      if (i === 0) return true;
+      const prevDate = selectedDateObjects[i - 1];
+      return isSameDay(addDays(prevDate, 1), date);
+    });
+
+    try {
+      if (isConsecutive && selectedDateObjects.length > 1) {
+        // Use range endpoint for consecutive dates
+        const result = await setAvailabilityRange({
+          startDate,
+          endDate,
+          status: bulkStatus,
+          notes: null,
+        });
+
+        if (result?.serverError) {
+          setError(result.serverError);
+        } else {
+          setSelectedDates(new Set());
+          onRefresh?.();
+        }
+      } else {
+        // Set each date individually
+        for (const date of selectedDateObjects) {
+          const result = await setAvailability({
+            date,
+            status: bulkStatus,
+            notes: null,
+          });
+
+          if (result?.serverError) {
+            setError(result.serverError);
+            break;
+          }
+        }
+        setSelectedDates(new Set());
+        onRefresh?.();
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unexpected error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      <AvailabilityLegend />
+
+      {error && (
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+
+      {/* Bulk actions */}
+      <div className="flex items-center gap-4 flex-wrap">
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={selectAll} disabled={loading}>
+            {t('list.selectAll')}
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={clearSelection}
+            disabled={loading || selectedDates.size === 0}
+          >
+            {t('list.clearSelection')}
+          </Button>
+        </div>
+
+        {selectedDates.size > 0 && (
+          <div className="flex items-center gap-2">
+            <Select
+              value={bulkStatus}
+              onValueChange={(value) => setBulkStatus(value as AvailabilityStatus)}
+              disabled={loading}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value={AvailabilityStatus.AVAILABLE}>
+                  <span className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-green-500" />
+                    {t('status.available')}
+                  </span>
+                </SelectItem>
+                <SelectItem value={AvailabilityStatus.UNAVAILABLE}>
+                  <span className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-red-500" />
+                    {t('status.unavailable')}
+                  </span>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+            <Button size="sm" onClick={handleBulkSetStatus} disabled={loading}>
+              {t('list.setSelected')} ({selectedDates.size})
+            </Button>
+          </div>
+        )}
+      </div>
+
+      {/* Table */}
+      <div className="border rounded-lg">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[50px]"></TableHead>
+              <TableHead>{t('list.date')}</TableHead>
+              <TableHead>{t('list.day')}</TableHead>
+              <TableHead>{t('list.status')}</TableHead>
+              <TableHead>{t('list.notes')}</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {dates.map((date) => {
+              const dateKey = date.toDateString();
+              const availability = getAvailabilityForDate(date);
+              const isSelected = selectedDates.has(dateKey);
+              const isToday = isSameDay(date, new Date());
+
+              return (
+                <TableRow
+                  key={dateKey}
+                  className={cn(
+                    isToday && 'bg-accent/50',
+                    isSelected && 'bg-primary/10'
+                  )}
+                >
+                  <TableCell>
+                    <Checkbox
+                      checked={isSelected}
+                      onCheckedChange={() => toggleDate(date)}
+                      disabled={loading}
+                    />
+                  </TableCell>
+                  <TableCell className="font-medium">
+                    {format(date, 'd. MMM yyyy', { locale: dateLocale })}
+                  </TableCell>
+                  <TableCell>
+                    {format(date, 'EEEE', { locale: dateLocale })}
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant={availability?.status === AvailabilityStatus.AVAILABLE ? 'default' : 'outline'}
+                        size="icon"
+                        className={cn(
+                          'h-8 w-8',
+                          availability?.status === AvailabilityStatus.AVAILABLE &&
+                            'bg-green-500 hover:bg-green-600 text-white'
+                        )}
+                        onClick={() =>
+                          handleSingleStatusChange(date, AvailabilityStatus.AVAILABLE)
+                        }
+                        disabled={loading}
+                      >
+                        <Check className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant={availability?.status === AvailabilityStatus.UNAVAILABLE ? 'default' : 'outline'}
+                        size="icon"
+                        className={cn(
+                          'h-8 w-8',
+                          availability?.status === AvailabilityStatus.UNAVAILABLE &&
+                            'bg-red-500 hover:bg-red-600 text-white'
+                        )}
+                        onClick={() =>
+                          handleSingleStatusChange(date, AvailabilityStatus.UNAVAILABLE)
+                        }
+                        disabled={loading}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">
+                    {availability?.notes || '-'}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+  );
+}
