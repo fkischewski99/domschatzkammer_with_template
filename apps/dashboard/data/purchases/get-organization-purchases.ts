@@ -6,6 +6,14 @@ export interface PurchaseListItem extends Purchase {
   user: User | null;
 }
 
+// Serialized type for client components (Decimal converted to number)
+export interface SerializedPurchaseListItem extends Omit<PurchaseListItem, 'totalAmount' | 'ticket'> {
+  totalAmount: number;
+  ticket: Omit<Ticket, 'price'> & {
+    price: number;
+  };
+}
+
 export interface PurchaseFilters {
   organizationId: string;
   status?: PurchaseStatus;

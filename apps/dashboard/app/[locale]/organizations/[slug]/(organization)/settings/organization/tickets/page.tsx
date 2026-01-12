@@ -31,7 +31,7 @@ export default async function TicketsPage({
   const serializedTickets = tickets.map((ticket) => ({
     ...ticket,
     price: Number(ticket.price),
-  }));
+  })) as unknown as typeof tickets;
 
   return <TicketManagement tickets={serializedTickets} organizationSlug={organization.slug} />;
 }

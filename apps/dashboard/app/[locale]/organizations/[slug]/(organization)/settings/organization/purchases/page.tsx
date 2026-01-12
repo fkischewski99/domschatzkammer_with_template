@@ -2,7 +2,10 @@ import * as React from 'react';
 import { notFound } from 'next/navigation';
 
 import { prisma } from '@workspace/database/client';
-import { getOrganizationPurchases } from '~/data/purchases/get-organization-purchases';
+import {
+  getOrganizationPurchases,
+  type SerializedPurchaseListItem
+} from '~/data/purchases/get-organization-purchases';
 import { PurchaseManagement } from '~/components/purchases/purchase-management';
 
 /**
@@ -31,7 +34,7 @@ export default async function AdminPurchasesPage({
   });
 
   // Convert Decimal to number for client component serialization
-  const serializedPurchases = purchases.map((purchase) => ({
+  const serializedPurchases: SerializedPurchaseListItem[] = purchases.map((purchase) => ({
     ...purchase,
     totalAmount: Number(purchase.totalAmount),
     ticket: {

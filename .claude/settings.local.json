@@ -60,7 +60,9 @@
       "Bash(else echo \"No checklists directory\")",
       "Bash(cat:*)",
       "Bash(test:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(xargs:*)",
+      "Bash(grep:*)"
     ],
     "deny": [
       "Write(./packages/database/prisma/schema.prisma)"

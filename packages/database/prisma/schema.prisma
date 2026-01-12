@@ -381,6 +381,8 @@ model Organization {
   webhooks          Webhook[]
   tickets           Ticket[]
   purchases         Purchase[]
+  locations         Location[]
+  events            Event[]
 
   @@index([billingCustomerId], map: "IX_Organization_billingCustomerId")
   @@index([stripeConnectAccountId], map: "IX_Organization_stripeConnectAccountId")
@@ -546,6 +548,60 @@ enum PurchaseStatus {
   CANCELLED @map("cancelled")
 }
 
+// ---- Events & Locations ---- //
+
+model Location {
+  id             String       @id(map: "PK_Location") @default(uuid()) @db.Uuid
+  organizationId String       @db.Uuid
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  name        String  @db.VarChar(255)
+  description String? @db.Text
+  address     String  @db.VarChar(500)
+  city        String  @db.VarChar(255)
+  postalCode  String? @db.VarChar(20)
+  isActive    Boolean @default(true)
+
+  events Event[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
+
+  @@index([organizationId], map: "IX_Location_organizationId")
+  @@index([organizationId, isActive], map: "IX_Location_org_active")
+}
+
+model Event {
+  id             String       @id(map: "PK_Event") @default(uuid()) @db.Uuid
+  organizationId String       @db.Uuid
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  name        String   @db.VarChar(255)
+  description String?  @db.Text
+  startTime   DateTime @db.Timestamptz(6)
+  endTime     DateTime @db.Timestamptz(6)
+
+  locationId String   @db.Uuid
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+
+  ticketId String @unique @db.Uuid
+  ticket   Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  coverImage   String?   @db.VarChar(2048)
+  isPublished  Boolean   @default(false)
+  isCancelled  Boolean   @default(false)
+  cancelledAt  DateTime? @db.Timestamptz(6)
+  cancelReason String?   @db.Text
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
+
+  @@index([organizationId], map: "IX_Event_organizationId")
+  @@index([organizationId, isPublished], map: "IX_Event_org_published")
+  @@index([organizationId, startTime], map: "IX_Event_org_startTime")
+  @@index([locationId], map: "IX_Event_locationId")
+}
+
 model two_factor_bypass_codes {
   id         String   @id @db.Uuid
   userId     String   @db.Uuid
@@ -574,6 +630,7 @@ model Ticket {
   stripeProductId String?      @unique @db.VarChar(255)
   stripePriceId   String?      @unique @db.VarChar(255)
   purchases       Purchase[]
+  event           Event?
   createdAt       DateTime     @default(now()) @db.Timestamptz(6)
   updatedAt       DateTime     @updatedAt @db.Timestamptz(6)
 

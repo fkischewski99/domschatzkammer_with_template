@@ -2,10 +2,12 @@
 
 import {
   BellIcon,
+  CalendarIcon,
   CodeIcon,
   CreditCardIcon,
   HomeIcon,
   LockKeyholeIcon,
+  MapPinIcon,
   ReceiptIcon,
   SettingsIcon,
   StoreIcon,
@@ -35,6 +37,11 @@ export function createMainNavItems(slug: string): NavItem[] {
       title: t('home'),
       href: replaceOrgSlug(routes.dashboard.organizations.slug.Home, slug),
       icon: HomeIcon
+    },
+    {
+      title: t('events'),
+      href: replaceOrgSlug(routes.dashboard.organizations.slug.Events, slug),
+      icon: CalendarIcon
     },
     {
       title: t('contacts'),
@@ -131,6 +138,14 @@ export function createOrganizationNavItems(slug: string): NavItem[] {
         slug
       ),
       icon: ReceiptIcon
+    },
+    {
+      title: t('locations'),
+      href: replaceOrgSlug(
+        routes.dashboard.organizations.slug.settings.organization.Locations,
+        slug
+      ),
+      icon: MapPinIcon
     },
     {
       title: t('developers'),

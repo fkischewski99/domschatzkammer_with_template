@@ -73,6 +73,7 @@
   },
   "navigation": {
     "home": "Startseite",
+    "events": "Veranstaltungen",
     "contacts": "Kontakte",
     "purchases": "Meine Käufe",
     "settings": "Einstellungen",
@@ -87,6 +88,7 @@
       "billing": "Abrechnung",
       "tickets": "Tickets",
       "purchases": "Käufe",
+      "locations": "Standorte",
       "developers": "Entwickler"
     },
     "support": {
@@ -864,6 +866,212 @@
           "last90Days": "Letzte 90 Tage",
           "allTime": "Gesamter Zeitraum",
           "custom": "Benutzerdefinierter Zeitraum"
+        }
+      },
+      "locations": {
+        "heading": "Standortverwaltung",
+        "subheading": "Verwalten Sie Veranstaltungsorte für Ihre Organisation",
+        "noLocations": "Noch keine Standorte erstellt. Erstellen Sie Ihren ersten Standort für Veranstaltungen.",
+        "createFirst": "Ersten Standort erstellen",
+        "createLocation": "Standort erstellen",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "editAction": "Bearbeiten",
+        "table": {
+          "name": "Name",
+          "address": "Adresse",
+          "city": "Stadt",
+          "status": "Status",
+          "actions": "Aktionen"
+        },
+        "create": {
+          "heading": "Standort erstellen",
+          "subheading": "Fügen Sie einen neuen Veranstaltungsort hinzu."
+        },
+        "edit": {
+          "heading": "Standort bearbeiten",
+          "subheading": "Standortdetails aktualisieren."
+        },
+        "delete": {
+          "heading": "Standort löschen",
+          "subheading": "Diesen Standort dauerhaft löschen. Diese Aktion kann nicht rückgängig gemacht werden.",
+          "button": "Standort löschen",
+          "confirm": {
+            "title": "Diesen Standort löschen?",
+            "description": "Sind Sie sicher, dass Sie \"{name}\" löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+            "cancel": "Abbrechen",
+            "delete": "Löschen",
+            "deleting": "Wird gelöscht..."
+          }
+        },
+        "form": {
+          "name": {
+            "label": "Standortname",
+            "placeholder": "Standortname eingeben"
+          },
+          "description": {
+            "label": "Beschreibung",
+            "placeholder": "Beschreiben Sie den Veranstaltungsort"
+          },
+          "address": {
+            "label": "Adresse",
+            "placeholder": "Straßenadresse"
+          },
+          "city": {
+            "label": "Stadt",
+            "placeholder": "Stadt"
+          },
+          "postalCode": {
+            "label": "Postleitzahl",
+            "placeholder": "Postleitzahl"
+          },
+          "isActive": {
+            "label": "Aktiv"
+          },
+          "cancel": "Abbrechen",
+          "create": "Standort erstellen",
+          "update": "Standort aktualisieren",
+          "submitting": "Wird gespeichert..."
+        },
+        "status": {
+          "activated": "Standort aktiviert",
+          "deactivated": "Standort deaktiviert",
+          "toggleError": "Fehler beim Aktualisieren des Standortstatus"
+        }
+      },
+      "events": {
+        "heading": "Veranstaltungen",
+        "subheading": "Veranstaltungen und Ticketverkäufe für Ihre Organisation verwalten",
+        "totalInfo": "{count, plural, =0 {Keine Veranstaltungen} =1 {1 Veranstaltung} other {# Veranstaltungen}} in Ihrer Organisation",
+        "createEvent": "Veranstaltung erstellen",
+        "noDescription": "Keine Beschreibung vorhanden",
+        "ticketsAvailable": "Tickets verfügbar",
+        "filters": {
+          "all": "Alle",
+          "upcoming": "Kommende",
+          "past": "Vergangene",
+          "cancelled": "Abgesagt"
+        },
+        "emptyState": {
+          "title": "Noch keine Veranstaltungen",
+          "description": "Erstellen Sie Ihre erste Veranstaltung, um Tickets zu verkaufen."
+        },
+        "empty": {
+          "title": "Keine Veranstaltungen",
+          "description": "In dieser Kategorie gibt es keine Veranstaltungen."
+        },
+        "tabs": {
+          "upcoming": "Kommende",
+          "past": "Vergangene",
+          "cancelled": "Abgesagt"
+        },
+        "viewToggle": {
+          "list": "Listenansicht",
+          "calendar": "Kalenderansicht"
+        },
+        "calendar": {
+          "today": "Heute"
+        },
+        "status": {
+          "published": "Veröffentlicht",
+          "draft": "Entwurf",
+          "cancelled": "Abgesagt",
+          "publishedSuccess": "Veranstaltung veröffentlicht",
+          "unpublishedSuccess": "Veranstaltung zurückgezogen",
+          "toggleError": "Fehler beim Aktualisieren des Veranstaltungsstatus"
+        },
+        "actions": {
+          "menu": "Menü öffnen",
+          "edit": "Bearbeiten",
+          "publish": "Veröffentlichen",
+          "unpublish": "Zurückziehen",
+          "cancel": "Veranstaltung absagen",
+          "viewDetails": "Details anzeigen"
+        },
+        "create": {
+          "heading": "Veranstaltung erstellen",
+          "subheading": "Erstellen Sie eine neue Veranstaltung mit Ticketverkauf."
+        },
+        "edit": {
+          "heading": "Veranstaltung bearbeiten",
+          "subheading": "Veranstaltungsdetails und Ticketeinstellungen aktualisieren."
+        },
+        "delete": {
+          "heading": "Veranstaltung löschen",
+          "subheading": "Diese Veranstaltung dauerhaft löschen. Diese Aktion kann nicht rückgängig gemacht werden. Veranstaltungen mit Ticketkäufen können nicht gelöscht werden.",
+          "button": "Veranstaltung löschen",
+          "confirm": {
+            "title": "Diese Veranstaltung löschen?",
+            "description": "Sind Sie sicher, dass Sie \"{name}\" löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+            "cancel": "Abbrechen",
+            "delete": "Löschen",
+            "deleting": "Wird gelöscht..."
+          }
+        },
+        "cancel": {
+          "sectionTitle": "Veranstaltung absagen",
+          "sectionDescription": "Diese Veranstaltung absagen. Ticketinhaber werden benachrichtigt.",
+          "button": "Veranstaltung absagen",
+          "title": "Veranstaltung absagen",
+          "description": "Sind Sie sicher, dass Sie \"{name}\" absagen möchten? Alle Ticketinhaber werden benachrichtigt.",
+          "reason": {
+            "label": "Absagegrund",
+            "placeholder": "Geben Sie einen Grund für die Absage ein (optional)",
+            "hint": "Dieser Grund wird mit den Ticketinhabern geteilt."
+          },
+          "goBack": "Zurück",
+          "confirm": "Veranstaltung absagen",
+          "cancelling": "Wird abgesagt..."
+        },
+        "form": {
+          "name": {
+            "label": "Veranstaltungsname",
+            "placeholder": "Veranstaltungsname eingeben"
+          },
+          "description": {
+            "label": "Beschreibung",
+            "placeholder": "Beschreiben Sie Ihre Veranstaltung"
+          },
+          "startTime": {
+            "label": "Startzeit"
+          },
+          "endTime": {
+            "label": "Endzeit"
+          },
+          "location": {
+            "label": "Standort",
+            "placeholder": "Standort auswählen"
+          },
+          "ticketSection": {
+            "title": "Ticketeinstellungen"
+          },
+          "ticketPrice": {
+            "label": "Ticketpreis"
+          },
+          "ticketCurrency": {
+            "label": "Währung"
+          },
+          "ticketStock": {
+            "label": "Verfügbare Tickets",
+            "placeholder": "Leer lassen für unbegrenzt",
+            "hint": "Leer lassen für unbegrenzte Tickets"
+          },
+          "features": {
+            "label": "Ticket-Features",
+            "placeholder": "Feature hinzufügen",
+            "add": "Hinzufügen"
+          },
+          "coverImage": {
+            "label": "Titelbild-URL",
+            "placeholder": "https://beispiel.de/bild.jpg"
+          },
+          "isPublished": {
+            "label": "Veranstaltung veröffentlichen"
+          },
+          "cancel": "Abbrechen",
+          "create": "Veranstaltung erstellen",
+          "update": "Veranstaltung aktualisieren",
+          "submitting": "Wird gespeichert..."
         }
       }
     }

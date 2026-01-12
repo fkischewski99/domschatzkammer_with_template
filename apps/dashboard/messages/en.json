@@ -73,6 +73,7 @@
   },
   "navigation": {
     "home": "Home",
+    "events": "Events",
     "contacts": "Contacts",
     "purchases": "My Purchases",
     "settings": "Settings",
@@ -87,6 +88,7 @@
       "billing": "Billing",
       "tickets": "Tickets",
       "purchases": "Purchases",
+      "locations": "Locations",
       "developers": "Developers"
     },
     "support": {
@@ -816,6 +818,212 @@
           "last90Days": "Last 90 days",
           "allTime": "All time",
           "custom": "Custom range"
+        }
+      },
+      "locations": {
+        "heading": "Location Management",
+        "subheading": "Manage event venues and locations for your organization",
+        "noLocations": "No locations created yet. Create your first location to use for events.",
+        "createFirst": "Create First Location",
+        "createLocation": "Create Location",
+        "active": "Active",
+        "inactive": "Inactive",
+        "editAction": "Edit",
+        "table": {
+          "name": "Name",
+          "address": "Address",
+          "city": "City",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "create": {
+          "heading": "Create Location",
+          "subheading": "Add a new venue for your events."
+        },
+        "edit": {
+          "heading": "Edit Location",
+          "subheading": "Update location details."
+        },
+        "delete": {
+          "heading": "Delete Location",
+          "subheading": "Permanently delete this location. This action cannot be undone.",
+          "button": "Delete Location",
+          "confirm": {
+            "title": "Delete this location?",
+            "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "deleting": "Deleting..."
+          }
+        },
+        "form": {
+          "name": {
+            "label": "Location Name",
+            "placeholder": "Enter location name"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "Describe the venue"
+          },
+          "address": {
+            "label": "Address",
+            "placeholder": "Street address"
+          },
+          "city": {
+            "label": "City",
+            "placeholder": "City"
+          },
+          "postalCode": {
+            "label": "Postal Code",
+            "placeholder": "Postal code"
+          },
+          "isActive": {
+            "label": "Active"
+          },
+          "cancel": "Cancel",
+          "create": "Create Location",
+          "update": "Update Location",
+          "submitting": "Saving..."
+        },
+        "status": {
+          "activated": "Location activated",
+          "deactivated": "Location deactivated",
+          "toggleError": "Failed to update location status"
+        }
+      },
+      "events": {
+        "heading": "Events",
+        "subheading": "Manage events and ticket sales for your organization",
+        "totalInfo": "{count, plural, =0 {No events} =1 {1 event} other {# events}} in your organization",
+        "createEvent": "Create Event",
+        "noDescription": "No description provided",
+        "ticketsAvailable": "tickets available",
+        "filters": {
+          "all": "All",
+          "upcoming": "Upcoming",
+          "past": "Past",
+          "cancelled": "Cancelled"
+        },
+        "emptyState": {
+          "title": "No events yet",
+          "description": "Create your first event to start selling tickets."
+        },
+        "empty": {
+          "title": "No events",
+          "description": "No events in this category."
+        },
+        "tabs": {
+          "upcoming": "Upcoming",
+          "past": "Past",
+          "cancelled": "Cancelled"
+        },
+        "viewToggle": {
+          "list": "List view",
+          "calendar": "Calendar view"
+        },
+        "calendar": {
+          "today": "Today"
+        },
+        "status": {
+          "published": "Published",
+          "draft": "Draft",
+          "cancelled": "Cancelled",
+          "publishedSuccess": "Event published",
+          "unpublishedSuccess": "Event unpublished",
+          "toggleError": "Failed to update event status"
+        },
+        "actions": {
+          "menu": "Open menu",
+          "edit": "Edit",
+          "publish": "Publish",
+          "unpublish": "Unpublish",
+          "cancel": "Cancel Event",
+          "viewDetails": "View Details"
+        },
+        "create": {
+          "heading": "Create Event",
+          "subheading": "Create a new event with ticket sales."
+        },
+        "edit": {
+          "heading": "Edit Event",
+          "subheading": "Update event details and ticket settings."
+        },
+        "delete": {
+          "heading": "Delete Event",
+          "subheading": "Permanently delete this event. This action cannot be undone. Events with ticket purchases cannot be deleted.",
+          "button": "Delete Event",
+          "confirm": {
+            "title": "Delete this event?",
+            "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "deleting": "Deleting..."
+          }
+        },
+        "cancel": {
+          "sectionTitle": "Cancel Event",
+          "sectionDescription": "Cancel this event. Ticket holders will be notified.",
+          "button": "Cancel Event",
+          "title": "Cancel Event",
+          "description": "Are you sure you want to cancel \"{name}\"? This will notify all ticket holders.",
+          "reason": {
+            "label": "Cancellation Reason",
+            "placeholder": "Enter a reason for cancellation (optional)",
+            "hint": "This reason will be shared with ticket holders."
+          },
+          "goBack": "Go Back",
+          "confirm": "Cancel Event",
+          "cancelling": "Cancelling..."
+        },
+        "form": {
+          "name": {
+            "label": "Event Name",
+            "placeholder": "Enter event name"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "Describe your event"
+          },
+          "startTime": {
+            "label": "Start Time"
+          },
+          "endTime": {
+            "label": "End Time"
+          },
+          "location": {
+            "label": "Location",
+            "placeholder": "Select a location"
+          },
+          "ticketSection": {
+            "title": "Ticket Settings"
+          },
+          "ticketPrice": {
+            "label": "Ticket Price"
+          },
+          "ticketCurrency": {
+            "label": "Currency"
+          },
+          "ticketStock": {
+            "label": "Available Tickets",
+            "placeholder": "Leave empty for unlimited",
+            "hint": "Leave empty for unlimited tickets"
+          },
+          "features": {
+            "label": "Ticket Features",
+            "placeholder": "Add a feature",
+            "add": "Add"
+          },
+          "coverImage": {
+            "label": "Cover Image URL",
+            "placeholder": "https://example.com/image.jpg"
+          },
+          "isPublished": {
+            "label": "Publish event"
+          },
+          "cancel": "Cancel",
+          "create": "Create Event",
+          "update": "Update Event",
+          "submitting": "Saving..."
         }
       },
       "developers": {

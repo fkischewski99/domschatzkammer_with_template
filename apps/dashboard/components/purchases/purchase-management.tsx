@@ -8,10 +8,10 @@ import type { PurchaseStatus } from '@workspace/database';
 import { Button } from '@workspace/ui/components/button';
 import { AnnotatedSection } from '@workspace/ui/components/annotated';
 import { Badge } from '@workspace/ui/components/badge';
-import type { PurchaseListItem } from '~/data/purchases/get-organization-purchases';
+import type { SerializedPurchaseListItem } from '~/data/purchases/get-organization-purchases';
 
 interface PurchaseManagementProps {
-  purchases: PurchaseListItem[];
+  purchases: SerializedPurchaseListItem[];
   organizationSlug: string;
 }
 
