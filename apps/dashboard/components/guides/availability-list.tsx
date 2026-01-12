@@ -4,7 +4,6 @@ import * as React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { format, addDays, startOfDay, isSameDay } from 'date-fns';
 import { de, enUS } from 'date-fns/locale';
-import { useRouter } from 'next/navigation';
 import { AvailabilityStatus } from '@workspace/database';
 import { toast } from '@workspace/ui/components/sonner';
 import { Check, X } from 'lucide-react';
@@ -56,13 +55,20 @@ export function AvailabilityList({
   const t = useTranslations('guides.availability');
   const locale = useLocale();
   const dateLocale = locale === 'de' ? de : enUS;
-  const router = useRouter();
 
   const [selectedDates, setSelectedDates] = React.useState<Set<string>>(new Set());
   const [bulkStatus, setBulkStatus] = React.useState<AvailabilityStatus>(
     AvailabilityStatus.AVAILABLE
   );
-  const [isSaving, setIsSaving] = React.useState(false);
+
+  // Local state for INSTANT optimistic updates
+  const [localAvailabilities, setLocalAvailabilities] =
+    React.useState(availabilities);
+
+  // Sync with server data when props change
+  React.useEffect(() => {
+    setLocalAvailabilities(availabilities);
+  }, [availabilities]);
 
   // Generate list of dates from today
   const dates = React.useMemo(() => {
@@ -77,12 +83,12 @@ export function AvailabilityList({
   // Create a map of dates to availability for quick lookup
   const availabilityMap = React.useMemo(() => {
     const map = new Map<string, GuideAvailabilityDto>();
-    for (const a of availabilities) {
+    for (const a of localAvailabilities) {
       const dateKey = new Date(a.date).toDateString();
       map.set(dateKey, a);
     }
     return map;
-  }, [availabilities]);
+  }, [localAvailabilities]);
 
   const getAvailabilityForDate = (date: Date): GuideAvailabilityDto | undefined => {
     return availabilityMap.get(date.toDateString());
@@ -108,31 +114,48 @@ export function AvailabilityList({
     setSelectedDates(new Set());
   };
 
-  const handleSingleStatusChange = async (date: Date, status: AvailabilityStatus) => {
-    setIsSaving(true);
-    try {
-      const result = await setAvailability({
-        date: formatDateString(date),
-        status,
-        notes: null,
-      });
-      if (result?.serverError) {
-        toast.error(t('saveError'));
-        return;
+  // INSTANT status change - optimistic update pattern
+  const handleSingleStatusChange = (date: Date, status: AvailabilityStatus) => {
+    const dateString = formatDateString(date);
+
+    // 1. INSTANT local state update
+    setLocalAvailabilities((prev) => {
+      const existingIndex = prev.findIndex(
+        (a) => formatDateString(new Date(a.date)) === dateString
+      );
+      if (existingIndex >= 0) {
+        return prev.map((a, i) =>
+          i === existingIndex ? { ...a, status } : a
+        );
       }
-      router.refresh();
-    } catch (error) {
-      console.error('Failed to save availability:', error);
-      toast.error(t('saveError'));
-    } finally {
-      setIsSaving(false);
-    }
+      return [
+        ...prev,
+        {
+          id: `local-${dateString}`,
+          date: dateString,
+          status,
+          notes: null,
+        } as GuideAvailabilityDto,
+      ];
+    });
+
+    // 2. Fire and forget - server action runs in background
+    setAvailability({ date: dateString, status, notes: null })
+      .then((result) => {
+        if (result?.serverError) {
+          toast.error(t('saveError'));
+        } else {
+          toast.success(t('saveSuccess'));
+        }
+      })
+      .catch(() => {
+        toast.error(t('saveError'));
+      });
   };
 
-  const handleBulkSetStatus = async () => {
+  // INSTANT bulk status change - optimistic update pattern
+  const handleBulkSetStatus = () => {
     if (selectedDates.size === 0) return;
-
-    setIsSaving(true);
 
     // Find the date range from selected dates
     const selectedDateObjects = Array.from(selectedDates).map((ds) => new Date(ds));
@@ -148,44 +171,83 @@ export function AvailabilityList({
       return isSameDay(addDays(prevDate, 1), date);
     });
 
-    try {
-      if (isConsecutive && selectedDateObjects.length > 1) {
-        // Use range endpoint for consecutive dates
-        const result = await setAvailabilityRange({
-          startDate: formatDateString(startDate),
-          endDate: formatDateString(endDate),
-          status: bulkStatus,
-          notes: null,
-        });
-        if (result?.serverError) {
-          toast.error(t('saveError'));
-          return;
+    // 1. INSTANT local state update for all selected dates
+    setLocalAvailabilities((prev) => {
+      const selectedDateStrings = new Set(
+        selectedDateObjects.map((d) => formatDateString(d))
+      );
+
+      // Update existing and track which ones we updated
+      const updatedDateStrings = new Set<string>();
+      const updated = prev.map((a) => {
+        const aDateString = formatDateString(new Date(a.date));
+        if (selectedDateStrings.has(aDateString)) {
+          updatedDateStrings.add(aDateString);
+          return { ...a, status: bulkStatus };
         }
-      } else {
-        // Set each date individually in parallel
-        const results = await Promise.all(
-          selectedDateObjects.map((date) =>
-            setAvailability({
-              date: formatDateString(date),
-              status: bulkStatus,
-              notes: null,
-            })
-          )
-        );
-        const hasError = results.some((r) => r?.serverError);
-        if (hasError) {
-          toast.error(t('saveError'));
-          return;
+        return a;
+      });
+
+      // Add new entries for dates that didn't exist
+      const newEntries: GuideAvailabilityDto[] = [];
+      for (const dateStr of selectedDateStrings) {
+        if (!updatedDateStrings.has(dateStr)) {
+          newEntries.push({
+            id: `local-${dateStr}`,
+            date: dateStr,
+            status: bulkStatus,
+            notes: null,
+          } as GuideAvailabilityDto);
         }
       }
-      toast.success(t('bulkSaveSuccess'));
-      setSelectedDates(new Set());
-      router.refresh();
-    } catch (error) {
-      console.error('Failed to save availability:', error);
-      toast.error(t('saveError'));
-    } finally {
-      setIsSaving(false);
+
+      return [...updated, ...newEntries];
+    });
+
+    // 2. Clear selection INSTANTLY
+    setSelectedDates(new Set());
+
+    // 3. Fire and forget - server actions run in background
+    if (isConsecutive && selectedDateObjects.length > 1) {
+      // Use range endpoint for consecutive dates
+      setAvailabilityRange({
+        startDate: formatDateString(startDate),
+        endDate: formatDateString(endDate),
+        status: bulkStatus,
+        notes: null,
+      })
+        .then((result) => {
+          if (result?.serverError) {
+            toast.error(t('saveError'));
+          } else {
+            toast.success(t('bulkSaveSuccess'));
+          }
+        })
+        .catch(() => {
+          toast.error(t('saveError'));
+        });
+    } else {
+      // Set each date individually in parallel
+      Promise.all(
+        selectedDateObjects.map((date) =>
+          setAvailability({
+            date: formatDateString(date),
+            status: bulkStatus,
+            notes: null,
+          })
+        )
+      )
+        .then((results) => {
+          const hasError = results.some((r) => r?.serverError);
+          if (hasError) {
+            toast.error(t('saveError'));
+          } else {
+            toast.success(t('bulkSaveSuccess'));
+          }
+        })
+        .catch(() => {
+          toast.error(t('saveError'));
+        });
     }
   };
 
@@ -231,7 +293,7 @@ export function AvailabilityList({
                 </SelectItem>
               </SelectContent>
             </Select>
-            <Button size="sm" onClick={handleBulkSetStatus} disabled={isSaving}>
+            <Button size="sm" onClick={handleBulkSetStatus}>
               {t('list.setSelected')} ({selectedDates.size})
             </Button>
           </div>
@@ -283,7 +345,6 @@ export function AvailabilityList({
                       <Button
                         variant={availability?.status === AvailabilityStatus.AVAILABLE ? 'default' : 'outline'}
                         size="icon"
-                        disabled={isSaving}
                         className={cn(
                           'h-8 w-8',
                           availability?.status === AvailabilityStatus.AVAILABLE &&
@@ -298,7 +359,6 @@ export function AvailabilityList({
                       <Button
                         variant={availability?.status === AvailabilityStatus.UNAVAILABLE ? 'default' : 'outline'}
                         size="icon"
-                        disabled={isSaving}
                         className={cn(
                           'h-8 w-8',
                           availability?.status === AvailabilityStatus.UNAVAILABLE &&
