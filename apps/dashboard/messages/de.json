@@ -1119,6 +1119,21 @@
           "create": "Veranstaltung erstellen",
           "update": "Veranstaltung aktualisieren",
           "submitting": "Wird gespeichert..."
+        },
+        "guide": {
+          "title": "Zugewiesener Domführer",
+          "description": "Weisen Sie einen Domführer für diese Veranstaltung zu.",
+          "assign": "Domführer zuweisen",
+          "unassign": "Zuweisung entfernen",
+          "change": "Domführer ändern",
+          "noGuide": "Noch kein Domführer zugewiesen",
+          "selectGuide": "Wählen Sie einen Domführer für diese Veranstaltung",
+          "noGuidesAvailable": "Keine Domführer in dieser Organisation verfügbar",
+          "available": "Verfügbar",
+          "unavailable": "Nicht verfügbar",
+          "cancel": "Abbrechen",
+          "confirmAssign": "Domführer zuweisen",
+          "assigning": "Wird zugewiesen..."
         }
       }
     }

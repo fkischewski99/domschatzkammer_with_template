@@ -84,7 +84,10 @@
       "Bash(packages/auth/src/permissions.ts )",
       "Bash(apps/dashboard/lib/labels.ts )",
       "Bash(apps/dashboard/messages/en.json )",
-      "Bash(apps/dashboard/messages/de.json)"
+      "Bash(apps/dashboard/messages/de.json)",
+      "Bash(open -a \"Google Chrome\" \"http://localhost:3000/de/organizations/test-org/my-availability\")",
+      "Bash(npx prisma db execute:*)",
+      "Bash(timeout 30 pnpm:*)"
     ],
     "deny": [
       "Write(./packages/database/prisma/schema.prisma)"

@@ -30,6 +30,14 @@ export async function getOrganizationEvents({
     include: {
       location: true,
       ticket: true,
+      guide: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          image: true,
+        },
+      },
     },
     orderBy: {
       startTime: 'asc',

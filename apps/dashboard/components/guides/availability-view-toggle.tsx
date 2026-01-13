@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Calendar, List } from 'lucide-react';
+import { CalendarDays, LayoutList } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { ToggleGroup, ToggleGroupItem } from '@workspace/ui/components/toggle-group';
@@ -30,15 +30,21 @@ export function AvailabilityViewToggle({
       type="single"
       value={value}
       onValueChange={handleValueChange}
-      className="justify-start"
+      className="rounded-lg border p-1"
     >
-      <ToggleGroupItem value="calendar" aria-label={t('calendar')}>
-        <Calendar className="h-4 w-4 mr-2" />
-        {t('calendar')}
+      <ToggleGroupItem
+        value="list"
+        aria-label={t('list')}
+        className="h-7 w-7"
+      >
+        <LayoutList className="size-4" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="list" aria-label={t('list')}>
-        <List className="h-4 w-4 mr-2" />
-        {t('list')}
+      <ToggleGroupItem
+        value="calendar"
+        aria-label={t('calendar')}
+        className="h-7 w-7"
+      >
+        <CalendarDays className="size-4" />
       </ToggleGroupItem>
     </ToggleGroup>
   );

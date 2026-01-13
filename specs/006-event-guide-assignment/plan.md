@@ -2,7 +2,7 @@
 
 ## Zusammenfassung
 
-Admins können Domführer zu Events zuweisen. Domführer sehen ihre zugewiesenen Events. Auf Event-Karten und im Kalender wird der zugewiesene Guide angezeigt.
+Admins können einen Domführer zu einem Event zuweisen. Domführer sehen ihre zugewiesenen Events. Auf Event-Karten und im Kalender wird der zugewiesene Guide angezeigt.
 
 ---
 
@@ -10,14 +10,13 @@ Admins können Domführer zu Events zuweisen. Domführer sehen ihre zugewiesenen
 
 ### Für Admins
 - Domführer einem Event zuweisen (auf Event-Detail-Seite)
-- Mehrere Domführer pro Event möglich
+- Nur ein Domführer pro Event möglich
 - Zuweisung entfernen
-- Bei Zuweisung: Verfügbarkeit des Guides anzeigen (wenn Feature 005 implementiert)
-- Übersicht aller Zuweisungen
+- Bei Zuweisung: Nur Domführer anzeigen die in diesem Zeitraum verfügbar sind
 
 ### Für Domführer
 - Liste der zugewiesenen Events sehen
-- Kalender-Integration: Zugewiesene Events hervorgehoben
+- Kalender-Integration: Zugewiesene Events filtern
 
 ### Für alle
 - Auf Event-Karten wird der zugewiesene Guide angezeigt
@@ -27,33 +26,25 @@ Admins können Domführer zu Events zuweisen. Domführer sehen ihre zugewiesenen
 
 ## Datenmodell
 
-### EventGuideAssignment (Prisma)
+### Event Model Update (vereinfacht)
 
-```prisma
-model EventGuideAssignment {
-  id             String       @id @default(uuid()) @db.Uuid
-  eventId        String       @db.Uuid
-  event          Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  guideId        String       @db.Uuid
-  guide          User         @relation("GuideAssignments", fields: [guideId], references: [id], onDelete: Cascade)
-  organizationId String       @db.Uuid
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  assignedAt     DateTime     @default(now()) @db.Timestamptz(6)
-  assignedById   String       @db.Uuid
-  assignedBy     User         @relation("AssignedBy", fields: [assignedById], references: [id])
+Da nur ein Guide pro Event möglich ist, wird `guideId` direkt auf dem Event gespeichert (kein separates Model nötig).
 
-  @@unique([eventId, guideId])
-  @@index([organizationId])
-  @@index([eventId])
-  @@index([guideId])
-}
-```
-
-### Event Model Update
 ```prisma
 model Event {
   // ... bestehende Felder ...
-  guideAssignments  EventGuideAssignment[]
+
+  // Guide-Zuweisung
+  guideId  String?  @db.Uuid
+  guide    User?    @relation("GuideEvents", fields: [guideId], references: [id], onDelete: SetNull)
+}
+```
+
+### User Model Update
+```prisma
+model User {
+  // ... bestehende Felder ...
+  guidedEvents  Event[] @relation("GuideEvents")
 }
 ```
 
@@ -63,33 +54,22 @@ model Event {
 
 ### Server Actions
 ```
-apps/dashboard/actions/event-assignments/
-├── assign-guide-to-event.ts      # Guide zuweisen
-├── unassign-guide-from-event.ts  # Zuweisung entfernen
-└── get-event-assignments.ts      # Zuweisungen für Event
+apps/dashboard/actions/events/
+├── assign-guide-to-event.ts      # guideId setzen
+└── unassign-guide-from-event.ts  # guideId auf null setzen
 ```
 
 ### Data Fetching
 ```
-apps/dashboard/data/event-assignments/
-├── get-event-guide-assignments.ts     # Guides für ein Event
-├── get-guide-assigned-events.ts       # Events für einen Guide
+apps/dashboard/data/events/
 └── get-available-guides-for-event.ts  # Verfügbare Guides (mit Availability-Check)
-```
-
-### Schemas
-```
-apps/dashboard/schemas/event-assignments/
-└── event-assignment-schema.ts
 ```
 
 ### Components
 ```
-apps/dashboard/components/event-assignments/
-├── assign-guide-modal.tsx         # Modal zum Zuweisen
-├── event-guide-list.tsx           # Liste der zugewiesenen Guides
-├── guide-assignment-badge.tsx     # Badge auf Event-Karte
-└── unassign-guide-button.tsx      # Entfernen-Button
+apps/dashboard/components/events/
+├── assign-guide-modal.tsx      # Modal zum Zuweisen
+└── event-guide-badge.tsx       # Badge auf Event-Karte
 ```
 
 ---
@@ -99,9 +79,9 @@ apps/dashboard/components/event-assignments/
 ### Event-Detail-Seite
 **Datei:** `apps/dashboard/app/[locale]/organizations/[slug]/(organization)/events/[eventId]/page.tsx`
 
-- Neuer Abschnitt "Zugewiesene Domführer"
+- Neuer Abschnitt "Zugewiesener Domführer"
 - Button "Domführer zuweisen" (nur für Admin)
-- Liste der zugewiesenen Guides mit Entfernen-Option
+- Zugewiesener Guide mit Entfernen-Option
 
 ### Event-Karten
 **Datei:** `apps/dashboard/components/events/event-card.tsx`
@@ -129,19 +109,18 @@ apps/dashboard/components/event-assignments/
 
 // Berechtigung: ADMIN/OWNER
 // Validierung: Guide muss GUIDE-Rolle haben
-// Erstellt EventGuideAssignment
+// Setzt event.guideId = guideId
 ```
 
 ### unassign-guide-from-event.ts
 ```typescript
 // Input
 {
-  eventId: string,
-  guideId: string
+  eventId: string
 }
 
 // Berechtigung: ADMIN/OWNER
-// Löscht EventGuideAssignment
+// Setzt event.guideId = null
 ```
 
 ---
@@ -149,19 +128,9 @@ apps/dashboard/components/event-assignments/
 ## UI-Komponenten
 
 ### AssignGuideModal
-- Dropdown mit allen Guides der Organisation
-- Wenn Feature 005 implementiert: Verfügbarkeit anzeigen
-  - Grün markiert = verfügbar am Event-Tag
-  - Rot markiert = nicht verfügbar
-  - Grau = keine Angabe
-- Bereits zugewiesene Guides ausgrauen
+- Dropdown mit allen Guides der Organisation welche zum Zeitpunkt des events verfügbar sind
 
-### EventGuideList
-- Avatar + Name der zugewiesenen Guides
-- Entfernen-Button (nur für Admin)
-- "Noch kein Guide zugewiesen" wenn leer
-
-### GuideAssignmentBadge
+### EventGuideBadge
 - Kleiner Badge auf Event-Karte
 - Zeigt Avatar oder Initialen des Guides
 - Tooltip mit vollem Namen
@@ -173,16 +142,14 @@ apps/dashboard/components/event-assignments/
 ```json
 {
   "events": {
-    "guides": {
-      "title": "Zugewiesene Domführer",
+    "guide": {
+      "title": "Zugewiesener Domführer",
       "assign": "Domführer zuweisen",
       "unassign": "Zuweisung entfernen",
       "noGuide": "Noch kein Domführer zugewiesen",
       "selectGuide": "Domführer auswählen",
       "available": "Verfügbar",
-      "unavailable": "Nicht verfügbar",
-      "assignedBy": "Zugewiesen von {name}",
-      "assignedAt": "am {date}"
+      "unavailable": "Nicht verfügbar"
     }
   },
   "guides": {
@@ -198,20 +165,18 @@ apps/dashboard/components/event-assignments/
 
 ## Implementierungs-Schritte
 
-1. [ ] Prisma Schema: EventGuideAssignment Model
-2. [ ] Event Model: Relation hinzufügen
-3. [ ] User Model: Relations hinzufügen
-4. [ ] Migration ausführen
-5. [ ] Schemas erstellen
-6. [ ] Server Actions implementieren
-7. [ ] Data Fetching Functions erstellen
-8. [ ] AssignGuideModal Komponente
-9. [ ] EventGuideList Komponente
-10. [ ] Event-Detail-Seite: Guide-Sektion hinzufügen
-11. [ ] Event-Karte: Badge hinzufügen
-12. [ ] Event-Kalender: Guide-Name anzeigen
-13. [ ] i18n Strings (en + de)
-14. [ ] Typecheck & Test
+1. [ ] Prisma Schema: guideId zu Event hinzufügen
+2. [ ] User Model: guidedEvents Relation hinzufügen
+3. [ ] Migration ausführen
+4. [ ] Server Actions implementieren
+5. [ ] Data Fetching Function erstellen
+6. [ ] AssignGuideModal Komponente
+7. [ ] EventGuideBadge Komponente
+8. [ ] Event-Detail-Seite: Guide-Sektion hinzufügen
+9. [ ] Event-Karte: Badge hinzufügen
+10. [ ] Event-Kalender: Guide-Name anzeigen
+11. [ ] i18n Strings (en + de)
+12. [ ] Typecheck & Test
 
 ---
 
@@ -222,6 +187,7 @@ apps/dashboard/components/event-assignments/
 
 ## Notizen
 
-- Mehrere Guides pro Event sind möglich (z.B. für große Events)
+- Ein Guide pro Event (vereinfachtes Design mit guideId auf Event)
 - Ein Guide kann mehreren Events zugewiesen sein
-- Bei Event-Absage bleiben Zuweisungen bestehen (cascade delete regelt das)
+- Bei Event-Löschung wird Guide automatisch entfernt (cascade)
+- Bei Guide-Löschung wird guideId auf null gesetzt (SetNull)

@@ -125,6 +125,11 @@ function DraggableEvent({
           {format(new Date(event.startTime), 'h:mm a')} -{' '}
           {format(new Date(event.endTime), 'h:mm a')}
         </div>
+        {event.guide && (
+          <div className="text-[10px] opacity-70 truncate mt-0.5">
+            {event.guide.name || event.guide.email}
+          </div>
+        )}
       </Link>
     </div>
   );

@@ -124,4 +124,42 @@ This is a Next.js SaaS starter with:
 
 Test authentication flows carefully as they use organization and user context. Verify that organization-scoped data only shows for the correct organization.
 
+## Test Credentials (from .env)
+
+The project has test accounts configured in `apps/dashboard/.env`. Use these for testing:
+
+### Admin/Owner Account
+- **Email:** `TEST_ADMIN_EMAIL` (test-user@achromatic-test.com)
+- **Password:** `TEST_ADMIN_PASSWORD` (TestPassword123!)
+- **Roles:** OWNER, ADMIN
+
+### Guide (Domführer) Account
+- **Email:** `TEST_GUIDE_EMAIL` (test-guide@achromatic-test.com)
+- **Password:** `TEST_GUIDE_PASSWORD` (TestGuide123!)
+- **Role:** GUIDE
+
+### Test Organization
+- **Slug:** `TEST_ORG_SLUG` (test-org)
+- **URL:** http://localhost:3000/de/organizations/test-org
+
+## Role-Based Testing
+
+When testing features that have different behavior based on user roles:
+
+1. **Test as Admin first** - Use the admin account to test admin-specific features (creating events, assigning guides, managing settings)
+2. **Test as Guide** - Use the guide account to verify guide-specific views and restrictions
+3. **Document role differences** - Note which features are available to each role
+
+### Common Role-Specific Features
+- **Admin Only:** Creating/editing events, assigning guides to events, managing organization settings
+- **Guide Only:** Setting availability, viewing assigned events
+- **Both:** Viewing event calendar, viewing event details
+
+## Creating New Test Users
+
+If a new test user type is needed:
+1. Create the user through the UI registration flow or Supabase dashboard
+2. Add the credentials to `apps/dashboard/.env` under TEST CREDENTIALS section
+3. Update this agent.md with the new user role and its capabilities
+
 Remember: Your testing using the Chrome extension is the final validation before any feature can be considered complete. Be meticulous and thorough.

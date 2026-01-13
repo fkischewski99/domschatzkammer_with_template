@@ -11,11 +11,15 @@ import {
   PageBody,
   PageHeader,
   PagePrimaryBar,
+  PageSecondaryBar,
 } from '@workspace/ui/components/page';
 
 import { OrganizationPageTitle } from '~/components/organizations/slug/organization-page-title';
 import { MyAvailabilityContent } from '~/components/guides/my-availability-content';
+import { AvailabilityFilters } from '~/components/guides/availability-filters';
+import { AvailabilityLegend } from '~/components/guides/availability-legend';
 import { getMyAvailability } from '~/data/guide-availability/get-my-availability';
+import { TransitionProvider } from '~/hooks/use-transition-context';
 import { createTitle } from '~/lib/formatters';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -25,7 +29,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function MyAvailabilityPage(): Promise<React.JSX.Element> {
+export default async function MyAvailabilityPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ view?: string }>;
+}): Promise<React.JSX.Element> {
+  const { view } = await searchParams;
   const t = await getTranslations('guides.availability');
   const ctx = await getAuthOrganizationContext();
 
@@ -43,22 +52,36 @@ export default async function MyAvailabilityPage(): Promise<React.JSX.Element> {
   const endDate = endOfMonth(addMonths(new Date(), 2));
 
   const availabilities = await getMyAvailability(startDate, endDate);
+  const currentView = view === 'list' ? 'list' : 'calendar';
 
   return (
-    <Page>
-      <PageHeader>
-        <PagePrimaryBar>
-          <OrganizationPageTitle
-            title={t('title')}
-            info={t('description')}
-          />
-        </PagePrimaryBar>
-      </PageHeader>
-      <PageBody>
-        <div className="max-w-4xl">
-          <MyAvailabilityContent availabilities={availabilities} />
-        </div>
-      </PageBody>
-    </Page>
+    <TransitionProvider>
+      <Page>
+        <PageHeader>
+          <PagePrimaryBar>
+            <OrganizationPageTitle
+              title={t('title')}
+              info={t('description')}
+            />
+          </PagePrimaryBar>
+          <PageSecondaryBar>
+            <AvailabilityLegend />
+            <React.Suspense>
+              <AvailabilityFilters view={currentView} />
+            </React.Suspense>
+          </PageSecondaryBar>
+        </PageHeader>
+        <PageBody>
+          <div className="px-4 py-4 sm:px-6">
+            <React.Suspense>
+              <MyAvailabilityContent
+                initialAvailabilities={availabilities}
+                view={currentView}
+              />
+            </React.Suspense>
+          </div>
+        </PageBody>
+      </Page>
+    </TransitionProvider>
   );
 }

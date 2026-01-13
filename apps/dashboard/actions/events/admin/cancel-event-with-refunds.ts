@@ -5,6 +5,7 @@ import { prisma } from '@workspace/database/client';
 import { isOrganizationAdmin } from '@workspace/auth/permissions';
 import { refundTicketPurchase } from '@workspace/billing/tickets';
 import { sendEventCancelledEmail } from '@workspace/email/send-event-cancelled-email';
+import { sendGuideEventCancelledEmail } from '@workspace/email/send-guide-event-cancelled-email';
 import { APP_NAME } from '@workspace/common/app';
 import { ForbiddenError, NotFoundError, PreConditionError } from '@workspace/common/errors';
 
@@ -95,11 +96,20 @@ export const cancelEventWithRefunds = authOrganizationActionClient
       throw new NotFoundError('Event not found');
     }
 
-    // Check if event is already cancelled
+    // Check if event is already cancelled and get guide info
     const existingEvent = await prisma.event.findFirst({
       where: {
         id: parsedInput.eventId,
         organizationId: ctx.organization.id,
+      },
+      include: {
+        guide: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
       },
     });
 
@@ -225,6 +235,25 @@ export const cancelEventWithRefunds = authOrganizationActionClient
 
       // Small delay to avoid overwhelming email provider
       await delay(50);
+    }
+
+    // Notify assigned guide if there is one
+    if (existingEvent?.guide?.email) {
+      try {
+        await sendGuideEventCancelledEmail({
+          recipient: existingEvent.guide.email,
+          appName: APP_NAME,
+          organizationName: data.organization.name,
+          guideName: existingEvent.guide.name ?? undefined,
+          eventName: data.event.name,
+          eventDate: data.event.startTime,
+          locationName: data.event.location?.name ?? undefined,
+          cancellationReason: parsedInput.reason ?? undefined,
+        });
+      } catch (error) {
+        console.error('Failed to send guide notification email:', error);
+        // Don't fail the action if email fails
+      }
     }
 
     // Revalidate paths

@@ -1071,6 +1071,21 @@
           "create": "Create Event",
           "update": "Update Event",
           "submitting": "Saving..."
+        },
+        "guide": {
+          "title": "Assigned Guide",
+          "description": "Assign a guide to lead this event.",
+          "assign": "Assign Guide",
+          "unassign": "Remove Assignment",
+          "change": "Change Guide",
+          "noGuide": "No guide assigned yet",
+          "selectGuide": "Select a guide for this event",
+          "noGuidesAvailable": "No guides available in this organization",
+          "available": "Available",
+          "unavailable": "Unavailable",
+          "cancel": "Cancel",
+          "confirmAssign": "Assign Guide",
+          "assigning": "Assigning..."
         }
       },
       "developers": {

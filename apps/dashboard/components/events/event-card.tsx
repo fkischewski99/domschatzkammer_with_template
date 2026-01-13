@@ -25,6 +25,7 @@ import {
 
 import type { SerializedEventWithRelations } from '~/data/events/get-organization-events';
 import { toggleEventPublish } from '~/actions/events/admin/toggle-publish';
+import { EventGuideBadge } from '~/components/events/event-guide-badge';
 
 interface EventCardProps {
   event: SerializedEventWithRelations;
@@ -82,12 +83,12 @@ export function EventCard({ event, organizationSlug }: EventCardProps): React.JS
   return (
     <Card className="flex flex-col">
       <CardHeader className="pb-3">
-        <div className="flex items-start justify-between">
-          <div className="space-y-1">
-            <CardTitle className="text-lg font-semibold line-clamp-1">
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0 flex-1 space-y-1">
+            <CardTitle className="text-lg font-semibold line-clamp-1 break-words">
               {event.name}
             </CardTitle>
-            <CardDescription className="line-clamp-2">
+            <CardDescription className="line-clamp-2 break-words">
               {event.description || t('noDescription')}
             </CardDescription>
           </div>
@@ -155,6 +156,13 @@ export function EventCard({ event, organizationSlug }: EventCardProps): React.JS
             <span>
               {event.ticket.stock} {t('ticketsAvailable')}
             </span>
+          </div>
+        )}
+
+        {event.guide && (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <EventGuideBadge guide={event.guide} size="sm" />
+            <span className="truncate">{event.guide.name || event.guide.email}</span>
           </div>
         )}
       </CardContent>

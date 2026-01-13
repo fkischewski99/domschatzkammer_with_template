@@ -18,10 +18,12 @@ import {
   type SerializedEventDetail
 } from '~/data/events/get-event-by-id';
 import { getOrganizationLocations } from '~/data/locations/get-organization-locations';
+import { getAvailableGuidesForEvent } from '~/data/events/get-available-guides-for-event';
 import { EventForm } from '~/components/events/event-form';
 import { DeleteEventButton } from '~/components/events/delete-event-button';
 import { OrganizationPageTitle } from '~/components/organizations/slug/organization-page-title';
 import { CancelEventSection } from './cancel-section';
+import { GuideSection } from './guide-section';
 
 export default async function EditEventPage({
   params,
@@ -45,10 +47,13 @@ export default async function EditEventPage({
     notFound();
   }
 
-  const locations = await getOrganizationLocations({
-    organizationId: organization.id,
-    includeInactive: false,
-  });
+  const [locations, availableGuides] = await Promise.all([
+    getOrganizationLocations({
+      organizationId: organization.id,
+      includeInactive: false,
+    }),
+    getAvailableGuidesForEvent(event.id),
+  ]);
 
   // Serialize Decimal to number for client component
   const serializedEvent: SerializedEventDetail = {
@@ -85,6 +90,15 @@ export default async function EditEventPage({
               mode="edit"
             />
           </AnnotatedSection>
+
+          <Separator />
+          <GuideSection
+            eventId={event.id}
+            eventName={event.name}
+            guide={event.guide}
+            availableGuides={availableGuides}
+            isCancelled={event.isCancelled}
+          />
 
           {!event.isCancelled && (
             <>

@@ -5,9 +5,7 @@ import { useTranslations } from 'next-intl';
 import { format } from 'date-fns';
 import { de, enUS } from 'date-fns/locale';
 import { useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
 import { AvailabilityStatus } from '@workspace/database';
-import { toast } from '@workspace/ui/components/sonner';
 
 import { Button } from '@workspace/ui/components/button';
 import {
@@ -28,23 +26,15 @@ import {
   SelectValue,
 } from '@workspace/ui/components/select';
 
-import { setAvailability } from '~/actions/guide-availability/set-availability';
-import { deleteAvailability } from '~/actions/guide-availability/delete-availability';
 import type { GuideAvailabilityDto } from '~/types/dtos/guide-availability-dto';
-
-// Format Date to YYYY-MM-DD string (timezone-safe)
-function formatDateString(date: Date): string {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
 
 interface SetAvailabilityModalProps {
   date: Date;
   existingAvailability?: GuideAvailabilityDto;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onOptimisticSave?: (date: Date, status: AvailabilityStatus, notes: string | null) => void;
+  onOptimisticDelete?: (date: Date) => void;
 }
 
 export function SetAvailabilityModal({
@@ -52,17 +42,17 @@ export function SetAvailabilityModal({
   existingAvailability,
   open,
   onOpenChange,
+  onOptimisticSave,
+  onOptimisticDelete,
 }: SetAvailabilityModalProps): React.JSX.Element {
   const t = useTranslations('guides.availability');
   const locale = useLocale();
   const dateLocale = locale === 'de' ? de : enUS;
-  const router = useRouter();
 
   const [status, setStatus] = React.useState<AvailabilityStatus>(
     existingAvailability?.status ?? AvailabilityStatus.AVAILABLE
   );
   const [notes, setNotes] = React.useState(existingAvailability?.notes ?? '');
-  const [isSaving, setIsSaving] = React.useState(false);
 
   // Reset form when modal opens with new date
   React.useEffect(() => {
@@ -72,52 +62,22 @@ export function SetAvailabilityModal({
     }
   }, [open, existingAvailability]);
 
-  const handleSave = async () => {
+  const handleSave = () => {
     const trimmedNotes = notes.trim() || null;
-    setIsSaving(true);
-
-    try {
-      const result = await setAvailability({
-        date: formatDateString(date),
-        status,
-        notes: trimmedNotes,
-      });
-
-      if (result?.serverError) {
-        toast.error(t('saveError'));
-        return;
-      }
-
-      toast.success(t('saveSuccess'));
+    // Use optimistic handler if provided (instant UI update)
+    if (onOptimisticSave) {
+      onOptimisticSave(date, status, trimmedNotes);
+    } else {
       onOpenChange(false);
-      router.refresh();
-    } catch (error) {
-      console.error('Failed to save availability:', error);
-      toast.error(t('saveError'));
-    } finally {
-      setIsSaving(false);
     }
   };
 
-  const handleDelete = async () => {
-    setIsSaving(true);
-
-    try {
-      const result = await deleteAvailability({ date: formatDateString(date) });
-
-      if (result?.serverError) {
-        toast.error(t('deleteError'));
-        return;
-      }
-
-      toast.success(t('deleteSuccess'));
+  const handleDelete = () => {
+    // Use optimistic handler if provided (instant UI update)
+    if (onOptimisticDelete) {
+      onOptimisticDelete(date);
+    } else {
       onOpenChange(false);
-      router.refresh();
-    } catch (error) {
-      console.error('Failed to delete availability:', error);
-      toast.error(t('deleteError'));
-    } finally {
-      setIsSaving(false);
     }
   };
 
@@ -177,7 +137,6 @@ export function SetAvailabilityModal({
               type="button"
               variant="destructive"
               onClick={handleDelete}
-              disabled={isSaving}
               className="w-full sm:w-auto"
             >
               {t('delete')}
@@ -188,12 +147,11 @@ export function SetAvailabilityModal({
             type="button"
             variant="outline"
             onClick={() => onOpenChange(false)}
-            disabled={isSaving}
           >
             {t('cancel')}
           </Button>
-          <Button type="button" onClick={handleSave} disabled={isSaving}>
-            {isSaving ? t('saving') : t('save')}
+          <Button type="button" onClick={handleSave}>
+            {t('save')}
           </Button>
         </DialogFooter>
       </DialogContent>

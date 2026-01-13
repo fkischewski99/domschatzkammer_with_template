@@ -12,10 +12,12 @@ import {
   PageBody,
   PageHeader,
   PagePrimaryBar,
+  PageSecondaryBar,
 } from '@workspace/ui/components/page';
 
 import { OrganizationPageTitle } from '~/components/organizations/slug/organization-page-title';
 import { GuideAvailabilityOverview } from '~/components/guides/guide-availability-overview';
+import { AvailabilityLegend } from '~/components/guides/availability-legend';
 import { getOrganizationGuideAvailabilities } from '~/data/guide-availability/get-organization-guide-availabilities';
 import { createTitle } from '~/lib/formatters';
 
@@ -58,9 +60,14 @@ export default async function GuidesAvailabilityPage(): Promise<React.JSX.Elemen
             info={t('description')}
           />
         </PagePrimaryBar>
+        <PageSecondaryBar>
+          <AvailabilityLegend />
+        </PageSecondaryBar>
       </PageHeader>
       <PageBody>
-        <GuideAvailabilityOverview guides={guides} />
+        <div className="px-4 py-4 sm:px-6">
+          <GuideAvailabilityOverview guides={guides} />
+        </div>
       </PageBody>
     </Page>
   );

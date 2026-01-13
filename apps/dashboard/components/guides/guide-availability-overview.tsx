@@ -18,7 +18,6 @@ import {
 import { cn } from '@workspace/ui/lib/utils';
 
 import type { GuideWithAvailabilityDto } from '~/types/dtos/guide-availability-dto';
-import { AvailabilityLegend } from './availability-legend';
 
 interface GuideAvailabilityOverviewProps {
   guides: GuideWithAvailabilityDto[];
@@ -77,10 +76,7 @@ export function GuideAvailabilityOverview({
   }
 
   return (
-    <div className="space-y-4">
-      <AvailabilityLegend />
-
-      <div className="border rounded-lg overflow-x-auto">
+    <div className="border rounded-lg overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
@@ -156,7 +152,6 @@ export function GuideAvailabilityOverview({
             ))}
           </TableBody>
         </Table>
-      </div>
     </div>
   );
 }

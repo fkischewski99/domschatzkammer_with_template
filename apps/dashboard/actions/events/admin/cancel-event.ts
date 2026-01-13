@@ -3,6 +3,8 @@
 import { revalidatePath } from 'next/cache';
 import { prisma } from '@workspace/database/client';
 import { isOrganizationAdmin } from '@workspace/auth/permissions';
+import { sendGuideEventCancelledEmail } from '@workspace/email/send-guide-event-cancelled-email';
+import { APP_NAME } from '@workspace/common/app';
 import { ForbiddenError, NotFoundError } from '@workspace/common/errors';
 
 import { authOrganizationActionClient } from '~/actions/safe-action';
@@ -24,6 +26,20 @@ export const cancelEvent = authOrganizationActionClient
       where: {
         id: parsedInput.eventId,
         organizationId: ctx.organization.id,
+      },
+      include: {
+        guide: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+        location: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 
@@ -53,6 +69,25 @@ export const cancelEvent = authOrganizationActionClient
     ]);
 
     revalidatePath(`/organizations/${ctx.organization.slug}/events`);
+
+    // Notify assigned guide if there is one
+    if (existingEvent.guide?.email) {
+      try {
+        await sendGuideEventCancelledEmail({
+          recipient: existingEvent.guide.email,
+          appName: APP_NAME,
+          organizationName: ctx.organization.name,
+          guideName: existingEvent.guide.name ?? undefined,
+          eventName: existingEvent.name,
+          eventDate: existingEvent.startTime,
+          locationName: existingEvent.location?.name ?? undefined,
+          cancellationReason: parsedInput.reason ?? undefined,
+        });
+      } catch (error) {
+        console.error('Failed to send guide notification email:', error);
+        // Don't fail the action if email fails
+      }
+    }
 
     return { success: true };
   });
